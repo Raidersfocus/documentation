@@ -1,0 +1,1207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="fr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Détails du modèle de mise en forme visuel</title>
+<link rel="stylesheet" type="text/css" href="annexe/W3C-REC.css">
+<link rel="stylesheet" type="text/css" href="annexe/vf.css">
+<link rel="stylesheet" type="text/css" href="annexe/print.css" media="print" > <!-- ajouté JHI 13.2.9 -->
+<link rel="prev" href="visuren.html">
+<link rel="next" href="visufx.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+</head>
+<body>
+<!-- Préface de la traduction -->
+<div id="lisezmoi">
+<a href="annexe/preface.html" title="IMPORTANT : Lisez d'abord la préface de la traduction !"><strong> Lisez-moi S.V.P. </strong></a>
+</div>
+<div class="navbar" align="center">
+<p><a href="visuren.html">précédent</a>  
+<a href="visufx.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+<hr class="navbar">
+
+<h1 align="center">10 Détails du modèle de mise en forme visuel</h1>
+<div class="subtoc">
+<p><strong>Contenu</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="visudet.html#containing-block-details" class="tocxref">10.1 Définition du "bloc conteneur"</a>
+    <li class="tocline2"><a href="visudet.html#the-width-property" class="tocxref">10.2 La largeur du contenu : la propriété <span class="propinst-width">'width'</span></a>
+    <li class="tocline2"><a href="visudet.html#Computing_widths_and_margins" class="tocxref">10.3 Le calcul des largeurs et des marges</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="visudet.html#q4" class="tocxref">10.3.1 Les éléments de type en-ligne non remplacés</a>
+      <li class="tocline3"><a href="visudet.html#q5" class="tocxref">10.3.2 Les éléments de type en-ligne remplacés</a>
+      <li class="tocline3"><a href="visudet.html#q6" class="tocxref">10.3.3 Les éléments de type bloc non remplacés dans un flux normal</a>
+      <li class="tocline3"><a href="visudet.html#q7" class="tocxref">10.3.4 Les éléments de type bloc remplacés dans un flux normal</a>
+      <li class="tocline3"><a href="visudet.html#q8" class="tocxref">10.3.5 Les éléments flottants non remplacés</a>
+      <li class="tocline3"><a href="visudet.html#q9" class="tocxref">10.3.6 Les éléments flottants remplacés</a>
+      <li class="tocline3"><a href="visudet.html#abs-non-replaced-width" class="tocxref">10.3.7 Les éléments non remplacés en position absolue</a>
+      <li class="tocline3"><a href="visudet.html#q11" class="tocxref">10.3.8 Les éléments remplacés en position absolue</a>
+    </ul>
+    <li class="tocline2"><a href="visudet.html#min-max-widths" class="tocxref">10.4 Les largeurs minimales et maximales : <span class="propinst-min-width">'min-width'</span> and <span class="propinst-max-width">'max-width'</span></a>
+    <li class="tocline2"><a href="visudet.html#the-height-property" class="tocxref">10.5 La hauteur du contenu : la propriété <span class="propinst-height">'height'</span></a>
+    <li class="tocline2"><a href="visudet.html#Computing_heights_and_margins" class="tocxref">10.6 Le calcul des hauteurs et des marges</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="visudet.html#q15" class="tocxref">10.6.1 Les éléments de type en-ligne non remplacés</a>
+      <li class="tocline3"><a href="visudet.html#q16" class="tocxref">10.6.2 Les éléments de types en-ligne et bloc remplacés dans un flux normal et éléments flottants remplacés</a>
+      <li class="tocline3"><a href="visudet.html#q17" class="tocxref">10.6.3 Les éléments de type bloc non remplacés dans un flux normal et éléments flottants non remplacés</a>
+      <li class="tocline3"><a href="visudet.html#abs-non-replaced-height" class="tocxref">10.6.4 Les éléments non remplacés en position absolue</a>
+      <li class="tocline3"><a href="visudet.html#q19" class="tocxref">10.6.5 Les éléments remplacés en position absolue</a>
+    </ul>
+    <li class="tocline2"><a href="visudet.html#min-max-heights" class="tocxref">10.7 Les hauteurs minimales et maximales : <span class="propinst-min-height">'min-height'</span> et <span class="propinst-max-height">'max-height'</span></a>
+    <li class="tocline2"><a href="visudet.html#line-height" class="tocxref">10.8 Le calcul de la hauteur de ligne : les propriétés <span class="propinst-line-height">'line-height'</span> et <span class="propinst-vertical-align">'vertical-align'</span></a>
+    <ul class="toc">
+      <li class="tocline3"><a href="visudet.html#q22" class="tocxref">10.8.1 L'interlignage et le demi-interlignage</a>
+    </ul>
+  </ul>
+</div>
+
+<h2>10.1 <a name="containing-block-details">Définition du "bloc conteneur"</a></h2>
+
+<p>
+La position et la taille de la boîte d'un élément sont parfois calculées par
+rapport à un certain rectangle, appelé le <dfn><a name="x0"><span class="index-def" title="containing block">bloc conteneur</span></a></dfn>
+de l'élément. On le définit ainsi :
+
+<ol>
+<li>Le bloc conteneur dans lequel se range l'<a href="conform.html#root">élément racine</a>
+(on l'appelle dans ce cas le bloc conteneur initial), est déterminé par l'agent utilisateur ;
+
+<li>Pour les autres éléments, sauf ceux en <a href="visuren.html#absolutely-positioned">position absolue</a>,
+le bloc conteneur est matérialisé par le bord du contenu de la boîte de type bloc de leur ancêtre
+le plus proche ;
+
+<li>Pour ceux des éléments avec une spécification 'position: fixed', le bloc conteneur
+est établi par la <a href="visuren.html#viewport">zone de visualisation</a> ;
+
+<li>Pour ceux des éléments avec une spécification 'position: absolute', le bloc conteneur
+est établi par l'ancêtre le plus proche dont la valeur de la propriété
+<a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>
+est autre que 'static', de cette manière :
+<ol>
+<li>Quand l'ancêtre est un élément de type bloc, le bloc conteneur est matérialisé
+par le <a href="box.html#padding-edge">bord de l'espacement</a> de cet ancêtre ;
+
+<li>Quand l'ancêtre est un élément de type en-ligne, le bloc conteneur dépend de
+la propriété <a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>
+
+<ol>
+<li>Si cette propriété a la valeur 'ltr', les bords du haut et de gauche du bloc conteneur
+se confondent avec ceux de la première boîte générée par cet ancêtre,
+et les bords du bas et de droite avec ceux de la dernière boîte générée par celui-ci ;
+
+<li>Si cette propriété a la valeur 'rtl', les bords du haut et de droite du bloc conteneur
+se confondent avec ceux de la première boîte générée par cet ancêtre,
+et les bords du bas et de gauche avec ceux de la dernière boîte générée par celui-ci.
+</ol>
+</ol>
+
+<p>Quand il n'existe pas un tel ancêtre, c'est le bord du contenu de la boîte de l'élément
+racine qui établit le bloc conteneur.
+</ol>
+
+<div class="example"><p style="display:none">Exemple(s) :
+
+<p>Dans ce document, sans positionnement :
+
+<pre class="html-example">
+&lt;HTML&gt;
+   &lt;HEAD&gt;
+      &lt;TITLE&gt;Illustration des blocs conteneurs&lt;/TITLE&gt;
+   &lt;/HEAD&gt;
+   &lt;BODY id="body"&gt;
+      &lt;DIV id="div1"&gt;
+      &lt;P id="p1"&gt;Voici un texte dans le premier paragraphe...&lt;/P&gt;
+      &lt;P id="p2"&gt;Voici un texte &lt;EM id="em1"&gt;dans le
+      &lt;STRONG id="strong1"&gt;second&lt;/STRONG&gt; paragraphe...&lt;/EM&gt;&lt;/P&gt;
+      &lt;/DIV&gt;
+   &lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+
+<p>Les blocs conteneurs sont établis ainsi :
+
+<table border="1">
+<tr><th align="center">Pour la boîte générée par
+<td align="center"><strong>Le bloc conteneur est établi par</strong></tr>
+<tr><td align="center">body<td align="center">bloc conteneur initial (selon l'agent utilisateur)</tr>
+<tr><td align="center">div1<td align="center">body</tr>
+<tr><td align="center">p1<td align="center">div1</tr>
+<tr><td align="center">p2<td align="center">div1</tr>
+<tr><td align="center">em1<td align="center">p2</tr>
+<tr><td align="center">strong1<td align="center">p2</tr>
+</table>
+
+<p>Si on positionne "div1" :
+
+<pre class="example">
+   #div1 { position: absolute; left: 50px; top: 50px }
+</pre>
+
+<p>son bloc conteneur n'est plus "body" ; c'est "div1" qui est devenu le bloc conteneur initial
+(car il n'y a pas de boîtes d'autres ancêtres positionnés).
+
+<p>Si on positionne également "em1" :</p>
+
+<pre class="example">
+   #div1 { position: absolute; left: 50px; top: 50px }
+   #em1  { position: absolute; left: 100px; top: 100px }
+</pre>
+
+<p>La table des blocs conteneurs devient :</p>
+
+<table border="1">
+<tr><th align="center">Pour la boîte générée par
+<td align="center"><strong>Le bloc conteneur est établi par</strong></tr>
+<tr><td align="center">body<td align="center">bloc conteneur initial</tr>
+<tr><td align="center">div1<td align="center">bloc conteneur initial</tr>
+<tr><td align="center">p1<td align="center">div1</tr>
+<tr><td align="center">p2<td align="center">div1</tr>
+<tr><td align="center">em1<td align="center">div1</tr>
+<tr><td align="center">strong1<td align="center">em1</tr>
+</table>
+
+<p>
+En positionnant "em1", son bloc conteneur devient la boîte de son plus proche ancêtre positionné
+(c.à.d. celle générée par "div1").
+</div>
+
+
+<h2>10.2 <a name="the-width-property">La largeur du contenu</a> : la propriété <a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a></h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'width'"><a name="propdef-width" class="propdef-title"><strong>'width'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;pourcentage&gt;</span></a> | auto | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>auto
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments sauf ceux de type en-ligne non remplacés ainsi que les rangées et groupes de rangées des tables.
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>se rapporte à la largeur du bloc conteneur
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p>Cette propriété spécifie la <a href="box.html#content-width">largeur du contenu</a>
+des boîtes générées par les éléments de type bloc et ceux 
+<a href="conform.html#replaced-element">remplacés</a>.
+
+<p>Celle-ci ne s'applique pas aux éléments non remplacés et de type
+<a href="visuren.html#inline-level">en-ligne</a>. Les largeurs de leurs boîtes correspondent à
+celles de leur contenus représentés <em>avant</em> un décalage relatif de leurs enfants.
+Les boîtes en-ligne se répandent dans des <a href="visuren.html#line-box">boîtes de ligne</a>.
+Les largeurs des boîtes de ligne sont données par leur <a href="visuren.html#containing-block">bloc conteneur</a>,
+celles-ci pouvant rétrécir du fait de la présence de <a href="visuren.html#floats">flottants</a>.
+
+<p>La boîte d'un élément remplacé a une largeur <a href="conform.html#intrinsic">intrinsèque</a>
+l'agent utilisateur pouvant la faire varier en échelle quand la valeur de la propriété
+est différente de 'auto'.
+
+<p>Les valeurs ont les significations suivantes :</p>
+
+<dl>
+<dt><span class="index-inst" title="&lt;length&gt;"><a name="x2" href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length"><strong>&lt;longueur&gt;</strong></span></a></span>
+<dd>Spécifie une largeur fixe ;
+<dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x3" href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage"><strong>&lt;pourcentage&gt;</strong></span></a></span>
+<dd>Spécifie une largeur en pourcentage. Le pourcentage est calculé en fonction de la largeur
+du <a href="visuren.html#containing-block">bloc conteneur</a> de la boîte générée ;
+<dt><strong>auto</strong>
+<dd>La largeur dépend de celles d'autres propriétés. Voir plus loin.
+</dl>
+
+<p>La propriété <a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+n'admet pas de valeurs négatives.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Par exemple, cette règle fixe la largeur du contenu des paragraphes à 100 pixels :
+
+<pre>
+P { width: 100px }
+</pre>
+</div>
+
+<h2>10.3 <a name="Computing_widths_and_margins">Le calcul des largeurs et des marges</a></h2>
+
+<p>
+Pour un élément donné, les valeurs calculées des propriétés
+<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>,
+<a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a>,
+<a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>,
+<a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a> et
+<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>
+dépendent du type de la boîte générée par cet élément et
+de chacune d'entre elles. En principe, ces valeurs sont les mêmes que celles qui sont spécifiées,
+les valeurs 'auto' étant remplacées par certaines valeurs appropriées, mais il y a des exceptions.
+On doit distinguer les cas suivants :
+
+    <ol>
+      <li>les éléments de type en-ligne non remplacés
+      <li>les éléments de type en-ligne remplacés
+      <li>les éléments de type bloc non remplacés dans un flux normal
+      <li>les éléments de type bloc remplacés dans un flux normal
+      <li>les éléments flottants non remplacés
+      <li>les éléments flottants remplacés
+      <li>les éléments non remplacés en position absolue
+      <li>les éléments remplacés en position absolue
+    </ol>
+
+<p>Les points 1 à 6 incluent le positionnement relatif.
+
+<h3><a name="q4">10.3.1 Les éléments de type en-ligne non remplacés</a></h3>
+
+<p>La propriété <a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a> ne s'applique pas.
+Quand on spécifie une valeur 'auto' pour les propriétés
+<a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>,
+<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>,
+<a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a> ou
+<a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>,
+leur valeur calculée devient '0'.
+
+<h3><a name="q5">10.3.2 Les éléments de type en-ligne remplacés</a></h3>
+
+<p>Quand on spécifie une valeur 'auto' pour les propriétés
+<a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>,
+<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>,
+<a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a> ou
+<a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>
+leur valeur calculée devient '0'.
+<del title="id=x4">Quand la valeur spécifiée de la propriété 'width' est 'auto', sa valeur calculée est celle de la largeur intrinsèque de l'élément.</del>
+<ins title="id=x4">Si la valeur spécifiée de <a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+est 'auto' et que celle de la propriété <a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>
+est aussi 'auto', alors la largeur <a href="conform.html#intrinsic">intrinsèque</a> de l'élément prend la valeur calculée de 'width'.
+Si la valeur spécifiée de 'width' est 'auto' et que 'height' a une valeur spécifiée différente, alors la valeur calculée de 'width'
+correspond à : (largeur intrinsèque) * ( (hauteur calculée) / (hauteur intrinsèque) )</ins>
+
+<h3><a name="q6">10.3.3 Les éléments de type bloc non remplacés dans un flux normal</a></h3>
+
+<p>
+Quand on spécifie la valeur 'auto' aux propriétés <a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a> ou
+<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>,
+leur valeur calculée est '0'. Les <a name="width-constraints">équations</a> suivantes doivent
+être vérifiées pour les autres propriétés :
+<blockquote>
+<p><a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a> +
+<a href="box.html#propdef-border-left-width" class="noxref"><span class="propinst-border-left-width">'border-left-width'</span></a> +
+<a href="box.html#propdef-padding-left" class="noxref"><span class="propinst-padding-left">'padding-left'</span></a> +
+<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a> +
+<a href="box.html#propdef-padding-right" class="noxref"><span class="propinst-padding-right">'padding-right'</span></a> +
+<a href="box.html#propdef-border-right-width" class="noxref"><span class="propinst-border-right-width">'border-right-width'</span></a> +
+<a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a> =
+largeur du <a href="#containing-block-details">bloc conteneur</a>
+</blockquote>
+<p>
+Quand la valeur de la propriété 'border-style' est 'none', utiliser pour l'épaisseur
+de la bordure la valeur '0'. Quand toutes les propriétés précédentes ont une valeur
+spécifiée autre que 'auto', on dit que les valeurs sont "sur-contraintes" et l'une des valeurs
+calculées devra être différente de celle qui aura été spécifiée.
+Quand la propriété <a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>
+a la valeur 'ltr', la valeur spécifiée pour la propriété
+<a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>
+sera écartée, sa valeur calculée sera déterminée de manière à
+ce que l'égalité précédente soit vérifiée.
+Et de la même façon, pour la propriété <a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a>,
+quand la propriété <a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>
+a la valeur <del title="id=x15">'ltr'</del> <ins title="id=x15">'rtl'</ins>.
+
+<p>
+Si l'une exactement des valeurs spécifiées est 'auto', sa valeur calculée est déduite
+de l'égalité.
+
+<p>
+Si la propriété <a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+a la valeur 'auto', les valeurs spécifiées 'auto' d'autres propriétés deviennent '0',
+la valeur calculée de <a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+se déduisant alors de l'égalité.
+
+<p>
+Si les deux propriétés <a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a>
+et <a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>
+ont la valeur 'auto', leurs valeurs calculées sont égales.
+
+<p><ins title="2001-06-25 id=s-10-3-3">
+Noter que la valeur de la propriété 'width' ne peut être supérieure à
+celle de 'max-width', ni inférieure à celle de 'min-width'. En particulier, elle ne peut pas
+être négative. Voir plus loin les règles s'y rapportant dans la <a href="visudet.html#min-max-widths">section 10.4</a>.</ins>
+
+<h3><a name="q7">10.3.4 Les éléments de type bloc remplacés dans un flux normal</a></h3>
+
+<p>
+Quand les propriétés <a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a> ou
+<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a> ont
+la valeur 'auto', leur valeur calculée devient '0'.
+<del title="id=x4">Quand la valeur spécifiée de la propriété 'width' est 'auto', sa valeur calculée est celle de la largeur intrinsèque de l'élément.</del>
+<ins title="id=x4">Si la valeur spécifiée de <a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+est 'auto' et que celle de la propriété <a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>
+est aussi 'auto', alors la largeur <a href="conform.html#intrinsic">intrinsèque</a> de l'élément prend la valeur calculée de 'width'.
+Si la valeur spécifiée de 'width' est 'auto' et que 'height' a une valeur spécifiée différente, alors la valeur calculée de 'width'
+correspond à : (largeur intrinsèque) * ( (hauteur calculée) / (hauteur intrinsèque) )</ins>
+Si l'une des propriétés, 'margin-left' ou 'margin-right', a la
+valeur 'auto', sa valeur calculée se déduit de l'<a href="#width-constraints">équation</a>.
+Et si celles-ci ont toutes les deux la valeur 'auto', leurs valeurs calculées sont égales
+
+<p>
+Quand les propriétés 'width' et 'height' ont toutes deux la valeur spécifiée 'auto',
+la valeur calculée de la première est égale à la largeur intrinsèque
+de l'élément. Si la valeur spécifiée de 'width' est 'auto' et celle de 'height'
+une autre valeur, alors la valeur calculée de 'width' est obtenue par l'opération (largeur intrinsèque) * ( (hauteur calculée) / (hauteur intrinsèque) ).
+
+<h3><a name="q8">10.3.5 Les éléments flottants non remplacés</a></h3>
+
+<p>Quand les propriétés <a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>,
+<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>,
+<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>,
+<a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a> ou
+<a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>
+ont une valeur spécifiée 'auto', leur valeur calculée devient '0'.
+
+<h3><a name="q9">10.3.6 Les éléments flottants remplacés</a></h3>
+
+<p>Quand les propriétés <a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>,
+<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>,
+<a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a> ou
+<a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>
+ont une valeur spécifiée 'auto', leur valeur calculée devient '0'.
+<del title="id=x4">Quand la valeur spécifiée de la propriété 'width' est 'auto', sa valeur calculée est celle de la largeur intrinsèque de l'élément.</del>
+<ins title="id=x4">Si la valeur spécifiée de <a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+est 'auto' et que celle de la propriété <a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>
+est aussi 'auto', alors la largeur <a href="conform.html#intrinsic">intrinsèque</a> de l'élément prend la valeur calculée de 'width'.
+Si la valeur spécifiée de 'width' est 'auto' et que 'height' a une valeur spécifiée différente, alors la valeur calculée de 'width'
+correspond à : (largeur intrinsèque) * ( (hauteur calculée) / (hauteur intrinsèque) )</ins>
+
+<p>
+Quand les propriétés 'width' et 'height' ont toutes deux une valeur spécifiée
+'auto', la valeur calculée de 'width' devient celle de la largeur intrinsèque de l'élément.
+Si la propriété 'height' a une valeur spécifiée autre que 'auto', la
+propriété 'width' ayant une valeur 'auto', la valeur calculée de 'width' est obtenue
+par l'opération (largeur intrinsèque) * ( (hauteur calculée) / (hauteur intrinsèque) ).
+
+<h3>10.3.7 <a name="abs-non-replaced-width">Les éléments non remplacés en position absolue</a></h3>
+
+<p><span class="errata"><a href="annexe/errata.html#changes-abs-non-replaced-width" title="Errata">« errata : Voir la proposition pour le <strong>nouveau calcul de la largeur</strong> »</a></span> 
+<p>
+Les valeurs calculées de ces éléments sont déterminées selon cette équation :
+<blockquote>
+<p><a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a> +
+<a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a> +
+<a href="box.html#propdef-border-left-width" class="noxref"><span class="propinst-border-left-width">'border-left-width'</span></a> +
+<a href="box.html#propdef-padding-left" class="noxref"><span class="propinst-padding-left">'padding-left'</span></a> +
+<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a> +
+<a href="box.html#propdef-padding-right" class="noxref"><span class="propinst-padding-right">'padding-right'</span></a> +
+<a href="box.html#propdef-border-right-width" class="noxref"><span class="propinst-border-right-width">'border-right-width'</span></a> +
+<a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a> +
+<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a> =
+largeur du <a href="#containing-block-details">bloc conteneur</a>
+</blockquote>
+<p>
+Quand la valeur de la propriété 'border-style' est 'none', utiliser pour l'épaisseur de la bordure la valeur '0'.
+Cette équation se résout dans une succession de substitutions selon l'ordre suivant :
+
+<ol>
+<li>
+Si la propriété <a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>
+a la valeur spécifiée 'auto' et la propriété <a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>
+la valeur 'ltr', la valeur calculée de 'left' devient celle de la distance entre le bord gauche
+du bloc conteneur et le bord de la marge gauche d'une boîte hypothétique, celle-ci aurait
+été la première boîte de l'élément dont la propriété
+<a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>
+aurait eu la valeur 'static'. Les agents utilisateurs étant libres d'évaluer un emplacement
+probable de cette boîte, plutôt que d'en calculer l'emplacement effectif.
+Cette valeur peut être négative si cette boîte hypothétique se trouve à
+gauche du bord du bloc conteneur ;
+
+<li>
+Si la propriété <a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>
+a la valeur spécifiée 'auto' et la propriété <a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>
+la valeur 'rtl', la valeur calculée de 'right' devient celle de la distance entre le bord droit
+du bloc conteneur et le bord de la marge droite de la boîte hypothétique, de la même
+manière que ci-dessus. Cette valeur peut être négative si cette boîte se trouve
+à droite du bord du bloc conteneur ;
+
+<li>
+Si la propriété <a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+a la valeur spécifiée 'auto', remplacer par '0' les valeurs 'auto' éventuelles des
+propriétés <a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>
+ou <a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a> ;
+
+<li>
+Si les propriétés <a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>,
+<a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a> ou
+<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+ont (encore) la valeur spécifiée 'auto', remplacer par '0' les valeurs 'auto' éventuelles des
+propriétés <a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a>
+ou <a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a> ;
+
+<li>
+Si, à ce stade, les propriétés <a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a>
+et <a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>
+ont toujours la valeur 'auto', résoudre l'équation avec la contrainte supplémentaire
+que ces deux marges doivent avoir la même valeur ;
+
+<li>
+Si, à ce stade, il ne reste plus qu'une seule valeur 'auto', résoudre l'équation
+pour obtenir la valeur calculée de cette propriété ;
+
+<li>
+Si, à ce stade, les valeurs sont sur-contraintes, ignorer la valeur spécifiée pour
+la propriété <a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>
+(quand la propriété <a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>
+a la valeur 'rtl'), ou celle de <a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>
+(quand la propriété <a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>
+a la valeur 'ltr'), puis résoudre l'équation pour en obtenir la valeur calculée.
+</ol>
+
+<h3><a name="q11">10.3.8 Les éléments remplacés en position absolue</a></h3>
+
+<p>
+Ce cas est similaire au précédent, à l'exception que l'élément a une
+largeur <a href="conform.html#intrinsic">intrinsèque</a>. La succession des substitutions étant maintenant :
+
+<ol>
+<li>
+<span><del title="id=x4">Si la propriété 'width' a la valeur spécifiée 'auto', lui substituer la largeur intrinsèque de l'élément</del>
+<ins title="id=x4">Si la valeur spécifiée de <a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+est 'auto' et que celle de la propriété <a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>
+est aussi 'auto', alors la largeur <a href="conform.html#intrinsic">intrinsèque</a> de l'élément prend la valeur calculée de 'width'.
+Si la valeur spécifiée de 'width' est 'auto' et que 'height' a une valeur spécifiée différente, alors la valeur calculée de 'width'
+correspond à : (largeur intrinsèque) * ( (hauteur calculée) / (hauteur intrinsèque) )</ins></span> ;
+
+
+<li>
+Si la propriété <a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>
+a la valeur 'auto' et la propriété <a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>
+la valeur 'ltr', remplacer la valeur 'auto' par celle de la distance entre le bord gauche du bloc conteneur 
+et le bord de la marge gauche d'une boîte hypothétique, celle-ci aurait été
+la première boîte d'un élément dont la propriété
+<a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>
+aurait été 'static'. Les agents utilisateurs étant libres d'évaluer un emplacement
+probable de cette boîte, plutôt que d'en calculer l'emplacement effectif.
+Cette valeur peut être négative si cette boîte hypothétique se trouve à
+gauche du bord du bloc conteneur ;
+
+<li>
+Si la propriété <a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>
+a la valeur 'auto' et la propriété <a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>
+la valeur 'rtl', remplacer la valeur 'auto' par celle de la distance entre le bord droite du bloc conteneur
+et le bord de la marge droite d'une boîte hypothétique, de la même
+manière que ci-dessus. Cette valeur peut être négative si cette boîte se trouve
+à droite du bord du bloc conteneur ;
+
+<li>
+Si les propriétés <a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>
+ou <a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>
+ont la valeur 'auto', remplacer par '0' les valeurs 'auto' éventuelles des propriétés
+<a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a>
+ou <a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a> ;
+
+<li>
+Si, à ce stade, les propriétés <a href="box.html#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a> et
+<a href="box.html#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>
+ont toutes deux la valeur 'auto', résoudre l'équation avec la contrainte supplémentaire
+que ces deux marges doivent avoir la même valeur ;
+
+<li>
+Si, à ce stade, il ne reste plus qu'une seule valeur 'auto', résoudre l'équation
+pour obtenir la valeur calculée de cette propriété ;
+
+<li>Si, à ce stade, les valeurs sont sur-contraintes, ignorer la valeur spécifiée pour
+la propriété <a href="visuren.html#propdef-left" class="noxref"><span class="propinst-left">'left'</span></a>
+(quand la propriété <a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>
+a la valeur 'rtl'), ou celle de <a href="visuren.html#propdef-right" class="noxref"><span class="propinst-right">'right'</span></a>
+(quand la propriété <a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>
+a la valeur 'ltr'), puis résoudre l'équation pour en obtenir la valeur calculée.
+</ol>
+
+
+<h2>10.4 <a name="min-max-widths">Les largeurs minimales et maximales</a> : <a href="visudet.html#propdef-min-width" class="noxref"><span class="propinst-min-width">'min-width'</span></a> et <a href="visudet.html#propdef-max-width" class="noxref"><span class="propinst-max-width">'max-width'</span></a></h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'min-width'"><a name="propdef-min-width" class="propdef-title"><strong>'min-width'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;pourcentage&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>selon l'agent utilisateur
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments, sauf à ceux de type en-ligne non remplacés et aux éléments des tables
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>se rapporte à la largeur du bloc conteneur
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'max-width'"><a name="propdef-max-width" class="propdef-title"><strong>'max-width'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;pourcentage&gt;</span></a> | none | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>none
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments, sauf à ceux de type en-ligne non remplacés et aux éléments des tables
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>se rapporte à la largeur du bloc conteneur
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p>
+Ces propriétés permettent aux auteurs de restreindre les dimensions d'une boîte
+dans certaines proportions. Les significations des valeurs sont :
+
+<dl>
+<dt><span class="index-inst" title="&lt;length&gt;"><a name="x6" href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length"><strong>&lt;longueur&gt;</strong></span></a></span>
+<dd>Spécifie une largeur calculée minimale ou maximale fixe ;
+<dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x7" href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage"><strong>&lt;pourcentage&gt;</strong></span></a></span>
+<dd>Spécifie un pourcentage pour déterminer la valeur calculée. Celui-ci est obtenu
+en fonction de la largeur du <a href="visuren.html#containing-block">bloc conteneur</a> ;
+<dt><strong>none</strong>
+<dd>Aucune limite sur la largeur de la boîte (seulement pour <a href="visudet.html#propdef-max-width" class="noxref"><span class="propinst-max-width">'max-width'</span></a>).
+</dl>
+
+<p>
+L'algorithme suivant décrit l'action de ces deux propriétés pour obtenir la
+<a href="cascade.html#computed-value">valeur calculée</a> de la propriété
+<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a> :
+
+<ol>
+
+<li>La largeur est calculée (sans l'intervention des propriétés
+<a href="visudet.html#propdef-min-width" class="noxref"><span class="propinst-min-width">'min-width'</span></a>
+et <a href="visudet.html#propdef-max-width" class="noxref"><span class="propinst-max-width">'max-width'</span></a>),
+selon les règles définies plus haut dans <a href="#Computing_widths_and_margins">"Le calcul des largeurs et des marges"</a> ;
+
+<li>
+Si la valeur calculée de <a href="visudet.html#propdef-min-width" class="noxref"><span class="propinst-min-width">'min-width'</span></a>
+est supérieure à celle de <a href="visudet.html#propdef-max-width" class="noxref"><span class="propinst-max-width">'max-width'</span></a>,
+la propriété <a href="visudet.html#propdef-max-width" class="noxref"><span class="propinst-max-width">'max-width'</span></a>
+prend la valeur de <a href="visudet.html#propdef-min-width" class="noxref"><span class="propinst-min-width">'min-width'</span></a> ;
+
+<li>
+Si la largeur calculée est supérieure à la valeur de <a href="visudet.html#propdef-max-width" class="noxref"><span class="propinst-max-width">'max-width'</span></a>,
+les règles de <a href="#Computing_widths_and_margins">calcul des largeurs et marges</a> sont
+appliquées à nouveau, en utilisant cette fois la valeur de <a href="visudet.html#propdef-max-width" class="noxref"><span class="propinst-max-width">'max-width'</span></a>
+comme valeur spécifiée pour la propriété
+<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a> ;
+
+<li>
+Si la largeur calculée est inférieure à la valeur de <a href="visudet.html#propdef-min-width" class="noxref"><span class="propinst-min-width">'min-width'</span></a>,
+les <a href="#Computing_widths_and_margins">mêmes</a> règles sont appliquées à nouveau,
+en utilisant cette fois-ci la valeur de <a href="visudet.html#propdef-min-width" class="noxref"><span class="propinst-min-width">'min-width'</span></a>
+comme valeur spécifiée pour la propriété
+<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>.
+
+</ol>
+
+<p>
+L'agent utilisateur peut définir une valeur minimum non négative pour la propriété
+<a href="visudet.html#propdef-min-width" class="noxref"><span class="propinst-min-width">'min-width'</span></a>,
+celle-ci pouvant varier d'un élément à l'autre et pouvant même dépendre
+d'autres propriétés. Si la valeur de <a href="visudet.html#propdef-min-width" class="noxref"><span class="propinst-min-width">'min-width'</span></a>
+descend en dessous de cette limite, celle-ci étant spécifiée explicitement ou ayant
+la valeur 'auto' et les règles ci-dessous la rendant ainsi trop petite, alors l'agent utilisateur
+peut considérer cette valeur limite comme étant la valeur calculée.
+
+<h2>10.5 <a name="the-height-property">La hauteur du contenu</a> : la propriété <a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a></h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'height'"><a name="propdef-height" class="propdef-title"><strong>'height'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;pourcentage&gt;</span></a> | auto | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>auto
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments, sauf ceux de type en-ligne non remplacés, et les colonnes et groupes de colonnes des tables
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>voir plus loin
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p>Cette propriété spécifie la <a href="box.html#content-height">hauteur du contenu</a>
+des boîtes générées par les éléments de type bloc et ceux
+<a href="conform.html#replaced-element">remplacés</a>.
+
+<p>
+Celle-ci ne s'applique pas au éléments de type <a href="visuren.html#inline-level">en-ligne</a>
+non remplacés. C'est la valeur (pouvant être héritée) de leur propriété 
+<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>
+qui donne la hauteur des boîtes de ceux-ci.
+
+<p><ins title="2002-07-29 id=s-10-5">Étant donné que l'agent utilisateur est libre de choisir le bloc conteneur de
+l'<a href="conform.html#root">élément racine</a> (voir la <a href="visudet.html#containing-block-details">section 10.1</a>),
+il peut, par exemple, calculer une hauteur en pourcentage pour l'élément racine en fonction de la hauteur de la zone de visualisation.</ins>
+
+<p>Les significations des valeurs sont :
+
+<dl>
+<dt><span class="index-inst" title="&lt;length&gt;"><a name="x9" href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length"><strong>&lt;longueur&gt;</strong></span></a></span>
+<dd>Spécifie une hauteur fixe ;
+<dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x10" href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage"><strong>&lt;pourcentage&gt;</strong></span></a></span>
+<dd>Spécifie une hauteur en pourcentage. Celui-ci est calculé en fonction du
+<a href="visuren.html#containing-block">bloc conteneur</a> de la boîte générée.
+Si la hauteur du bloc conteneur n'est pas spécifiée explicitement (c.à.d., celle-ci
+dépendant de la hauteur du contenu), sa valeur est considérée comme étant 'auto' ;
+<dt><strong>auto</strong>
+<dd>La hauteur dépend des valeurs des autres propriétés. Voir les explications plus loin.
+</dl>
+
+<p>La propriété <a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>
+n'admet pas de valeur négative.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Par exemple, cette règle fixe la hauteur des paragraphes à 100 pixels :
+
+<pre>
+P { height: 100px }
+</pre>
+
+<p>
+Les paragraphes qui requièrent une hauteur supérieure à 100px vont <a href="visufx.html#overflow">déborder</a>
+selon la propriété <a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>.
+
+</div>
+
+<h2>10.6 <a name="Computing_heights_and_margins">Le calcul des hauteurs et des marges</a></h2>
+
+<p>
+Pour le calcul des valeurs des propriétés <a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>,
+<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>,
+<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>,
+<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a> et
+<a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>,
+on doit effectuer une distinction entre les différentes sortes de boîtes :
+
+    <ol>
+      <li>les éléments de type en-ligne non remplacés
+      <li>les éléments de type en-ligne remplacés
+      <li>les éléments de type bloc non remplacés dans un flux normal
+      <li>les éléments de type bloc remplacés dans un flux normal
+      <li>les éléments flottants non remplacés
+      <li>les éléments flottants remplacés
+      <li>les éléments non remplacés en position absolue
+      <li>les éléments remplacés en position absolue
+    </ol>
+
+<p>Les points 1 à 6 incluent le positionnement relatif.
+
+<h3><a name="q15">10.6.1 Les éléments de type en-ligne non remplacés</a></h3>
+
+<p>Quand les propriétés <a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>,
+<a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>,
+<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a> ou
+<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>
+ont la valeur spécifiée 'auto', leur valeur calculée devient '0'.
+La propriété <a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>
+ne s'applique pas. <ins title="id=x41">La hauteur de l'aire du contenu est égale à la taille effective de la
+police de l'élément. Les espacements, bordures et marges verticales d'une boîte
+en-ligne non remplacée commencent en haut et en bas de la police, et non pas en haut et en bas
+de la ligne.</ins> Par contre, le calcul de la hauteur de la boîte de la ligne emploie seulement la propriété
+<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>.
+
+<p><ins title="id=x41">
+Si plusieurs tailles de polices sont utilisées (cela peut arriver quand les glyphes proviennent
+de différentes polices), la hauteur de l'aire du contenu n'est pas définie par cette
+spécification. On recommande néanmoins que la plus grande taille de police soit retenue
+pour la détermination de cette hauteur.</ins>
+
+<h3><a name="q16">10.6.2  Les éléments de types en-ligne et bloc remplacés dans un flux normal et éléments flottants remplacés</a></h3>
+
+<p>
+Quand les propriétés <a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>,
+<a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>,
+<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a> ou
+<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>
+ont la valeur spécifiée 'auto', leur valeur calculée devient '0'.
+<del title="id=x16">Si la valeur de la propriété 'height' est 'auto', sa valeur calculée est la hauteur intrinsèque de l'élément.</del>
+<ins title="id=x16">Si les propriétés 'width' et <a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>
+ont toutes deux la valeur spécifiée 'auto', la hauteur <a href="conform.html#intrinsic">intrinsèque</a> de l'élément
+correspond à la valeur calculée de 'width'. Si la propriété 'width' a la valeur spécifiée 'auto'
+et la propriété 'height' une autre valeur, alors la valeur calculée de 'height' correspond à :
+(hauteur intrinsèque) * ( (largeur calculée) / (largeur intrinsèque) ).</ins>
+
+<h3><a name="q17">10.6.3 Les éléments de type bloc non remplacés dans un flux normal et éléments flottants non remplacés</a></h3>
+
+<p>
+Quand les propriétés <a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>,
+<a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>,
+<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>,
+ou <a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>
+ont la valeur spécifiée 'auto', leur valeur calculée devient '0'.
+Si la propriété <a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>
+a la valeur spécifiée 'auto', la hauteur de l'élément dépend de la présence d'un éventuel enfant de type bloc
+<ins title="id=x17">et des espacements et bordures de l'élément</ins>.
+
+<p>
+Si l'élément a uniquement des enfants de type en-ligne, sa hauteur est égale à la
+distance entre le sommet de la boîte de ligne la plus haute et le bas de celle la plus basse.
+
+<p>
+S'il a des enfants de type bloc, la hauteur est la distance entre le bord de la bordure haute de la boîte de
+l'enfant de type bloc en haut et le bord de la bordure du bas de la boîte de l'enfant de type bloc en bas.
+<ins title="id=x17">Toutefois, si l'élément a un espacement haut et/ou une bordure haute non nuls, alors le contenu commence au bord de la
+<em>marge</em> haute de l'enfant le plus haut. De même, si l'élément a un espacement bas et/ou une bordure basse non nuls,
+alors le contenu finit au bord de la <em>marge</em> basse de l'enfant le plus bas.</ins>
+
+<p>
+Seuls les enfants dans un flux normal sont pris en compte (c.à.d. les boîtes des éléments
+flottants et celles des éléments en position absolue sont ignorées, les boîtes des éléments
+en position relative sont considérées sans leur décalage). Noter que la boîte
+de l'enfant peut être <a href="visuren.html#anonymous-block-level">anonyme</a>.
+
+<h3>10.6.4 <a name="abs-non-replaced-height">Les éléments non remplacés en position absolue</a></h3>
+
+<p><span class="errata"><a href="annexe/errata.html#changes-abs-non-replaced-height" title="Errata">« errata : Voir la proposition pour le <strong>nouveau calcul de la hauteur</strong> »</a></span>
+
+<p>Pour les éléments en position absolue, les dimensions verticales doivent vérifier
+cette équation :
+<blockquote>
+<p>'top' + 'margin-top' + 'border-top-width' + 'padding-top' +
+'height' + 'padding-bottom' + 'border-bottom-width' + 'margin-bottom'
++ 'bottom' = hauteur du bloc conteneur.
+</blockquote>
+<p>
+Quand la valeur de la propriété 'border-style' est 'none', utiliser pour l'épaisseur de la bordure la valeur '0'.
+Cette équation se résout dans une succession de substitutions selon l'ordre suivant :
+
+<ol>
+<li>
+Si la propriété <a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>
+a la valeur spécifiée 'auto', la remplacer par la distance entre le bord haut du bloc
+conteneur et le bord de la marge haute d'une boîte hypothétique, celle-ci aurait été
+la première boîte de l'élément dont la propriété
+<a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>
+aurait eu la valeur 'static'. Les agents utilisateurs étant libres d'évaluer un emplacement probable
+de cette boîte, plutôt que d'en calculer l'emplacement effectif. Cette valeur peut être négative
+si cette boîte hypothétique se trouve au-dessus du bord du bloc conteneur ; 
+
+<li>
+Si les propriétés <a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a> et
+<a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>
+ont toutes deux la valeur spécifiée 'auto', remplacer celle de <a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>
+par '0' ;
+
+<li>
+Si les propriétés <a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a> ou
+<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a> ont toujours la valeur 'auto',
+remplacer par '0' les valeurs 'auto' éventuelles des propriétés
+<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a> ou
+<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a> ;
+
+<li>
+Si, à ce stade, les propriétés <a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a> et
+<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>
+ont toujours la valeur 'auto', résoudre l'équation avec la contrainte supplémentaire
+que ces deux marges doivent avoir la même valeur ;
+
+<li>
+Si, à ce stade, il ne reste plus qu'une seule valeur 'auto', résoudre l'équation
+pour obtenir la valeur calculée de cette propriété ; 
+
+<li>
+Si, à ce stade, les valeurs sont sur-contraintes, ignorer la valeur spécifiée pour
+la propriété <a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>
+et résoudre l'équation pour en obtenir la valeur calculée.
+</ol>
+
+
+<h3><a name="q19">10.6.5 Les éléments remplacés en position absolue</a></h3>
+
+<p>
+Ce cas est similaire au précédent, à l'exception que l'élément a une hauteur
+<a href="conform.html#intrinsic">intrinsèque</a>. La succession des substitutions étant maintenant :
+
+<ol>
+<li>
+<span><del title="id=x16">Si la valeur de la propriété 'height' est 'auto', sa valeur calculée est la hauteur intrinsèque de l'élément.</del>
+<ins title="id=x16">Si les propriétés 'width' et <a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>
+ont toutes deux la valeur spécifiée 'auto', la hauteur <a href="conform.html#intrinsic">intrinsèque</a> de l'élément
+correspond à la valeur calculée de 'width'. Si la propriété 'width' a la valeur spécifiée 'auto'
+et la propriété 'height' une autre valeur, alors la valeur calculée de 'height' correspond à :
+(hauteur intrinsèque) * ( (largeur calculée) / (largeur intrinsèque) )</ins></span> ;
+
+<li>
+Si la propriété <a href="visuren.html#propdef-top" class="noxref"><span class="propinst-top">'top'</span></a>
+a la valeur spécifiée 'auto', la remplacer par la distance entre le bord haut du bloc
+conteneur et le bord de la marge haute d'une boîte hypothétique, celle-ci aurait été
+la première boîte de l'élément dont la propriété
+<a href="visuren.html#propdef-position" class="noxref"><span class="propinst-position">'position'</span></a>
+aurait eu la valeur 'static'. Les agents utilisateurs étant libres d'évaluer un emplacement probable
+de cette boîte, plutôt que d'en calculer l'emplacement effectif. Cette valeur peut être négative
+si cette boîte hypothétique se trouve au-dessus du bord du bloc conteneur ; 
+
+<li>
+Si la propriété <a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>
+a la valeur 'auto', remplacer par '0' les valeurs 'auto' éventuelles des propriétés
+<a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a> ou
+<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a> ;
+
+<li>
+Si, à ce stade, les propriétés <a href="box.html#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a> et
+<a href="box.html#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>
+ont toujours la valeur 'auto', résoudre l'équation avec la contrainte supplémentaire
+que ces deux marges doivent avoir la même valeur ;
+
+<li>
+Si, à ce stade, il ne reste plus qu'une seule valeur 'auto', résoudre l'équation
+pour obtenir la valeur calculée de cette propriété ; 
+
+<li>
+Si, à ce stade, les valeurs sont sur-contraintes, ignorer la valeur spécifiée pour
+la propriété <a href="visuren.html#propdef-bottom" class="noxref"><span class="propinst-bottom">'bottom'</span></a>
+et résoudre l'équation pour en obtenir la valeur calculée.
+
+</ol>
+
+<h2>10.7 <a name="min-max-heights">Les hauteurs minimales et maximales</a> : <a href="visudet.html#propdef-min-height" class="noxref"><span class="propinst-min-height">'min-height'</span></a> et <a href="visudet.html#propdef-max-height" class="noxref"><span class="propinst-max-height">'max-height'</span></a></h2>
+
+<p>
+Il est parfois utile de restreindre la hauteur d'un élément dans certaines proportions.
+Deux propriétés offrent cette fonctionnalité :
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'min-height'"><a name="propdef-min-height" class="propdef-title"><strong>'min-height'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;pourcentage&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>0
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments, sauf ceux de type en-ligne non remplacés et les éléments des tables
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>se rapporte à la hauteur du bloc conteneur
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'max-height'"><a name="propdef-max-height" class="propdef-title"><strong>'max-height'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;pourcentage&gt;</span></a> | none | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>none
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments, sauf ceux de type en-ligne non remplacés et les éléments des tables
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>se rapporte à la hauteur du bloc conteneur
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p>
+Ces deux propriétés permettent aux auteurs de restreindre les hauteurs des boîtes
+dans certaines proportions. Les significations des valeurs sont :
+
+<dl>
+<dt><span class="index-inst" title="&lt;length&gt;"><a name="x13" href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length"><strong>&lt;longueur&gt;</strong></span></a></span>
+<dd>Spécifie une hauteur calculée minimale ou maximale fixe ;
+<dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x14" href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage"><strong>&lt;pourcentage&gt;</strong></span></a></span>
+<dd>Spécifie un pourcentage pour déterminer la valeur calculée.
+Celui-ci est obtenu en fonction de la hauteur du <a href="visuren.html#containing-block">bloc conteneur</a>.
+Si la hauteur du bloc conteneur n'est pas spécifiée explicitement (c.à.d. celle-ci
+dépendant de la hauteur du contenu), sa valeur est considérée comme étant 'auto' ;
+<dt><strong>none</strong>
+<dd>Aucune limite sur la hauteur de la boîte (seulement pour <a href="visudet.html#propdef-max-height" class="noxref"><span class="propinst-max-height">'max-height'</span></a>). 
+</dl>
+
+<p>
+L'algorithme suivant décrit l'action de ces deux propriétés pour obtenir la
+<a href="cascade.html#computed-value">valeur calculée</a> de la propriété
+<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a> :
+
+<ol>
+
+<li>
+La hauteur est calculée, sans l'intervention des propriétés
+(<a href="visudet.html#propdef-min-height" class="noxref"><span class="propinst-min-height">'min-height'</span></a> et
+<a href="visudet.html#propdef-max-height" class="noxref"><span class="propinst-max-height">'max-height'</span></a>),
+selon les règles définies plus haut dans <a href="#Computing_heights_and_margins">"Le calcul des hauteurs et des marges"</a> ;
+
+<li>
+Si la valeur calculée de <a href="visudet.html#propdef-min-height" class="noxref"><span class="propinst-min-height">'min-height'</span></a>
+est supérieure à celle de <a href="visudet.html#propdef-max-height" class="noxref"><span class="propinst-max-height">'max-height'</span></a>,
+la propriété <a href="visudet.html#propdef-max-height" class="noxref"><span class="propinst-max-height">'max-height'</span></a>
+prend la valeur de <a href="visudet.html#propdef-min-height" class="noxref"><span class="propinst-min-height">'min-height'</span></a> ;
+
+<li>
+Si la hauteur calculée est supérieure à la valeur de <a href="visudet.html#propdef-max-height" class="noxref"><span class="propinst-max-height">'max-height'</span></a>,
+les règles de <a href="#Computing_heights_and_margins">calcul des hauteurs et marges</a> sont
+appliquées à nouveau, en utilisant cette fois la valeur de <a href="visudet.html#propdef-max-height" class="noxref"><span class="propinst-max-height">'max-height'</span></a>
+comme valeur spécifiée pour la propriété <a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a> ;
+
+<li>
+Si la hauteur calculée est inférieure à la valeur de <a href="visudet.html#propdef-min-height" class="noxref"><span class="propinst-min-height">'min-height'</span></a>,
+les <a href="#Computing_heights_and_margins">mêmes</a> règles sont appliquées à nouveau,
+en utilisant cette fois-ci la valeur de <a href="visudet.html#propdef-min-height" class="noxref"><span class="propinst-min-height">'min-height'</span></a>
+comme valeur spécifiée pour la propriété <a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>.
+
+</ol>
+
+
+<h2>10.8 <a name="line-height">Le calcul de la hauteur de ligne</a> : les propriétés <a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a> et <a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a></h2>
+
+<p>
+Comme décrit dans le passage traitant des <a href="visuren.html#inline-formatting">contextes de mise en forme en-ligne</a>,
+les agents utilisateurs rangent les boîtes en-ligne dans des <a href="visuren.html#line-box">boîtes de ligne</a>,
+les empilant les unes sur les autres. On détermine la hauteur de ces boîtes de ligne ainsi :
+
+<ol>
+<li>
+On calcule la hauteur de chaque boîte en-ligne contenues dans la boîte de ligne (voir
+<a href="#Computing_heights_and_margins">"Le calcul des hauteurs et des marges"</a> ainsi que la
+propriété <a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>) ;
+
+<li>
+Puis on aligne ces boîtes en-ligne verticalement en fonction de la valeur de leur propriété
+<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a> ;
+
+<li>
+La hauteur de la boîte de ligne correspond à la distance entre le haut de la boîte la plus
+élevée et le bas de celle la plus basse.
+</ol>
+
+<p>
+Les éléments en-ligne vides engendrent des boîtes en-ligne vides, mais ces
+dernières ont quand même des marges, des espacements, des bordures et une hauteur de ligne,
+et donc, elles influencent ces calculs tout comme les élément avec un contenu.
+
+<p>
+Noter que, quand toutes les boîtes, dans la boîte de ligne, sont alignées sur leurs
+bas, la boîte de ligne aura exactement la hauteur de celle qui a la plus grande hauteur.
+Cependant, quand celles-ci sont alignées sur une ligne de base commune, le haut et le bas de la boîte
+de ligne peuvent ne pas coïncider avec ceux de la boîte de plus grande hauteur.
+
+<h3><a name="q22">10.8.1 L'interlignage et le demi-interlignage</a></h3>
+
+<p>
+La hauteur d'une boîte de ligne pouvant différer de celle de la taille de police du texte
+contenu dans une boîte (ex. <a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a> &gt; 1em),
+il peut y avoir un espace au-dessus et en-dessous des glyphes ainsi rendus. On appelle cette différence,
+entre la taille de la police et la valeur calculée pour la propriété
+<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>,
+l'<a name="x15"><span class="index-def" title="leading"><em>interlignage</em></span></a>, et la moitié
+de celle-ci, le <a name="x16"><span class="index-def" title="half-leading"><em>demi-interlignage</em></span></a>.
+
+<p>
+Les agents utilisateurs centrent verticalement les glyphes dans une boîte en-ligne, ajoutant
+un demi-interlignage au-dessus et en-dessous de ceux-ci. Par exemple, un extrait de texte dont la hauteur
+est de '12pt' et la valeur de la propriété <a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>
+est '14pt', il serait ajouté un espace supplémentaire de 2pts, répartis en 1pt au-dessus
+et 1pt au-dessous des lettres. Ceci concerne aussi les boîtes vides, celles-ci se comportant comme
+si elles contenaient des lettres infiniment réduites.
+
+<p>
+Quand la valeur de la propriété <a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>
+est inférieure à la taille de la police, la hauteur finale de la boîte en-ligne sera
+inférieure à la taille de la police et l'affichage des glyphes "débordera" de la boîte de ligne.
+Si une telle boîte en-ligne touche le bord de la boîte de ligne, l'affichage "débordera" aussi
+dans la boîte de ligne adjacente.
+
+<p>
+Bien que les marges, bordures et espacements des éléments non remplacés n'interviennent
+pas dans le calcul de la hauteur de la boîte en-ligne (et ainsi dans celui de la boîte de ligne),
+ceux-ci sont quand même rendus autour de la boîte de ligne. En conséquence, si la hauteur
+de la boîte de ligne est inférieure à celle comprise entre les <a href="box.html#outer-edge">bords externes</a>
+des boîtes qui y sont contenues, les arrière-plans et les couleurs des espacements peuvent
+"déborder" dans les boîtes de ligne adjacentes. Cependant, certains agents utilisateurs peuvent
+utiliser la boîte de ligne pour "découper" les aires de bordure et d'espacement (et
+ne pas les rendre).
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'line-height'"><a name="propdef-line-height" class="propdef-title"><strong>'line-height'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>normal | <a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a> | <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;pourcentage&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>normal
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Percentages:</em>  <td>se rapporte à la taille de la police de l'élément lui-même
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+Quand on applique cette propriété à un élément de <a href="visuren.html#block-level">type bloc</a>
+dont le contenu est composé d'éléments de <a href="visuren.html#inline-level">type en-ligne</a>,
+celle-ci spécifie la hauteur <em>minimale</em> de chacune des boîtes en-ligne générées.
+<ins title="2001-08-27 id=x65">Cette hauteur minimale se décompose en une hauteur minimale au-dessus de la ligne de base de l'élément
+de type bloc et en une profondeur minimale au-dessous de celui-ci, exactement comme si chacune des boîtes de ligne
+commençait par une boîte en-ligne de largeur nulle, celle-ci ayant les valeurs des propriétés
+de police et de hauteur de ligne de l'élément de type bloc (ce que T<sub>E</sub>X appelle un "étai").</ins>
+
+<p>
+Quand on l'applique à un élément de <a href="visuren.html#inline-level">type en-ligne</a>,
+celle-ci spécifie la hauteur <em>exacte</em> de chacune des boîtes générées par
+l'élément. Sauf dans le cas des éléments de type en-ligne
+<a href="conform.html#replaced-element">remplacés</a>, où la hauteur de la boîte est
+donnée par la propriété <a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>.
+
+<p>Les significations des valeurs pour cette propriété sont :
+
+<dl>
+<dt><strong>normal</strong>
+<dd>Indique aux agents utilisateurs une <a href="cascade.html#computed-value">valeur calculée</a>
+"raisonnable", basée sur la taille de la police de l'élément. Cette valeur revêt
+la même signification que <span class="index-inst" title="&lt;number&gt;"><a name="x18" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;number&gt;</span></a></span>.
+On recommande pour 'normal' une valeur calculée entre 1.0 et 1.2 ;
+
+<dt><span class="index-inst" title="&lt;length&gt;"><a name="x19" href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length"><strong>&lt;longueur&gt;</strong></span></a></span>
+<dd>Cette longueur est appliquée à la hauteur de la boîte. Les valeurs négatives ne sont pas admises ;
+
+<dt><span class="index-inst" title="&lt;number&gt;"><a name="x20" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number"><strong>&lt;nombre&gt;</strong></span></a></span>
+<dd>La <a href="cascade.html#computed-value">valeur calculée</a> de la propriété
+est obtenue en multipliant ce nombre par la taille de la police de l'élément.
+Les valeurs négatives ne sont pas admises.
+Cependant, ce nombre est hérité, et non la <a href="cascade.html#computed-value">valeur calculée</a> ;
+
+<dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x21" href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage"><strong>&lt;pourcentage&gt;</strong></span></a></span>
+<dd>La <a href="cascade.html#computed-value">valeur calculée</a> de la propriété
+correspond à ce pourcentage multipliée par la valeur calculée pour la taille de la police.
+Les valeurs négatives ne sont pas admises.
+</dl>
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Les trois règles suivantes produisent une même hauteur de ligne :
+
+<pre>
+DIV { line-height: 1.2; font-size: 10pt }     /* nombre */
+DIV { line-height: 1.2em; font-size: 10pt }   /* longueur */
+DIV { line-height: 120%; font-size: 10pt }    /* pourcentage */
+</pre>
+</div>
+
+<p>
+Quand un élément contient du texte dont l'affichage requiert plusieurs polices, les agents
+utilisateurs devraient en déterminer la valeur pour la propriété
+<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>
+en fonction de celle qui a la plus grande taille.
+
+<p>
+Généralement, quand la propriété <a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a> 
+a une seule valeur pour toutes les boîtes en-ligne d'un paragraphe (sans images trop hautes), la
+recommandation précédente devrait faire que les lignes de base des lignes successives
+soient indépendantes de la hauteur de ligne. Ceci est important quand on doit aligner des colonnes de
+texte dans différentes polices, par exemple dans une table.
+
+<p>
+Noter que les éléments remplacés ont une propriété
+<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>
+et une propriété <a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>,
+même si on ne les utilise pas directement dans la détermination de la hauteur de la boîte<del title="id=x65">. La propriété 'font-size'
+sert toutefois à définir les unités 'em' et 'ex' et la propriété 'line-height' influence la propriété 'vertical-align'</del>
+<ins title="id=x65"> : les valeurs exprimées en 'em' et en 'ex' sont relatives à celle de la propriété
+<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>, et les valeurs en
+pourcentage de la propriété <a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>,
+relatives à celle de la propriété 'line-height'.</ins>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'vertical-align'"><a name="propdef-vertical-align" class="propdef-title"><strong>'vertical-align'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>baseline | sub | super | top | text-top | middle | 
+   bottom | text-bottom | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;pourcentage&gt;</span></a> | <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>baseline
+<tr valign=baseline><td><em>S'applique à :</em>  <td>ceux des éléments de type en-ligne et à l'élément 'table-cell'
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>se rapporte à la valeur de la propriété 'line-height' de l'élément lui-même
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p>
+Cette propriété agit sur le positionnement vertical à l'intérieur de la boîte de ligne
+des boîtes générées par un élément de type en-ligne. Les règles
+suivantes n'ont de sens que par rapport à un élément parent de type en-ligne, ou de type bloc
+si celui-ci génère des <a href="visuren.html#anonymous">boîtes en-ligne anonymes</a> ; elles sont
+inopérantes autrement.
+ 
+<div class="note"><p>
+<em><strong>Note</strong> : la signification des valeurs pour cette propriété
+est légèrement différente dans le contexte des tables.
+Consulter le chapitre traitant des <a href="tables.html#height-layout">algorithmes pour la hauteur des tables</a>
+pour le détail.
+</em>
+</div>
+
+<dl>
+<dt><strong>baseline</strong>
+<dd>Aligne la ligne de base d'une boîte avec celle de son parent. Si la boîte en est
+dépourvue, aligner le bas de celle-ci avec la ligne de base de son parent ;
+ 
+<dt><strong>middle</strong>
+<dd>Aligne le milieu vertical de la boîte avec la ligne de base de la boîte de son parent,
+ce milieu étant augmenté de la moitié de la valeur de la propriété
+'x-height' du parent ;
+
+<dt><strong>sub</strong>
+<dd>Abaisse la ligne de base de la boîte à la position appropriée pour une écriture
+en indice dans la boîte du parent. Cette valeur n'a pas d'effet sur la taille de la police de texte
+de l'élément ;
+
+<dt><strong>super</strong>
+<dd>Élève la ligne de base de la boîte à la position appropriée pour une
+écriture en exposant dans la boîte du parent. Cette valeur n'a pas d'effet sur la taille de la police de texte
+de l'élément ;
+
+<dt><strong>text-top</strong>
+<dd>Aligne le haut de la boîte avec le haut du texte de l'élément parent ;
+
+<dt><strong>text-bottom</strong>
+<dd>Aligne le bas de la boîte avec le bas du texte de l'élément parent ;
+
+<dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x23" href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage"><strong>&lt;pourcentage&gt;</strong></span></a></span>
+<dd>Élève (pour une valeur positive) ou abaisse (pour une valeur négative) la boîte
+de ce pourcentage (qui se rapporte à la valeur de la propriété
+<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>).
+La valeur '0%' signifie la même chose que 'baseline' ;
+
+<dt><span class="index-inst" title="&lt;length&gt;"><a name="x24" href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length"><strong>&lt;longueur&gt;</strong></span></a></span>
+<dd>Élève (pour une valeur positive) ou abaisse (pour une valeur négative) la boîte
+de cette quantité. La valeur '0cm' signifie la même chose que 'baseline'.
+
+</dl>
+
+<p>
+Ces dernières valeurs se rapportent &grave; la boîte de ligne dans laquelle survient la
+boîte générée :
+
+<dl>
+<dt><strong>top</strong>
+<dd>Aligne le haut de la boîte avec le haut de la boîte de ligne ;
+
+<dt><strong>bottom</strong>
+<dd>Aligne le bas de la boîte avec le bas de la boîte de ligne.
+</dl>
+
+<hr class="navbar">
+
+<div class="navbar" align="center">
+<p><a href="visuren.html">précédent</a>  
+<a href="visufx.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+</body>
+</html>

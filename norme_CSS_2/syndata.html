@@ -1,0 +1,1250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="fr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>La syntaxe de CSS2 et les types de données de base</title>
+<link rel="stylesheet" type="text/css" href="annexe/W3C-REC.css">
+<link rel="stylesheet" type="text/css" href="annexe/vf.css">
+<link rel="stylesheet" type="text/css" href="annexe/print.css" media="print" > <!-- ajouté JHI 13.2.9 -->
+<link rel="prev" href="conform.html">
+<link rel="next" href="selector.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+</head>
+<body>
+<!-- Préface de la traduction -->
+<div id="lisezmoi">
+<a href="annexe/preface.html" title="IMPORTANT : Lisez d'abord la préface de la traduction !"><strong> Lisez-moi S.V.P. </strong></a>
+</div>
+<div class="navbar" align="center">
+<p><a href="conform.html">précédent</a>  
+<a href="selector.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+<hr class="navbar">
+
+<h1 align="center">4 La syntaxe de <abbr>CSS2</abbr> et les types de données de base</h1>
+<div class="subtoc">
+<p><strong>Contenu</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="syndata.html#syntax" class="tocxref">4.1 La syntaxe</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="syndata.html#tokenization" class="tocxref">4.1.1 L'atomisation</a>
+      <li class="tocline3"><a href="syndata.html#keywords" class="tocxref">4.1.2 Les mots-clés</a>
+      <li class="tocline3"><a href="syndata.html#q4" class="tocxref">4.1.3 Les caractères et la casse</a>
+      <li class="tocline3"><a href="syndata.html#q5" class="tocxref">4.1.4 Les déclarations</a>
+      <li class="tocline3"><a href="syndata.html#at-rules" class="tocxref">4.1.5 Les <span class="index-def" title="at-rule">règles-at</span></a>
+      <li class="tocline3"><a href="syndata.html#block" class="tocxref">4.1.6 Les blocs</a>
+      <li class="tocline3"><a href="syndata.html#q8" class="tocxref">4.1.7 Les jeux de règles, les blocs de déclaration et les sélecteurs</a>
+      <li class="tocline3"><a href="syndata.html#declaration" class="tocxref">4.1.8 Les déclarations et les propriétés</a>
+      <li class="tocline3"><a href="syndata.html#comments" class="tocxref">4.1.9 Les commentaires</a>
+    </ul>
+    <li class="tocline2"><a href="syndata.html#parsing-errors" class="tocxref">4.2 Les règles de traitement des erreurs d'interprétation</a>
+    <li class="tocline2"><a href="syndata.html#values" class="tocxref">4.3 Les valeurs</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="syndata.html#q13" class="tocxref">4.3.1 Les entiers et les nombres</a>
+      <li class="tocline3"><a href="syndata.html#length-units" class="tocxref">4.3.2 Les longueurs</a>
+      <li class="tocline3"><a href="syndata.html#percentage-units" class="tocxref">4.3.3 Les pourcentages</a>
+      <li class="tocline3"><a href="syndata.html#uri" class="tocxref">4.3.4 <abbr lang="en" title="Uniform Resource Locator">URL</abbr> + <abbr lang="en" title="Uniform Resource Name">URN</abbr> = <abbr title="Uniform Resource Identifier">URI</abbr></a>
+      <li class="tocline3"><a href="syndata.html#counter" class="tocxref">4.3.5 Les compteurs</a>
+      <li class="tocline3"><a href="syndata.html#color-units" class="tocxref">4.3.6 Les couleurs</a>
+      <li class="tocline3"><a href="syndata.html#q19" class="tocxref">4.3.7 Les angles</a>
+      <li class="tocline3"><a href="syndata.html#q20" class="tocxref">4.3.8 Les durées</a>
+      <li class="tocline3"><a href="syndata.html#q21" class="tocxref">4.3.9 Les fréquences</a>
+      <li class="tocline3"><a href="syndata.html#strings" class="tocxref">4.3.10 Les chaînes</a>
+    </ul>
+    <li class="tocline2"><a href="syndata.html#q23" class="tocxref">4.4 La représentation du document par <abbr>CSS</abbr></a>
+    <ul class="toc">
+      <li class="tocline3"><a href="syndata.html#q24" class="tocxref">4.4.1 L'appel des caractères absents d'un codage</a>
+    </ul>
+  </ul>
+</div>
+<h2>4.1 <a name="syntax">La syntaxe</a></h2>
+
+<p>
+Ce chapitre décrit une grammaire (avec les règles d'<a name="x0"><span class="index-def" title="forward-compatible parsing"><dfn>
+interprétation pour la compatibilité ascendante</dfn></span></a>) commune à chaque
+version de <abbr>CSS</abbr> (y compris <abbr>CSS2</abbr>). Les versions futures adhéreront à cette syntaxe de base,
+même si d'autres contraintes syntaxiques peuvent s'y ajouter.
+
+<p>
+Ces descriptions sont normatives. Un complément des règles de grammaire normatives est aussi
+présenté dans l'<a href="grammar.html">annexe D</a>.
+
+<h3>4.1.1 <a name="tokenization">L'atomisation</a></h3>
+
+<p>
+Tous les niveaux de <abbr>CSS</abbr>, que ce soit les niveaux 1, 2 et les futurs niveaux, emploient la même
+syntaxe de base. Ceci permet une interprétation (mais alors incomplète)
+des feuilles de style produites selon des niveaux de <abbr>CSS</abbr> postérieurs à leur implémentation
+dans les agents utilisateurs. Les auteurs peuvent utiliser cette caractéristique pour créer des feuilles de style
+fonctionnant sur des agents utilisateurs plus anciens tout en employant les fonctionnalités apportées
+par les derniers niveaux de <abbr>CSS</abbr>.
+
+<p>
+Du point de vue lexical, les feuilles de style <abbr>CSS</abbr> se composent d'une série d'atomes.
+Leur liste pour <abbr>CSS2</abbr> suit. Les définitions utilisent des expressions régulières à
+la façon de Lex. Les codes octaux se réfèrent à ISO 10646
+(<a href="refs.html#ref-ISO10646" rel="biblioentry" class="noxref"><span class="normref">[ISO10646]</span></a>).
+Tout comme pour Lex, en cas de correspondances multiples, la plus longue détermine l'atome.
+
+<table>
+<thead>
+<tr><th>Atome		<th>Définition
+</thead>
+<tr><td colspan=2><hr>
+<tr><td>IDENT		<td><code><var>{ident}</var></code>
+<tr><td>ATKEYWORD	<td><code>@<var>{ident}</var></code>
+<tr><td>STRING		<td><code><var>{string}</var></code>
+<tr><td>HASH		<td><code>#<var>{name}</var></code>
+<tr><td>NUMBER		<td><code><var>{num}</var></code>
+<tr><td>PERCENTAGE	<td><code><var>{num}</var>%</code>
+<tr><td>DIMENSION	<td><code><var>{num}{ident}</var></code>
+<tr><td>URI		<td><code>url\(<var>{w}{string}{w}</var>\)<br>
+		|url\(<var>{w}</var>([!#$%&amp;*-~]|<var>{nonascii}</var>|<var>{escape}</var>)*<var>{w}</var>\)</code>
+<tr><td>UNICODE-RANGE	<td><code>U\+[0-9A-F?]{1,6}(-[0-9A-F]{1,6})?</code>
+<tr><td>CDO		<td><code>&lt;!--</code>
+<tr><td>CDC		<td><code>--&gt;</code>
+<tr><td>;		<td><code>;</code>
+<tr><td>{		<td><code>\{</code>
+<tr><td>}		<td><code>\}</code>
+<tr><td>(		<td><code>\(</code>
+<tr><td>)		<td><code>\)</code>
+<tr><td>[		<td><code>\[</code>
+<tr><td>]		<td><code>\]</code>
+<tr><td>S		<td><code>[ \t\r\n\f]+</code>
+<tr><td>COMMENT		<td><code>\/\*[^*]*\*+([^/][^*]*\*+)*\/</code>
+<tr><td>FUNCTION	<td><code><var>{ident}</var>\(</code>
+<tr><td>INCLUDES	<td><code>~=</code>
+<tr><td>DASHMATCH	<td><code>|=</code>
+<tr><td>DELIM		<td><var>tout autre caractère non filtré par les règles précédentes <span><ins title="id=x54">(exclure aussi les guillemets simples ou doubles)</ins></span></var>
+</table>
+
+<p>Ci-dessus, les macro-commandes entre accolades ({}) sont définies ainsi :
+
+<table>
+<thead>
+<tr><th>Macrocommande	<th>Définition
+</thead>
+<tr><td colspan=2><hr>
+<tr><td>ident	<td><code><var>{nmstart}{nmchar}*</var></code>
+<tr><td>name	<td><code><var>{nmchar}+</var></code>
+<tr><td>nmstart	<td><code>[a-zA-Z<ins title="2001-04-03 id=x3">_</ins>]|<var>{nonascii}</var>|<var>{escape}</var></code>
+<tr><td>nonascii<td><code>[^\0-\177]</code>
+<tr><td>unicode	<td><code>\\[0-9a-f]{1,6}[ \n\r\t\f]?</code>
+<tr><td>escape	<td><code><var>{unicode}</var>|\\[ -~\200-\4177777]</code>
+<tr><td>nmchar	<td><code>[a-z<ins title="2001-04-03 id=x3">A-Z</ins>0-9-<ins title="2001-04-03 id=x3">_</ins>]|<var>{nonascii}</var>|<var>{escape}</var></code>
+<tr><td>num	<td><code>[0-9]+|[0-9]*\.[0-9]+</code>
+<tr><td>string	<td><code><var>{string1}</var>|<var>{string2}</var></code>
+<tr><td>string1	<td><code>\"([\t !#$%&amp;(-~]|\\{nl}|\'|<var>{nonascii}</var>|<var>{escape}</var>)*\"</code>
+<tr><td>string2	<td><code>\'([\t !#$%&amp;(-~]|\\{nl}|\"|<var>{nonascii}</var>|<var>{escape}</var>)*\'</code>
+<tr><td>nl	<td><code>\n|\r\n|\r|\f</code>
+<tr><td>w	<td><code>[ \t\r\n\f]*</code>
+</table>
+
+<p>
+Vient ensuite la syntaxe de base de <abbr>CSS</abbr>. Les paragraphes suivants indiquent la façon de les employer.
+L'<a href="grammar.html">annexe D</a> décrit une grammaire plus restrictive et plus proche du
+langage de <abbr>CSS2</abbr>.
+
+<pre>
+stylesheet    : [ CDO | CDC | S | statement ]*;
+statement     : ruleset | at-rule;
+at-rule       : ATKEYWORD S* any* [ block | ';' S* ];
+block         : '{' S* [ any | block | ATKEYWORD S* | ';' ]* '}' S*;
+ruleset       : selector? '{' S* statement? [ ';' S* statement? ]* '}' S*;
+selector      : any+;
+statement     : property ':' S* value;
+property      : IDENT S*;
+value         : [ any | block | ATKEYWORD S* ]+;
+any           : [ IDENT | NUMBER | PERCENTAGE | DIMENSION | STRING
+                   | DELIM | URI | HASH | UNICODE-RANGE | INCLUDES
+                   | FUNCTION <ins title="2001-04-03 id=x3">any* ')'</ins> | DASHMATCH | '(' any* ')' | '[' any* ']' ] S*;
+</pre>
+
+<p>
+Les atomes <a name="comment">COMMENT</a> n'apparaissent pas dans la grammaire (par souci de lisibilité),
+mais on peut les placer n'importe où entre les autres atomes.
+
+<p>
+L'atome S dans la grammaire ci-dessus indique un <a name="whitespace">caractère blanc</a>. Seuls les caractères
+"espace" (Code Unicode 32), "tabulation" (9), "nouvelle ligne" (10), "retour chariot" (13) et
+"nouvelle page" (12) peuvent en tenir lieu. Les autres caractères d'espacement similaires, comme "l'espace em" (8195)
+et "l'espace idéographique" (12288), n'en font pas partie.
+
+<h3>4.1.2 <a name="keywords">Les mots-clés</a></h3>
+
+<p>
+Les mots-clés ont des points communs avec les identificateurs. On ne doit pas les mettre entre guillemets
+("..." ou '...'). Ainsi :
+
+<pre>
+red
+</pre>
+<p>est un mot-clé, mais :
+<pre>
+"red"
+</pre>
+<p>n'en est pas un (c'est une <a href="#strings">chaîne</a>). D'autres exemples à proscrire :
+
+<div class="illegal-example"><p style="display:none">Exemple(s) INTERDIT(s) :</p><p>
+<pre>
+width: "auto";
+border: "none";
+font-family: "serif";
+background: "red";
+</pre>
+</div>
+
+
+<h3><a name="q4">4.1.3 Les caractères et la casse</a></h3>
+<p>Les règles suivantes sont toujours vraies :</p>
+
+<ul>
+    <li>Toutes les feuilles de style <abbr>CSS</abbr> sont <a name="x1"><span class="index-inst" title="case
+    sensitivity">insensibles à la casse</span></a>, sauf leurs parties qui ne sont pas régies
+    par <abbr>CSS</abbr>. Ainsi celles qui sont sensibles à la casse, comme les valeurs des attributs de <abbr>HTML</abbr> "id" et "class", les noms des polices et
+    les adresses <abbr>URI</abbr> qui sont hors du cadre de cette spécification. Noter en particulier que les noms des
+    éléments ne sont pas dépendants de la casse pour <abbr>HTML</abbr>, alors qu'en <abbr>XML</abbr> ils le sont.
+
+    <li>En <abbr>CSS2</abbr>, les <span class="index-def" title="identifier|identifier, definition of"><a name="value-def-identifier"><dfn>identificateurs</dfn></a></span>
+    (ainsi que les noms des éléments et ceux des classes et IDs des <a href="selector.html">sélecteurs</a>)
+    ne peuvent contenir que des caractères parmi [A-Za-z0-9] et ISO 10646
+    supérieurs à 161, ainsi que le tiret (-) <span><ins title="2001-07-30 id=x4">et le souligné (_)</ins></span> ;
+    ils ne peuvent commencer ni par un tiret ni par un chiffre.
+    On peut aussi employer des caractères masqués ainsi que tous les
+    caractères Unicode sous leur forme numérique (voir ci-après). <span class="example">Par exemple,
+    l'identificateur "B&amp;W?" peut s'écrire "B\&amp;W\?" ou "B\26 W\3F".</span>
+    
+    <p>
+    Noter que Unicode est équivalent code-à-code à ISO 10646 (voir
+    <a href="refs.html#ref-UNICODE" rel="biblioentry" class="noxref"><span class="normref">[UNICODE]</span></a>
+    et <a href="refs.html#ref-ISO10646" rel="biblioentry" class="noxref"><span class="normref">[ISO10646]</span></a>).
+
+    <li>En <abbr>CSS2</abbr>, la barre oblique inverse (\) détermine trois types de <span class="index-def" title="backslash escapes">
+    <a name="escaped-characters">masquage de caractère</a></span>.
+    
+    <p>Premièrement, dans une <a href="#strings">chaîne</a>, une barre oblique inverse suivie d'un
+    caractère "nouvelle ligne" est ignorée (une chaîne n'est pas censée
+    contenir la barre oblique inverse ni le caractère "nouvelle ligne").
+
+    <p>Deuxièmement, elle annule le sens des caractères spéciaux pour <abbr>CSS</abbr>. Tout caractère
+    (sauf un nombre hexadécimal) peut être masqué ce qui neutralise sa
+    signification particulière. Par exemple, <samp>"\""</samp> est une chaîne constituée
+    d'un seul guillemet double. Les préprocesseurs de feuilles de style ne devraient pas les supprimer
+    des feuilles de style car celles-ci en seraient changées.
+
+    <p>
+    Troisièmement, elle permet aux auteurs d'appeler des caractères
+    qui serait difficile sinon à insérer dans un document. Dans ce cas, la barre oblique inverse s'emploie suivie
+    d'au plus six chiffres hexadécimaux (0..9A..F) qui correspondent au code numérique d'un caractère
+    ISO 10646 (<a href="refs.html#ref-ISO10646" rel="biblioentry" class="noxref"><span class="normref">[ISO10646]</span></a>).
+    Si à son tour un chiffre ou une lettre vient après ce nombre hexadécimal, il convient
+    de préciser où celui-ci se termine. Deux façons d'y parvenir :
+
+    <ol>
+    <li>avec un caractère espace (ou un autre caractère blanc) : "\26 B" ("&amp;B").
+    <span><ins title="2001-07-30 id=x4">Dans ce cas, l'agent utilisateur devrait considérer
+    une paire "CR/LF" (13/10 en Unicode) comme un seul caractère blanc ;</ins></span>
+    <li>en fournissant exactement 6 chiffres hexadécimaux : "\000026B" ("&amp;B").
+    </ol>
+
+    <p>
+    En fait, on peut combiner ces deux méthodes. Un seul caractère blanc est ignoré après un
+    masquage hexadécimal. Noter que, pour obtenir un "vrai" espace après la
+    séquence de masquage, il faudra aussi le masquer ou le doubler.
+
+    <li>On considère toujours les caractères masqués comme faisant partie d'un <a href="#value-def-identifier">identificateur</a>
+    ou d'une chaîne (ex. "\7B" n'est pas un signe de ponctuation, alors que "{" en est un, tout comme
+    "\32" est permis au début du nom d'une classe et "2" ne l'est pas).
+  </ul>
+
+<h3><a name="q5">4.1.4 Les déclarations</a></h3>
+
+<p> Quelle que soit la version de <abbr>CSS</abbr>, une feuille de style <abbr>CSS</abbr> consiste en une liste de
+<a name="x5"><span class="index-inst" title="statements"><em>déclarations</em></span></a>
+(voir la grammaire plus haut). Elles sont de deux sortes :
+les <a name="x6"><span class="index-inst" title="at-rules"><em>règles-at</em></span></a>
+et les <a name="x7"><span class="index-inst" title="rule sets"><em>jeux de règles</em></span></a>.
+Les <a href="#whitespace">caractères blancs</a> sont autorisés autour des déclarations.
+
+<p>Quand on utilise, dans cette spécification, des expressions comme "immédiatement avant" ou
+"immédiatement après", cela veut dire sans caractère blanc ou commentaires intermédiaires.
+
+<h3>4.1.5 <span class="index-def" title="at-rule">Les <a name="at-rules">règles-at</a></span></h3>
+
+<p>
+Les règles-at commencent par un <dfn>mot-clé-at</dfn>, composé du caractère "@"
+immédiatement suivi par un <a href="#value-def-identifier">identificateur</a> (ex. '@import', '@page').
+
+<p>
+Une règle-at consiste en tout ce qu'il y a jusqu'au premier point-virgule (;), celui-ci inclus, ou
+jusqu'au <a href="#block">bloc</a> suivant, selon le premier qui survient. Devant une règle-at
+inconnue de lui, un agent utilisateur <abbr>CSS</abbr> doit l'<span class="index-inst" title="ignore"><a name="x9" href="#ignore">ignorer</a></span>
+entièrement et poursuivre l'interprétation après celle-ci.
+
+<p>
+Les agents utilisateurs <abbr>CSS2</abbr> doivent <span class="index-inst" title="ignore"><a name="x10" href="#ignore">ignorer</a></span>
+toute règle <a href="cascade.html#at-import">'@import'</a> qui survient dans un <a href="#block">bloc</a>
+ou qui ne précède pas l'ensemble des jeux de règles.
+
+<div class="illegal-example"><p style="display:none">Exemple(s) INTERDIT(s) :</p>
+<p>Supposons, par exemple, un interpréteur <abbr>CSS2</abbr> face à cette feuille de style :
+
+
+<pre>
+@import "subs.css";
+H1 { color: blue }
+@import "list.css";
+</pre>
+
+<p>
+Le deuxième '@import' est invalide pour <abbr>CSS2</abbr>. L'interpréteur
+<span class="index-inst" title="ignore"><a name="x11" href="#ignore">ignore</a></span> celui-ci
+en entier, et la feuille de style se réduit dans les faits à :
+<pre>
+@import "subs.css";
+H1 { color: blue }
+</pre>
+</div>
+
+<div class="illegal-example"><p style="display:none">Exemple(s) INTERDIT(s) :</p>
+<p>
+Dans l'exemple suivant, la deuxième règle '@import' n'est pas recevable parce qu'elle
+survient dans le <a href="#block">bloc</a> d'une règle '@media'.
+
+<pre>
+@import "subs.css";
+@media print {
+  @import "print-main.css";
+  BODY { font-size: 10pt }
+}
+H1 {color: blue }
+</pre>
+</div>
+
+<h3>4.1.6 <a name="block">Les blocs</a></h3>
+
+<p>
+Un <a name="x12"><span class="index-inst" title="block"><em>bloc</em></span></a> commence par une
+accolade gauche ({) et se termine par l'accolade droite (}) correspondante. On peut y mettre toutes sortes
+de caractères, sous la réserve que certains caractères aillent toujours par paires,
+celles-ci pouvant être imbriquées. Il s'agit des parenthèses ( ), des crochets [ ]
+et des accolades { }. Les guillemets simples (') et double (") doivent aussi aller par paires, leur
+contenu étant considéré alors comme une <a name="x13"><span class="index-inst" title="string">chaîne</span></a>.
+Voir <a href="#tokenization">L'atomisation</a> plus haut pour la définition d'une chaîne.
+
+
+<div class="illegal-example"><p style="display:none">Exemple(s) INTERDIT(s) :</P>
+<p>
+Voici en exemple un bloc. Noter que l'accolade droite entre les guillemets doubles ne correspond pas
+à l'accolade ouvrante du bloc et que le deuxième guillemet simple est <a href="#escaped-characters">masqué</a>,
+ce qui annule ainsi la correspondance avec le premier guillemet simple :
+
+<pre>
+{ causta: "}" + ({7} * '\'') }
+</pre>
+
+<p>
+Noter que cette règle n'est pas valide pour <abbr>CSS2</abbr>, bien que correspondant à la 
+définition d'un bloc donnée ci-dessus.
+</div>
+
+<h3><a name="q8">4.1.7 Les jeux de règles, les blocs de déclaration et les sélecteurs</a></h3>
+
+<p>
+Un jeu de règles (qualifié aussi de "règle") se compose d'un sélecteur suivi
+par un bloc de déclaration.
+
+<p>
+Un <a name="x14"><span class="index-def" title="declaration-block"><dfn>bloc de déclaration</dfn></span></a>
+(qui est représenté dans la suite du texte par {bloc}) commence par une accolade gauche ({)
+et se termine par l'accolade droite (}) correspondante. On doit placer entre celles-ci une liste de déclarations
+séparées par des points-virgules (;) ou, sinon, ne rien y mettre.
+
+<p>
+Un <a name="x15"><span class="index-def" title="selector"><em>sélecteur</em></span></a>
+(voir aussi le chapitre sur les <a href="selector.html">sélecteurs</a>) consiste en tout ce qu'il y a
+jusqu'à la première accolade gauche, celle-ci exclue. Un sélecteur est toujours
+accompagné d'un {bloc}. Quand un agent utilisateur ne peut interpréter un sélecteur
+(par exemple, parce que celui-ci est invalide pour <abbr>CSS2</abbr>), il doit de ce fait en
+<span class="index-inst" title="ignore"><a name="x16" href="#ignore">ignorer</a></span> le {bloc}.
+
+<p>
+En <abbr>CSS2</abbr>, la virgule (,) placée dans un sélecteur a un sens particulier.
+Cependant, comme on ne sait pas si celle-ci va prendre d'autres significations dans les versions
+ultérieures de <abbr>CSS</abbr>, si une partie du sélecteur comportait une quelconque erreur, la déclaration
+entière devrait être <span class="index-inst" title="ignore"><a name="x17" href="#ignore">ignorée</a></span>,
+même si le reste de celui-ci apparaissait valide pour <abbr>CSS2</abbr>.
+
+<div class=illegal-example><p style="display:none">Exemple(s) INTERDIT(s) :</p>
+<p>
+Par exemple, comme le caractère "&amp;" n'est pas un atome valide en <abbr>CSS2</abbr>, un agent utilisateur <abbr>CSS2</abbr> doit <span class="index-inst" title="ignore"><a name="x18" href="#ignore">ignorer</a></span>
+la totalité de la deuxième ligne, et les éléments H3 ne prendront pas la couleur rouge :
+
+<pre>
+H1, H2 {color: green }
+H3, H4 &amp; H5 {color: red }
+H6 {color: black }
+</pre>
+</div>
+
+<div class="example"><p style="display:none">Exemple(s):</p><p>
+<p>
+Voici un exemple plus complexe. Les deux premières paires d'accolades se trouvent dans une chaîne,
+elles ne délimitent pas la fin du sélecteur. Cette déclaration est donc valide pour <abbr>CSS2</abbr> :
+<pre>
+P[example="public class foo\
+{\
+    private int x;\
+\
+    foo(int x) {\
+        this.x = x;\
+    }\
+\
+}"] { color: red }
+</pre>
+</div>
+
+<h3>4.1.8 <a name="declaration">Les déclarations</a> et <a name="properties">propriétés</a></h3>
+
+<p>Une <a name="x19"><span class="index-def" title="declaration"><dfn>déclaration</dfn></span></a>
+est : soit vide ; soit constituée d'une <a name="x20"><span class="index-inst" title="property">propriété</span></a>,
+suivie du caractère deux-points (:) puis d'une valeur. Il peut y avoir des <a href="#whitespace">caractères blancs</a>
+autour de chacun de ceux-ci.
+
+
+<p>
+En raison du mode de fonctionnement des sélecteurs, on peut regrouper les multiples 
+déclarations qui se rapportent à un même sélecteur en les séparant
+par des points-virgules (;).
+
+<div class="example"><p style="display:none">Exemple(s):</p>
+<p>
+Ainsi, les règles suivantes :
+<pre>
+H1 { font-weight: bold }
+H1 { font-size: 12pt }
+H1 { line-height: 14pt }
+H1 { font-family: Helvetica }
+H1 { font-variant: normal }
+H1 { font-style: normal }
+</pre>
+
+<p>sont équivalentes à celle-ci :
+
+<pre>
+H1 {
+  font-weight: bold;
+  font-size: 12pt;
+  line-height: 14pt;
+  font-family: Helvetica;
+  font-variant: normal;
+  font-style: normal
+}
+</pre>
+</div>
+
+<p>
+Une propriété est un <a href="#value-def-identifier">identificateur</a>. On peut utiliser pour sa valeur
+toutes sortes de caractères, sous réserve des parenthèses ("( )"), des
+crochets ("[ ]"), des accolades ("{ }") et des guillemets simples (') ou doubles (") qui
+doivent toujours aller par paires, les points-virgules en dehors d'une chaîne doivent être
+<a href="#escaped-characters">masqués</a>. Les parenthèses, les crochets et les
+accolades peuvent être imbriqués. Les caractères entre des guillemets sont
+interprétés comme une chaîne.
+
+<p>
+La syntaxe des <a name="x21"><span class="index-def" title="value">valeurs</span></a> est spécifiée
+pour chacune des propriétés ; dans tous les cas, les valeurs sont construites à
+partir d'identificateurs, de chaînes, de nombres, de longueurs, de pourcentages, d'adresses <abbr>URI</abbr>, de couleurs,
+d'angles, de durées et de fréquences.
+
+<p>
+Un agent utilisateur doit <span class="index-inst" title="ignore"><a name="x22" href="#ignore">ignorer</a></span>
+une déclaration dont le nom de la propriété ou sa valeur est invalide.
+Chacune des propriétés <abbr>CSS2</abbr> a ses propres restrictions syntaxiques et sémantiques
+sur les valeurs qu'elle accepte.
+
+<div class="illegal-example"><p style="display:none">Exemple(s) INTERDIT(s) :</p><p>
+Prenons par exemple un interpréteur <abbr>CSS2</abbr> et cette feuille de style :
+
+<pre>
+H1 { color: red; font-style: 12pt }  /* valeur invalide : 12pt */
+P { color: blue;  font-vendor: any;  /* propriété invalide : font-vendor */
+    font-variant: small-caps }
+EM EM { font-style: normal }
+</pre>
+
+<p>
+Dans la première ligne, la seconde déclaration comporte une valeur de '12pt' invalide,
+et dans la deuxième ligne, la deuxième déclaration contient une propriété
+non définie 'font-vendor'. L'interpréteur va <span class="index-inst" title="ignore"><a name="x23" href="#ignore">ignorer</a></span>
+celles-ci, réduisant la feuille de style dans les faits à la suivante :
+
+<pre class="example">
+H1 { color: red; }
+P { color: blue;  font-variant: small-caps }
+EM EM { font-style: normal }
+</pre>
+</div>
+
+<h3>4.1.9 <a name="comments">Les commentaires</a></h3>
+
+<p>Les <a name="x24"><span class="index-inst" title="comments">commentaires</span></a> commencent par
+les caractères "/*" et se terminent par "*/". On peut les placer partout entre les atomes, leur
+contenu n'a aucune influence sur le rendu. On ne peut pas les imbriquer.
+
+<p>
+<abbr>CSS</abbr> permet aussi l'utilisation des délimiteurs <abbr lang="en" title="Standardized General Markup Language">SGML</abbr>
+("&lt;!--" et "--&gt;") à certains endroits, mais ne délimitent pas un commentaire en <abbr>CSS</abbr>. On les emploie aussi pour masquer
+les feuilles de style dans un document source <abbr>HTML</abbr> (dans l'élément STYLE) aux agents
+utilisateurs antérieurs à <abbr>HTML 3.2</abbr>. Voir la spécification <abbr>HTML 4.0</abbr>
+(<a href="refs.html#ref-HTML40" rel="biblioentry" class="noxref"><span class="informref">[HTML40]</span></a>) pour plus d'informations.
+
+<h2>4.2 <a name="parsing-errors">Les règles de traitement des erreurs d'interprétation</a></h2>
+
+<p>
+Dans certains cas, les agents utilisateurs doivent ignorer une partie d'une feuille de style
+invalide. Cette spécification définit le terme <span class="index-def" title="ignore"><a name="ignore"><dfn>ignorer</dfn></a></span>,
+qui signifie l'examen de cette partie invalide par l'agent utilisateur (pour déterminer où
+celle-ci commence et se termine), tout en agissant comme si cette partie n'avait pas été là.
+
+<p>
+Pour permettre l'ajouts futurs de nouvelles propriétés et valeurs, les agents utilisateurs
+doivent suivre les règles suivantes en fonction des scénarios décrits ici :
+
+<ul>
+<li><strong>Propriétés inconnues.</strong> Les agents utilisateurs doivent <span class="index-inst" title="ignore"><a name="x26" href="#ignore">ignorer</a></span>
+une <a href="syndata.html#declaration">déclaration</a> dont la propriété est inconnue.
+Par exemple, pour cette feuille de style :
+
+<pre class="illegal-example">
+H1 { color: red; rotation: 70minutes }
+</pre>
+
+<p>l'agent utilisateur la traitera comme si elle était :
+
+<pre class="example">
+H1 { color: red }
+</pre>
+
+<li><strong>Valeurs invalides.</strong> Les agents utilisateurs doivent ignorer une déclaration
+qui comporte une valeur invalide. Par exemple :
+
+<pre class="illegal-example">
+IMG { float: left }       /* valide pour CSS2 */
+IMG { float: left here }  /* "here" n'est pas une valeur de 'float' */
+IMG { background: "red" } /* les mots-clés ne sont pas entre guillemets en CSS2 */
+IMG { border-width: 3 }   /* on doit spécifier une unité à une valeur numérique */
+</pre>
+
+un interpréteur <abbr>CSS2</abbr> honorerait la première règle de la feuille de style et en <span class="index-inst" title="ignore"><a name="x27" href="#ignore">ignorerait</a></span>
+les suivantes, comme si celle-ci avait été :
+
+<pre class="example">
+IMG { float: left }
+IMG { }
+IMG { }
+IMG { }
+</pre>
+
+<p>
+L'agent utilisateur qui voudrait aller vers une conformité avec une future spécification <abbr>CSS</abbr> peut aussi
+suivre une, ou plusieurs, de ces autres règles-ci.
+
+<li><strong>Mots-clés-at invalides.</strong> Les agents utilisateurs doivent <span class="index-inst" title="ignore"><a name="x28" href="#ignore">ignorer</a></span>
+un mot-clé-at invalide ainsi que tout ce qui le suit jusqu'au point-virgule (;) inclus ou jusqu'au {bloc} prochains, selon celui qui survient en premier.
+Par exemple, considérons la feuille de style suivante :
+
+<pre class="illegal-example">
+@three-dee {
+  @background-lighting {
+    azimuth: 30deg;
+    elevation: 190deg;
+  }
+  H1 { color: red }
+}
+H1 { color: blue }
+</pre>
+
+<p>La règle-at '@three-dee' n'est pas définie en <abbr>CSS2</abbr>.
+Ainsi, la règle-at (jusqu'à la troisième accolade droite incluse) est
+<span class="index-inst" title="ignore"><a name="x29" href="#ignore">ignorée</a></span>, et la
+feuille de style est réduite dans les faits à :
+
+<pre class="example">
+H1 { color: blue }
+</pre>
+
+</ul>
+
+
+<h2>4.3 <a name="values">Les valeurs</a></h2>
+
+<h3><a name="q13">4.3.1 Les entiers et les nombres</a></h3>
+
+<p>
+Quelques valeurs peuvent avoir le type entier (dénoté par <span class="index-def" title="&lt;integer&gt;::definition of">
+<a name="value-def-integer" class="value-def">&lt;integer&gt;</a></span>) ou le type nombre
+(dénoté par <span class="index-def" title="&lt;number&gt;::definition of"><a name="value-def-number" class="value-def">&lt;nombre&gt;</a></span>).
+Les nombres et les entiers sont seulement spécifiés en notation décimale.
+Un &lt;entier&gt; consistent un, ou plusieurs, chiffres de "0" à "9". A &lt;nombre&gt;
+peut être un &lt;entier&gt; ou encore zéro, ou plusieurs chiffres, suivi par un point (.) et un, ou plusieurs, chiffres.
+Les deux types pouvant être précédés par le signe "-" ou "+".
+
+<p>
+Noter que plusieurs propriétés, qui admettent comme valeur un entier ou un nombre, limitent
+en fait leurs valeurs dans une plage donnée, souvent à une valeur positive.
+
+<h3>4.3.2 <a name="length-units">Les longueurs</a></h3>
+
+<p>
+Les longueurs s'appliquent aux mesures horizontales et verticales.
+
+<p><ins title="id=x4">Plusieurs valeurs décrites dans les sous-sections de cette section admettent incorrectement
+deux signes "+" ou "-" initiaux. Les <a href="syndata.html#length-units">longueurs</a>, par exemple, sont décrites ainsi :</ins>
+<blockquote>
+<p><ins title="id=x4">
+Une valeur de longueur (dénotée par <span class="index-def" title="&lt;length&gt;::definition of"><a name="value-def-length" class="value-def">&lt;longueur&gt;</a></span>
+dans cette spécification) est formée d'un caractère de signe optionnel ('+' ou '-', '+' étant la valeur implicite),
+suivi immédiatement par un <a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>
+(avec un point décimal ou non) et suivi immédiatement par un identificateur d'unité (ex. px, deg, etc.)</ins>
+</p>
+</blockquote>
+
+<p><ins title="id=x4">Cependant, le type &lt;nombre&gt; admettant déjà le signe "+" ou "-",
+la définition précédente implique la possibilité de se trouver avec deux caractères pour le signe.
+Bien que les types de valeurs suivants puissent accepter deux signes, ils sont destinés à n'avoir qu'un seul signe initial :</ins>
+
+<ul>
+<li><span><ins title="id=x4"><a href="syndata.html#length-units">Les longueurs</a> ;</ins></span>
+<li><span><ins title="id=x4"><a href="syndata.html#percentage-units">Les pourcentages</a> ;</ins></span>
+<li><span><ins title="id=x4"><a href="syndata.html#angle-units">Les angles</a> ;</ins></span>
+</ul>
+
+<p>
+Certaines propriétés autorisent des valeurs de longueur négatives, mais cela peut
+compliquer le modèle de mise en forme, cela peut aussi dépendre des limites spécifiques des agents utilisateurs.
+Dans le cas où une valeur de longueur négative n'est pas reconnue, elle devrait être
+convertie à la valeur la plus proche qui le soit.
+
+<p><a name="absrel-units">Il existe deux types d'unité de longueur : les relatives et les absolues.</a>
+Les unités de <a name="x34"><span class="index-def" title="relative units"><em>longueurs relatives</em></span></a>
+se rapportent à une autre propriété de longueur.
+Les feuilles de style qui en emploient seront plus facilement adaptable d'un média à un autre
+(par exemple d'un moniteur vers une imprimante laser).
+
+<p>Voici les unités relatives :
+<ul>
+<li><strong>em</strong> : la valeur de <a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a> pour la police concernée
+<li><strong>ex</strong> : la valeur de <span class="descinst">'x-height'</span> pour la police concernée
+<li><strong>px</strong> : une quantité de pixels, en fonction de l'appareil de visualisation.
+</ul>
+
+<div class="example"><p style="display:none">Exemple(s) :</p><p>
+<pre>
+H1 { margin: 0.5em }      /* em */
+H1 { margin: 1ex }        /* ex */
+P  { font-size: 12px }    /* px */
+</pre>
+</div>
+
+<p>L'unité <span class="index-def" title="em (unit)|quad width"><a name="em-width">'em'</a></span> correspond à la valeur calculée
+pour la propriété <a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>
+d'un élément donné. Sauf quand cette unité est spécifiée dans
+la propriété 'font-size' elle-même, auquel cas, elle se réfère à
+la taille de la police de l'élément parent. On peut l'utiliser pour des mesures de quantités
+verticales ou horizontales. (En typographie, on l'appelle aussi carré typographique ou corps).
+
+<p>
+L'unité <span class="index-def" title="x-height|ex (unit)"><a name="ex">'ex'</a></span> est définie par rapport à la valeur
+de la propriété <a href="fonts.html#descdef-x-height" class="noxref"><span class="descinst-x-height">'x-height'</span></a>.
+Cette valeur correspond à la hauteur du caractère "x" minuscule. Elle est définie même pour les polices
+qui n'en contiennent pas.
+
+<div class="example"><p style="display:none">Exemple(s) :</p>
+<p>Ainsi :
+
+<pre>
+H1 { line-height: 1.2em }
+</pre>
+
+<p>
+cette règle précise que la hauteur de ligne des éléments H1 sera 20 % plus
+grande que leur taille de police. À l'inverse :
+
+<pre>
+H1 { font-size: 1.2em }
+</pre>
+
+<p>
+la taille de police des éléments H1 sera 20 % plus grande que la taille de police héritée
+par ceux-ci.
+</div>
+
+<p>
+Les valeurs en 'em' et 'ex' se réfèrent à la <a href="cascade.html#initial-value">valeur initiale</a> de la propriété
+quand on les spécifie pour la racine de <a href="conform.html#doctree">l'arbre du document</a> (ex. "HTML" pour le langage <abbr>HTML</abbr>).
+
+<p>
+Les valeurs exprimées <a name="pixel-units">en pixel</a> s'entendent relativement à la résolution
+de l'appareil de visualisation, c.à.d. le plus souvent un moniteur. Dans le cas où la
+densité de pixels de l'appareil de sortie est trop éloignée de celle d'un
+moniteur typique, l'agent utilisateur devrait redimensionner les valeurs en pixel.
+On recommande une valeur pour le <a name="x39"><span class="index-def" title="reference pixel|pixel"><em>pixel de référence</em></span></a>
+qui soit égale à l'angle visuel d'un pixel sur un appareil de densité <del title="2001-08-28 id=s-4-3-2">90 ppp</del>
+<ins title="2001-08-28 id=s-4-3-2">96 ppp</ins> situé à une longueur de bras du spectateur. Pour une longueur de bras nominale
+de 28 pouces (71 cm), l'angle visuel serait de <del title="2001-08-28" id=s-4-3-2>0,0227</del> <ins title="2001-08-28 id=s-4-3-2">0,0213</ins> degrés.
+
+<p>
+À cette distance, un pixel correspond à une taille d'environ <del title="2001-08-28 id=s-4-3-2">0,28 mm</del>
+<ins title="2001-08-28 id=s-4-3-2">0,26 mm</ins> (soit 1/96 pouce).
+Une fois retranscrit par une imprimante laser, pour une lecture à moins d'une longueur de bras
+(55 cm ou 21 pouces), celui-ci a une taille d'environ 0,21 mm. Avec une imprimante de résolution
+300 ppp (point par pouce), il serait rendu en 3 points (0,25 mm) et, avec imprimante de 600 ppp, en environ
+5 points.
+
+<p>
+Les deux illustrations suivantes montrent les conséquences de la distance de lecture et de la
+résolution d'un appareil sur la perception d'un pixel. Dans la première, une distance de
+lecture de 71 cm (28 pouces) correspond à un pixel de 0.26 mm, et une distance
+de 3.5 m (12 pieds) à un pixel de 1.3 mm.
+
+<div class="figure">
+<p><img src="images/pixel1.gif" alt="Montre que les pixels doivent grandir avec la distance." width="255" height="183"><span class="dlink">   <a name="img-pixel1" href="images/longdesc/pixel1-desc.html" title="Long description for the illustration of a pixel's definition">[D]</a></span>
+</div>
+
+<p>Dans la seconde, une aire de 1px par 1px est recouverte avec un seul point pour un appareil en basse
+résolution (un moniteur), alors que cette même surface nécessite 16 points pour
+un appareil en haute résolution (comme une imprimante laser en 400 ppp).
+
+<div class="figure">
+<p><img src="images/pixel2.gif" alt="Montre qu'il faut plus de pixels d'appareil (points) pour couvrir une aire de 1x1 px en haute définition qu'en basse." width="322" height="251"><span class="dlink">   <a name="img-pixel2" href="images/longdesc/pixel2-desc.html" title="Long description for the illustration of reference vs. device pixel">[D]</a></span>
+</div>
+
+<p>
+Les éléments enfants n'héritent pas des valeurs relatives spécifiées
+pour leur parent ; ils en héritent (généralement) des <a href="cascade.html#computed-value">valeurs calculées</a>. 
+
+<div class="example"><p style="display:none">Exemple(s) :</p><p> 
+Dans les règles suivantes, la valeur calculée de <a href="text.html#propdef-text-indent" class="noxref"><span class="propinst-text-indent">'text-indent'</span></a>
+des éléments H1, enfants de l'élément BODY, sera de 36pt, et non 45pt.
+
+<pre>
+BODY {
+  font-size: 12pt;
+  text-indent: 3em;  /* c.à.d., 36 pt */
+}
+H1 { font-size: 15pt }
+</pre>
+</div>
+
+<p>
+Les unités de <a name="x41"><span class="index-def" title="absolute length"><em>longueurs absolues</em></span></a>
+ne sont utiles que si les propriétés physiques du média de sortie sont connues. Voici
+les unités absolues :
+
+<ul>
+<li><strong>in</strong> : pouce -- un pouce (inch) est égal à 2,54 cm.
+<li><strong>cm</strong> : centimètre
+<li><strong>mm</strong> : millimètre
+<li><strong>pt</strong> : point -- le point de <abbr>CSS2</abbr> est égal à 1/72 de pouce. 
+<li><strong>pc</strong> : pica -- un pica est égal à 12 points.
+</ul>
+
+<div class="example"><p style="display:none">Exemple(s) :</p><p>
+<pre>
+H1 { margin: 0.5in }      /* pouces  */
+H2 { line-height: 3cm }   /* centimètres */
+H3 { word-spacing: 4mm }  /* millimètres */
+H4 { font-size: 12pt }    /* points */
+H4 { font-size: 1pc }     /* picas */
+</pre>
+</div>
+
+<p>
+Si la valeur de longueur spécifiée n'est pas reconnue, les agents utilisateurs doivent
+en donner une valeur approchante
+
+<h3>4.3.3  <a name="percentage-units">Les pourcentages</a></h3>
+
+<p>
+Une valeur de pourcentage (dénotée par <span class="index-def" title="&lt;percentage&gt;::definition of"><a name="value-def-percentage" class="value-def">&lt;pourcentage&gt;</a></span>
+est formée d'un caractère facultatif pour le signe ('+' ou '-', '+' étant par défaut)
+immédiatement suivi par un <span class="index-inst" title="&lt;number&gt;"><a name="x43" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a></span>
+et immédiatement suivi par le caractère '%'.
+
+<p> 
+Les valeurs de pourcentage sont toujours relatives à une autre valeur, par exemple une longueur.
+Chacune des propriétés qui admettent des pourcentages définit aussi la valeur à
+laquelle le pourcentage se rapporte. Cette valeur peut être celle d'une autre propriété
+du même élément, d'une propriété d'un ancêtre ou de la valeur issue
+du contexte de formatage (ex. la largeur d'un <a href="visuren.html#containing-block">bloc conteneur</a>).
+Quand une valeur de pourcentage est spécifiée pour une propriété de
+l'élément <a href="conform.html#root">racine</a> et que celle-ci est définie par
+rapport à la valeur héritée d'une propriété donnée, alors
+la valeur résultante est égale au produit de la valeur de pourcentage par la
+<a href="cascade.html#initial-value">valeur initiale</a> de cette propriété.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p> 
+Les éléments enfants héritant (généralement) des
+<a href="cascade.html#computed-value">valeurs calculées</a> de leur parent, dans l'exemple suivant,
+les enfants de l'élément P hériteront d'une valeur 12 pt pour la propriété
+<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>,
+et non de la valeur en pourcentage (ici, 120 %) :
+
+<pre>
+P { font-size: 10pt }
+P { line-height: 120% }  /* 120 % de 'font-size' */
+</pre>
+</div>
+
+<h3>4.3.4 <a name="uri"><abbr>URL</abbr> + <abbr>URN</abbr> = <abbr>URI</abbr></a></h3>
+
+<p>
+Les <a name="x44"><span class="index-def" title="Uniform Resource Locator (URL)|URL (Uniform Resource Locator)">URLs</span></a>
+(Uniform Resource Locators, voir <a href="refs.html#ref-RFC1738" rel="biblioentry" class="noxref"><span class="normref">[RFC1738]</span></a>
+et <a href="refs.html#ref-RFC1808" rel="biblioentry" class="noxref"><span class="normref">[RFC1808]</span></a>)
+indiquent l'adresse d'une ressource sur le Web.
+Une nouvelle appellation destinée à identifier une ressource est l'<a name="x46"><span class="index-def" title="URN (Uniform Resource Name)|Uniform Resource Name (URN)">URN</span></a> (Uniform Resource Name).
+Les deux réunis forment ce qu'on nomme des <a name="x48"><span class="index-def" title="Resource Identifier (URI)|URI (Uniform Resource Identifier)">adresses <abbr>URI</abbr></span></a>
+(Uniform Resource Identifiers, voir <a href="refs.html#ref-URI" rel="biblioentry" class="noxref"><span class="normref">[URI]</span></a>).
+
+<p>
+Les valeurs d'adresse <abbr>URI</abbr> dans cette spécification sont dénotées par
+<span class="index-def" title="&lt;uri&gt;::definition of"><a name="value-def-uri" class="value-def">&lt;uri&gt;</a></span>.
+On utilise la notation fonctionnelle "url()" pour désigner les adresses <abbr>URI</abbr> dans les valeurs de propriétés,
+comme ici :
+
+<div class="example"><p style="display:none">Exemple(s) :</p><p>
+<pre>
+BODY { background: url("http://www.bg.com/pinkish.gif") }
+</pre>
+</div>
+
+<p>
+Une valeur d'adresse <abbr>URI</abbr> est formée par les caractères 'url(' suivis par un <a href="#whitespace">caractère blanc</a>
+facultatif, suivi par un guillemet facultatif simple (') ou double ("), suivis par l'adresse <abbr>URI</abbr> elle-même, suivie par
+un guillemet fermant simple ou double, s'il y a lieu, suivi par un caractère blanc facultatif et enfin par une parenthèse fermante ')'.
+Les guillemets doivent être de la même sorte.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>Un exemple sans guillemets :
+<pre>
+LI { list-style: url(http://www.redballs.com/redball.png) disc }
+</pre>
+</div>
+
+<p>
+Les caractères parenthèse, virgule, les caractères blancs et les guillemets simples ou doubles qui apparaissent
+dans une adresse <abbr>URI</abbr> doivent être masqués par une barre oblique inverse, ex. '\(', '\)', '\,', etc.
+
+<p>
+Selon le type d'adresse <abbr>URI</abbr>, il doit aussi être possible d'écrire les caractères précédents
+sous la forme de masquage des adresses <abbr>URI</abbr>, où "(" = %28, ")" = %29, etc., tel que décrit dans
+<a href="refs.html#ref-URI" rel="biblioentry" class="noxref"><span class="normref">[URI]</span></a>.
+
+<p>
+Pour créer des feuilles de style modulaires indépendantes de l'adresse absolue d'une ressource,
+les auteurs peuvent employer des adresses <abbr>URI</abbr> relatives. Les adresses <abbr>URI</abbr> relatives
+(décrites dans <a href="refs.html#ref-RFC1808" rel="biblioentry" class="noxref"><span class="normref">[RFC1808]</span></a>)
+se résolvent en adresses <abbr>URI</abbr> complètes à partir d'une adresse <abbr>URI</abbr> de base. L'algorithme normatif de ce
+processus est défini au chapitre 3 de RFC 1808. Pour les feuilles de style <abbr>CSS</abbr>, l'adresse <abbr>URI</abbr>
+de base correspond à celle de la feuille de style, et non à celle du document source.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Supposons par exemple que la règle suivante :
+
+<pre>
+BODY { background: url("yellow") }
+</pre>
+
+<p>
+se trouve dans une feuille de style désignée par l'adresse <abbr>URI</abbr> :
+
+<pre>http://www.myorg.org/style/basic.css</pre>
+
+<p>
+L'arrière-plan de l'élément BODY dans le document source sera carrelé
+avec l'image issue de la ressource désignée par cette adresse <abbr>URI</abbr> :
+
+<pre>http://www.myorg.org/style/yellow</pre>
+</div>
+
+<p>
+La façon de gérer les adresses <abbr>URI</abbr> qui pointent vers des ressources non disponibles ou inappropriées
+peut varier d'un agent utilisateur à l'autre.
+
+<h3>4.3.5 <a name="counter">Les compteurs</a></h3>
+
+<p>
+Les <span class="index-def" title="&lt;counter&gt;, definition of"><a name="value-def-counter">compteurs</a></span>
+sont dénotés par des identificateurs (voir les propriétés <a href="generate.html#propdef-counter-increment" class="noxref"><span class="propinst-counter-increment">'counter-increment'</span></a>
+et <a href="generate.html#propdef-counter-reset" class="noxref"><span class="propinst-counter-reset">'counter-reset'</span></a>).
+On se réfère à la valeur d'un compteur au travers des notations
+<a name="x52"><span class="index-def" title="counter()">'counter(&lt;identificateur&gt;)'</span></a>
+ou 'counter(&lt;identificateur&gt;, &lt;list-style-type&gt;)'. La valeur par défaut étant 'decimal'.
+
+<p>
+Pour référencer une séquence de compteurs imbriqués, on utilise les notations
+'counters(&lt;identificateur&gt;, &lt;chaîne&gt;)' ou 'counters(&lt;identificateur&gt;, &lt;chaîne&gt;, &lt;list-style-type&gt;)'.
+Voir <a href="generate.html#scope">"Les compteurs imbriqués et leur portée"</a> dans le chapitre sur le <a href="generate.html">contenu généré</a>.
+
+<p>
+En <abbr>CSS2</abbr>, on ne peut se référer aux valeurs des compteurs qu'avec la propriété
+<a href="generate.html#propdef-content" class="noxref"><span class="propinst-content">'content'</span></a>.
+Noter que la valeur 'none' est admise pour &lt;list-style-type&gt; : 'counter(x, none)' résulte en une chaîne vide.
+
+<div class="example"><p style="display:none">Exemple(s) :
+
+<p>
+Voici une feuille de style qui numérote les paragraphes (P) pour chacun des chapitres (H1).
+Les paragraphes utilisent une numérotation en chiffre romains, suivis par un point et un espace :
+
+<pre>
+P {counter-increment: par-num}
+H1 {counter-reset: par-num}
+P:before {content: counter(par-num, upper-roman) ". "}
+</pre>
+</div>
+
+<p>
+Les compteurs qui sont hors du <a href="generate.html#scope">champ d'action</a> d'une propriété
+'counter-reset' sont considérés avoir été remis à zéro par
+la propriété 'counter-reset' de l'élément racine.
+
+<h3>4.3.6 <a name="color-units">Les couleurs</a></h3>
+
+La valeur d'un champ <span class="index-def" title="&lt;color&gt;::definition of"><a name="value-def-color" class="value-def">&lt;couleur&gt;</a></span>
+est spécifiée par un mot-clé ou par une valeur numérique RGB.
+
+<p>
+La liste des noms de mots-clés de couleur est : aqua, black, blue, fuchsia,
+gray, green, lime, maroon, navy, olive, purple, red, silver, teal, white et yellow.
+Ces 16 couleurs sont définies dans la spécification <abbr>HTML 4.0</abbr> (<a href="refs.html#ref-HTML40" rel="biblioentry" class="noxref"><span class="informref">[HTML40]</span></a>).
+En complément de ces couleurs, les utilisateurs peuvent spécifier des mots-clés
+qui correspondent aux couleurs utilisées par certains objets de l'environnement de l'utilisateur.
+Consulter le chapitre sur les <a href="./ui.html#system-colors">couleurs système</a> pour plus d'informations.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+<pre>
+BODY {color: black; background: white }
+H1 { color: maroon }
+H2 { color: olive }
+</pre>
+</div>
+
+<p>
+On utilise le modèle de couleur RGB pour la spécification numérique des couleurs.
+Les exemples ci-dessous indiquent tous la même couleur :
+
+<div class="example"><p style="display:none">Exemple(s) :</p><p>
+<pre>
+EM { color: #f00 }              /* #rgb */
+EM { color: #ff0000 }           /* #rrggbb */
+EM { color: rgb(255,0,0) }      <del title="id=x6">/* intervalle entier 0 - 255 */</del>
+EM { color: rgb(100%, 0%, 0%) } <del title="id=x6">/* intervalle flottant 0.0% - 100.0% */</del>
+</pre>
+</div>
+
+<p>
+Une valeur RGB en notation hexadécimale est formée d'un caractère '#' immédiatement
+suivi par trois ou bien six caractères hexadécimaux. La notation RGB en trois chiffres (#rgb)
+est convertie dans celle en six chiffres (#rrggbb) par réplication, et non par ajout de zéros.
+Par exemple, #fbo se transforme en #ffbb00. Ceci assure que la couleur blanche (#ffffff) puisse être
+spécifiée avec la notation courte (#fff) et que celle-ci soit indépendante de la profondeur de couleur
+de l'écran.
+
+<p>
+Une valeur RGB en notation fonctionnelle est formée par les caractères 'rgb(', suivis par
+une liste de trois valeurs numériques (soit trois entiers, soit trois pourcentages) séparées par des virgules
+et suivi par ')'. La valeur entière 255 correspond à 100 % et à f ou ff en notation
+hexadécimale : rgb(255,255,255) = rgb(100%,100%,100%) = #fff. Les <a href="#whitespace">caractères blancs</a>
+sont permis autour de chacune des valeurs.
+
+<p>
+Toutes les couleurs RGB sont spécifiées dans l'espace de couleur sRGB (voir <a href="refs.html#ref-SRGB" rel="biblioentry" class="noxref"><span class="normref">[SRGB]</span></a>).
+La fidélité du rendu des couleurs peut varier d'un agent utilisateur à l'autre,
+mais l'emploi de sRGB définit une mesure objective et sans ambiguïté des couleurs,
+en accord avec des standards internationaux (voir <a href="refs.html#ref-COLORIMETRY" rel="biblioentry" class="noxref"><span class="normref">[COLORIMETRY]</span></a>).
+
+
+<p>
+Les agents utilisateurs conformes peuvent se limiter à appliquer une correction gamma dans leurs efforts
+à rendre les couleurs. L'espace sRGB spécifie un gamma d'affichage de 2.2 dans certaines
+conditions spécifique de vision. Les agents utilisateurs devraient adapter les couleurs données
+en <abbr>CSS</abbr>, en conjonction avec le rendu "naturel" du gamma d'un appareil de sortie, de manière, à produire
+un gamma effectif de 2.2. Voir le chapitre sur la <a href="colors.html#gamma-correction">correction gamma</a>
+pour plus de détails. Noter que seules les couleurs spécifiées en <abbr>CSS</abbr> sont concernées, les images,
+par exemple, sont censées emporter leurs propres informations de couleur.
+
+<p>
+Les valeurs situées hors du gamut de l'appareil devraient être rognées : les valeurs
+de rouge, vert et bleu doivent être modifiées pour rester dans les limites supportées
+par l'appareil. Pour un moniteur CRT typique, dont le gamut est le même que celui de sRGB, ces trois
+règles sont équivalentes :
+
+<div class="example"><p style="display:none">Example(s):</p><p>
+<pre>
+EM { color: rgb(255,0,0) }       /* entier de 0 à 255 */
+EM { color: rgb(300,0,0) }       /* ramené à rgb(255,0,0) */
+EM { color: rgb(255,-10,0) }     /* ramené à rgb(255,0,0) */
+EM { color: rgb(110%, 0%, 0%) }  /* ramené à rgb(100%,0%,0%) */
+</pre>
+
+<p>
+D'autres appareils, dont les imprimantes, ont des gamuts différents de celui de sRGB ;
+certaines couleurs hors de la plage 0..255 de sRGB seront représentables (à l'intérieur
+du gamut de l'appareil), d'autres, bien que dans cette plage, seront hors du gamut de l'appareil et seront
+de ce fait rognées.
+</div>
+
+
+<div class="note">
+<p>
+<em><strong>Remarque : </strong>
+Bien que les couleurs puissent avoir un impact informationnel important pour les documents, les rendant
+plus lisibles, merci de considérer le fait que certaines combinaisons de couleurs peuvent causer
+des difficultés aux utilisateurs qui ont des déficiences visuelles. Si vous utilisez une
+image de fond ou spécifiez une couleur d'arrière-plan, veuillez choisir des couleurs
+de premier plan en accord avec leur fond.
+</em>
+</div>
+
+
+<h3><a name="q19">4.3.7 Les angles</a></h3>
+<p>Les valeurs d'angles (dénotées par <span class="index-def" title="&lt;angle&gt;::definition of"><a name="value-def-angle">&lt;angle&gt;</a></span> dans le texte)
+sont employées avec les <a href="./aural.html">feuilles de style auditives</a>.
+
+<p>
+Elles sont formées d'un caractère de signe facultatif ('+' ou '-', '+' étant par défaut)
+immédiatement suivi par un <span class="index-inst" title="&lt;number&gt;"><a name="x55" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a></span>
+et immédiatement suivi par un identificateur d'unité d'angle.
+
+<p><ins title="2002-07-29 id=s-4-3-7">Comme pour les longueurs, l'unité peut être omise si la valeur est "0" : on peut écrire "0deg" tout simplement "0".</ins>
+
+<p>Les identificateurs d'unité d'angle sont :
+
+<ul>
+<li><strong>deg</strong> : degrés
+<li><strong>grad</strong> : grades
+<li><strong>rad</strong> : radians
+</ul>
+
+<p>
+Les valeur d'angle peuvent être négatives. L'agent utilisateur devrait les normaliser
+dans la plage de 0 à 360 degrés. Par exemple, -10deg et 350deg sont équivalents.
+
+<p>
+Un angle droit, par exemple, fait '90deg' ou '100grad' ou '1.570796326794897rad'.
+
+<h3><a name="q20">4.3.8 Les durées</a></h3>
+
+<p>
+Les valeurs de durée (dénotées par <span class="index-def" title="&lt;time&gt;::definition of"><a name="value-def-time">&lt;durée&gt;</a></span>
+dans ce texte) sont employées avec les <a href="./aural.html">feuilles de style auditives</a>.
+
+<p>
+Elles sont formées d'un <span class="index-inst" title="&lt;number&gt;"><a name="x57" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a></span>
+immédiatement suivi par un identificateur d'unité de durée.
+
+<p><ins title="2002-07-29 id=s-4-3-7">Comme pour les longueurs, l'unité peut être omise si la valeur est "0" : on peut écrire "0ms" tout simplement "0".</ins>
+
+<p>Les identificateurs d'unité de durée sont :
+
+<ul>
+<li><strong>ms</strong> : millisecondes
+<li><strong>s</strong> : secondes
+</ul>
+
+<p>
+Les valeurs de durée ne peuvent pas être négatives.
+
+<h3><a name="q21">4.3.9 Les fréquences</a></h3>
+
+<p>
+Les valeurs de fréquence (dénotées par <span class="index-def" title="&lt;frequency&gt;::definition of"><a name="value-def-frequency">&lt;fréquence&gt;</a></span>
+dans le texte) sont employées avec les <a href="./aural.html">feuilles de style auditives</a>.
+
+<p>
+Elles sont formées d'un <span class="index-inst" title="&lt;number&gt;"><a name="x59" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a></span>
+immédiatement suivi par un identificateur d'unité de fréquence.
+
+<p><ins title="2002-07-29 id=s-4-3-7">Comme pour les longueurs, l'unité peut être omise si la valeur est "0" : on peut écrire "0Hz" tout simplement "0".</ins>
+
+<p>Les identificateurs d'unité de fréquence sont :
+
+<ul>
+<li><strong>Hz</strong>: Hertz
+<li><strong>kHz</strong>: kilo Hertz
+</ul>
+
+<p>Les valeurs de fréquence ne peuvent pas être négatives.
+
+<p>
+Par exemple, 200 Hz (ou 200 hz) est un son grave et 6 kHz (ou 6 khz) est un son aigu.
+
+<h3>4.3.10 <a name="strings">Les chaînes</a></h3>
+
+<p>
+Les <span class="index-def" title="&lt;string&gt;, definition of"><a name="value-def-string">chaînes</a></span>
+s'inscrivent entre des guillemets simples ou doubles. On ne peut pas mettre de guillemets doubles entre
+d'autres guillemets doubles, à moins de les masquer (ainsi, '\"' ou "\22").
+De la même façon pour les guillemets simples ("\'" ou "\27").
+
+<div class="example"><p style="display:none">Exemple(s) :</p><p>
+<pre>
+"voici une 'chaîne'"
+"voici une \"chaîne\""
+'voici une "chaîne"'
+'voici une \'chaîne\''
+</pre>
+</div>
+
+<p>
+Une chaîne ne peut pas contenir directement un caractère <a name="x61"><span class="index-inst"
+title="newline">nouvelle ligne</span></a>. Pour cela, on emploie le caractère masqué
+"\A" (en notation hexadécimale, A est le caractère Unicode pour une nouvelle ligne, celui-ci
+est donc la représentation générique pour "nouvelle ligne" en <abbr>CSS</abbr>).
+Voir la propriété <a href="generate.html#propdef-content" class="noxref"><span class="propinst-content">'content'</span></a>
+pour un exemple.
+
+<p>
+Il est possible de couper les chaînes pour les répartir sur plusieurs lignes, pour des 
+raisons esthétiques ou autres, mais il faut dans ce cas masquer la nouvelle ligne elle-même
+avec une barre oblique inverse (\). Par exemple, les deux sélecteurs qui suivent sont les mêmes :
+
+<div class="example"><p style="display:none">Exemple(s) :</p>
+<pre>
+A[TITLE="un titre qui\
+est assez court"] {/*...*/}
+A[TITLE="un titre qui est assez court"] {/*...*/}
+</pre>
+</div>
+
+<h2><a name="q23">4.4 La représentation du documents par <abbr>CSS</abbr></a></h2>
+
+<p>
+Une feuille de style <abbr>CSS</abbr> est une séquence de caractères issus du Jeu de Caractères Universel, Universal Character Set
+(voir <a href="refs.html#ref-ISO10646" rel="biblioentry" class="noxref"><span class="normref">[ISO10646]</span></a>).
+Pour leur transport et leur stockage, ces caractères doivent être <a name="x62"><span class="index-def" title="character encoding">codés</span></a>
+selon un codage compatible avec le jeu de caractères disponibles en US-ASCII (ex. ISO 8859-x,
+SHIFT JIS, etc.). Pour une bonne introduction aux jeux de caractères et leurs codages,
+consulter la spécification <abbr>HTML 4.0</abbr> (<a href="refs.html#ref-HTML40" rel="biblioentry" class="noxref"><span class="informref">[HTML40]</span></a>, chapitre 5).
+Voir aussi la spécification <abbr>XML 1.0</abbr> (<a href="refs.html#ref-XML10" rel="biblioentry" class="noxref"><span class="informref">[XML10]</span></a>, chapitres 2.2 et 4.3.3, et l'Annexe F.
+
+
+<p>
+Quand une feuille de style est incorporée dans un document, comme avec l'élément
+STYLE ou l'attribut "style" en <abbr>HTML</abbr>, celle-ci partage le même codage de caractères que ce document.
+
+<p>
+Quand une feuille de style réside dans un fichier séparé, les agents utilisateurs
+doivent observer les <a name="x63"><span class="index-inst" title="character encoding::user agent's determination of">priorités</span></a>
+suivantes pour déterminer le <a name="x64"><span class="index-inst" title="character encoding::default|default::character encoding">codage des caractères</span></a>
+du document (par ordre de priorité décroissant) :
+<ol>
+<li>Un paramètre HTTP "charset" dans un champ "Content-Type" ;
+<li>La règle-at <a name="x66"><span class="index-def" title="@charset">@charset</span></a> ;
+<li>Des mécanismes du langage du document appelant (ex. l'attribut "charset" de l'élément LINK en <abbr>HTML</abbr>).
+</ol>
+
+<p>
+Il ne peut y avoir qu'une règle @charset dans une feuille de style externe et elle doit survenir
+au tout début de celle-ci, aucun caractère ne devant précéder. Cette règle
+<em>ne doit pas</em> apparaître dans une feuille de style incorporée.
+Les auteurs spécifient le nom d'un codage après "@charset". Ce nom doit correspondre à
+celui d'un jeu de caractère inscrit dans les registres de l'<abbr>IANA</abbr>
+(voir <a href="refs.html#ref-IANA" rel="biblioentry" class="noxref"><span class="normref">[IANA]</span></a>
+et aussi <a href="refs.html#ref-CHARSETS" rel="biblioentry" class="noxref"><span class="informref">[CHARSETS]</span></a>
+pour une liste complète de ceux-ci). Par exemple :
+
+<div class="example"><p style="display:none">Exemple(s) :</p><p>
+@charset "ISO-8859-1";
+</div>
+
+<p>
+Cette spécification ne précise pas lesquels des codages de caractères un agent
+utilisateur doit reconnaître.
+
+<p>
+Noter que compter sur la construction avec @charset pose un problème théorique
+car on ne sait pas <em>a priori</em> la façon dont celle-ci est codée.
+En pratique, cependant, les codages les plus répandus sur Internet se basent sur les
+codages <abbr>ASCII</abbr>, UTF-16, UCS-4 ou (rarement) sur <abbr>EBCDIC</abbr>. Cela signifie en général que
+l'agent utilisateur est capable de détecter de façon sûre la famille des codages
+d'un document à partir de ses octets initiaux, ce qui lui permet ensuite d'en déterminer
+le codage exact.
+
+
+
+
+
+<h3><a name="q24">4.4.1 L'appel des caractères absents d'un codage</a></h3>
+
+<p>
+Une feuille de style peut utiliser des caractères qui n'ont pas de représentation
+dans un codage donné. Ceux-ci doivent être écrits sous la forme d'appels
+<a href="#escaped-characters">masqués</a> des caractères ISO 10646. C'est
+la même méthode que pour les appels de caractères numériques
+dans les documents <abbr>HTML</abbr> ou <abbr>XML</abbr> (voir <a href="refs.html#ref-HTML40" rel="biblioentry" class="noxref"><span class="normref">[HTML40]</span></a>, chapitres 5 et 25).
+
+
+<p>
+On ne devrait employer ce mécanisme que si on a affaire à un
+petit nombre seulement de ces caractères à masquer.
+Si la plus grande part du document y fait appel, alors les auteurs devraient employer
+un codage plus approprié pour celui-ci (ex. avec un document qui contient beaucoup de caractères
+grecs, les auteurs pourraient utiliser "ISO-8859-7" ou "UTF-8").
+
+<p>
+Les processeurs intermédiaires qui utilisent un codage différent peuvent traduire ces
+séquences de masquage en des séquences d'octets pour ce même codage.
+Néanmoins, il ne doivent pas modifier celles qui annulent le sens spécial d'un caractère <abbr>ASCII</abbr>.
+
+<p>
+Les <a href="conform.html#conformance">agents utilisateurs conformes</a> doivent faire correspondre
+correctement avec Unicode tous les caractères d'un codage donné qui sont reconnus
+(ou se comporter comme s'ils le faisaient).
+
+<p>
+Par exemple, un document transmis en ISO-8859-1 (Latin-1) ne peut pas contenir des lettres greques telles
+quelles : "&#954;&#959;&#965;&#961;&#959;&#962;" ("kouros" en grec) doit être écrit "\3BA\3BF\3C5\3C1\3BF\3C2".
+
+<div class="note"><p>
+<em><strong>Remarque : </strong>En <abbr>HTML 4.0</abbr>, les appels de caractères numériques
+sont interprétés dans les valeurs de l'attribut "style" mais pas dans le contenu de
+l'élément STYLE. À cause de cette divergence, nous recommandons aux auteurs d'utiliser
+le mécanisme de masquage des caractères de <abbr>CSS</abbr> plutôt que des appels de caractères numériques,
+pour l'attribut "style" comme pour l'élément STYLE :</em>
+
+<pre class="html-example">
+&lt;SPAN style="voice-family: D\FC rst"&gt;...&lt;/SPAN&gt;
+</pre>
+
+<p><em>plutôt que :</em></p>
+
+<pre class="html-example">
+&lt;SPAN style="voice-family: D&amp;#252;rst"&gt;...&lt;/SPAN&gt;
+</pre>
+</div>
+
+<hr class="navbar">
+
+<div class="navbar" align="center">
+<p><a href="conform.html">précédent</a>  
+<a href="selector.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriété</a>  
+<a href="indexlist.html">index</a>  
+</div>
+</body>
+</html>

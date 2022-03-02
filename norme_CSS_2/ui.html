@@ -1,0 +1,399 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="fr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>L'interface utilisateur</title>
+<link rel="stylesheet" type="text/css" href="annexe/W3C-REC.css">
+<link rel="stylesheet" type="text/css" href="annexe/vf.css">
+<link rel="stylesheet" type="text/css" href="annexe/print.css" media="print" > <!-- ajouté JHI 13.2.9 -->
+<link rel="prev" href="tables.html">
+<link rel="next" href="aural.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+</head>
+<body>
+<!-- Préface de la traduction -->
+<div id="lisezmoi">
+<a href="annexe/preface.html" title="IMPORTANT : Lisez d'abord la préface de la traduction !"><strong> Lisez-moi S.V.P. </strong></a>
+</div>
+<div class="navbar" align="center">
+<p><a href="tables.html">précédent</a>  
+<a href="aural.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+<hr class="navbar">
+
+<h1 align="center">18 L'interface utilisateur</h1>
+<div class="subtoc">
+<p><strong>Contenu</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="ui.html#cursor-props" class="tocxref">18.1 Les curseurs : la propriété <span class="propinst-cursor">'cursor'</span></a>
+    <li class="tocline2"><a href="ui.html#system-colors" class="tocxref">18.2 Les préférences de couleur de l'utilisateur</a>
+    <li class="tocline2"><a href="ui.html#system-fonts" class="tocxref">18.3 Les préférences de police de l'utilisateur</a>
+    <li class="tocline2"><a href="ui.html#dynamic-outlines" class="tocxref">18.4 Les contours dynamiques : la propriété <span class="index-def" title="outline">'outline'</span></a>
+    <ul class="toc">
+      <li class="tocline3"><a href="ui.html#q5" class="tocxref">18.4.1 Les contours et la sélection <em class="ndt">(N.D.T. focus)</em></a>
+    </ul>
+    <li class="tocline2"><a href="ui.html#q6" class="tocxref">18.5 Le grossissement</a>
+  </ul>
+</div>
+
+<h2>18.1 <a name="cursor-props">Les curseurs :</a> la propriété <a href="ui.html#propdef-cursor" class="noxref"><span class="propinst-cursor">'cursor'</span></a></h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'cursor'"><a name="propdef-cursor" class="propdef-title"><strong>'cursor'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>[ [<a href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a> ,]* [ auto | crosshair | default | pointer | move | e-resize
+| ne-resize | nw-resize | n-resize | se-resize | sw-resize | s-resize
+| w-resize| text | wait | help ] ] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>auto
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>, <a href="media.html#interactive-media-group" class="noxref">interactif</a>
+</table>
+</dl>
+</div>
+
+<p>Cette propriété spécifie le type de curseur qui sera affiché
+pour l'appareil de pointage. Les significations des valeurs sont :
+
+<dl>
+<dt><strong>auto</strong>
+<dd>L'agent utilisateur détermine lequel des curseurs employer selon un contexte donné
+
+<dt><strong>crosshair</strong>
+<dd>Une marque en croix (ex. deux traits formant un signe "+") ;
+
+<dt><strong>default</strong>
+<dd>Le curseur par défaut dépendant de la plate-forme. Souvent rendu par une flèche ;
+
+<dt><strong>pointer</strong>
+<dd>Le curseur est représenté par un doigt indiquant un lien ;
+
+<dt><strong>move</strong>
+<dd>Indique un objet qu'on peut déplacer ;
+
+<dt><strong>e-resize, ne-resize, nw-resize, n-resize, se-resize, sw-resize, s-resize, w-resize</strong>
+<dd>Indique que le bord d'un certain objet peut être déplacé. Par exemple, la valeur 'se-resize'
+est utilisée pour un mouvement commençant du coin sud-est de la boîte ;
+
+<dt><strong>text</strong>
+<dd>Indique qu'on peut sélectionner le texte. Souvent rendu par une barre en I ;
+
+<dt><strong>wait</strong>
+<dd>Indique un programme en progression, l'utilisateur devrait en attendre l'achèvement. Souvent rendu par
+une montre ou un sablier ;
+
+<dt><strong>help</strong>
+<dd>Une aide est disponible pour l'objet survolé par le curseur. Souvent rendu par un point d'interrogation
+ou une bulle ;
+					    
+<dt><a href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri"><strong>&lt;uri&gt;</strong></span></a>
+<dd>L'agent utilisateur charge le curseur à partir de la ressource désignée par l'adresse <abbr>URI</abbr>.
+Quand l'agent utilisateur, dans une liste de curseur, ne peut pas prendre en charge le premier curseur, il devrait
+essayer avec le deuxième, et ainsi de suite. Si celui-ci ne peut rien faire avec aucun des curseurs de la liste,
+il doit utiliser le curseur générique placé à la fin de celle-ci.
+</dl>
+
+<div class="example"><p style="display:none">Exemple(s) :
+
+<pre>
+P { cursor : url("mything.cur"), url("second.csr"), text; }
+</pre>
+</div>
+
+<h2>18.2 <a name="system-colors">Les préférences de couleur de l'utilisateur</a></h2>
+
+<p>
+En plus de la possibilité de prédéfinir les <a href="syndata.html#color-units">valeurs de couleur</a>
+du texte, de l'arrière-plan, etc., <abbr>CSS2</abbr> permet aux auteurs la spécification de couleurs de façon
+à les intégrer dans l'environnement graphique de l'utilisateur. Les feuilles de style qui prennent en
+compte les préférences de l'utilisateur offrent ainsi certains avantages :
+	
+<ol>
+<li>Des pages qui s'accordent avec les choix définis par l'utilisateur ;
+<li>Des pages qui peuvent être plus accessibles, l'utilisateur ayant pu effectuer des réglages pour pallier
+une déficience donnée.
+</ol>
+
+<p>
+On a voulu que le jeu des valeurs définies pour les couleurs système soit exhaustif.
+Pour les systèmes n'ayant pas de valeur correspondante, la valeur spécifiée devrait être
+reliée à l'attribut système le plus proche ou à une couleur par défaut.
+
+<p>
+Voici la liste des valeurs supplémentaires des attributs <abbr>CSS</abbr> liés à la couleur et leurs significations.
+Toute propriété de couleur (ex. <a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a>
+ou <a href="colors.html#propdef-background-color" class="noxref"><span class="propinst-background-color">'background-color'</span></a>)
+peut prendre l'un des noms suivants. Bien que ceux-ci ne soient pas sensibles à la casse, on recommande
+leur capitalisation mélangée comme ci-dessous, pour une meilleure lisibilité.
+
+<dl>
+<dt><strong>ActiveBorder</strong>
+<dd>La bordure de la fenêtre active ;
+<dt><strong>ActiveCaption</strong>
+<dd>La légende de la fenêtre active ;
+<dt><strong>AppWorkspace</strong>
+<dd>La couleur d'arrière-plan de l'interface de documents multiples ;
+<dt><strong>Background</strong>
+<dd>L'arrière-plan du plan de travail ;
+<dt><strong>ButtonFace</strong>
+<dd>La couleur de la police des éléments d'affichage en trois dimensions ;
+<dt><strong>ButtonHighlight</strong>
+<dd><span><del title="id=x81">L'ombre foncée</del> <ins title="id=x81">La couleur d'activation</ins> des éléments d'affichage
+en trois dimensions (pour les bords à l'opposé de la source lumineuse)</span> ;
+<dt><strong>ButtonShadow</strong>
+<dd>La couleur de l'ombre des éléments d'affichage en trois dimensions ;
+<dt><strong>ButtonText</strong>
+<dd>Le texte des boutons à pousser ;
+<dt><strong>CaptionText</strong>
+<dd>Le texte des légendes, des boîtes de dimensionnement et des boîtes de flèches des barres de défilement ;
+<dt><strong>GrayText</strong>
+<dd>Le texte en grisé (désactivé). Cette couleur prend la valeur #000 si un driver d'affichage donné
+ne peut rendre sûrement la couleur grise ;
+<dt><strong>Highlight</strong>
+<dd>L'article, ou les articles, sélectionnés dans une zone de saisie ;
+<dt><strong>HighlightText</strong>
+<dd>Le texte de l'article, ou des articles, sélectionnés dans une zone de saisie ;
+<dt><strong>InactiveBorder</strong>
+<dd>La bordure d'une fenêtre inactive ;
+<dt><strong>InactiveCaption</strong>
+<dd>La légende d'une fenêtre inactive ;
+<dt><strong>InactiveCaptionText</strong>
+<dd>La couleur du texte d'une légende inactive ;
+<dt><strong>InfoBackground</strong>
+<dd>La couleur de fond des infobulles ;
+<dt><strong>InfoText</strong>
+<dd>La couleur du texte des infobulles ;
+<dt><strong>Menu</strong>
+<dd>L'arrière-plan d'un menu ;
+<dt><strong>MenuText</strong>
+<dd>Le texte d'un menu ;
+<dt><strong>Scrollbar</strong>
+<dd>L'aire grise d'une barre de défilement ;
+<dt><strong>ThreeDDarkShadow</strong>
+<dd>L'ombre sombre des éléments d'affichage en trois dimensions ;
+<dt><strong>ThreeDFace</strong>
+<dd>La couleur de la police des éléments d'affichage en trois dimensions ;
+<dt><strong>ThreeDHighlight</strong>
+<dd>La couleur d'activation des éléments d'affichage en trois dimensions ;
+<dt><strong>ThreeDLightShadow</strong>
+<dd>L'ombre claire des éléments d'affichage en trois dimensions 
+(pour les bords faisant face à la source lumineuse) ;
+<dt><strong>ThreeDShadow</strong>
+<dd>L'ombre des éléments d'affichage en trois dimensions ;
+<dt><strong>Window</strong>
+<dd>L'arrière-plan de la fenêtre ;
+<dt><strong>WindowFrame</strong>
+<dd>Le cadre de la fenêtre ;
+<dt><strong>WindowText</strong>
+<dd>Le texte des fenêtres.
+</dl>
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Par exemple, pour que les couleurs d'avant-plan et d'arrière-plan d'un paragraphe soient les mêmes
+que celles de la fenêtre de l'utilisateur :
+
+<pre>
+P { color: WindowText; background-color: Window }
+</pre>
+</div>
+
+<h2>18.3 <a name="system-fonts">Les préférences de police de l'utilisateur</a></h2>
+
+<p>
+Comme pour les couleurs, les auteurs peuvent spécifier des polices de manière à utiliser les
+ressources du système de l'utilisateur. Consulter la propriété
+<a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a> pour des détails.
+
+<h2>18.4 <a name="dynamic-outlines">Les contours dynamiques :</a> la propriété <a name="x1"><span class="index-def" title="outline">'outline'</span></a></h2>
+
+<p>
+Parfois, les auteurs de feuilles de style peuvent souhaiter créer des contours autour d'objets visuels, comme
+les boutons, les champs actifs des formulaires, les images découpées, etc., pour les faire ressortir.
+Les contours <abbr>CSS2</abbr> diffèrent des <a href="box.html#border-properties">bordures</a> ainsi :
+
+<ol>
+<li>Les contours n'occupent pas d'espace ;
+<li>Les contours peuvent avoir une forme non rectangulaire.
+</ol>
+
+<p>
+Les propriétés de contour régissent le style de ces contours dynamiques.
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'outline'"><a name="propdef-outline" class="propdef-title"><strong>'outline'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>[ <a href="ui.html#propdef-outline-color" class="noxref"><span class="propinst-outline-color">&lt;'outline-color'&gt;</span></a> || <a href="ui.html#propdef-outline-style" class="noxref"><span class="propinst-outline-style">&lt;'outline-style'&gt;</span></a> ||
+<a href="ui.html#propdef-outline-width" class="noxref"><span class="propinst-outline-width">&lt;'outline-width'&gt;</span></a> ] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>voir les propriétés individuelles
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>, <a href="media.html#interactive-media-group" class="noxref">interactif</a>
+</table>
+</dl>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'outline-width'"><a name="propdef-outline-width" class="propdef-title"><strong>'outline-width'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="box.html#value-def-border-width" class="noxref"><span class="value-inst-border-width">&lt;bordure-épaisseur&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>medium
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>, <a href="media.html#interactive-media-group" class="noxref">interactif</a>
+</table>
+</dl>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'outline-style'"><a name="propdef-outline-style" class="propdef-title"><strong>'outline-style'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="box.html#value-def-border-style" class="noxref"><span class="value-inst-border-style">&lt;bordure-style&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>none
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>, <a href="media.html#interactive-media-group" class="noxref">interactif</a>
+</table>
+</dl>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'outline-color'"><a name="propdef-outline-color" class="propdef-title"><strong>'outline-color'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-color" class="noxref"><span class="value-inst-color">&lt;couleur&gt;</span></a> | invert | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>invert
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>, <a href="media.html#interactive-media-group" class="noxref">interactif</a>
+</table>
+</dl>
+</div>
+
+<p>
+Le contour produit par les propriétés de contour est dessiné "par dessus" la boîte, c.à.d.
+le contour est toujours au-dessus de celle-ci et n'influence pas sur son placement ou sur sa taille, et sur aucune
+des autres boîtes. De ce fait, l'affichage, ou la suppression, des contours ne provoque pas une nouvelle mise en forme de la page.
+
+<p>
+Le contour est dessiné juste en dehors du <a href="box.html#border-edge">bord de la bordure</a>.
+
+<p>
+Les contours peuvent avoir une forme non rectangulaire. Par exemple, quand un élément est distribué
+sur plusieurs lignes, le contour correspond à celui minimum qui englobe toutes les boîtes de l'élément.
+À l'inverse des <a href="box.html#border-properties">bordures</a>, le contour ne s'ouvre pas à la fin
+ou au début de la boîte de ligne, et celui-ci est toujours entièrement connecté.
+
+<p>La propriété <a href="ui.html#propdef-outline-width" class="noxref"><span class="propinst-outline-width">'outline-width'</span></a>
+admet les mêmes valeurs que celles de la propriété <a href="box.html#propdef-border-width" class="noxref"><span class="propinst-border-width">'border-width'</span></a>.  
+
+<p>La propriété <a href="ui.html#propdef-outline-style" class="noxref"><span class="propinst-outline-style">'outline-style'</span></a>
+admet les mêmes valeurs que celles de la propriété<a href="box.html#propdef-border-style" class="noxref"><span class="propinst-border-style">'border-style'</span></a>,
+sauf la valeur 'hidden' qui n'est pas admise pour un style de contour.
+
+<p>La propriété <a href="ui.html#propdef-outline-color" class="noxref"><span class="propinst-outline-color">'outline-color'</span></a>
+admet toutes les valeurs de couleur, avec en plus le mot-clé <span class="index-def" title="invert"><a class="value-def" name="value-def-invert">'invert'</a></span>.
+Celui-ci produit l'inversion des couleurs des pixels à l'écran. C'est une astuce courante pour s'assurer
+que la bordure active soit visible, indépendamment de la couleur du fond.
+
+<p>La propriété raccourcie <a href="ui.html#propdef-outline" class="noxref"><span class="propinst-outline">'outline'</span></a>
+sert à la spécification des valeurs pour les trois propriétés individuelles
+<a href="ui.html#propdef-outline-style" class="noxref"><span class="propinst-outline-style">'outline-style'</span></a>,
+<a href="ui.html#propdef-outline-width" class="noxref"><span class="propinst-outline-width">'outline-width'</span></a> et
+<a href="ui.html#propdef-outline-color" class="noxref"><span class="propinst-outline-color">'outline-color'</span></a>.
+
+<p class="note">Noter que le contour est le même pour tous les côtés, à l'inverse des bordures,
+il n'existe pas de propriétés 'outline-top' ou 'outline-left'.
+
+<p>
+Cette spécification ne définit pas, quand plusieurs contours se chevauchent, comment ceux-ci sont
+dessinés ni comment le faire pour les boîtes dont des parties sont cachées derrière
+d'autres éléments.
+
+<div class="note"><p>
+<em><strong>Remarque :</strong> Le contour d'activation <span class="o">[ndt. focus outline]</span> n'affectant pas la
+mise en forme (c.à.d. aucun espace n'est consacré aux contours dans le modèle de la boîte),
+celui-ci peut très bien déborder sur d'autres éléments de la page.</em>
+</div>
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Voici un exemple de dessin d'un contour épais autour d'un élément BUTTON :
+
+<pre>
+BUTTON { outline-width : thick }
+</pre>
+
+<p>
+On peut employer un script pour le changement dynamique de l'épaisseur du contour, sans induire une remise
+en forme de la page.
+</div>
+
+<h3><a name="q5">18.4.1 Les contours et la sélection <em class="ndt">(N.D.T. focus)</em></a></h3>
+
+<p>
+Les interfaces graphiques des utilisateurs peuvent employer des contours autour des éléments pour confirmer
+à ceux-ci lequel des éléments de la page est <a name="x7"><span class="index-def" title="focus"><dfn>sélectionné</dfn></span></a>.
+Ces contours s'ajoutent aux éventuelles bordures de ces éléments, leur sélection ou désélection ne devant
+pas provoquer une nouvelle mise en forme de la page. La sélection d'un élément d'un document relève
+d'une action de l'utilisateur (ex. saisie d'un texte, sélection d'un bouton, etc.). Les agents utilisateurs
+reconnaissant le <a href="media.html#interactive-media-group">groupe de média interactif</a> doivent conserver
+l'information relative à l'endroit où intervient la sélection et doivent aussi en donner une représentation.
+Ceci peut être réalisé à l'aide de contours dynamiques en conjonction avec la
+pseudo-classe :focus.
+
+<div class="example"><p style="display:none">Exemple(s) :
+
+<p>Par exemple, on peut employer les règles suivantes pour faire apparaître un trait noir épais
+autour d'un élément sélectionné, ce trait devenant rouge quand on l'active :
+
+<pre>
+:focus  { outline: thick solid black }
+:active { outline: thick solid red }
+</pre>
+</div>
+
+<h2><a name="q6">18.5 Le grossissement</a></h2> 
+
+<p>
+Le groupe de travail de <abbr>CSS</abbr> considère que le grossissement d'un document, ou de parties de celui-ci,
+ne devrait pas être spécifié par des feuilles de style. Les agents utilisateurs peuvent
+en avoir une interprétation de différentes façons (ex. images agrandies, volumes sonores augmentés, etc.).
+
+<p>
+Lors du grossissement d'une page, les agents utilisateurs devraient conserver les relations entre les éléments
+positionnés. Par exemple, une bande dessinée peut se composer d'images sur lesquelles viennent s'appliquer
+des éléments de texte. Quand un agent utilisateur grossit celle-ci, le texte devrait rester dans les
+bulles de la bande dessinée.
+
+<hr class="navbar">
+
+<div class="navbar" align="center">
+<p><a href="tables.html">précédent</a>  
+<a href="aural.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriété</a>  
+<a href="indexlist.html">index</a>  
+</div>
+</body>
+</html>

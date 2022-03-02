@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="fr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Annexe D : La grammaire de CSS2</title>
+<link rel="stylesheet" type="text/css" href="annexe/W3C-REC.css">
+<link rel="stylesheet" type="text/css" href="annexe/vf.css">
+<link rel="prev" href="notes.html">
+<link rel="next" href="refs.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+</head>
+<body>
+<!-- Préface de la traduction -->
+<div id="lisezmoi">
+<a href="annexe/preface.php?id=css2" title="IMPORTANT : Lisez d'abord la préface de la traduction !"><strong> Lisez-moi S.V.P. </strong></a>
+</div>
+<div class="navbar" align="center">
+<p><a href="notes.html">précédent</a>  
+<a href="refs.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+<hr class="navbar">
+
+<h1 align="center">Annexe D : La grammaire de <abbr>CSS2</abbr></h1>
+<div class="subtoc">
+<p><strong>Contents</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="grammar.html#q1" class="tocxref">D.1 La grammaire</a>
+    <li class="tocline2"><a href="grammar.html#q2" class="tocxref">D.2 Le scanner lexical</a>
+    <li class="tocline2"><a href="grammar.html#tokenizer-diffs" class="tocxref">D.3 La comparaison entre les atomisations de <abbr>CSS2</abbr> et <abbr>CSS1</abbr></a>
+  </ul>
+</div>
+<p><em>Cet annexe est normatif.</em>
+
+<p>
+La grammaire ci-dessous définit la syntaxe de <abbr>CSS2</abbr>. C'est, en quelque sorte, un sur-ensemble de <abbr>CSS2</abbr>, dans la mesure
+où cette spécification impose des contraintes sémantiques supplémentaires que n'exprime pas
+cette grammaire. Un agent utilisateur conforme doit aussi adhérer aux <a href="./syndata.html#syntax">règles d'interprétation ascendantes</a>,
+à la convention de <a href="./about.html#property-defs">notation des propriétés et valeurs</a>
+et celle de la notation des unités. Le langage du document pouvant en plus imposer certaines restrictions (ex. en <abbr>HTML</abbr>,
+il existe des restrictions sur les valeurs admises par l'attribut "class").
+
+<h2><a name="q1">D.1 La grammaire</a></h2>
+
+<p>La grammaire ci-dessous est <a name="x0"><span class="index-inst" title="LL(1)">LL(1)</span></a>
+(mais noter que la plupart des agents utilisateurs ne devraient pas l'employer telle quelle car celle-ci n'exprime
+pas les <a href="syndata.html#parsing-errors">conventions d'interprétation</a>, mais seulement la syntaxe <abbr>CSS2</abbr>).
+Le format de ces productions est optimisé pour une consultation humaine, certaines notations raccourcies
+allant au-delà de Yacc (voir <a href="refs.html#ref-YACC" rel="biblioentry" class="noxref"><span class="normref">[YACC]</span></a>)
+étant employées :
+
+<ul>
+<li><strong>*</strong> : 0 ou plus ;
+<li><strong>+</strong> : 1 ou plus ;
+<li><strong>?</strong> : 0 ou 1 ;
+<li><strong>|</strong> : options séparées ;
+<li><strong>[ ]</strong> : regroupement.
+</ul>
+
+<p>Voici les productions :
+
+<pre>
+stylesheet
+  : [ CHARSET_SYM S* STRING S* ';' ]?
+    [S|CDO|CDC]* [ import [S|CDO|CDC]* ]*
+    [ [ ruleset | media | page | font_face ] [S|CDO|CDC]* ]*
+  ;
+import
+  : IMPORT_SYM S*
+    [STRING|URI] S* [ medium [ ',' S* medium]* ]? ';' S*
+  ;
+media
+  : MEDIA_SYM S* medium [ ',' S* medium ]* '{' S* ruleset* '}' S*
+  ;
+medium
+  : IDENT S*
+  ;
+page
+  : PAGE_SYM S* IDENT? pseudo_page? S*
+    '{' S* declaration [ ';' S* declaration ]* '}' S*
+  ;
+pseudo_page
+  : ':' IDENT
+  ;
+font_face
+  : FONT_FACE_SYM S*
+    '{' S* declaration [ ';' S* declaration ]* '}' S*
+  ;
+operator
+  : '/' S* | ',' S* | /* vide */
+  ;
+combinator
+  : '+' S* | '&gt;' S* | /* vide */
+  ;
+unary_operator
+  : '-' | '+'
+  ;
+property
+  : IDENT S*
+  ;
+ruleset
+  : selector [ ',' S* selector ]*
+    '{' S* declaration [ ';' S* declaration ]* '}' S*
+  ;
+<a name="x1"><span class="index-inst" title="selector">selector</span></a>
+  : simple_selector [ combinator simple_selector ]*
+  ;
+simple_selector
+  : element_name? [ HASH | class | attrib | pseudo ]* S*
+  ;
+class
+  : '.' IDENT
+  ;
+element_name
+  : IDENT | '*'
+  ;
+attrib
+  : '[' S* IDENT S* [ [ '=' | INCLUDES | DASHMATCH ] S*
+    [ IDENT | STRING ] S* ]? ']'
+  ;
+pseudo
+  : ':' [ IDENT | FUNCTION S* IDENT S* ')' ]
+  ;
+declaration
+  : property ':' S* expr prio?
+  | /* vide */
+  ;
+prio
+  : IMPORTANT_SYM S*
+  ;
+expr
+  : term [ operator term ]*
+  ;
+term
+  : unary_operator?
+    [ NUMBER S* | PERCENTAGE S* | LENGTH S* | EMS S* | EXS S* | ANGLE S* |
+      TIME S* | FREQ S* | function ]
+  | STRING S* | IDENT S* | URI S* | <del title="id=x48">RGB S* |</del> UNICODERANGE S* | hexcolor
+  ;
+function
+  : FUNCTION S* expr ')' S*
+  ;
+/*
+ * Il y a une contrainte sur la <a name="x2"><span class="index-inst" title="color">couleur</span></a>,
+ * celle-ci devant avoir 3 ou 6 chiffres hexadécimaux (ex. [0-9a-fA-F])
+ * après le signe "#" ; ex. "#000" est OK, mais pas "#abcd".
+ */
+hexcolor
+  : HASH S*
+  ;
+</pre>
+
+<h2><a name="q2">D.2 Le scanner lexical</a></h2>
+
+<p>Ce qui suit est l'<a name="x3"><span class="index-def" title="tokenizer">atomiseur</span></a>,
+écrit en notation Flex (voir <a href="refs.html#ref-FLEX" rel="biblioentry" class="noxref"><span class="normref">[FLEX]</span></a>)
+L'atomiseur est insensible à la casse.
+
+<p>Les deux expressions "\377" qui surviennent représentent le nombre du caractère le plus élevé
+que Flex peut gérer (en décimal : 255). Celles-ci devraient être interprétées comme
+étant "\4177777" (en décimal : 1114111), lequel est le code du point le plus élevé pour
+<a name="x4"><span class="index-inst" title="unicode">Unicode</span></a>/<a name="x5"><span class="index-inst" title="iso-10646">ISO-10646</span></a>.
+
+<pre>
+%option case-insensitive
+
+h		[0-9a-f]
+nonascii	[\200-\377]
+unicode		\\{h}{1,6}[ \t\r\n\f]?
+escape		{unicode}|\\[ -~\200-\377]
+nmstart		[a-z<ins title="2001-04-03 id=x3">_</ins>]|{nonascii}|{escape}
+nmchar		[a-z0-9-<ins title="2001-04-03 id=x3">_</ins>]|{nonascii}|{escape}
+string1		\"([\t !#$%&amp;(-~]|\\{nl}|\'|{nonascii}|{escape})*\"
+string2		\'([\t !#$%&amp;(-~]|\\{nl}|\"|{nonascii}|{escape})*\'
+
+ident		{nmstart}{nmchar}*
+name		{nmchar}+
+num		[0-9]+|[0-9]*"."[0-9]+
+string		{string1}|{string2}
+url		([!#$%&amp;*-~]|{nonascii}|{escape})*
+w		[ \t\r\n\f]*
+nl		\n|\r\n|\r|\f
+range		\?{1,6}|{h}(\?{0,5}|{h}(\?{0,4}|{h}(\?{0,3}|{h}(\?{0,2}|{h}(\??|{h})))))
+
+%%
+
+[ \t\r\n\f]+		{return S;}
+
+\/\*[^*]*\*+([^/][^*]*\*+)*\/	/* ignorer les commentaires */
+
+"&lt;!--"			{return CDO;}
+"--&gt;"			{return CDC;}
+"~="			{return INCLUDES;}
+"|="			{return DASHMATCH;}
+
+{string}		{return STRING;}
+
+{ident}			{return IDENT;}
+
+"#"{name}		{return HASH;}
+
+"@import"		{return IMPORT_SYM;}
+"@page"			{return PAGE_SYM;}
+"@media"		{return MEDIA_SYM;}
+"@font-face"		{return FONT_FACE_SYM;}
+"@charset"		{return CHARSET_SYM;}
+<del title="id=x84">"@"{ident}		{return ATKEYWORD;}</del>
+
+"!{w}important"		{return IMPORTANT_SYM;}
+
+{num}em			{return EMS;}
+{num}ex			{return EXS;}
+{num}px			{return LENGTH;}
+{num}cm			{return LENGTH;}
+{num}mm			{return LENGTH;}
+{num}in			{return LENGTH;}
+{num}pt			{return LENGTH;}
+{num}pc			{return LENGTH;}
+{num}deg		{return ANGLE;}
+{num}rad		{return ANGLE;}
+{num}grad		{return ANGLE;}
+{num}ms			{return TIME;}
+{num}s			{return TIME;}
+{num}Hz			{return FREQ;}
+{num}kHz		{return FREQ;}
+{num}{ident}		{return DIMEN;}
+{num}%			{return PERCENTAGE;}
+{num}			{return NUMBER;}
+
+"url("{w}{string}{w}")"	{return URI;}
+"url("{w}{url}{w}")"	{return URI;}
+{ident}"("		{return FUNCTION;}
+
+U\+{range}		{return UNICODERANGE;}
+U\+{h}{1,6}-{h}{1,6}	{return UNICODERANGE;}
+
+.			{return *yytext;}
+</pre>
+
+<h2>D.3 <a name="tokenizer-diffs">La comparaison entre les atomisations de <abbr>CSS2</abbr> et <abbr>CSS1</abbr></a></h2>
+
+<p>Il existe quelques différences entre la syntaxe spécifiée dans la recommandation <abbr>CSS1</abbr>
+(<a href="refs.html#ref-CSS1" rel="biblioentry" class="noxref"><span class="informref">[CSS1]</span></a>) et
+celle spécifiée plus haut. La plupart de ces différences étant dues aux nouveaux atomes
+de <abbr>CSS2</abbr> qui n'existaient pas en <abbr>CSS1</abbr>. Et les autres étant dues au fait que la grammaire a été
+récrite pour une meilleure lisibilité. Cependant, il y a certains changements incompatibles, ceux-ci
+étaient considérés comme des erreurs de la syntaxe <abbr>CSS1</abbr>. Leur explication suit :
+
+<ul>
+<li>Le codage des caractères des feuilles de style <abbr>CSS1</abbr> ne pouvaient avoir lieu que sur 1 octet, comme
+pour ASCII et ISO-8859-1. <abbr>CSS2</abbr> n'a plus ces limitations. Dans les faits, l'extrapolation à
+partir de l'atomiseur <abbr>CSS1</abbr> ne présentant pas de grandes difficultés, certains agents utilisateurs
+acceptaient les codages sur deux octets ;
+
+<li><abbr>CSS1</abbr> n'admettait que quatre chiffres hexadécimaux après la barre oblique inverse (\) pour
+la désignation des caractères Unicode, <abbr>CSS2</abbr> <a href="syndata.html#escaped-characters">en admet six</a>.
+En plus, <abbr>CSS2</abbr> admet un caractère blanc pour la délimitation d'une séquence de masquage.
+Par exemple, selon <abbr>CSS1</abbr>, la chaîne "\abcdef" est formée de 3 lettres (\abcd, e et f), selon <abbr>CSS2</abbr>, celle-ci
+n'en a qu'une (\abcdef) ;
+
+<li>Le caractère tabulation (ASCII 9) n'était pas admis dans une chaîne. C'est pourquoi, comme
+en <abbr>CSS1</abbr>, on n'employait les chaînes que pour les noms des polices et pour les URLs, le seul cas où cela
+pouvait conduire à une incompatibilité entre <abbr>CSS1</abbr> et <abbr>CSS2</abbr> réside dans une feuille de style
+dans laquelle le nom d'une famille de polices contient une tabulation ;
+
+<li>De la même façon en <abbr>CSS1</abbr>, les nouvelles lignes (<a href="syndata.html#strings">masquées par une barre oblique inverse</a>)
+n'étaient pas admises ;
+
+<li>
+<abbr>CSS2</abbr> interprète un nombre immédiatement suivi par un identificateur comme étant un atome DIMEN
+(c.à.d. une unité inconnue), <abbr>CSS1</abbr> l'interprétait comme un nombre et un identificateur. Cela signifie
+que pour <abbr>CSS1</abbr>, les déclarations 'font: 10pt/1.2serif' tout comme 'font: 10pt/1.2 serif' étaient valides,
+mais pour <abbr>CSS2</abbr>, l'espace est devenu obligatoire avant "serif" (certains agents utilisateurs acceptaient la première
+forme mais pas la seconde) ;
+
+<li>
+En <abbr>CSS1</abbr>, le nom d'une classe pouvait commencer par un chiffre (".55ft"), à moins qu'il s'agissait d'une
+dimension reconnue (".55in"). <abbr>CSS2</abbr> interprète de telles classes comme étant des dimensions inconnues
+(ce qui laisse le champs libre pour l'addition ultérieure de nouvelles unités). Pour que la classe ".55ft" soit valide en 
+<abbr>CSS2</abbr>, le premier chiffre doit être masqué (<span><del title="id=x49">".\55ft"</del> <ins title="id=x49">".\35 5ft"</ins></span>).
+</ul>
+
+<hr class="navbar">
+
+<div class="navbar" align="center">
+<p><a href="notes.html">précédent</a>  
+<a href="refs.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+</body>
+</html>

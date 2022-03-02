@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="fr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Annexe B : Les changements depuis CSS1</title>
+<link rel="stylesheet" type="text/css" href="annexe/W3C-REC.css">
+<link rel="stylesheet" type="text/css" href="annexe/vf.css">
+<link rel="prev" href="sample.html">
+<link rel="next" href="notes.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+</head>
+<body>
+<!-- Préface de la traduction -->
+<div id="lisezmoi">
+<a href="annexe/preface.html" title="IMPORTANT : Lisez d'abord la préface de la traduction !"><strong> Lisez-moi S.V.P. </strong></a>
+</div>
+<div class="navbar" align="center">
+<p><a href="sample.html">précédent</a>  
+<a href="notes.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriété</a>  
+<a href="indexlist.html">index</a>  
+</div>
+<hr class="navbar">
+
+<h1 align="center">Annexe B : Les changements depuis <abbr>CSS1</abbr></h1>
+<div class="subtoc">
+<p><strong>Contenu</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="changes.html#q1" class="tocxref">B.1 Les nouvelles fonctionnalités</a>
+    <li class="tocline2"><a href="changes.html#q2" class="tocxref">B.2 La mise à jour des descriptions</a>
+    <li class="tocline2"><a href="changes.html#changes-from-css1" class="tocxref">B.3 Les changements sémantiques depuis <abbr>CSS1</abbr></a>
+  </ul>
+</div>
+<p><em>Cet annexe est informatif, et non normatif.</em></p>
+
+<p><abbr>CSS2</abbr> s'appuyant sur <abbr>CSS1</abbr>, toute feuille de style valide pour <abbr>CSS1</abbr> l'est aussi pour <abbr>CSS2</abbr>.
+Les changements entre la spécification <abbr>CSS1</abbr> (voir <a href="refs.html#ref-CSS1" rel="biblioentry" class="noxref"><span class="normref">[CSS1]</span></a>)
+et la présente spécification sont de trois types : nouvelles fonctionnalités, mises à jour de descriptions de fonctionnalités
+<abbr>CSS1</abbr> et changements à <abbr>CSS1</abbr>.
+
+<h2><a name="q1">B.1 Les nouvelles fonctionnalités</a></h2>
+
+<p><abbr>CSS2</abbr> ajoute à celles de <abbr>CSS1</abbr> les fonctionnalités suivantes :
+
+<ul>
+
+<li>Le concept des <a href="media.html">types de médias</a> ;
+
+<li>La valeur <a href="cascade.html#value-def-inherit">'inherit'</a> à toutes les propriétés ;
+
+<li>Les <a href="page.html">médias paginés</a> ;
+
+<li>Les <a href="aural.html">feuilles de style auditives</a> ;
+
+<li>Plusieurs fonctions pour l'internationalisation, dont les <a href="generate.html#lists">styles de numérotage des listes</a>,
+la prise en compte des <a href="visuren.html#direction">textes bidirectionnels</a> et celle 
+des <a href="generate.html#quotes">marques de citation</a> en fonction de la langue utilisée ;
+
+<li>Un mécanisme de <a href="fonts.html#font-selection">sélection de police enrichi</a>, incluant
+la correspondance intelligente des polices, leur synthèse et celles téléchargeables. Également,
+le concept des polices système a été introduit et une nouvelle propriété a été
+ajoutée, <a href="fonts.html#propdef-font-size-adjust" class="noxref"><span class="propinst-font-size-adjust">'font-size-adjust'</span></a> ;
+
+<li>Les <a href="tables.html">tables</a>, ainsi que de nouvelles valeurs pour les propriétés
+<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a> et
+<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a> ;
+
+<li>Les positionnements <a href="visuren.html#relative-positioning">relatif</a> et <a href="visuren.html#absolute-positioning">absolu</a>,
+avec aussi le positionnement <a href="visuren.html#fixed-positioning">fixe</a> ;
+
+<li>De nouveaux types de boîtes (en plus de bloc et en-ligne), <a href="visuren.html#compact">compact</a> et
+<a href="visuren.html#run-in">run-in</a> ;
+
+<li>La possibilité de contrôler le <a href="visufx.html#overflow">débordement</a>,
+le <a href="visufx.html#clipping">rognage</a> et la <a href="visufx.html#visibility">visibilité</a>
+du contenu dans le modèle de mise en forme visuel ;
+
+<li>La possibilité de spécifier des <a href="visudet.html#min-max-widths">largeurs</a> et
+<a href="visudet.html#min-max-heights">hauteurs</a>, minimales et maximales, dans le modèle de mise en forme visuel ;
+
+<li>Une extension du mécanisme des <a href="selector.html">sélecteurs</a>, avec les sélecteurs
+d' enfants, ceux adjacents et ceux d'attribut ;
+
+<li>Le <a href="generate.html#generated-text">contenu généré</a>, les
+<a href="generate.html#counters">compteurs et le numérotage automatique</a> et les
+<a href="generate.html#markers">marqueurs</a> ;
+
+<li>Les ombrages de texte, au travers de la nouvelle propriété <a href="text.html#propdef-text-shadow" class="noxref"><span class="propinst-text-shadow">'text-shadow'</span></a> ;
+
+<li>Plusieurs nouvelles <a href="selector.html#pseudo-classes">pseudo-classes</a>, :first-child, :hover,
+:focus, :lang ;
+
+<li>Les <a href="ui.html#system-colors">couleurs</a> et les <a href="ui.html#system-fonts">polices</a> système ;
+
+<li>Les <a href="ui.html#cursor-props">curseurs</a> ;
+
+<li>Les <a href="ui.html#dynamic-outlines">contours dynamiques</a>.
+
+</ul>
+
+<h2><a name="q2">B.2 La mise à jour des descriptions</a></h2>
+
+<p>
+La spécification <abbr>CSS1</abbr> était courte et concise, celle-ci est beaucoup plus volumineuse et plus claire.
+Une grande part du contenu supplémentaire est consacré aux descriptions des nouvelles fonctionnalités,
+sans pour autant délaisser celles des fonctions de <abbr>CSS1</abbr> qui ont été complétées.
+Sauf dans de rares cas, les descriptions refondues n'introduisent pas de changements syntaxiques ni sémantiques.
+
+<h2>B.3 <a name="changes-from-css1">Les changements sémantiques depuis <abbr>CSS1</abbr></a></h2>
+
+<p>
+Bien qu'une feuille de style <abbr>CSS1</abbr> soit valide pour <abbr>CSS2</abbr>, il existe certains cas où l'interprétation de celle-ci
+prendra un sens différent en <abbr>CSS2</abbr>. La plupart de ces changements résulte de la prise en considération
+de l'expérience accumulée dans les implémentations, mais certains d'entre eux sont aussi des corrections d'erreurs.
+
+<ul>
+<li>
+La signification de "!important" a changé. En <abbr>CSS1</abbr>, la mention de "!important" dans la feuille de style de
+l'auteur avait priorité sur celle de l'utilisateur. Ceci est inversé en <abbr>CSS2</abbr> ;
+
+<li>En <abbr>CSS2</abbr>, les <a href="syndata.html#color-units">valeurs de couleur</a> sont rognées en fonction du
+gamut de l'appareil, et non plus en fonction du gamut de sRGB comme en <abbr>CSS1</abbr> ;
+
+<li>En <abbr>CSS1</abbr>, la propriété 'margin-right' était ignorée quand on spécifiait 
+à la fois une valeur pour 'margin-left' et pour 'width'. En <abbr>CSS2</abbr>, la relaxe de 'margin-left', ou de 'margin-right'
+dépend du sens d'écriture ;
+
+<li>
+En <abbr>CSS1</abbr>, les valeurs de plusieurs propriétés (ex. 'padding') se référaient à la
+largeur de leur élément parent. C'était une erreur, cette valeur devrait toujours se rapporter
+à la largeur d'un élément de type bloc, ce qui est reflété par l'introduction de 
+l'expression "bloc conteneur" en <abbr>CSS2</abbr> ;
+
+<li>
+En <abbr>CSS2</abbr>, la valeur initiale de la propriété 'display' est 'inline', et non 'block' comme en <abbr>CSS1</abbr> ;
+
+<li>En <abbr>CSS1</abbr>, la propriété 'clear' s'appliquait à tous les éléments.
+C'était une erreur, la propriété ne s'applique qu'à ceux de type bloc en <abbr>CSS2</abbr> ;
+
+<li>En <abbr>CSS1</abbr>, les pseudo-classes <a name="x0"><span class="index-inst" title="pseudo-classes:::link|:link|link (pseudo-class)">':link'</span></a>,
+<a name="x3"><span class="index-inst" title="pseudo-classes:::visited|:visited|visited (pseudo-class)">':visited'</span></a> et
+<a name="x6"><span class="index-inst" title="pseudo-classes:::active|:active|active (pseudo-class)">':active'</span></a>
+s'excluaient mutuellement. En <abbr>CSS2</abbr>, la pseudo-classe <a href="selector.html#dynamic-pseudo-classes">':active'</a>
+peut survenir en réunion avec <a href="selector.html#link-pseudo-classes">':link' ou ':visited'</a> ;
+
+<li>Le facteur d'échelle recommandé, entre deux index adjacents dans la table des tailles des polices,
+pour la propriété <a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>,
+a été réduit de 1.5 à 1.2 ;
+
+<li>
+La valeur calculée, et non pas la valeur réelle, de la propriété <a href="fonts.html#propdef-font-size" class="noxref"><span
+class="propinst-font-size">'font-size'</span></a> s'hérite ;
+
+<li>La description <abbr>CSS1</abbr> de la valeur 'inside' (pour la propriété <a href="generate.html#propdef-list-style-position" class="noxref"><span class="propinst-list-style-position">'list-style-position'</span></a>)
+laissait entendre que la marge gauche du texte pouvait être affectée, plutôt que la position de la
+marque de liste. En <abbr>CSS2</abbr>, ce n'est plus le cas ;
+
+<li>Consulter également le chapitre <em>normatif</em> traitant des
+<a href="grammar.html#tokenizer-diffs">différences entre l'atomiseur de <abbr>CSS1</abbr> et celui de <abbr>CSS2</abbr></a>.
+</ul>
+
+<hr class="navbar">
+
+<div class="navbar" align="center">
+<p><a href="sample.html">précédent</a>  
+<a href="notes.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriété</a>  
+<a href="indexlist.html">index</a>  
+</div>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr"> <!--Début de la page-->
+<html lang="fr">
 
 	<head> 
 		<meta charset="UTF-8">
@@ -18,7 +18,7 @@
 					<a href="#home" class="sommaire"><li>Accueil</li><a>
 				</ul>
 			</dd>
-			<dt>HTML</dt>
+			<dt class="sommaire-titre">HTML</dt>
 			<dd>
 				<ul>
 					<a href="#1" class="sommaire"><li>Changer la police d'un text</li></a>
@@ -29,16 +29,20 @@
 					<a href="#6" class="sommaire"><li>Les Lien</li></a>
 					<a href="#7" class="sommaire"><li>Les Tableaux</li></a>
 					<a href="#8" class="sommaire"><li>Les Images à zone sensible</li></a>
-				<a href="#9" class="sommaire"><li>Les Balises sémantique</li></a>
+					<a href="#9" class="sommaire"><li>Les Balises sémantique</li></a>
 					<a href="#10" class="sommaire"><li>Les Formulaires</li></a>
 				</ul>
 			</dd>
-			<dt>CSS</dt>
+			<dt class="sommaire-titre">CSS</dt>
 			<dd>
 				<ul>
-					<a href="#11" class="sommaire"><li>Intégré du code CSS directement dans le code HTML</li><a/>
-					<a href="#12" class="sommaire"><li>Utiliser du code CSS dans un fichier externe</li><a/>
-					<a href="#13" class="sommaire"><li>Syntax du CSS</li><a/>
+					<a href="#11" class="sommaire"><li>Intégré du code CSS directement dans le code HTML</li></a>
+					<a href="#12" class="sommaire"><li>Utiliser du code CSS dans un fichier externe</li></a>
+					<a href="#13" class="sommaire"><li>Syntax du CSS</li></a>
+					<a href="#14" class="sommaire"><li>Rendre votre site "responsive"</li></a>
+					<a href="#15" class="sommaire"><li>liste des déclarations de base</li></a>
+					<a href="#16" class="sommaire"><li>facilité la séléction</li></a>
+					<a href="#17" class="sommaire"><li>Spécificité</li></a>
 				</ul>
 			</dd>
 		</dl>
@@ -50,7 +54,7 @@
 		
 		<h1 id="home">Documentation du module ICH-293</h1>
 		<a id="1" class="titre"><h2>Changer la police d'un text</h2><a>
-		<h3>Les Différentes balises disponibles</h3>
+		<p>Les Différentes balises disponibles</p>
 		
 		<ul>
 			<li>
@@ -91,8 +95,8 @@
 		<p>Les differents niveau de titre ce définit avec cette balise <code>&lt;hX&gt;...&lt;/hX&gt;</code> les niveaux peuvent aller de 1 jusqu'à 6, plus le chiffre est grand plus la mise en page sera petite</p>
 		
 		<ul>
-			<li><h1>Niveau 1 (h1)</h1></li>
-			<li><h2>Niveau 2 (h2)</h2></li>
+			<li><h1 class="exemple1">Niveau 1 (h1)</h1></li>
+			<li><h2 class="exemple1">Niveau 2 (h2)</h2></li>
 			<li><h3>Niveau 3 (h3)</h3></li>
 			<li><h4>Niveau 4 (h4)</h4></li>
 			<li><h5>Niveau 5 (h5)</h5></li>
@@ -125,6 +129,7 @@ Nulla ultricies dapibus ligula finibus congue. Class aptent taciti sociosqu ad l
 			<li>
 				<dt><code>&lt;hr&gt;...&lt;/hr&gt;</code></dt>
 				<dd>ajoute une ligne de séparation</dd>
+				<hr>
 			</li>
 			<li>
 				<dt><code>&lt;blockquote&gt;...&lt;/blockquote&gt;</code></dt>
@@ -273,7 +278,7 @@ Nulla ultricies dapibus ligula finibus congue. Class aptent taciti sociosqu ad l
 		
 		<p>les images a zone sensible permet de définir une formes géométrique qui définissent des zones dans une image en utilisant les coordonnées X et Y</p>
 		
-		<img src="./image/axe.png" width="200">
+		<img id ="zone" src="./image/axe.png" width="200">
 		
 		<ul>
 			<li>
@@ -285,7 +290,7 @@ Nulla ultricies dapibus ligula finibus congue. Class aptent taciti sociosqu ad l
 			<li>
 				<dl>
 					<dt><code>&lt;map name="exemple"&gt;...&lt;/map&gt;</code></dt>
-					<dd>permet de créer la map (ceci est obligatoir et doit être mis avant le se qui va suivre !)</dd>
+					<dd>permet de créer la map (ceci est obligatoir et doit être mis avant se qui va suivre !)</dd>
 				</dl>
 			</li>
 			<li>
@@ -389,7 +394,7 @@ Nulla ultricies dapibus ligula finibus congue. Class aptent taciti sociosqu ad l
 					<dt>name :</dt>
 					<dd>nom de l'envoie (ATTENTION cette attribut est obligatoire !)</dd>
 					<dt>value :</dt>
-					<dd>le nom que affichera la bouton</dd>
+					<dd>le nom que affichera le bouton</dd>
 				</dl>
 			</li>
 			<li>
@@ -526,7 +531,7 @@ Nulla ultricies dapibus ligula finibus congue. Class aptent taciti sociosqu ad l
 				<dl>
 					<dt>Le sélecteur :</dt>
 					<dd>Il permet, comme son nom l'indique, de selectionner une balise avec son nom comme, <code>&lt;h1&gt;, &lt;a&gt;, &lt;ul&gt;, &lt;pre&gt;, &lt;p&gt;, </code>etc...</dd>
-					<dd>On peut aussi infecter plusieur balises en même temp, soit en utilisant la selection multiple, les classes ou les id</dd>
+					<dd>On peut aussi infecter plusieur balises en même temp, soit en utilisant la selection multiple, le sélécteur de classes ou le sélécteur d'id</dd>
 					<dd>
 						<dl>
 							<dt>block de déclaration :</dt>
@@ -538,9 +543,9 @@ Nulla ultricies dapibus ligula finibus congue. Class aptent taciti sociosqu ad l
 									<dd>
 										<dl>
 											<dt>Propriété :</dt>
-											<dd>Sera la fason dont vous affecterez les balises : color (permet de changer la couleur d'un text)</dd>
+											<dd>Sera la façon dont vous affecterez les balises : color (permet de changer la couleur d'un text)</dd>
 											<dt>La valeur :</dt>
-											<dd>Permet de régler la fason dont vous affecterez une balise</dd>
+											<dd>Permet de régler la façon dont vous affecterez une balise</dd>
 										</dl>
 									</dd>
 								</dl>
@@ -573,15 +578,132 @@ CSS :
 		background: green;
 	}
 				</dd></pre></code>
-				<dd>Change la couleur de font en vert en affectant toute les balises qui sont la class "exemple" (class="exemple")</dd>
+				<dd>Change la couleur de font en vert en affectant <a class="important">toute les balises</a> qui ont la class "exemple" (class="exemple")</dd>
 				<dd><pre><code>
 HTML :
+	&lt;balise id="exemple"&gt;...&lt;/balise&gt;
 	
+CSS :
+	#exemple {
+		background: violet;
+	}
 				</code></pre></dd>
+				<dd>Change la couleur de font en violet en affectant <a class="important">seulement la balises<a> qui a l'id exemple (id="exemple")</dd>
 			<dl>
 			</li>
 		</ul>
 		
+		<a id="14" class="titre"><h2>Rendre votre site "responsive"</h2></a>
+		
+		<p>Rendre votre site "responsive" veux dire que le site pourra détécter la taille de votre écran pour pouvoir adapter votre site a tout les appareils comme smartphone, tablette, etc...</p>
+		
+		<ol>
+			<li>
+				<dl>
+					
+					<dt><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"&gt;</code></dt>
+					<dd>Pour récupérer la résolution de l'écran de l'utilisateur</dd>
+				</dl>
+			</li>
+			<li>
+				<dl>
+					<dt><code>&lt;link rel="stylesheet" media="screen and (max-width: (la résolution limite)px)" href="mobile.css"&gt;</code></dt>
+					<dd>Puis préparer et lier votre feuille de style</dd>
+					<dd>le tout est mis dans <code>&lt;head&gt;...&lt;/head&gt;</code></dd>
+				</dl>
+			</li>
+		</ol>
+		
+		<p>Quand la résolution dépassera <a class="important">(la limite de résolution)</a> le site prendra la feuille de style <a class="important">mobile.css</a></p>
+		
+		<a id="15" class="titre"><h2>liste des déclarations de base</h2></a>
+
+		<p>voici quelque déclarations de base qui sont utiliser régulièrement :</p>
+
+		<ul>
+			<li>
+				<dl>
+					<dt>color</dt>
+					<dl>change la couleur du text</dl>
+					<dt>padding</dt>
+					<dl>change la grandeur de la bordure</dl>
+					<dt>background</dt>
+					<dl>change la couleur de font</dl>
+					<dt>border</dt>
+					<dl>permet de rajouter une bordure</dl>
+					<dt>display</dt>
+					<dl>change la façon dont s'affiche le contenu : soit en inline ou block</dl>
+					<dt>font</dt>
+					<dl>change la police d'écriture</dl>
+					<dt>float</dt>
+					<dl>permet de rendre un <code>&lt;div&gt;...&lt;/div&gt;</code> indépendant et le placer un endroit de la page</dl>
+				</dl>
+			</li>
+			<li>
+				<a class="lien" href=".\norme_CSS_2\indexlist.html" target="_blank">index</a>
+			</li>
+		</ul>
+		
+		<a id="16" class="titre"><h2>Facilité la séléction</h2></a>
+		
+		<p>On peut utiliser des options supplémentaires pour faciliter la selection</p>
+		
+		<ul>
+			<li>
+				<dl>
+					<dt>Utiliser un selecteur de class</dt>
+					<dd><pre><code>
+	.introduction {
+		background: #DDDDDD;
+		color: #00FF00;
+	}
+	
+	.conclusion {
+		background: #AAAAAA;
+		color: #0000FF;
+	}
+					</code></pre></dd>
+					<dt>Utiliser un sélécteur d'identifiant</dt>
+					<dd><pre><code>
+	#principal {
+		font-weight: bold;
+	}
+					</code></pre></dd>
+				</dl>
+			</li>
+		</ul>
+		
+		<a id="17" class="titre"><h2>Spécificité</h2></a>
+		
+		<p>La spécificité permet au navigateur de prioriser une mise en style avec une règle</p>
+		<p>La priorité sera representer comme cela : <a class="important">0, 0, 0, 0</a></p>
+		<p>Le plus grand chiffre de gauche a droite sera pris comme prioritaire et afficher, donc : <a class="important">0, 0, 1, 0 > 0, 0, 0, 255</a></p>
+		<p>Pour chaque valeur de l'attribut id donné dans le sélecteur, ajouter 0,1,0,0</p>
+		<p>Pour chaque valeur de l'attribut class de sélection d'attribut ou de pseudo-classe donné dans le sélecteur, ajouter 0,0,1,0</p>
+		<p>Pour chaque élément et pseudo élément donné dans le sélecteur, ajouter 0,0,0,1</p>
+		
+		<ul>
+			<li>
+				<dl>
+					<dt>Exemple :</dt>
+					<dd><pre><code>
+h1 {color:red;} // 0, 0, 0, 1
+body h1 {color:green;} // 0, 0, 0, 2
+					</code></pre></dd>
+					<dd>Le deuxième sélécteur sera utiliser pour afficher le style, parce que sa spécificité est plus grand</dd>
+					<dd><pre><code>
+h2.grappe {color:red;} // 0, 0, 1, 1
+h2 {color: sliver;} // 0, 0, 0, 1
+					</code></pre></dd>
+					<dd>Le premier sélécteur sera utiliser pour afficher le style, il y a un chiffre plus a gauche que la deuxième, donc il est prioriser</dd><dd><pre><code>
+body table tr td ul {color: maroon;} // 0, 0, 0, 5 
+li#reponse {color:navy;} // 0, 1, 0, 1 
+					</code></pre></dd>
+					<dd>Le deuxième sélécteur sera utiliser pour afficher le style, il y a un chiffre plus a gauche que la deuxième, donc il est prioriser</dd>
+				</dl>
+			</li>
+		</ul>
+
 		<div class="copyright"><blockquote><b><a href="https://github.com/Raidersfocus/">Alessio Gonzalez</a> 03.02.2022</b></blockquote></div>
 	</div>
 	</body>

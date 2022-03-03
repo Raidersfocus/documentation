@@ -1,0 +1,887 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="fr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Les feuilles de styles auditives</title>
+<link rel="stylesheet" type="text/css" href="annexe/W3C-REC.css">
+<link rel="stylesheet" type="text/css" href="annexe/vf.css">
+<link rel="stylesheet" type="text/css" href="annexe/print.css" media="print" > <!-- ajouté JHI 13.2.9 -->
+<link rel="prev" href="ui.html">
+<link rel="next" href="sample.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+</head>
+<body>
+<!-- Préface de la traduction -->
+<div id="lisezmoi">
+<a href="annexe/preface.html" title="IMPORTANT : Lisez d'abord la préface de la traduction !"><strong> Lisez-moi S.V.P. </strong></a>
+</div>
+<div class="navbar" align="center">
+<p><a href="ui.html">précédent</a>  
+<a href="sample.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+<hr class="navbar">
+
+<h1 align="center">19 <a name="aural">Les feuilles de styles auditives</a></h1>
+<div class="subtoc">
+<p><strong>Contents</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="aural.html#q1" class="tocxref">19.1 Introduction aux feuilles de styles auditives</a>
+    <li class="tocline2"><a href="aural.html#volume-props" class="tocxref">19.2 La propriété de volume : <span class="propinst-volume">'volume'</span></a>
+    <li class="tocline2"><a href="aural.html#speaking-props" class="tocxref">19.3 La propriété de parole : <span class="propinst-speak">'speak'</span></a>
+    <li class="tocline2"><a href="aural.html#pause-props" class="tocxref">19.4 Les propriétés de pause : <span class="propinst-pause-before">'pause-before'</span>, <span class="propinst-pause-after">'pause-after'</span> et <span class="propinst-pause">'pause'</span></a>
+    <li class="tocline2"><a href="aural.html#cue-props" class="tocxref">19.5 Les propriétés de signal : <span class="propinst-cue-before">'cue-before'</span>, <span class="propinst-cue-after">'cue-after'</span> et <span class="propinst-cue">'cue'</span></a>
+    <li class="tocline2"><a href="aural.html#mixing-props" class="tocxref">19.6 La propriété de mixage : <span class="propinst-play-during">'play-during'</span></a>
+    <li class="tocline2"><a href="aural.html#spatial-props" class="tocxref">19.7 Les propriétés spatiales : <span class="propinst-azimuth">'azimuth'</span> et <span class="propinst-elevation">'elevation'</span></a>
+    <li class="tocline2"><a href="aural.html#voice-char-props" class="tocxref">19.8 Les propriétés des caractéristiques des voix : <span class="propinst-speech-rate">'speech-rate'</span>, <span class="propinst-voice-family">'voice-family'</span>, <span class="propinst-pitch">'pitch'</span>, <span class="propinst-pitch-range">'pitch-range'</span>, <span class="propinst-stress">'stress'</span> et <span class="propinst-richness">'richness'</span></a>
+    <li class="tocline2"><a href="aural.html#speech-props" class="tocxref">19.9 Les propriétés de diction : <span class="propinst-speak-punctuation">'speak-punctuation'</span> et <span class="propinst-speak-numeral">'speak-numeral'</span></a>
+  </ul>
+</div>
+
+<h2><a name="q1">19.1 Introduction aux feuilles de styles auditives</a></h2>
+
+<p>
+Le rendu auditif d'un document, déjà couramment employé par la communauté des aveugles
+et des lecteurs déficients, combine la synthèse de la parole avec des <a name="x0"><span class="index-def" title="auditory icon">"images auditives"</span></a>.
+Une telle présentation auditive est souvent réalisée, suite à une conversion du document en un texte
+plein, par un <a name="x1"><span class="index-def" title="screen reader"><dfn>lecteur d'écran</dfn></span></a>
+(un logiciel ou un appareil qui lit simplement tous les caractères apparaissant à l'écran).
+Ceci conduit à une présentation bien moins efficace que si la structure du document avait été conservée.
+On peut utiliser les propriétés des feuilles de style pour une présentation auditive en même
+temps que visuelle (médias mélangés) ou comme une alternative auditive à une présentation
+visuelle.
+
+<p>
+En dehors des avantages évidents pour l'accessibilité des documents, il existe d'autres marchés
+importants pour l'écoute d'informations, à savoir pour une utilisation dans les voitures, les
+systèmes de documentation industriels et médicaux (en intranets), les divertissements à la maison et
+pour aider les utilisateurs qui apprennent ou qui ont des difficultés à lire.
+
+<p>
+Quand on emploie les propriétés auditives, le <a name="x2"><span class="index-inst" title="canvas">canevas</span></a>
+consiste en un espace physique en trois dimensions (l'environnement sonore) et en un espace temporel (on peut
+spécifier des sons avant, pendant et après d'autres sons). Les propriétés <abbr>CSS</abbr> permettent
+aussi une variation de la qualité de la voix synthétisée (le type de voix, la fréquence,
+l'inflexion, etc.).
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+<pre>
+H1, H2, H3, H4, H5, H6 {
+    voice-family: paul;
+    stress: 20;
+    richness: 90;
+    cue-before: url("ping.au")
+}
+P.heidi { azimuth: center-left }
+P.peter { azimuth: right }
+P.goat  { volume: x-soft }
+</pre>
+
+<p>
+Ceci va conduire le synthétiseur de parole à dire les en-têtes avec une voix (un peu comme une
+"police auditive") appelée "paul", d'un ton neutre mais avec des intonations fortes. Avant la lecture de celles-ci,
+un échantillon sonore, désigné par l'adresse <abbr>URI</abbr>, sera joué. Les paragraphes avec la classe "heidi"
+sembleront venir de l'avant gauche (pourvu que le système sonore soit capable de spatialisation audio) et ceux
+avec la classe "peter" venir de la droite. Les paragraphes avec la classe "goat" seront dit très doucement.
+</div>
+
+<h2>19.2 <a name="volume-props">La propriété de volume</a> : <a href="aural.html#propdef-volume" class="noxref"><span class="propinst-volume">'volume'</span></a></h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'volume'"><a name="propdef-volume" class="propdef-title"><strong>'volume'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;pourcentage&gt;</span></a> | silent | x-soft | soft | medium | loud | x-loud | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>medium
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>se rapporte à la valeur héritée
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<p>Le <a name="x4"><span class="index-def" title="volume">volume</span></a> se réfère à la valeur
+moyenne de la forme de la vibration. En d'autres mots, une voix avec de fortes inflexions pour un volume de 50 pourrait très
+bien se situer au-delà de cette moyenne. Ces valeurs globales seront vraisemblablement ajustées par une action
+humaine pour un certain confort (avec pour effet d'augmenter proportionnellement les valeurs 0 et 100) ; 
+cette propriété permet le réglage de l'échelle dynamique.
+
+<p>Les significations des valeurs sont :
+
+<dl>
+<dt><span class="index-inst" title="&lt;number&gt;"><a name="x5" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number"><strong>&lt;nombre&gt;</strong></span></a></span>
+<dd>Tout nombre compris en tre '0' et '100'. La valeur '0' représente le volume du niveau <em>minimum audible</em> et la
+valeur '100' correspond à celui du <em>maximum de confort</em> ;
+<dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x6" href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage"><strong>&lt;pourcentage&gt;</strong></span></a></span>
+<dd>Les valeurs en pourcentage sont calculées par rapport à la valeur héritée, et sont ensuite
+rognées pour se ranger dans l'échelle de '0' à '100' ;
+<dt><strong>silent</strong>
+<dd>Pas de son du tout. Une valeur de '0' a une signification différente de 'silent' ;
+<dt><strong>x-soft</strong>
+<dd>Équivaut à '0' ;
+<dt><strong>soft</strong>
+<dd>Équivaut à '25' ;
+<dt><strong>medium</strong>
+<dd>Équivaut à '50' ;
+<dt><strong>loud</strong>
+<dd>Équivaut à '75' ;
+<dt><strong>x-loud</strong>
+<dd>Équivaut à '100'.
+</dl>
+
+<p>
+Les agents utilisateurs devraient laisser le soin aux auditeurs de paramétrer les valeurs correspondant aux repères '0' et '100'.
+Aucun réglage n'est universel, les valeurs convenables dépendant de l'appareil utilisé
+(haut-parleurs, écouteurs), de l'environnement (en voiture, à la maison sur un ensemble de restitution audio, dans une librairie)
+et des préférences personnelles. Quelques exemples :
+
+<ul>
+<li>
+Un navigateur pour un usage en voiture est adapté aux conditions où les bruits de fond sont importants.
+La valeur '0' correspondrait à un niveau d'écoute assez soutenu, la valeur '100' à
+un niveau plutôt élevé. On distingue facilement la parole des bruits de la route mais l'échelle
+dynamique globale est réduite. Les véhicules mieux insonorisés autoriseraient une échelle
+dynamique élargie ;
+
+<li>
+Un autre navigateur parlant employé dans un appartement, tard dans la nuit, ou dans une salle d'étude partagée.
+La valeur '0' correspondrait à un niveau d'écoute très bas, la valeur '100' à un niveau
+peu élevé. Comme pour le premier exemple, la variation est faible, l'échelle dynamique est réduite.
+Ici les volumes effectifs sont bas, alors qu'ils étaient élevés précédemment ;
+
+<li>
+Dans une maison calme et isolée, les réglages pour un ensemble de restitution audio de qualité.
+La valeur '0' correspondrait à un niveau d'écoute plutôt bas, la valeur '100' à un niveau
+plutôt élevé, l'échelle dynamique est étendue.
+</ul>
+
+<p>
+On pourrait utiliser la même feuille de style de l'auteur dans tous ces cas, avec simplement un paramétrage
+convenable des valeurs '0' et '100' sur l'agent utilisateur.
+
+<h2>19.3 <a name="speaking-props">La propriété de parole</a> : <a href="aural.html#propdef-speak" class="noxref"><span class="propinst-speak">'speak'</span></a></h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'speak'"><a name="propdef-speak" class="propdef-title"><strong>'speak'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>normal | none | spell-out | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>normal
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<p>Cette propriété spécifie si un texte aura un rendu auditif et, le cas échéant, comment il sera rendu
+(<del title="id=x82">un peu comme pour la propriété propriété 'display'</del> <ins title="id=x82">la propriété 'speak' ressemble
+par certains aspects à la propriété <a href="visufx.html#propdef-visibility">'visibility'</a> et à la propriété
+<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a> par d'autres</ins>).
+Les valeurs admises sont :
+
+<dl>
+<dt><strong>none</strong></dt>
+<dd>Supprime le rendu auditif de manière à ce qu'un élément donné ne consomme pas
+de temps pour ce rendu. Noter, cependant, que les descendants peuvent surclasser cette valeur et ainsi être lus.
+Pour complètement supprimer le rendu d'un élément et de ses descendants, utiliser la propriété
+<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>) ;
+
+<dt><strong>normal</strong></dt>
+<dd>Suit les règles de prononciation propres à de la langue pour le rendu auditif d'un élément
+et de ses enfants ;
+
+<dt><strong>spell-out</strong></dt>
+<dd>Épelle le texte, lettre par lettre (utile pour les acronymes et les abréviations).
+</dl>
+
+<p>
+Noter la différence entre un élément dont la valeur de la propriété
+<a href="aural.html#propdef-volume" class="noxref"><span class="propinst-volume">'volume'</span></a> est 'silent'
+et un élément dont la valeur de la propriété <a href="aural.html#propdef-speak" class="noxref"><span class="propinst-speak">'speak'</span></a>
+est 'none'. Le premier élément aurait la même durée que s'il avait été lu, y compris
+les pauses avant et après celui-ci, aucun son n'étant produit. Le second n'a aucune durée et n'est
+pas rendu (bien que ses descendants puissent l'être).
+
+<h2>19.4 <a name="pause-props">Les propriétés de pause</a> : <a href="aural.html#propdef-pause-before" class="noxref"><span class="propinst-pause-before">'pause-before'</span></a>,
+<a href="aural.html#propdef-pause-after" class="noxref"><span class="propinst-pause-after">'pause-after'</span></a> et
+<a href="aural.html#propdef-pause" class="noxref"><span class="propinst-pause">'pause'</span></a></h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'pause-before'"><a name="propdef-pause-before" class="propdef-title"><strong>'pause-before'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-time" class="noxref"><span class="value-inst-time">&lt;durée&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;pourcentage&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>selon l'agent utilisateur
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>voir les explications
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'pause-after'"><a name="propdef-pause-after" class="propdef-title"><strong>'pause-after'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-time" class="noxref"><span class="value-inst-time">&lt;durée&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;pourcentage&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>selon l'agent utilisateur
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>voir les explications
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<p>
+Ces propriétés spécifient la pause à observer avant que le contenu d'un élément
+ne soit lu, ou après qu'il l'ait été. Les significations des valeurs sont :
+
+<dl>
+<dt><span class="index-inst" title="&lt;time&gt;"><a name="x10" href="syndata.html#value-def-time" class="noxref"><span class="value-inst-time"><strong>&lt;durée&gt;</strong></span></a></span>
+<dd>Exprime la pause dans une unité de durée absolue (secondes et millisecondes) ;
+<dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x11" href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage"><strong>&lt;pourcentage&gt;</strong></span></a></span>
+<dd>Se rapporte à la valeur inverse de la propriété
+<a href="aural.html#propdef-speech-rate" class="noxref"><span class="propinst-speech-rate">'speech-rate'</span></a>.
+Par exemple, si la valeur de celle-ci est de 120 mots par minute (c.à.d. un mot dure une demi-seconde ou 500 ms)
+alors une valeur de 100 % pour la propriété <a href="aural.html#propdef-pause-before" class="noxref"><span class="propinst-pause-before">'pause-before'</span></a>
+signifie une pause de 500 ms et une valeur de 20 % une pause de 100 ms.
+</dl>
+
+<p>
+La pause s'insère entre le contenu de l'élément et les contenus éventuels des propriétés
+<a href="aural.html#propdef-cue-before" class="noxref"><span class="propinst-cue-before">'cue-before'</span></a>
+ou <a href="aural.html#propdef-cue-after" class="noxref"><span class="propinst-cue-after">'cue-after'</span></a>.
+
+<p>
+Les auteurs devraient employer des unités relatives pour créer des feuilles de style plus robustes quand
+le débit de la parole varie beaucoup.
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'pause'"><a name="propdef-pause" class="propdef-title"><strong>'pause'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>[ [<a href="syndata.html#value-def-time" class="noxref"><span class="value-inst-time">&lt;durée&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;pourcentage&gt;</span></a>]{1,2} ] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>selon l'agent utilisateur
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>voir les descriptions des propriétés 'pause-before' et 'pause-after'
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<p>La propriété raccourcie <a href="aural.html#propdef-pause" class="noxref"><span class="propinst-pause">'pause'</span></a>
+regroupe les spécifications des propriétés individuelles <a href="aural.html#propdef-pause-before" class="noxref"><span class="propinst-pause-before">'pause-before'</span></a> et
+<a href="aural.html#propdef-pause-after" class="noxref"><span class="propinst-pause-after">'pause-after'</span></a>.
+Quand on lui donne deux valeurs, la première s'applique à la propriété
+<a href="aural.html#propdef-pause-before" class="noxref"><span class="propinst-pause-before">'pause-before'</span></a>
+et la seconde à la propriété <a href="aural.html#propdef-pause-after" class="noxref"><span class="propinst-pause-after">'pause-after'</span></a>.
+Pour une seule valeur, celle-ci s'applique à ces deux propriétés.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+<pre>
+H1 { pause: 20ms } /* pause-before: 20ms; pause-after: 20ms */
+H2 { pause: 30ms 40ms } /* pause-before: 30ms; pause-after: 40ms */
+H3 { pause-after: 10ms } /* pause-before: ?; pause-after: 10ms */
+</pre>
+</div>
+
+<h2>19.5 <a name="cue-props">Les propriétés de signal </a>: <a href="aural.html#propdef-cue-before" class="noxref"><span class="propinst-cue-before">'cue-before'</span></a>,
+<a href="aural.html#propdef-cue-after" class="noxref"><span class="propinst-cue-after">'cue-after'</span></a> et
+<a href="aural.html#propdef-cue" class="noxref"><span class="propinst-cue">'cue'</span></a></h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'cue-before'"><a name="propdef-cue-before" class="propdef-title"><strong>'cue-before'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a> | none | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>none
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'cue-after'"><a name="propdef-cue-after" class="propdef-title"><strong>'cue-after'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a> | none | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>none
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<p>
+Les images auditives sont une autre façon de distinguer des éléments sémantiques. On peut
+jouer des sons avant et/ou après un élément et, ainsi, le délimiter. Les significations
+des valeurs sont :
+
+<dl>
+<dt><span class="index-inst" title="&lt;uri&gt;"><a name="x15" href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri"><strong>&lt;uri&gt;</strong></span></a></span>
+<dd>L'adresse <abbr>URI</abbr> doit désigner une ressource d'image auditive. Si cette adresse <abbr>URI</abbr> désigne autre chose qu'un fichier audio,
+cette ressource doit être ignorée, la propriété devant être considérée avoir
+la valeur 'none' ;
+<dt><strong>none</strong>
+<dd> Aucune image auditive n'est spécifiée.
+</dl>
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+<pre>
+A {cue-before: url("bell.aiff"); cue-after: url("dong.wav") }
+H1 {cue-before: url("pop.au"); cue-after: url("pop.au") }
+</pre>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'cue'"><a name="propdef-cue" class="propdef-title"><strong>'cue'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>[ <a href="aural.html#propdef-cue-before" class="noxref"><span class="propinst-cue-before">&lt;'cue-before'&gt;</span></a> || <a href="aural.html#propdef-cue-after" class="noxref"><span class="propinst-cue-after">&lt;'cue-after'&gt;</span></a> ] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>non définie pour les propriétés raccourcies
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditive</a>
+</table>
+</dl>
+</div>
+
+<p>La propriété raccourcie <a href="aural.html#propdef-cue" class="noxref"><span class="propinst-cue">'cue'</span></a>
+regroupe les spécifications des propriétés individuelles <a href="aural.html#propdef-cue-before" class="noxref"><span class="propinst-cue-before">'cue-before'</span></a> et
+<a href="aural.html#propdef-cue-after" class="noxref"><span class="propinst-cue-after">'cue-after'</span></a>.
+Quand on lui donne deux valeurs, la première s'applique à la propriété
+<a href="aural.html#propdef-cue-before" class="noxref"><span class="propinst-cue-before">'cue-before'</span></a> et
+la seconde à la propriété <a href="aural.html#propdef-cue-after" class="noxref"><span class="propinst-cue-after">'cue-after'</span></a>.
+Pour une seule valeur, celle-ci s'applique à ces deux propriétés.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Ces deux règles sont équivalentes :
+
+<pre>
+H1 {cue-before: url("pop.au"); cue-after: url("pop.au") }
+H1 {cue: url("pop.au") }
+</pre>
+</div>
+
+<p>
+Quand un agent utilisateur ne peut rendre une image auditive (ex. l'environnement de l'utilisateur ne le
+permettant pas), on recommande que celui-ci produise un signal alternatif (ex. un message d'avertissement, l'émission
+d'un bip sonore, etc.).
+
+<p>Voir les passages sur les <a href="generate.html#before-after-content">pseudo-éléments :before et :after</a>
+pour des informations sur les aspects techniques de la génération de contenu.
+
+<h2>19.6 <a name="mixing-props">La propriété de mixage </a>: <a href="aural.html#propdef-play-during" class="noxref"><span class="propinst-play-during">'play-during'</span></a></h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'play-during'"><a name="propdef-play-during" class="propdef-title"><strong>'play-during'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a> mix? repeat? | auto | none | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>auto
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<p>Semblable aux propriétés <a href="aural.html#propdef-cue-before" class="noxref"><span class="propinst-cue-before">'cue-before'</span></a> et
+<a href="aural.html#propdef-cue-after" class="noxref"><span class="propinst-cue-after">'cue-after'</span></a>,
+cette propriété spécifie le son à jouer en arrière-plan, au cours de la lecture
+de l'élément. Les significations des valeurs sont :
+
+<dl>
+<dt><span class="index-inst" title="&lt;uri&gt;"><a name="x18" href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri"><strong>&lt;uri&gt;</strong></span></a></span>
+<dd>Le son désigné par cet <span class="index-inst" title="&lt;uri&gt;"><a name="x19" href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a></span>
+est joué en arrière-plan du contenu de l'élément en train d'être lu ;
+<dt><strong>mix</strong>
+<dd>Si présent, ce mot-clé indique que le son, celui hérité de la propriété
+<a href="aural.html#propdef-play-during" class="noxref"><span class="propinst-play-during">'play-during'</span></a>
+du parent de l'élément en question, continuant d'être joué, est mixé avec celui
+désigné par la propriété <span class="index-inst" title="&lt;uri&gt;"><a name="x20" href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a></span>.
+Quand cette valeur 'mix' n'est pas spécifiée, le son d'arrière-plan de l'élément
+en question remplace celui de son parent ;
+<dt><strong>repeat</strong>
+<dd>Si présent, ce mot-clé indique que le son se répètera quand celui-ci est trop court pour le temps de la lecture
+d'un élément donné. Autrement, le son est joué une seule fois et puis s'arrête.
+Ceci est similaire à la propriété <a href="colors.html#propdef-background-repeat" class="noxref"><span class="propinst-background-repeat">'background-repeat'</span></a>.
+Quand le son est trop long pour la durée de l'élément, on rogne ce son quand l'élément a fini d'être lu ;
+<dt><strong>auto</strong>
+<dd>Le son du parent de l'élément continue d'être joué (on ne recommence pas à le
+jouer comme cela aurait été le cas si cette propriété avait été héritée) ;
+<dt><strong>none</strong>
+<dd>Ce mot-clé indique un silence. Le son du parent (éventuel) de l'élément n'est pas audible
+pendant que l'élément en question se déroule, et redevient audible ensuite.
+</dl>
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+<pre>
+BLOCKQUOTE.sad { play-during: url("violins.aiff") }
+BLOCKQUOTE Q   { play-during: url("harp.wav") mix }
+SPAN.quiet     { play-during: none }
+</pre>
+</div>
+
+<h2>19.7 <a name="spatial-props">Les propriétés spatiales </a>: <a href="aural.html#propdef-azimuth" class="noxref"><span class="propinst-azimuth">'azimuth'</span></a> et <a href="aural.html#propdef-elevation" class="noxref"><span class="propinst-elevation">'elevation'</span></a></h2>
+
+<p>
+La spatialisation de l'écoute est une importante propriété de style pour une présentation auditive.
+C'est une façon naturelle de discriminer entre plusieurs voix, comme dans la réalité (les gens se tiennent
+rarement au même endroit dans une pièce). Les haut-parleurs en stéréo produisent une
+scène sonore latérale. Les écouteurs quadriphoniques ou les configurations de chaînes avec
+5 hauts-parleurs, de plus en plus répandues, peuvent reproduire un environnement sonore complet et certaines
+configurations avec de multiples haut-parleurs peuvent créer une véritable scène sonore en trois
+dimensions. <abbr lang="en" title="Virtual Reality Modelling Language">VRML 2.0</abbr> inclut également une spatialisation audio,
+ce qui implique la disponibilité allant grandissant de matériels grand public intégrant ces mécanismes.
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'azimuth'"><a name="propdef-azimuth" class="propdef-title"><strong>'azimuth'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-angle" class="noxref"><span class="value-inst-angle">&lt;angle&gt;</span></a> | [[ left-side | far-left | left | center-left | center |
+center-right | right | far-right | right-side ] || behind ] |
+leftwards | rightwards | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>center
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<p>Les significations des valeurs sont :
+
+<dl>
+<dt><span class="index-inst" title="&lt;angle&gt;"><a name="x22" href="syndata.html#value-def-angle" class="noxref"><span class="value-inst-angle"><strong>&lt;angle&gt;</strong></span></a></span>
+<dd>La position est décrite selon un angle compris entre les valeurs '-360deg' et '360deg'. La valeur '0deg'
+indique une position directement en face et au centre de la scène sonore, la valeur '90deg' en indique une vers
+la droite, la valeur '180deg' une vers l'arrière et la valeur '270deg' ('-90deg' en étant une équivalence plus pratique) une
+vers la gauche ;
+<dt><strong>left-side</strong>
+<dd>Même chose que '270deg'. La valeur de 'behind' équivalant à '270deg' ;
+<dt><strong>far-left</strong>
+<dd>Même chose que '300deg'. La valeur de 'behind' équivalant à '240deg' ;
+<dt><strong>left</strong>
+<dd>Même chose que '320deg'. La valeur de 'behind' équivalant à '220deg' ;
+<dt><strong>center-left</strong>
+<dd>Même chose que '340deg'. La valeur de 'behind' équivalant à '200deg' ;
+<dt><strong>center</strong>
+<dd>Même chose que '0deg'. La valeur de 'behind' équivalant à '180deg' ;
+<dt><strong>center-right</strong>
+<dd>Même chose que '20deg'. La valeur de 'behind' équivalant à '160deg' ;
+<dt><strong>right</strong>
+<dd>Même chose que '40deg'. La valeur de 'behind' équivalant à '140deg' ;
+<dt><strong>far-right</strong>
+<dd>Même chose que '60deg'. La valeur de 'behind' équivalant à '120deg' ;
+<dt><strong>right-side</strong>
+<dd>Même chose que '90deg'. La valeur de 'behind' équivalant à '90deg' ;
+<dt><strong>leftwards</strong>
+<dd>Déplace le son vers la gauche en fonction de l'angle courant. Plus précisément,
+on lui soustrait 20 degrés. Cette opération est effectuée avec un modulo de 360 degrés.
+Noter que la valeur 'leftwards' est plus justement décrite par "à l'inverse des aiguilles d'une montre",
+celle-ci retirant <em>toujours</em> 20 degrés, et même si l'azimuth hérité se situe
+déjà derrière l'auditeur (auquel cas le son semble se déplacer vers la droite) ;
+<dt><strong>rightwards</strong>
+<dd>Déplace le son vers la droite en fonction de l'angle courant. Plus précisément, on lui ajoute
+20 degrés. Voir 'leftwards' pour des explications à l'inverse.
+</dl>
+
+<p>
+Cette propriété sera plus vraisemblablement implémentée par le mélange d'un même
+signal issus de différents canaux, leurs volumes étant différents. Ceci pourrait aussi être
+obtenu par une modulation de phase, un retard digital et autres techniques de ce genre qui donne l'illusion d'une
+scène sonore. Les moyens précis d'atteindre cet effet ainsi que le nombre de haut-parleurs nécessaires
+dépendent de l'agent utilisateur, cette propriété décrivant simplement le résultat final
+souhaité.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+<pre>
+H1   { azimuth: 30deg }
+TD.a { azimuth: far-right }          /*  60deg */
+#12  { azimuth: behind far-right }   /* 120deg */
+P.comment { azimuth: behind }        /* 180deg */
+</pre>
+</div>
+
+<p>
+Quand on spécifie un azimuth spatial, l'appareil de sortie ne pouvant produire de sons <em>en arrière</em>
+de la position de l'auditeur, les agents utilisateurs devraient convertir ces valeurs de l'hémisphère
+arrière pour les ramener vers l'hémisphère avant. En voici une méthode :
+
+<ul>
+    <li>si 90deg &lt; x &lt;= 180deg alors x := 180deg - x
+    <li>si 180deg &lt; x &lt;= 270deg alors x := 540deg - x
+</ul>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'elevation'"><a name="propdef-elevation" class="propdef-title"><strong>'elevation'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-angle" class="noxref"><span class="value-inst-angle">&lt;angle&gt;</span></a>  | below | level | above | higher | lower | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>level
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<p>Les significations des valeurs sont :
+
+<dl>
+<dt><span class="index-inst" title="&lt;angle&gt;"><a name="x24" href="syndata.html#value-def-angle" class="noxref"><span class="value-inst-angle"><strong>&lt;angle&gt;</strong></span></a></span>
+<dd>Spécifie l'angle d'élévation compris entre les valeurs '-90deg' et '90deg'.
+La valeur '0deg' indique une position en face à l'horizontale, à peu près de niveau avec l'auditeur.
+La valeur '90deg' signifie directement au-dessus et '-90deg' directement au-dessous de celui-ci ;
+<dt><strong>below</strong>
+<dd>Équivaut à '-90deg'.
+<dt><strong>level</strong>
+<dd>Équivaut à '0deg' ;
+<dt><strong>above</strong>
+<dd>Équivaut à '90deg'.
+<dt><strong>higher</strong>
+<dd>Ajoute 10 degrés à l'élévation courante ;
+<dt><strong>lower</strong>
+<dd>Soustrait 10 degrés à l'élévation courante.
+</dl>
+
+<p>Les moyens précis d'obtenir cet effet ainsi que le nombre de haut-parleurs nécessaires pour cela
+ne sont pas définis. Cette propriété décrit simplement le résultat final souhaité.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+<pre>
+H1   { elevation: above }
+TR.a { elevation: 60deg }
+TR.b { elevation: 30deg }
+TR.c { elevation: level }
+</pre>
+</div>
+
+<h2>19.8 <a name="voice-char-props">Les propriétés des caractéristiques des voix </a>: <a href="aural.html#propdef-speech-rate" class="noxref"><span class="propinst-speech-rate">'speech-rate'</span></a>,
+<a href="aural.html#propdef-voice-family" class="noxref"><span class="propinst-voice-family">'voice-family'</span></a>,
+<a href="aural.html#propdef-pitch" class="noxref"><span class="propinst-pitch">'pitch'</span></a>,
+<a href="aural.html#propdef-pitch-range" class="noxref"><span class="propinst-pitch-range">'pitch-range'</span></a>,
+<a href="aural.html#propdef-stress" class="noxref"><span class="propinst-stress">'stress'</span></a> et
+<a href="aural.html#propdef-richness" class="noxref"><span class="propinst-richness">'richness'</span></a></h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'speech-rate'"><a name="propdef-speech-rate" class="propdef-title"><strong>'speech-rate'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>  | x-slow | slow | medium | fast | x-fast | faster | slower | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>medium
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<p>Cette propriété spécifie le débit de la parole. Noter que des valeurs de mots-clés absolus
+et relatifs sont à la fois admises (à comparer avec la propriété
+<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>).
+Les significations des valeurs sont :
+
+<dl>
+<dt><span class="index-inst" title="&lt;number&gt;"><a name="x26" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number"><strong>&lt;nombre&gt;</strong></span></a></span>
+<dd>Spécifie le débit de parole en mots par minute, celui-ci, bien que variant selon la langue, est
+une quantité largement reconnue par les synthétiseurs de parole ;
+<dt><strong>x-slow</strong>
+<dd>Équivaut à 80 mots par minute ;
+<dt><strong>slow</strong>
+<dd>Équivaut à 120 mots par minute ;
+<dt><strong>medium</strong>
+<dd>Équivaut à 180 - 200 mots par minute ;
+<dt><strong>fast</strong>
+<dd>Équivaut à 300 mots par minute ;
+<dt><strong>x-fast</strong>
+<dd>Équivaut à 500 mots par minute ;
+<dt><strong>faster</strong>
+<dd>Ajoute 40 mots par minute au débit courant ;
+<dt><strong>slower</strong>
+<dd>Soustrait 40 mots par minute au débit courant.
+</dl>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'voice-family'"><a name="propdef-voice-family" class="propdef-title"><strong>'voice-family'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>[[<a href="aural.html#value-def-specific-voice" class="noxref"><span class="value-inst-specific-voice">&lt;voix-spécifique&gt;</span></a>  | <a href="aural.html#value-def-generic-voice" class="noxref"><span class="value-inst-generic-voice">&lt;voix-générique&gt;</span></a> ],]* [<a href="aural.html#value-def-specific-voice" class="noxref"><span class="value-inst-specific-voice">&lt;voix-spécifique&gt;</span></a>  | <a href="aural.html#value-def-generic-voice" class="noxref"><span class="value-inst-generic-voice">&lt;voix-générique&gt;</span></a> ] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>selon l'agent utilisateur
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<p>
+La valeur est une liste de noms de familles de voix, séparés par une virgule et par ordre de priorité
+(à comparer avec <a href="fonts.html#propdef-font-family" class="noxref"><span class="propinst-font-family">'font-family'</span></a>).
+Les significations des valeurs sont :
+
+<dl>
+<dt><span class="index-def" title="&lt;generic-voice&gt;, definition of"><a name="value-def-generic-voice"><strong>&lt;voix-générique&gt;</strong></a></span>
+<dd>Ce sont des familles de voix. Les valeurs admises sont 'male', 'female' et 'child' ;
+<dt><span class="index-def" title="&lt;specific-voice&gt;::definition of"><a name="value-def-specific-voice"><strong>&lt;voix-spécifique&gt;</strong></a></span>
+<dd>Ces valeurs sont des instances spécifiques (ex. comedian, trinoids, carlos, lani, etc.) ;
+</dl>
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+<pre>
+H1 { voice-family: announcer, male }
+P.part.romeo  { voice-family: romeo, male }
+P.part.juliet { voice-family: juliet, female }
+</pre>
+</div>
+
+<p>
+On peut mettre les noms des voix spécifiques entre guillemets et on doit en effet le faire si un mot éventuel
+formant le nom ne se conforme pas aux règles de syntaxe pour les <a href="syndata.html#tokenization">identificateurs</a>.
+On recommande aussi les guillemets pour les noms des voix spécifiques composés de plusieurs mots.
+Si on omet ces guillemets, les <a href="syndata.html#whitespace">caractères blancs</a>
+survenant avant ou après le nom de la <del title="id=x47">police</del> <ins title="id=x47">famille de voix</ins> sont ignorés
+et toute séquence de blancs dans le nom de la <del title="id=x47">police</del> <ins title="id=x47">famille de voix</ins>
+sont converties en un seul espace.
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'pitch'"><a name="propdef-pitch" class="propdef-title"><strong>'pitch'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-frequency" class="noxref"><span class="value-inst-frequency">&lt;fréquence&gt;</span></a> | x-low | low | medium | high | x-high | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>medium
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<p>
+Cette propriété spécifie la tonalité moyenne (une fréquence) de la voix. Celle-ci
+dépend de la famille de voix. Par exemple, la tonalité moyenne pour une voix masculine se situe aux
+alentours de 120 Hz et pour une voix féminine aux alentours de 210 Hz.
+
+<p>Les significations des valeurs sont :
+
+<dl>
+<dt><span class="index-inst" title="&lt;frequency&gt;"><a name="x31" href="syndata.html#value-def-frequency" class="noxref"><span class="value-inst-frequency"><strong>&lt;fréquence&gt;</strong></span></a></span>
+<dd>Spécifie la tonalité moyenne de la voix courante en hertz (Hz) ;
+<dt><strong>x-low</strong>, <strong>low</strong>,
+<strong>medium</strong>, <strong>high</strong>, <strong>x-high</strong>
+<dd>Ces valeurs ne correspondent pas à des fréquences absolues, ces valeurs dépendant de la famille
+de voix. Les agents utilisateurs devraient faire correspondre celles-ci avec des fréquences appropriées
+en fonction de la famille de voix et de l'environnement de l'utilisateur. Cependant, cette correspondance doit se faire
+dans un ordre cohérent (c.à.d. la valeur 'x-low' a une fréquence inférieure à celle
+de 'low', etc.).
+</dl>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'pitch-range'"><a name="propdef-pitch-range" class="propdef-title"><strong>'pitch-range'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>50
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<p>Cette propriété spécifie la variation d'une tonalité moyenne. La perception de la
+tonalité d'une voix humaine est déterminée par la fréquence fondamentale, la valeur
+typique de celle-ci étant 120Hz pour une voix masculine et 210Hz pour une voix féminine.
+Les langues humaines comportent des inflexions et des tonalités variables, ces variations véhiculent
+des significations supplémentaires et des accentuations. Ainsi, une voix exaltée, qui a beaucoup d'inflexions,
+affiche une grande variation de tonalité. Cette propriété donne l'étendue de cette variation,
+c.à.d. de combien la fréquence fondamentale peut dévier par rapport à la tonalité moyenne.
+
+<p>Les significations des valeurs sont :
+
+<dl>
+<dt><span class="index-inst" title="&lt;number&gt;"><a name="x33" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number"><strong>&lt;nombre&gt;</strong></span></a></span>
+<dd>Une valeur entre '0' et '100'. Une variation de tonalité de '0' produit une voix terne et monotone.
+Une variation de '50' correspond à une voix avec des inflexions normales. Pour des valeur supérieures
+à '50', la voie devient de plus en plus exaltée.
+</dl>
+
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'stress'"><a name="propdef-stress" class="propdef-title"><strong>'stress'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>50
+<tr valign=baseline><td><em>S'applique à ::</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<p>
+Cette propriété spécifie la hauteur des "pics locaux" dans le profil de l'intonation d'une voix.
+Par exemple, l'anglais est une langue <strong>accentuée</strong>, différentes parties d'une
+phrase recevant une accentuation primaire, secondaire ou tertiaire. La valeur de la propriété
+<a href="aural.html#propdef-stress" class="noxref"><span class="propinst-stress">'stress'</span></a> régit
+l'ampleur de l'inflexion survenant à l'endroit de ces accentuations. Cette propriété
+s'utilise en conjonction avec la propriété <a href="aural.html#propdef-pitch-range" class="noxref"><span class="propinst-pitch-range">'pitch-range'</span></a>
+et permet aux développeurs l'exploitation d'appareils auditifs de haute performance.
+
+<p>Les significations des valeurs sont :
+
+<dl>
+<dt><span class="index-inst" title="&lt;number&gt;"><a name="x35" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number"><strong>&lt;nombre&gt;</strong></span></a></span>
+<dd>Une valeur entre '0' et '100'. L'interprétation de celle-ci dépend de la langue employée.
+Soit, par exemple, une valeur de '50' pour une voix masculine moyenne anglaise (tonalité moyenne = 122 Hz)
+avec une intonation et une accentuation normale, toutes choses étant égales, une voix italienne aurait un autre sens.
+</dl>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'richness'"><a name="propdef-richness" class="propdef-title"><strong>'richness'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>50
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<p>
+Cette propriété spécifie l'ampleur, ou la clarté, d'une voix. Une voix ample va
+"porter" dans une grande pièce, au contraire d'une voix douce (le terme "douce" se réfère
+au dessin de la forme de la vibration).
+
+<p>Les significations des valeurs sont :
+
+<dl>
+<dt><span class="index-inst" title="&lt;number&gt;"><a name="x37" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number"><strong>&lt;nombre&gt;</strong></span></a></span>
+<dd>Une valeur entre '0' et '100'. Plus la valeur est grande, plus la voix va porter. Une valeur plus faible
+produira une voix douce et mélodieuse.
+</dl>
+
+<h2>19.9 <a name="speech-props">Les propriétés de diction </a>: <a href="aural.html#propdef-speak-punctuation" class="noxref"><span class="propinst-speak-punctuation">'speak-punctuation'</span></a> et <a href="aural.html#propdef-speak-numeral" class="noxref"><span class="propinst-speak-numeral">'speak-numeral'</span></a></h2>
+
+<p>Une propriété de diction supplémentaire, <a href="tables.html#propdef-speak-header">speak-header</a>,
+est décrite dans le chapitre sur les <a href="tables.html">tables</a>.
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'speak-punctuation'"><a name="propdef-speak-punctuation" class="propdef-title"><strong>'speak-punctuation'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>code | none | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>none
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<p>
+Cette propriété spécifie comment lire les signes de ponctuation.
+Les significations des valeurs sont :
+
+<dl>
+<dt><strong>code</strong>
+<dd>Les signes de ponctuation, telles que les points-virgules, les accolades et tout le reste, sont lus littéralement ;
+<dt><strong>none</strong>
+<dd>Les signes de ponctuation ne sont pas lus, mais plutôt rendus naturellement, avec des pauses diverses.
+</dl>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'speak-numeral'"><a name="propdef-speak-numeral" class="propdef-title"><strong>'speak-numeral'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>digits | continuous | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>continuous
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<p>Cette propriété contrôle la façon de lire les nombres.
+Les significations des valeurs sont :
+
+<dl>
+<dt><strong>digits</strong>
+<dd>Lit les nombres décomposés en leurs chiffres individuels. Ainsi, le nombre "237" est lu "deux trois sept" ;
+<dt><strong>continuous</strong>
+<dd>Lit les nombres dans leur forme globale. Ainsi, le nombre "237" est lu "deux cent trente sept",
+leur représentation textuelles dépendant de la langue.
+</dl>
+
+<hr class="navbar">
+
+<div class="navbar" align="center">
+<p><a href="ui.html">précédent</a>  
+<a href="sample.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+</body>
+</html>

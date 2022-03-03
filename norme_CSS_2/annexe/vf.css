@@ -1,0 +1,54 @@
+/* feuille de style pour les traductions des documents du W3C - date de révision : 2005-12-30 */
+
+@import "default.css";
+
+body {margin:0;padding:2em 1em 2em 70px;background:url("traduction.png") white fixed top left no-repeat;color:#333;}
+
+/* abreviations et aides visuelles */
+abbr {font-variant:small-caps;font-style:italic;border-bottom:none;letter-spacing:0;}
+abbr[title] {cursor:help;border-bottom-style:dashed;border-bottom-width:1px;letter-spacing:.1em;}
+a[href] abbr[title] {cursor:pointer;}
+span[title]:hover {cursor:help;background:#cfc;color:inherit;}
+
+/* (N.D.T. English term) */
+em.ndt {font-style:italic;font-weight:normal;}
+
+/* citations */
+q:lang(fr), cite:lang(fr) {quotes:'\AB\A0' '\A0\BB';}
+q:before, cite:before {content:open-quote;}
+q:after, cite:after {content:close-quote;}
+
+/* gestion des sauts de ligne */
+.nobreak {white-space:pre;}
+
+/* exposants et indices */
+sup {vertical-align:text-top;}
+sub {vertical-align:bottom;font-size:x-small;}
+
+/* variables */
+var {font-style:italic;/* font-weight:bolder; */}
+
+/* definitions */
+dfn {font-weight:bolder;}
+dfn:hover {cursor:help;}
+
+/* les liens externes au document non obligatoirement traduits */
+a.w3c:link {padding:0 2px;}
+a.w3c:hover {background:#005a9c;color:white;text-decoration:none;}
+
+/* les liens externes vers les traductions */
+span.vf a {text-decoration:none;background:transparent;color:#666;font-size:smaller;padding:0;font-variant:small-caps;}
+span.vf a:hover {background:#666;color:#fff;}
+
+/* les liens vers l'errata */
+span.errata a {text-decoration:none;background:#fcfcfc;color:#999;}
+span.errata a:hover {background:#f0f0f0;color:#c30;}
+
+/* note du traducteur sur page de garde (lisez-moi) */
+#lisezmoi {position:absolute;top:1px;left:19px;background:#fc0;color:#000;border-right:1px solid #000;border-bottom:1px solid #000;}
+#lisezmoi a {font-family:serif;text-decoration:none;color:#000;font-size:larger;font-weight:bolder;font-style:italic;}
+#lisezmoi a:hover {background:#ff0;color:#000;}
+
+/* corrections issues de l'errata */
+del {text-decoration:line-through !important;font-weight:normal !important;background:#666 !important;color:#000 !important;cursor:help;}
+ins {text-decoration:none;background:#9fc !important;color:#000 !important;cursor:help;}

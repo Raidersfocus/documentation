@@ -1,0 +1,558 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="fr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Le texte</title>
+<link rel="stylesheet" type="text/css" href="annexe/W3C-REC.css">
+<link rel="stylesheet" type="text/css" href="annexe/vf.css">
+<link rel="stylesheet" type="text/css" href="annexe/print.css" media="print" > <!-- ajouté JHI 13.2.9 -->
+<link rel="prev" href="fonts.html">
+<link rel="next" href="tables.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+</head>
+<body>
+<!-- Préface de la traduction -->
+<div id="lisezmoi">
+<a href="annexe/preface.html" title="IMPORTANT : Lisez d'abord la préface de la traduction !"><strong> Lisez-moi S.V.P. </strong></a>
+</div>
+<div class="navbar" align="center">
+<p><a href="fonts.html">précédent</a>  
+<a href="tables.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+<hr class="navbar">
+
+<h1 align="center">16 Le texte</h1>
+<div class="subtoc">
+<p><strong>Contenu</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="text.html#indentation-prop" class="tocxref">16.1 L'alinéa : la propriété <span class="propinst-text-indent">'text-indent'</span></a>
+    <li class="tocline2"><a href="text.html#alignment-prop" class="tocxref">16.2 L'alignement : la propriété <span class="propinst-text-align">'text-align'</span></a>
+    <li class="tocline2"><a href="text.html#q3" class="tocxref">16.3 La décoration</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="text.html#lining-striking-props" class="tocxref">16.3.1 Trait en-dessous, trait au-dessus, rayure et clignotement : la propriété <span class="propinst-text-decoration">'text-decoration'</span></a>
+      <li class="tocline3"><a href="text.html#text-shadow-props" class="tocxref">16.3.2 Les ombrages de texte : la propriété <span class="propinst-text-shadow">'text-shadow'</span> property</a>
+    </ul>
+    <li class="tocline2"><a href="text.html#spacing-props" class="tocxref">16.4 L'interlettrage et l'espace-mot : les propriétés <span class="propinst-letter-spacing">'letter-spacing'</span> and <span class="propinst-word-spacing">'word-spacing'</span></a>
+    <li class="tocline2"><a href="text.html#caps-prop" class="tocxref">16.5 La capitalisation : la propriété <span class="propinst-text-transform">'text-transform'</span></a>
+    <li class="tocline2"><a href="text.html#white-space-prop" class="tocxref">16.6 Les caractères blancs : la propriété <span class="propinst-white-space">'white-space'</span></a>
+  </ul>
+</div>
+
+<p>Les propriétés définies ci-dessous influencent la représentation visuelle
+des caractères, des caractères blancs, des mots et des paragraphes.
+
+<h2>16.1 <a name="indentation-prop">L'alinéa</a> : la propriété <a href="text.html#propdef-text-indent" class="noxref"><span class="propinst-text-indent">'text-indent'</span></a></h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'text-indent'"><a name="propdef-text-indent" class="propdef-title"><strong>'text-indent'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;pourcentage&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>0
+<tr valign=baseline><td><em>S'applique à :</em>  <td>à ceux des éléments de type bloc
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>se rapporte à la largeur du bloc conteneur
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+Cette propriété spécifie un alinéa pour la première ligne du texte dans un bloc.
+Plus précisément, celui de la première boîte de la première rangée
+dans la première <a href="visuren.html#line-box">boîte de ligne</a> de ce bloc. Cette boîte est
+indentée à partir du bord gauche (ou droit, pour une mise en page de droite à gauche)
+de la boîte de ligne. Les agents utilisateurs devraient représenter cette indentation comme un espace
+vide.
+
+<p>Le significations des valeurs sont :
+
+<dl>
+<dt><span class="index-inst" title="&lt;length&gt;"><a name="x1" href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length"><strong>&lt;longueur&gt;</strong></span></a></span>
+<dd>L'alinéa a une longueur fixe ;
+<dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x2" href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage"><strong>&lt;pourcentage&gt;</strong></span></a></span>
+<dd>L'alinéa correspond à un pourcentage de la largeur du bloc conteneur.
+</dl>
+
+<p>La valeur de la propriété <a href="text.html#propdef-text-indent" class="noxref"><span class="propinst-text-indent">'text-indent'</span></a>
+peut être négative, mais ceci dépend des limites de la mise en &#339;uvre.
+<ins title="id=x76">Si cette valeur est négative, la valeur de la propriété 'overflow' peut avoir
+une influence sur la visibilité du texte.</ins>
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Cet exemple produit un alinéa de '3em' :
+
+<pre>
+  P { text-indent: 3em }
+</pre>
+</div>
+
+<h2>16.2 <a name="alignment-prop">L'alignement :</a> la propriété <a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a></h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'text-align'"><a name="propdef-text-align" class="propdef-title"><strong>'text-align'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>left | right | center | justify | <a href="syndata.html#value-def-string" class="noxref"><span class="value-inst-string">&lt;chaîne&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>selon l'agent utilisateur et selon le sens d'écriture
+<tr valign=baseline><td><em>S'applique à :</em>  <td>ceux des éléments de type bloc
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p>
+Cette propriété décrit l'alignement d'un contenu en-ligne dans un élément
+de type bloc. Les significations des valeurs sont :
+
+<dl>
+<dt><strong>left</strong>, <strong>right</strong>, <strong>center</strong> et <strong>justify</strong>
+<dd>Respectivement, l'alignement à gauche, à droite, centré et <span><del title="id=x77">double</del></span> justifié d'un texte ;
+<dt><span class="index-inst" title="&lt;string&gt;"><a name="x4" href="syndata.html#value-def-string" class="noxref"><span class="value-inst-string"><strong>&lt;chaîne&gt;</strong></span></a></span>
+<dd>Spécifie une chaîne sur laquelle les cellules d'une table vont s'aligner
+(voir le passage sur l'<a href="tables.html#column-alignment">alignement horizontal dans une colonne</a>
+pour le détail et pour un exemple). Cette valeur <em>ne s'applique qu'aux</em> cellules d'une
+<a href="tables.html">table</a>. Appliquée à un autre élément, celle-ci sera considérée
+comme étant 'left' ou 'right', en fonction de la valeur de la propriété
+<a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>,
+respectivement 'ltr' ou 'rtl'.
+</dl>
+
+<p>
+Un pavé de texte consiste en un empilement de <a href="visuren.html#line-box">boîtes de ligne</a>.
+Pour les valeurs 'left', 'right' et 'center', cette propriété indique la façon dont les
+boîtes en-ligne, dans chacune des boîtes de ligne, s'alignent par rapport aux côtés
+gauche et droit de ces boîtes de ligne ; l'alignement n'est pas effectué par rapport à
+la <a href="visuren.html#viewport">zone de visualisation</a>. Pour la valeur 'justify', l'agent utilisateur
+peut, en plus des ajustements de position, étirer les boîtes de ligne. Voir également les
+propriétés <a href="text.html#propdef-letter-spacing" class="noxref"><span class="propinst-letter-spacing">'letter-spacing'</span></a> et
+<a href="text.html#propdef-word-spacing" class="noxref"><span class="propinst-word-spacing">'word-spacing'</span></a>).
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p> 
+Dans cet exemple, noter que tous les éléments de type bloc dans élément DIV
+avec la classe 'center' auront leur contenu centré, la propriété <a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>
+étant héritée :
+
+<pre>
+DIV.center { text-align: center }
+</pre>
+</div>
+
+<div class="note"><p>
+<em><strong>Remarque :</strong> L'algorithme de justification effectif dépend de l'agent utilisateur et de l'écriture.</em>
+
+<p>
+Les <em><span class="index-inst" title="conformance"><a name="x5" href="conform.html#conformance">agents utilisateurs conformes</a></span>
+peuvent interpréter la valeur 'justify' comme étant 'left', ou 'right', selon que le sens d'écriture
+de l'élément est de gauche à droite, ou de droite à gauche.</em>
+</div>
+
+<h2><a name="q3">16.3 La décoration</a></h2>
+
+<h3>16.3.1 <a name="lining-striking-props">Trait en-dessous, trait au-dessus, rayure et clignotement</a>: la propriété <a href="text.html#propdef-text-decoration" class="noxref"><span class="propinst-text-decoration">'text-decoration'</span></a></h3>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'text-decoration'"><a name="propdef-text-decoration" class="propdef-title"><strong>'text-decoration'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>none | [ underline || overline || line-through || blink ] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>none
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non (voir les explications)
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+Cette propriété décrit les décorations qui sont ajoutées au texte d'un élément.
+Quand la propriété est appliquée à un élément <a href="visuren.html#block-level">de type bloc</a>,
+elle agit sur tous les descendants de type en-ligne de celui-ci. Quand elle est appliquée à un
+élément <a href="visuren.html#inline-level">de type en-ligne</a>, ou agit sur celui-ci, cette
+propriété influence toutes les boîtes générées par cet élément.
+Quand les éléments sont vides ou sans contenu textuel (ex. l'élément IMG en <abbr>HTML</abbr>),
+les agents utilisateurs doivent <a href="syndata.html#ignore">ignorer</a> cette propriété.
+
+<p>Les significations des valeurs sont :
+
+<dl>
+<dt><strong>none</strong>
+<dd>Aucune décoration ;
+<dt><strong>underline</strong>
+<dd>Chaque ligne de texte est soulignée ;
+<dt><strong>overline</strong>
+<dd>Chaque ligne de texte reçoit un trait au-dessus ;
+<dt><strong>line-through</strong>
+<dd>Chaque ligne de texte est rayée en son milieu ;
+<dt><strong>blink</strong>
+<dd>Le texte clignote (une alternance entre visible et invisible). Les <a href="conform.html#conformance">agents utilisateurs conformes</a>
+ne sont pas tenus de reconnaître cette valeur.
+</dl>
+
+<p>La couleur, ou les couleurs, requises pour la décoration de texte devraient être déterminées
+par la valeur de la propriété <a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a>.
+
+<p>
+Cette propriété n'est pas héritée, cependant les boîtes qui descendent d'une
+boîte de bloc donnée devraient recevoir la même décoration que celle-ci (ex. toutes devraient
+être soulignées). La couleur de la décoration devrait être conservée, même
+si la valeur de la propriété <a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a>
+des éléments descendants était différente.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Dans cet exemple en <abbr>HTML</abbr>, le contenu de texte de chacun des éléments A, ceux-ci étant des liens,
+seront soulignés :
+
+<pre>
+A[href] { text-decoration: underline }
+</pre>
+</div>
+
+<h3>16.3.2 <a name="text-shadow-props">Les ombrages de texte</a> : la propriété <a href="text.html#propdef-text-shadow" class="noxref"><span class="propinst-text-shadow">'text-shadow'</span></a></h3>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'text-shadow'"><a name="propdef-text-shadow" class="propdef-title"><strong>'text-shadow'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>none | [<a href="syndata.html#value-def-color" class="noxref"><span class="value-inst-color">&lt;couleur&gt;</span></a> || <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a>? ,]* [<a href="syndata.html#value-def-color" class="noxref"><span class="value-inst-color">&lt;couleur&gt;</span></a> || <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a>?] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>none
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non (voir les explications)
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+Cette propriété accepte une liste de valeurs, séparés par une virgule, représentant des effets d'ombrage
+à appliquer au texte d'un élément. Ces effets s'appliquent dans l'ordre spécifié
+et peuvent ainsi se recouvrir, mais ceux-ci ne recouvriront jamais le texte lui-même. Les effets d'ombrage
+ne modifient pas la taille d'une boîte, mais peuvent s'étendre au-delà des limites de celle-ci.
+Les effets d'ombrages se situent au même <a href="visuren.html#stack-level">niveau dans l'empilement</a>
+que l'élément en question.
+
+<p>
+Chaque effet doit spécifier un décalage de l'ombrage, et peut, en option, spécifier une zone
+de flou et la couleur de l'ombrage.
+
+<p>
+Le décalage de l'ombrage est donné par deux valeurs de <span class="index-inst" title="&lt;length&gt;"><a name="x8" href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a></span>
+qui en précisent la distance par rapport au texte. La première spécifie la distance horizontale
+à la droite du texte, une valeur négative place l'ombrage à la gauche de celui-ci.
+La seconde spécifie la distance verticale en-dessous du texte, une valeur négative place l'ombrage
+au-dessus de celui-ci.
+
+<p>
+En option, on peut spécifier, après les valeurs de décalage de l'ombrage, celle du rayon du flou.
+C'est une longueur qui indique les limites de cet effet de flou. L'algorithme exact pour le calcul de cet effet
+n'est pas spécifié.
+
+<p>
+En option également, on peut spécifier, avant ou après les valeurs de décalage de
+l'ombrage, celle de la couleur de l'ombrage. Cette valeur de couleur servira de fondement pour l'effet d'ombrage.
+Si aucune couleur n'est indiquée, c'est la valeur de la propriété
+<a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a> qui est
+considérée à sa place.
+
+<p>
+On peut employer les ombrages de texte avec les pseudo-éléments <a href="selector.html#first-letter"> :first-letter</a> et
+<a href="selector.html#first-line">:first-line</a>.
+
+<div class="example"><p style="display:none">Exemple(s) :
+
+<p>
+L'exemple ci-dessous produira un ombrage à droite et en dessous du texte de l'élément.
+Aucune couleur ni rayon de flou ayant été spécifiés, l'ombrage prendra la couleur de
+l'élément en question et n'aura pas d'effet de flou :
+
+<pre>
+H1 { text-shadow: 0.2em 0.2em }
+</pre>
+
+<p>
+Celui-ci produira un ombrage à droite et en-dessous du texte de l'élément.
+Cet ombrage aura un rayon de flou de 5px et de couleur rouge :
+
+<pre>
+H2 { text-shadow: 3px 3px 5px red }
+</pre>
+
+<p>
+Dans l'exemple suivant, on spécifie une liste d'effets d'ombrage. Le premier ombrage apparaîtra
+à droite et en-dessous du texte, avec une couleur rouge et sans effet de flou. Le deuxième
+va recouvrir le premier effet d'ombrage et apparaîtra à gauche et en-dessous du texte, avec
+une couleur jaune et un effet de flou. Le troisième sera placé à droite et au-dessus
+du texte. Aucune couleur n'étant spécifiée pour celui-ci, c'est la valeur de la
+propriété <a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a>
+de l'élément en question qui sera utilisée :
+
+<pre>
+H2 { text-shadow: 3px 3px red, yellow -3px 3px 2px, 3px -3px }
+</pre>
+
+</div>
+
+<div class="example"><p style="display:none">Exemple(s) :
+
+<p>Considérons cette règle :
+
+<pre>
+SPAN.glow { 
+    background: white; 
+    color: white;
+    text-shadow: black 0px 0px 5px;
+}
+</pre>
+
+<p>Ici, on a utilisé les propriétés <a href="colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>
+et <a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a> avec la même valeur,
+ainsi que la propriété <a href="text.html#propdef-text-shadow" class="noxref"><span class="propinst-text-shadow">'text-shadow'</span></a>
+pour créer un effet "éclipse solaire" :
+
+<p><img src="images/eclipse-outline.gif" alt="Effet d'éclipse solaire." width="141" height="58"><span class="dlink">   <a name="img-eclipse-outline" href="images/longdesc/eclipse-outline-desc.html" title="Long description of text shadow example">[D]</a></span></p>
+</div>
+
+<div class="note"><p>
+<em><strong>Remarque :</strong> Cette propriété n'est pas définie en <abbr>CSS1</abbr>.
+Certains effets d'ombrage (tel que celui du dernier exemple) peuvent rendre le texte invisible pour les agents
+utilisateurs ne reconnaissant que <abbr>CSS1</abbr>.
+</em>
+</div>
+
+<h2>16.4 <a name="spacing-props">L'interlettrage et l'espace-mot</a> : les propriétés <a href="text.html#propdef-letter-spacing" class="noxref"><span class="propinst-letter-spacing">'letter-spacing'</span></a> et <a href="text.html#propdef-word-spacing" class="noxref"><span class="propinst-word-spacing">'word-spacing'</span></a></h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'letter-spacing'"><a name="propdef-letter-spacing" class="propdef-title"><strong>'letter-spacing'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>normal | <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>normal
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+Cette propriété précise le comportement de l'espacement entre les caractères du texte.
+Les significations des valeurs sont :
+
+<dl>
+<dt><strong>normal</strong>
+<dd>C'est l'espacement normal pour la police en question. Cette valeur permet à l'agent utilisateur
+la modification de l'interlettrage pour la justification d'un texte ;
+
+<dt><span class="index-inst" title="&lt;length&gt;"><a name="x10" href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length"><strong>&lt;longueur&gt;</strong></span></a></span>
+<dd>Cette valeur indique la quantité d'espacement qui <em>s'ajoute</em> à l'interlettrage par défaut.
+Celle-ci peut être négative, son interprétation dans les limites de l'implémentation.
+Pour un texte à justifier, les agents utilisateurs peuvent ne plus pouvoir augmenter ou diminuer l'interlettrage.
+</dl>
+
+<p>
+Les algorithmes d'interlettrage dépendent des agents utilisateurs. La justification peut aussi avoir une
+influence sur l'interlettrage (voir la propriété <a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>).
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Dans cet exemple, l'interlettrage des éléments BLOCKQUOTE est augmenté de '0.1em' :
+
+<pre>
+BLOCKQUOTE { letter-spacing: 0.1em }
+</pre>
+
+<p>Dans celui-ci, l'agent utilisateur ne peut pas en modifier l'interlettrage :
+
+<pre>
+BLOCKQUOTE { letter-spacing: 0cm }   /* Pareil à '0' */
+</pre>
+</div>
+
+<p>Quand l'interlettrage résultant entre deux caractères est différent de celui par défaut,
+les agents utilisateurs ne devraient pas utiliser de <a name="x11"><span class="index-inst" title="ligatures">ligatures</span></a>.
+
+<p>Les <span class="index-inst" title="conformance"><a name="x12" href="conform.html#conformance">agents utilisateurs conformes</a></span>
+peuvent interpréter la valeur de la propriété <a href="text.html#propdef-letter-spacing" class="noxref"><span class="propinst-letter-spacing">'letter-spacing'</span></a>
+comme étant 'normal'.
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'word-spacing'"><a name="propdef-word-spacing" class="propdef-title"><strong>'word-spacing'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>normal | <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>normal
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+Cette propriété précise le comportement de l'espacement entre des mots.
+Les significations des valeurs sont :
+
+<dl>
+<dt><strong>normal</strong>
+<dd>L'espace-mot normal, tel que défini par la police en question et/ou l'agent utilisateur ;
+<dt><span class="index-inst" title="&lt;length&gt;"><a name="x14" href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length"><strong>&lt;longueur&gt;</strong></span></a></span>
+<dd>Cette valeur indique la quantité d'espacement qui <em>s'ajoute</em> à l'espace-mot par défaut.
+Les valeurs peuvent être négatives, leur interprétation dans les limites de l'implémentation.
+</dl>
+
+<p>
+Les algorithmes d'espace-mot dépendent de l'agent utilisateur. La justification peut aussi avoir une
+influence sur l'espacement entre les mots (voir la propriété <a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>).
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Dans cet exemple, l'espace-mot entre chacun des mots des éléments H1 est augmenté de '1em' :
+
+<pre>
+H1 { word-spacing: 1em }
+</pre>
+</div>
+
+<p>Les <span class="index-inst" title="conformance"><a name="x15" href="conform.html#conformance">agents utilisateurs conformes</a></span>
+peuvent interpréter la valeur de la propriété <a href="text.html#propdef-word-spacing" class="noxref"><span class="propinst-word-spacing">'word-spacing'</span></a>
+comme étant 'normal'.
+
+<h2>16.5 <a name="caps-prop">La capitalisation</a> : la propriété <a href="text.html#propdef-text-transform" class="noxref"><span class="propinst-text-transform">'text-transform'</span></a></h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'text-transform'"><a name="propdef-text-transform" class="propdef-title"><strong>'text-transform'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>capitalize | uppercase | lowercase | none | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>none
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p>Cette propriété détermine les effets de capitalisation du texte d'un élément.
+Les significations des valeurs sont :
+
+<dl>
+  <dt><strong>capitalize</strong>
+  <dd>La première lettre de chaque mot est en majuscule ;
+  <dt><strong>uppercase</strong>
+  <dd>Les lettres de chacun des mots sont en majuscules ;
+  <dt><strong>lowercase</strong>
+  <dd>Les lettres de chacun des mots sont en minuscules ;
+  <dt><strong>none</strong>
+  <dd>Aucun effet de capitalisation.
+</dl>
+
+<p>
+Dans chaque cas, la transformation effective dépend de l'écriture de la langue en question.
+Voir RFC 2070 (<a href="refs.html#ref-RFC2070" rel="biblioentry" class="noxref"><span class="normref">[RFC2070]</span></a>)
+pour la détermination de la langue utilisée dans un élément.
+
+<p>Les <span class="index-inst" title="conformance"><a name="x17" href="conform.html#conformance">agents utilisateurs conformes</a></span>
+peuvent interpréter la valeur de la propriété <a href="text.html#propdef-text-transform" class="noxref"><span class="propinst-text-transform">'text-transform'</span></a>
+comme étant 'none', pour les caractères n'appartenant pas au répertoire Latin-1 et pour
+les éléments dans certaines langues, langues pour lesquelles la transformation serait différente
+de celle spécifiée dans les tables de conversion de ISO 10646
+(<a href="refs.html#ref-ISO10646" rel="biblioentry" class="noxref"><span class="normref">[ISO10646]</span></a>).
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Dans cet exemple, l'ensemble du texte des éléments H1 est transformé en capitales :
+
+<pre>
+H1 { text-transform: uppercase }
+</pre>
+</div>
+
+<h2>16.6 <a name="white-space-prop">Les caractères blancs</a> : la propriété <a href="text.html#propdef-white-space" class="noxref"><span class="propinst-white-space">'white-space'</span></a></h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'white-space'"><a name="propdef-white-space" class="propdef-title"><strong>'white-space'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>normal | pre | nowrap | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>normal
+<tr valign=baseline><td><em>S'applique à :</em>  <td><span><del title="2001-08-28 id=s-16-6">éléments de type bloc</del> <ins title="2001-08-28 id=s-16-6">tous les éléments</ins></span>
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>Cette propriété détermine la gestion des <a href="syndata.html#whitespace">caractères blancs</a>
+dans un élément.
+
+<dl>
+<dt><strong>normal</strong>
+<dd>Cette valeur enjoint aux agents utilisateurs de fusionner les séquences de caractères blancs et d'effectuer des
+retours à la ligne de manière appropriée pour remplir les boîtes de ligne.
+Dans un contenu généré, les survenues de la séquence de caractères "\A" peuvent
+produire d'autres retours à la ligne (ex. comme l'élément BR en <abbr>HTML</abbr>) ;
+<dt><strong>pre</strong>
+<dd>Cette valeur interdit aux agents utilisateurs la fusion des séquences de caractères blancs.
+Les retours à la ligne n'interviennent qu'aux endroits des caractères "nouvelle ligne" de la source,
+ou aux survenues de la séquence "\A" dans un contenu généré ;
+<dt><strong>nowrap</strong>
+<dd>Cette valeur provoque la fusion des caractères blancs comme pour 'normal' mais supprime les retours à la ligne d'un
+texte, sauf les retours à la ligne induits par la séquence "\A" dans un contenu généré
+(ex. comme l'élément BR en <abbr>HTML</abbr>).
+</dl>
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>Les règles suivantes indiquent comment sont gérés les <a href="syndata.html#whitespace">caractères blancs</a>
+dans les éléments PRE et P, ainsi que pour l'attribut "nowrap" de <abbr>HTML</abbr> :
+
+<pre>
+PRE        { white-space: pre }
+P          { white-space: normal }
+TD[nowrap] { white-space: nowrap }
+</pre>
+</div>
+
+<p>Les <span class="index-inst" title="conformance"><a name="x19" href="conform.html#conformance">agents utilisateurs conformes</a></span>
+peuvent <span class="index-inst" title="ignore"><a name="x20" href="syndata.html#ignore">ignorer</a></span> la
+propriété <a href="text.html#propdef-white-space" class="noxref"><span class="propinst-white-space">'white-space'</span></a>
+des feuilles de style de l'auteur et de l'utilisateur, mais pas dans la feuille de style par défaut où
+une valeur doit y être spécifiée.
+
+<hr class="navbar">
+
+<div class="navbar" align="center">
+<p><a href="fonts.html">précédent</a>  
+<a href="tables.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+</body>
+</html>

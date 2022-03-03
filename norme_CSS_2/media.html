@@ -1,0 +1,267 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="fr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Les types de médias</title>
+<link rel="stylesheet" type="text/css" href="annexe/W3C-REC.css">
+<link rel="stylesheet" type="text/css" href="annexe/vf.css">
+<link rel="stylesheet" type="text/css" href="annexe/print.css" media="print" > <!-- ajouté JHI 13.2.9 -->
+<link rel="prev" href="cascade.html">
+<link rel="next" href="box.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+</head>
+<body>
+<!-- Préface de la traduction -->
+<div id="lisezmoi">
+<a href="annexe/preface.html" title="IMPORTANT : Lisez d'abord la préface de la traduction !"><strong> Lisez-moi S.V.P. </strong></a>
+</div>
+<div class="navbar" align="center">
+<p><a href="cascade.html">précédent</a>  
+<a href="box.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+<hr class="navbar">
+
+<h1 align="center">7 Les types de médias</h1>
+<div class="subtoc">
+<p><strong>Contenu</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="media.html#q1" class="tocxref">7.1 Introduction aux types de médias</a>
+    <li class="tocline2"><a href="media.html#q2" class="tocxref">7.2 La spécification des feuilles de style en fonction du média</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="media.html#at-media-rule" class="tocxref">7.2.1 La règle @media</a>
+    </ul>
+    <li class="tocline2"><a href="media.html#media-types" class="tocxref">7.3 Les types de médias reconnus</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="media.html#media-groups" class="tocxref">7.3.1 Les groupes de médias</a>
+    </ul>
+  </ul>
+</div>
+
+<h2><a name="q1">7.1 Introduction aux types de médias</a></h2>
+
+Une des fonctions primordiales des feuilles de style repose sur le fait de pouvoir spécifier comment représenter
+un document pour différents médias : un écran, une feuille de papier,
+un synthétiseur de parole, un appareil braille, etc.
+
+<p>
+Certaines propriétés <abbr>CSS</abbr> fonctionnent exclusivement avec un média donné
+(ex. la propriété <a href="aural.html#propdef-cue-before" class="noxref"><span class="propinst-cue-before">'cue-before'</span></a>
+pour les agents utilisateurs auditifs). Cependant, il peut arriver qu'une même propriété
+fasse partie de différentes feuilles de style propres à un média, cette propriété
+prenant alors des valeurs en fonction de ce média. Par exemple, la propriété
+<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>
+peut jouer un rôle aussi bien dans un rendu sur écran que dans une page imprimée.
+Ces deux médias sont suffisamment dissemblables pour nécessiter des valeurs particulières
+pour cette même propriété ; le rendu typique d'un document sur un moniteur
+demande une plus grande taille de police que sur une feuille de papier. L'expérience montre
+également que les polices sans-serif ont une plus grande lisibilité à l'écran, et inversement,
+que les polices serif sont plus lisibles sur le papier. Pour ces raisons, il faut pouvoir dire qu'une
+feuille de style, ou une partie de celle-ci, ne concerne que certains types de médias.
+
+<h2><a name="q2">7.2 La spécification des feuilles de style en fonction du média</a></h2>
+<p>
+Pour l'instant, on peut adjoindre les feuilles de style appropriées aux médias concernés
+de deux façons :
+
+<ul>
+
+<li>En spécifiant le média visé dans la feuille de style au travers des règles-at
+<a name="x0"><span class="index-inst" title="@media">@media</span></a> ou 
+<a name="x1"><span class="index-inst" title="@import">@import</span></a> ;
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+<pre>
+@import url("loudvoice.css") aural;
+@media print {
+  /* la feuille de style pour l'impression vient ici */
+}
+</pre>
+</div>
+
+<li>En spécifiant le média visé dans le langage du document. Par exemple avec
+HTML 4.0 (<a href="refs.html#ref-HTML40" rel="biblioentry" class="noxref"><span class="informref">[HTML40]</span></a>),
+on utilise l'attribut "media" de l'élément LINK pour attacher une feuille de style externe
+à un média donné :
+
+<div class="html-example"><p>
+
+<pre>
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"&gt;
+&lt;HTML&gt;
+   &lt;HEAD&gt;
+      &lt;TITLE&gt;Un lien vers le média cible&lt;/TITLE&gt;
+      &lt;LINK rel="stylesheet" type="text/css" 
+	 media="print, handheld" href="foo.css"&gt;
+   &lt;/HEAD&gt;
+   &lt;BODY&gt;
+      &lt;P&gt;Le corps du document...
+   &lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+</div>
+</ul>
+
+<p>
+La règle <a href="cascade.html#at-import">@import</a> est définie dans le
+<a href="cascade.html">chapitre sur la cascade</a>.
+
+<h3>7.2.1 <a name="at-media-rule">La règle @media</a></h3> 
+
+<p>Une règle <a name="x2"><span class="index-def" title="media">@media</span></a> spécifie
+les <a href="#media-types">types de médias</a> (séparés par des virgules) d'un
+jeu de règles (entres des accolades).
+La construction <a name="x3"><span class="index-inst" title="@media">@media</span></a> permet
+d'écrire des règles pour divers médias au sein d'une même feuille de style :
+
+<pre class="example">
+  @media print {
+    BODY { font-size: 10pt }
+  }
+  @media screen {
+    BODY { font-size: 12pt }
+  }
+  @media screen, print {
+    BODY { line-height: 1.2 }
+  }
+</pre>
+
+
+<h2>7.3 <a name="media-types">Les types de médias reconnus</a></h2> 
+
+<p>Un <a name="x4"><span class="index-def" title="media type"><dfn>type de média</dfn></span></a>
+nomme un jeu de propriétés <abbr>CSS</abbr>. Un agent utilisateur qui prétend reconnaître
+un type de média par son nom doit en appliquer toutes les propriétés.
+
+<p>
+Les noms choisis pour les types de médias <abbr>CSS</abbr> rappellent celui des appareils cibles pour lesquels
+les propriétés sont significatives. Suit la liste des types de médias, les descriptions
+entre parenthèses ne sont pas normatives. Ces descriptions donnent seulement une indication sur
+l'appareil auquel le type de média se réfère.
+
+<dl>
+<dt><strong>all</strong>
+<dd>convient pour tous les appareils ;
+
+<dt><strong>aural</strong> 
+<dd>destiné aux synthétiseurs de parole. Voir les détails fournis dans le chapitre
+sur <a href="./aural.html">les feuilles de style auditives</a> ;
+
+<dt><strong>braille</strong>
+<dd>destiné aux appareils braille à retour tactile ;
+
+<dt><strong>embossed</strong>
+<dd>destiné aux appareils à impression braille ;
+
+<dt><strong>handheld</strong>
+<dd>destiné aux appareils portatifs (typiquement ceux avec petits écrans, monochromes et
+à bande passante limitée) ;
+
+<dt><strong>print</strong> 
+<dd>destiné à un support paginé opaque et aux documents vus sur écran en
+mode aperçu avant impression. Consulter le chapitre sur <a href="page.html">les médias paginés</a>
+pour des informations sur les questions de mise en forme spécifiques à ceux-ci ;
+
+<dt><strong>projection</strong>
+<dd>destiné aux présentations en projection, par exemple avec des projecteurs ou des
+impressions pour des transparents. Consulter le chapitre sur <a href="page.html">les médias paginés</a>
+pour des informations sur les questions spécifiques à ceux-ci ;
+
+<dt><strong>screen</strong> 
+<dd>destiné principalement aux moniteurs couleurs ;
+
+<dt><strong>tty</strong>
+<dd>destiné aux médias utilisant une grille de caractères fixe, tels les télétypes,
+les terminaux ou les appareils portatifs aux capacités d'affichage réduites. Les
+auteurs ne devraient pas utiliser de valeurs <a href="syndata.html#pixel-units">exprimées en pixel</a> avec
+ce type de média ;
+
+<dt><strong>tv</strong>
+<dd>destiné aux appareils du type télévision (avec ces caractéristiques : basse résolution, couleur,
+défilement des pages limité, sonorisé).
+</dl>
+
+<p>Les noms des types de médias ne sont pas sensibles à la casse. 
+
+<p>
+Comme les technologies évoluent rapidement, CSS2 n'arrête pas une liste définitive
+des types de médias pouvant être des valeurs pour <a name="x5"><span class="index-inst" title="@media">@media</span></a>.
+
+<div class="note"><p>
+<em><strong>Remarque : </strong>Des versions ultérieures de <abbr>CSS</abbr> pourraient accroître cette liste.
+Les auteurs ne devraient pas employer de noms de types de médias qui ne sont pas encore définis
+par la spécification <abbr>CSS</abbr>.
+</em>
+</div>
+
+<h3>7.3.1 <a name="media-groups">Les groupes de médias</a></h3>
+
+<p>
+Chacune des propriétés <abbr>CSS</abbr> définit les types de médias
+pour lesquels cette propriété doit être implémentée par un
+<a href="conform.html#conformance">agent utilisateur conforme</a>. Les propriétés
+s'appliquant généralement à plusieurs médias, la partie "Media" dans la définition
+de chacune d'entre elles en précise les <a name="x6"><span class="index-def" title="media group">groupes de médias</span></a>
+plutôt qu'une liste des divers types individuels. La propriété s'applique ainsi
+à tous les types de médias concernés, ceux-ci étant représentés par des groupe de médias.
+
+<p>CSS2 définit les groupes de médias suivants :
+<ul>
+<li><span class="index-def" title="'continuous' media group"><a name="continuous-media-group"><strong>continu</strong></a></span>
+ou <span class="index-def" title="'paged' media group"><a name="paged-media-group"><strong>paginé</strong></a></span>.
+Quand il est écrit "les deux", cela signifie que la propriété s'applique aux deux groupes de médias ;
+<li><span class="index-def" title="'visual' media group"><a name="visual-media-group"> <strong>visuel</strong></a>,
+</span> <span class="index-def" title="'aural' media group"><a name="aural-media-group"><strong>auditif</strong></a></span>
+ou <span class="index-def" title="'tactile' media group"><a name="tactile-media-group"><strong>tactile</strong></a></span> ;
+<li><span class="index-def" title="'grid' media group"><a name="grid-media-group"><strong>grille</strong></a></span> (pour les appareils avec
+grille de caractères) ou <span class="index-def" title="'bitmap' media group"><a name="bitmap-media-group"><strong>bitmap</strong></a></span>.
+Quand il est écrit "les deux", cela signifie que cette propriété s'applique aux deux groupes de médias ;
+groups.
+<li><span class="index-def" title="'interactive media group"><a name="interactive-media-group"><strong>interactif</strong></a></span>
+(pour les appareils qui interagissent avec l'utilisateur) ou 
+<span class="index-def" title="'static' media group"><a name="static-media-group"><strong>statique</strong></a></span>
+(à l'inverse, pour ceux qui n'interagissent pas avec celui-ci). Quand il est écrit "les deux", cela signifie que
+la propriété s'applique aux deux groupes de médias ;
+<li><span class="index-def" title="'all' media group"> <a name="all-media-group"><strong>all</strong></a></span>
+(comprend tous les types de médias).
+</ul>
+
+<p>
+La table suivante montre les relations entre les groupes de médias et les types de médias :
+
+<table border="1" summary="Relations entre les groupes de médias et les types de médias">
+<caption>Relations entre les groupes de médias et les types de médias</caption>
+<tr><th>Types de médias <th colspan="4">Groupes de médias
+<tr><th> 
+    <th>continu/paginé
+    <th>visuel/auditif/tactile
+    <th>grille/bitmap
+    <th>interactif/statique
+<tr><th>aural<td align="center">continu<td align="center">auditif<td align="center">sans objet<td align="center">les deux</tr>
+<tr><th>braille<td align="center">continu<td align="center">tactile<td align="center">grille<td align="center">les deux</tr>
+<tr><th>embossed<td align="center">paginé<td align="center">tactile<td align="center">grille<td align="center">les deux</tr>
+<tr><th>handheld<td align="center">les deux<td align="center">visuel<td align="center">les deux<td align="center">les deux</tr>
+<tr><th>print<td align="center">paginé<td align="center">visuel<td align="center">bitmap<td align="center">statique</tr>
+<tr><th>projection<td align="center">paginé<td align="center">visuel<td align="center">bitmap<td align="center">statique</tr>
+<tr><th>screen<td align="center">continu<td align="center">visuel<td align="center">bitmap<td align="center">les deux</tr>
+<tr><th>tty<td align="center">continu<td align="center">visuel<td align="center">grille<td align="center">les deux</tr>
+<tr><th>tv<td align="center">les deux<td align="center">visuel, auditif<td align="center">bitmap<td align="center">les deux</tr>
+</table>
+
+<hr class="navbar">
+
+<div class="navbar" align="center">
+<p><a href="cascade.html">précédent</a>  
+<a href="box.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+</body>
+</html>

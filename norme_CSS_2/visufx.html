@@ -1,0 +1,390 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Les effets visuels</title>
+<link rel="stylesheet" type="text/css" href="annexe/W3C-REC.css">
+<link rel="stylesheet" type="text/css" href="annexe/vf.css">
+<link rel="stylesheet" type="text/css" href="annexe/print.css" media="print" > <!-- ajouté JHI 13.2.9 -->
+<link rel="prev" href="visudet.html">
+<link rel="next" href="generate.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+</head>
+<body>
+<!-- Préface de la traduction -->
+<div id="lisezmoi">
+<a href="annexe/preface.html" title="IMPORTANT : Lisez d'abord la préface de la traduction !"><strong> Lisez-moi S.V.P. </strong></a>
+</div>
+<div class="navbar" align="center">
+<p><a href="visudet.html">précédent</a>  
+<a href="generate.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+<hr class="navbar">
+
+<h1 align="center">11 Les effets visuels</h1>
+<div class="subtoc">
+<p><strong>Sommaire</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="visufx.html#overflow-clipping" class="tocxref">11.1 Le débordement et le rognage</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="visufx.html#overflow" class="tocxref">11.1.1 Le débordement : la propriété <span class="propinst-overflow">'overflow'</span></a>
+      <li class="tocline3"><a href="visufx.html#clipping" class="tocxref">11.1.2 Le rognage : la propriété <span class="propinst-clip">'clip'</span></a>
+    </ul>
+    <li class="tocline2"><a href="visufx.html#visibility" class="tocxref">11.2 La visibilité : la propriété <span class="propinst-visibility">'visibility'</span></a>
+  </ul>
+</div>
+
+<h2>11.1 <a name="overflow-clipping">Le débordement et le rognage</a></h2>
+
+<p>
+Généralement, le contenu d'une boîte de bloc est confiné entre les bords du contenu
+de celle-ci. Parfois, une boîte peut <a name="x0"><span class="index-def" title="overflow|box::overflow"><dfn>déborder</dfn></span></a>,
+son contenu s'étalant en partie ou entièrement en dehors de la boîte. Des exemples :
+
+<ul>
+<li>Une ligne ne peut pas être coupée, ce qui rend ainsi la boîte de ligne
+plus large que la boîte du bloc ;
+
+<li>Une boîte de bloc est trop large pour le bloc conteneur. Ceci peut arriver quand la propriété
+<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+d'un élément a une valeur telle que la boîte de bloc générée
+se répand au-delà des côtés du bloc conteneur ;
+
+<li>La hauteur d'un élément excède la hauteur explicite assignée au bloc
+conteneur (c.à.d. la hauteur de celui-ci est déterminée par la propriété
+<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>,
+et non par la hauteur du contenu) ;
+
+<li><span>La boîte <del title="id=x66">est</del> <ins title="id=x66">d'un descendant</ins> en <a href="visuren.html#absolute-positioning">position absolue</a>
+<ins title="id=x66">se trouve partiellement hors de la boîte de son parent</ins></span> ;
+
+<li><span>Les marges de la boîte <ins title="id=x66">d'un descendant</ins> sont <a href="box.html#margin-properties">négatives</a>,
+<ins title="id=x66">ce qui déplace en partie celle-ci hors de la boîte de son parent</ins></span>.
+</ul>
+
+<p>
+À chaque fois qu'un débordement survient, c'est la propriété
+<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>
+qui spécifie , s'il y a lieu, la façon dont la boîte sera rognée.
+La propriété <a href="visufx.html#propdef-clip" class="noxref"><span class="propinst-clip">'clip'</span></a>
+spécifie la taille et la forme de la zone rognée. Quand on spécifie un rognage
+laissant une petite surface, des contenus qui seraient visibles autrement peuvent disparaître.
+
+<h3>11.1.1 <a name="overflow">Le débordement</a> : la propriété <a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a></h3>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'overflow'"><a name="propdef-overflow" class="propdef-title"><strong>'overflow'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>visible | hidden | scroll | auto | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>visible
+<tr valign=baseline><td><em>S'applique à :</em>  <td>ceux des éléments de type bloc et ceux remplacés
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p>
+Cette propriété spécifie si le contenu d'un élément de type bloc
+doit être rogné quand celui-ci déborde de la boîte de cet élément
+(qui se comporte comme un bloc conteneur). Les significations des valeurs sont :
+
+<dl>
+
+<dt><strong>visible</strong> 
+<dd>Le contenu ne sera pas rogné, et celui-ci peut être représenté hors de
+la boîte du bloc ;
+
+<dt><strong>hidden</strong> 
+<dd>Le contenu sera rogné et aucun mécanisme de défilement ne devrait être
+fourni pour voir la partie qui aura été rognée. On spécifie la taille et la forme du reliquat
+du rognage avec la propriété <a href="visufx.html#propdef-clip" class="noxref"><span class="propinst-clip">'clip'</span></a> ;
+
+<dt><strong>scroll</strong> 
+<dd>
+Le contenu sera rogné et, si disponible, l'agent utilisateur fournit un mécanisme de défilement
+visible à l'écran (tel qu'une barre de défilement ou un dispositif panoramique),
+celui-ci devrait apparaître pour une boîte donnée, que le contenu de celle-ci soit rogné
+ou non. Ceci pour éviter l'inconvénient que représenterait des barres de défilement
+apparaissant et disparaissant dans un environnement dynamique. Quand cette valeur est spécifiée
+conjointement avec un type de média 'print'<span><del title="id=x67"> ou 'projection'</del></span>,
+la partie du contenu ayant débordé devrait aussi être imprimée ;
+
+<dt><strong>auto</strong> 
+<dd>L'interprétation de cette valeur dépend de l'agent utilisateur, cependant, celui-ci devrait
+fournir un mécanisme de défilement quand les boîtes débordent.
+
+</dl>
+
+<p>Même quand la valeur de la propriété <a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>
+est 'visible', il peut arriver que le contenu soit rogné par le système d'exploitation,
+pour tenir dans la fenêtre du document de l'agent utilisateur.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Considérons le bloc de citation suivant (BLOCKQUOTE), trop grand pour tenir dans son bloc conteneur
+(établi par un élément DIV). En voici le document source :
+
+<pre class="html-example">
+&lt;DIV&gt;
+&lt;BLOCKQUOTE&gt;
+&lt;P&gt;Je n'aimais pas la pièce, et puis, je la vis
+dans des conditions adverses - le rideau était levé.
+&lt;DIV class="attributed-to"&gt;- Groucho Marx&lt;/DIV&gt;
+&lt;/BLOCKQUOTE&gt;
+&lt;/DIV&gt;
+</pre>
+
+<p>
+Et ici, la feuille de style régissant les tailles et le style des boîtes générées :
+
+<pre>
+DIV { width : 100px; height: 100px;
+      border: thin solid red;
+      }
+
+BLOCKQUOTE   { width : 125px; height : 100px;
+      margin-top: 50px; margin-left: 50px; 
+      border: thin dashed black
+      }
+
+DIV.attributed-to { text-align : right; border: none; }
+</pre>
+
+<p>
+La propriété <a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>
+ayant la valeur initiale 'visible', l'élément BLOCKQUOTE ne sera pas rogné lors de sa mise en forme, donnant
+quelque chose comme ceci :
+
+<div class="figure">
+<p>
+<img src="images/overflow1.gif" alt="Débordement visible." width="177" height="173"><span class="dlink">   <a name="img-overflow1" href="images/longdesc/overflow1-desc.html" title="Long description for example with unclipped overflow">[D]</a></span></p>
+</div>
+
+<p><span class="errata"><a href="annexe/errata.html#s_11_1_1" title="Errata">« errata section 11.1.1 »</a></span></p>
+
+<p>
+Si, par ailleurs, on donne la valeur 'hidden' à la propriété <a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>
+de l'élément DIV, l'élément BLOCKQUOTE sera rogné par le bloc conteneur, ainsi :
+
+<div class="figure">
+<p>
+<img src="images/overflow2.gif" alt="Débordement rogné" width="111" height="111"><span class="dlink">   <a name="img-overflow2" href="images/longdesc/overflow2-desc.html" title="Long description for example with clipped overflow">[D]</a></span></p>
+</div>
+
+<p>La valeur 'scroll' aurait signifié, à ceux des agents utilisateurs l'implémentant,
+de faire apparaître un mécanisme de défilement pour que les utilisateurs puissent
+accéder au contenu de la partie ayant été rognée.
+</div>
+
+<h3>11.1.2 <a name="clipping">Le rognage</a> : la propriété <a href="visufx.html#propdef-clip" class="noxref"><span class="propinst-clip">'clip'</span></a></h3>
+
+<p>Une <a name="x3"><span class="index-def" title="clipping region"><dfn>zone de rognage</dfn></span></a>
+définit la partie du <a href="conform.html#rendered-content">contenu rendu</a> d'un élément
+qui est visible. Par défaut, la zone de rognage a la même taille et forme que la boîte, ou les boîtes,
+de l'élément. Cependant, celle-ci peut être modifiée à l'aide de la
+propriété <a href="visufx.html#propdef-clip" class="noxref"><span class="propinst-clip">'clip'</span></a>.
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'clip'"><a name="propdef-clip" class="propdef-title"><strong>'clip'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="visufx.html#value-def-shape" class="noxref"><span class="value-inst-shape">&lt;forme&gt;</span></a> | auto | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>auto
+<tr valign=baseline><td><em>S'applique à :</em>  <td>ceux des éléments de type bloc et ceux remplacés
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p>
+La propriété 'clip' s'applique aux éléments dont la valeur de la propriété
+<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>
+est autre que 'visible'. Les significations des valeurs sont :
+
+<dl>
+<dt><strong>auto</strong>
+<dd>La zone de rognage a la même taille et emplacement que la boîte, ou les boîtes, de l'élément ;
+
+<dt><span class="index-def" title="&lt;shape&gt;::definition of"><a name="value-def-shape" class="value-def"><strong>&lt;forme&gt;</strong></a></span>
+<dd><span>En <abbr>CSS2</abbr>, la seule valeur admise pour  &lt;forme&gt; est :
+rect (<a href="visufx.html#value-def-top" class="noxref"><span class="value-inst-top">&lt;haut&gt;</span></a><ins title="id=x68">,</ins>
+<a href="visufx.html#value-def-right" class="noxref"><span class="value-inst-right">&lt;droite&gt;</span></a><ins title="id=x68">,</ins>
+<a href="visufx.html#value-def-bottom" class="noxref"><span class="value-inst-bottom">&lt;bas&gt;</span></a><ins title="id=x68">,</ins>
+<a href="visufx.html#value-def-left" class="noxref"><span class="value-inst-left">&lt;gauche&gt;</span></a>)
+où <a href="visufx.html#value-def-top" class="noxref"><span class="value-inst-top">&lt;haut&gt;</span></a>,
+<a href="visufx.html#value-def-bottom" class="noxref"><span class="value-inst-bottom">&lt;droite&gt;</span></a>,
+<a href="visufx.html#value-def-right" class="noxref"><span class="value-inst-right">&lt;bas&gt;</span></a> et
+<a href="visufx.html#value-def-left" class="noxref"><span class="value-inst-left">&lt;gauche&gt;</span></a>
+représentent les décalages par rapport aux côtés respectifs de la boîte.</span>
+
+<p><span class="errata"><a href="annexe/errata.html#idx68" title="Errata">« errata id=x68 »</a></span>
+<p><span class="errata"><a href="annexe/errata.html#changes-clipping" title="Errata">« errata : Voir la proposition pour une <strong>nouvelle définition des valeurs de rect()</strong> »</a></span>
+<p>
+Les valeurs <span class="index-def" title="&lt;top&gt;::definition of"><a name="value-def-top" class="value-def">&lt;haut&gt;</a></span>,
+<span class="index-def" title="&lt;right&gt;::definition of"><a name="value-def-right" class="value-def">&lt;droite&gt;</a></span>,
+<span class="index-def" title="&lt;bottom&gt;::definition of"><a name="value-def-bottom" class="value-def">&lt;bas&gt;</a></span>,
+et <span class="index-def" title="&lt;left&gt;::definition of"><a name="value-def-left" class="value-def">&lt;gauche&gt;</a></span>
+peuvent être une valeur de <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a>
+ou bien 'auto'. Les valeurs négatives sont admises. La valeur 'auto' fait correspondre un bord
+donné de la zone de rognage à celui de la boîte générée par
+l'élément (c.à.d. la valeur 'auto' a la même signification que '0').
+
+<p>
+Avec des coordonnées ayant des valeurs en pixels, il faudrait faire attention à ce qu'aucun
+pixel ne reste visible quand la somme de &lt;gauche&gt; et &lt;droite&gt; est égale à
+la largeur de l'élément (et de même, pour la somme de &lt;haut&gt; et &lt;bas&gt; avec
+la hauteur de l'élément), et inversement, à ce qu'aucun pixel ne reste caché
+quand leurs sommes sont nulles.
+</dl>
+
+<p>
+Les ancêtres de l'élément peuvent aussi avoir des zones de rognage (quand leur
+propriété <a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>
+n'a pas la valeur 'visible' ; c'est l'intersection des diverses zones de rognage qui est rendue.
+
+<p>
+Si la zone de rognage excède les limites de la fenêtre du document de l'agent utilisateur,
+son contenu peut se trouver rogner par la fenêtre, en fonction du système d'exploitation.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Ces deux règles :
+<pre>
+P { clip: rect(5px, 10px, 10px, 5px); }
+P { clip: rect(5px, -5px, 10px, 5px); }
+</pre>
+
+<p>celles-ci vont créer les zones de rognage rectangulaires, matérialisées par les
+lignes en pointillés dans leurs illustrations respectives suivantes :
+
+<div class="figure">
+<p>
+<img src="images/clip.gif" alt="Deux zones de rognage." width="222" height="446"><span class="dlink">   <a name="img-clip" href="images/longdesc/clip-desc.html" title="Long description for example of clipping region">[D]</a></span>
+</div>
+</div>
+
+<div class="note"><p>
+<em><strong>Note</strong> En <abbr>CSS2</abbr>, toutes les zones de rognage sont rectangulaires. Il faut s'attendre
+à ce que les évolutions ultérieures autorisent des formes qui ne soient pas rectangulaires.
+</em>
+</div>
+
+<h2>11.2 <a name="visibility">La visibilité</a> : la propriété <a href="visufx.html#propdef-visibility" class="noxref"><span class="propinst-visibility">'visibility'</span></a></h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'visibility'"><a name="propdef-visibility" class="propdef-title"><strong>'visibility'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>visible | hidden | collapse | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td><span><del title="2001-06-25 id=s-11-2">inherit</del> <ins title="2001-06-25 id=s-11-2">visible</ins></span>
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td><span><del title="2001-06-25 id=s-11-2">non</del> <ins title="2001-06-25 id=s-11-2">oui</ins></span>
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>La propriété <a href="visufx.html#propdef-visibility" class="noxref"><span class="propinst-visibility">'visibility'</span></a>
+spécifie le rendu, ou non, des boîtes générées par un élément donné.
+Ces boîtes, bien qu'invisibles, influencent toujours la mise en forme du document (utiliser la
+propriété <a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>
+avec la valeur 'none' pour prohiber la génération d'une boîte, et ainsi toutes influences sur la mise en forme).
+Les valeurs ont les significations suivantes :
+
+<dl>
+<dt><strong>visible</strong>
+<dd>La boîte générée est visible ;
+<dt><strong>hidden</strong>
+<dd>La boîte générée est invisible (entièrement transparente),
+mais celle-ci influençant toujours la mise en forme ;
+<dt><strong>collapse</strong>
+<dd>Consulter le passage traitant des <a href="tables.html#dynamic-effects">effets dynamiques sur les rangées et colonnes</a>
+des tables. Quand on l'utilise avec autre chose, cette valeur 'collapse' correspond à 'hidden'.
+</dl>
+
+<p>
+On peut employer cette propriété conjointement avec des scripts pour créer des
+effets dynamiques.
+
+<div class="html-example">
+<p>
+Dans l'exemple suivant, quand on presse l'un ou l'autre bouton du formulaire, un script actionné
+par un utilisateur provoque l'apparition de la boîte qui lui correspond et, en même temps, la
+disparition de l'autre. Ces boîtes conservant leur taille et leur emplacement, l'effet produit
+le remplacement de l'une par l'autre (le script, écrit dans un langage hypothétique,
+pouvant, ou non, produire un effet avec un agent utilisateur conforme).
+
+<pre>
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"&gt;
+&lt;HTML&gt;
+&lt;HEAD&gt;
+&lt;STYLE type=&quot;text/css&quot;&gt;
+&lt;!--
+   #conteneur1 { position: absolute; 
+                 top: 2in; left: 2in; width: 2in }
+   #conteneur2 { position: absolute; 
+                 top: 2in; left: 2in; width: 2in;
+                 visibility: hidden; }
+--&gt;
+&lt;/STYLE&gt;
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+&lt;P&gt;Choose a suspect:&lt;/P&gt;
+&lt;DIV id="conteneur1"&gt;
+   &lt;IMG alt="Al Capone" 
+        width="100" height="100" 
+        src="suspect1.jpg"&gt;
+   &lt;P&gt;Nom : Al Capone&lt;/P&gt;
+   &lt;P&gt;Résidence : Chicago&lt;/P&gt;
+&lt;/DIV&gt;
+
+&lt;DIV id="conteneur2"&gt;
+   &lt;IMG alt="Lucky Luciano" 
+        width="100" height="100" 
+        src="suspect2.jpg"&gt;
+   &lt;P&gt;Nom : Lucky Luciano&lt;/P&gt;
+   &lt;P&gt;Résidence : New York&lt;/P&gt;
+&lt;/DIV&gt;
+
+&lt;FORM method="post" 
+      action="http://www.suspect.org/process-bums"&gt;
+   &lt;P&gt;
+   &lt;INPUT name="Capone" type="button" 
+          value="Capone" 
+          onclick='show("conteneur1");hide("conteneur2")'&gt;
+   &lt;INPUT name="Luciano" type="button" 
+          value="Luciano" 
+          onclick='show("conteneur2");hide("conteneur1")'&gt;
+&lt;/FORM&gt;
+&lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+
+</div>
+<hr class="navbar">
+
+<div class="navbar" align="center">
+<p><a href="visudet.html">précédent</a>  
+<a href="generate.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+</body>
+</html>

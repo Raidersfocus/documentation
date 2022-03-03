@@ -1,0 +1,510 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="fr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>À propos de la spécification CSS2</title>
+<link rel="stylesheet" type="text/css" href="annexe/W3C-REC.css">
+<link rel="stylesheet" type="text/css" href="annexe/vf.css">
+<link rel="stylesheet" type="text/css" href="annexe/print.css" media="print" > <!-- ajouté JHI 13.2.9 -->
+<link rel="prev" href="cover.html">
+<link rel="next" href="intro.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+</head>
+<body>
+<!-- Préface de la traduction -->
+<div id="lisezmoi">
+<a href="annexe/preface.php?id=css2" title="IMPORTANT : Lisez d'abord la préface de la traduction !"><strong> Lisez-moi S.V.P. </strong></a>
+</div>
+<div class="navbar" align="center">
+<p><a href="cover.html">précédent</a>  
+<a href="intro.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+<hr class="navbar">
+
+<h1 align="center">1 À propos de la spécification <abbr>CSS2</abbr></h1>
+<div class="subtoc">
+<p><strong>Contenu</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="about.html#q1" class="tocxref">1.1 Lire la spécification</a>
+    <li class="tocline2"><a href="about.html#q2" class="tocxref">1.2 Organisation de la spécification</a>
+    <li class="tocline2"><a href="about.html#q3" class="tocxref">1.3 Conventions</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="about.html#q4" class="tocxref">1.3.1 Les conventions pour les éléments et attributs dans le langage du document</a>
+      <li class="tocline3"><a href="about.html#property-defs" class="tocxref">1.3.2 Les définitions des propriétés <abbr>CSS</abbr></a>
+      <ul class="toc">
+        <li class="tocline4"><a href="about.html#q6" class="tocxref"> Valeur</a>
+        <li class="tocline4"><a href="about.html#q7" class="tocxref"> Valeur initiale</a>
+        <li class="tocline4"><a href="about.html#q8" class="tocxref"> S'applique à</a>
+        <li class="tocline4"><a href="about.html#q9" class="tocxref"> Héritée</a>
+        <li class="tocline4"><a href="about.html#q10" class="tocxref"> Pourcentage</a>
+        <li class="tocline4"><a href="about.html#q11" class="tocxref"> Médias</a>
+      </ul>
+      <li class="tocline3"><a href="about.html#shorthand" class="tocxref">1.3.3 Les propriétés raccourcies</a>
+      <li class="tocline3"><a href="about.html#q13" class="tocxref">1.3.4 Les notes et exemples</a>
+      <li class="tocline3"><a href="about.html#q14" class="tocxref">1.3.5 Les images et les descriptions longues</a>
+    </ul>
+    <li class="tocline2"><a href="about.html#q15" class="tocxref">1.4 Remerciements</a>
+    <li class="tocline2"><a href="about.html#copyright" class="tocxref">1.5 Notice de copyright</a>
+  </ul>
+</div>
+
+<h2><a name="q1">1.1 Lire la spécification</a></h2>
+
+<p>
+La rédaction de cette spécification tient compte de deux types de lecteurs : les auteurs
+de feuilles de style et les personnes chargées de leur implémentation. Nous espérons que la
+spécification fournira aux auteurs les moyens d'écrire des documents efficaces, attractifs
+et accessibles, sans pour autant les noyer dans le détail de la mise en &#339;uvre des <abbr>CSS</abbr>.
+Cependant, les maîtres d'&#339;uvre devraient y trouver le nécessaire pour construire
+des <a href="conform.html#conformance">agents utilisateurs conformes</a>.
+
+<p>
+Le document commence par une présentation générale des feuilles de style pour
+devenir de plus en plus technique et spécifique vers la fin. L'accès
+rapide aux informations est facilité au travers d'un sommaire général,
+de sommaires spécifiques en début de chacun des chapitres et d'un index, à la
+fois dans les versions électroniques et imprimées.
+
+<p>
+La spécification tient également compte de ces deux modes de présentation.
+Bien que celles-ci soient sans doute similaires, le lecteur remarquera quelques nuances.
+Par exemple, les liens ne fonctionnent (évidemment) pas dans la version imprimée et
+la numérotation des pages n'apparaît pas dans la version électronique. En cas
+de doute, la version électronique du document fait autorité.
+
+<h2><a name="q2">1.2 Organisation de la spécification</a></h2>
+
+<p>
+Le document est organisé selon le découpage suivant :
+
+<dl>
+
+<dt><strong>Chapitre 2 : Une introduction à <abbr>CSS2</abbr></strong>
+
+<dd>
+L'introduction inclut un bref tutoriel de <abbr>CSS2</abbr> et une discussion des principes de construction
+sous-jacents à <abbr>CSS2</abbr>.
+
+<dt><strong>Chapitre 3 à 20 : Manuel de référence de <abbr>CSS2</abbr>.</strong>
+
+<dd>
+Le corps de ce manuel représente le langage de référence de <abbr>CSS2</abbr>. On y définit
+ce qu'on peut mettre dans une feuille de style (syntaxe, propriétés, valeurs de propriétés)
+et comment les agents utilisateurs doivent interpréter les feuilles de style pour prétendre
+à <a href="conform.html#conformance">la conformité</a>.
+
+<dt><strong>Annexes :</strong>
+
+<dd>Les annexes contiennent des renseignements sur <a href="sample.html">un exemple de feuille de
+style pour <abbr>HTML 4.0</abbr></a>, <a href="changes.html">les changements depuis <abbr>CSS1</abbr></a>,
+<a href="notes.html">la mise en &#339;uvre et les notes d'évaluation</a>, 
+<a href="grammar.html">la grammaire de <abbr>CSS2</abbr></a>, une liste de <a href="refs.html">références</a>
+normatives et informatives et trois index : un pour les <a href="propidx.html">propriétés</a>,
+un autre pour les <a href="descidx.html">descripteurs</a> et un <a href="indexlist.html">index général</a>.
+
+</dl>
+
+<h2><a name="q3">1.3 Conventions</a></h2>
+
+<h3><a name="q4">1.3.1 Les conventions pour les éléments et attributs dans le </a><a href="conform.html#doclanguage">langage du document</a></h3>
+
+<ul>
+<li>
+Les noms des propriétés <abbr>CSS</abbr>, des descripteurs et des pseudo-classes sont placés entre guillemets simples.
+<li>
+Les valeurs de <abbr>CSS</abbr> sont placées entre guillemets simples.
+<li>
+Les noms des éléments du langage du document sont en majuscules.
+<li>
+Les noms des attributs du langage du document sont en minuscules et entre guillemets doubles.
+</ul>
+
+<h3>1.3.2 <a name="property-defs">Les définitions des propriétés <abbr>CSS</abbr></a></h3>
+<p>
+Chaque définition d'une propriété <abbr>CSS</abbr> commence par un résumé des
+informations clés comme dans ce qui suit :
+
+<div class="propdef">
+<dl><dt>
+<a name="propdef-property-name" class="propdef-title"><strong>'nom de la propriété'</strong></a>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>valeurs et syntaxe légales
+<tr valign=baseline><td><em>Valeur initiale :</em>  <td>valeur initiale
+<tr valign=baseline><td><em>S'applique à :</em>  <td>les éléments sur lesquels agit la propriété
+<tr valign=baseline><td><em>Héritée :</em>  <td>si oui ou non la propriété est héritée
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>comment interpréter les valeurs en pourcentage
+<tr valign=baseline><td><em>Médias :</em>  <td>à quels groupes de médias s'adresse la propriété
+</table>
+</dl>
+</div>
+
+
+<h4><a name="q6"> Valeur</a></h4>
+
+<p>
+Cette partie spécifie le jeu de valeurs valides pour la propriété.
+On désigne les types de valeur de plusieurs façons avec :
+
+<ol>
+<li> des valeurs de <a name="syndata.html#keywords">mot-clé</a> (ex. auto, disc, etc.) ;
+
+<li> les types de données de base entre "&lt;" et "&gt;" (ex. &lt;longueur&gt;, &lt;pourcentage&gt;, etc.).
+Dans la version électronique, chaque instance d'un type de données offre un lien vers sa définition ;
+
+<li> les types dont les valeurs légales sont les mêmes que celles des propriétés
+qui portent le même nom (ex. &lt;'border-width'&gt;, &lt;'background-attachment'&gt;, etc.).
+Dans ce cas, on donne le nom de ce type (complet avec guillemets) entre "&lt;" et "&gt;" (ex.
+&lt;'border-width'&gt;). Dans la version électronique, chaque instance de ce type des non-terminaux
+offre un lien vers la propriété correspondante ;
+
+<li> des non-terminaux qui n'ont pas le même nom que celui de la propriété.
+Dans ce cas, le nom non-terminal se met entre "&lt;" et "&gt;" comme dans &lt;border-width&gt;.
+Remarquer la distinction entre &lt;border-width&gt; et &lt;'border-width'&gt;, le dernier étant
+défini selon le premier. La définition d'un non-terminal se trouve à côté
+de sa première apparition dans la spécification. Dans la version électronique,
+chaque instance de ce type offre un lien vers la définition de la valeur correspondante.
+</ol>
+
+<p>
+D'autres mots sont des mots-clés qui doivent apparaître littéralement sans 
+guillemets (ex. red) tout comme les caractères barre oblique (/) et virgule.
+
+<p>
+Les valeurs se rangent comme suit :
+
+<ul>
+<li>Plusieurs mots juxtaposés signifient que tous doivent survenir dans l'ordre donné ;
+<li>Une barre (|) distingue deux ou plusieurs options : l'une seulement doit survenir ;
+<li>Une double barre (||) distingue deux ou plusieurs options : l'une ou plusieurs doivent survenir quel que soit l'ordre ;
+<li>Les crochets ([ ]) servent au regroupement. 
+</ul>
+
+<p>
+La juxtaposition a plus de poids que la double barre et la double barre que la barre. Les lignes
+suivantes sont ainsi équivalentes :
+
+<pre>
+    a b   |   c || d e
+  [ a b ] | [ c || [ d e ]]
+</pre>
+
+<p> Chaque type, mot-clé ou groupe entre crochets peut être suivi par l'un
+des modificateurs suivants :
+
+  <ul>
+    <li>Un astérisque (*) : ce qui précède survient zéro à plusieurs fois ;
+    <li>Un plus (+) : ce qui précède survient une ou plusieurs fois ;
+    <li>Un point d'interrogation (?) : ce qui précède est optionnel ;
+    <li>Une paire de nombres entre accolades ({A,B}) : ce qui précède survient au moins <var>A</var> fois et au plus <var>B</var> fois.
+  </ul>
+
+<p>L'exemple qui suit illustre différents types de valeur :
+
+<blockquote>
+    <em>Valeur :</em> N | NW | NE<br>
+    <em>Valeur :</em> [ &lt;longueur&gt; | thick | thin ]{1,4}<br>
+    <em>Valeur :</em> [&lt;famille-nom&gt; , ]* &lt;famille-nom&gt;<br>
+    <em>Valeur :</em> &lt;uri&gt;? &lt;couleur&gt; [ / &lt;couleur&gt; ]?<br>
+    <em>Valeur :</em> &lt;uri&gt; || &lt;couleur&gt;<br>
+</blockquote>
+
+<h4><a name="q7"> Valeur initiale</a></h4>
+
+<p>
+Cette partie spécifie la valeur initiale de la propriété. Si la propriété
+est héritée, c'est la valeur donnée à l'élément racine de
+<a href="conform.html#doctree">l'arbre du document</a>. Concernant l'interaction entre les valeurs spécifiées dans la feuille
+de style, celles héritées et celles initiales, consulter le chapitre
+sur <a href="cascade.html">la cascade</a>.
+
+<h4><a name="q8"> S'applique à</a></h4>
+
+<p>
+Cette partie donne la liste des  éléments concernés par la propriété.
+Chacun des éléments est supposé avoir toutes les propriétés, mais quelques-unes
+d'entre elles ne produisent aucun effet sur certains types d'éléments.
+Par exemple, <a href="text.html#propdef-white-space" class="noxref"><span class="propinst-white-space">'white-space'</span></a>
+ne touche que les éléments de type bloc.
+
+<h4><a name="q9"> Héritée</a></h4>
+
+<p>
+Cette partie indique si la valeur de la propriété est héritée d'un
+élément ancêtre. Concernant l'interaction entre les valeurs spécifiées dans la feuille
+de style, celles héritées et celles initiales, consulter le chapitre
+sur <a href="cascade.html">la cascade</a>.
+
+
+<h4><a name="q10"> Pourcentage</a></h4>
+
+<p>
+Cette partie indique comment interpréter les valeurs exprimées en pourcentage, le cas échéant,
+de la propriété. La mention "sans objet" signifie que la propriété n'admet pas de
+valeurs en pourcentage.
+
+<h4><a name="q11"> Médias</a></h4>
+
+<p>
+Cette partie indique les <a href="media.html#media-groups">groupes de médias</a> qui sont concernés
+par la propriété. Les conditions de <a href="conform.html">conformité</a> obligent
+les agents utilisateurs à respecter cette propriété si ceux-ci supportent les
+<a href="media.html#media-types">types de média</a> indiqués par ces <a href="media.html#media-groups">groupes de médias</a>.
+
+<h3>1.3.3 <a name="shorthand">Les propriétés raccourcies</a></h3>
+
+<p>
+Quelques propriétés sont des <a name="x0"><span class="index-def" title="shorthand property"><dfn>propriétés raccourcies</dfn></span></a>,
+les auteurs pouvant spécifier en une seule propriété, les valeurs de plusieurs autres propriétés.
+
+<p>Ainsi, la propriété <a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a>
+est une propriété raccourcie qui permet de fixer en une seule fois les valeurs de <a href="fonts.html#propdef-font-style" class="noxref"><span
+class="propinst-font-style">'font-style'</span></a>, <a href="fonts.html#propdef-font-variant" class="noxref"><span
+class="propinst-font-variant">'font-variant'</span></a>, <a href="fonts.html#propdef-font-weight" class="noxref"><span
+class="propinst-font-weight">'font-weight'</span></a>, <a href="fonts.html#propdef-font-size" class="noxref"><span
+class="propinst-font-size">'font-size'</span></a>, <a href="visudet.html#propdef-line-height" class="noxref"><span
+class="propinst-line-height">'line-height'</span></a> et <a href="fonts.html#propdef-font-family" class="noxref"><span
+class="propinst-font-family">'font-family'</span></a>.
+
+<p>
+Quand des valeurs sont absentes de la forme raccourcie, chacune des propriétés
+"manquantes" revêt sa valeur initiale (voir le chapitre sur <a href="cascade.html">la cascade</a>).
+
+<p><ins title="x1">Les propriétés raccourcies admettent une liste de valeurs de sous-propriétés <em>ou</em> la valeur 'inherit'.
+On ne peut pas mélanger la valeur 'inherit' avec d'autres valeurs de sous-propriétés car il serait sinon impossible de définir
+la sous-propriété à laquelle 'inherit' s'applique. Les définitions de certaines propriétés ne respectent pas cette règle :
+'border-top', 'border-right', 'border-bottom', 'border-left', 'border', 'background', 'font', 'list-style', 'cue' et 'outline'.</ins>
+
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Soient les multiples règles de style de cet exemple :
+
+<pre>
+H1 { 
+  font-weight: bold; 
+  font-size: 12pt;
+  line-height: 14pt; 
+  font-family: Helvetica; 
+  font-variant: normal;
+  font-style: normal;
+  font-stretch: normal;
+  font-size-adjust: none
+}
+</pre>
+
+<p>
+on peut les récrire en une seule propriété raccourcie :
+
+<pre>
+H1 { font: bold 12pt/14pt Helvetica }
+</pre>
+
+<p>
+Ici, <a href="fonts.html#propdef-font-variant" class="noxref"><span
+class="propinst-font-variant">'font-variant'</span></a>, <a href="fonts.html#propdef-font-stretch" class="noxref"><span
+class="propinst-font-stretch">'font-stretch'</span></a>, <a href="fonts.html#propdef-font-size-adjust" class="noxref"><span
+class="propinst-font-size-adjust">'font-size-adjust'</span></a> et <a href="fonts.html#propdef-font-style" class="noxref"><span
+class="propinst-font-style">'font-style'</span></a> prennent leur valeur initiale.
+
+</div>
+
+<h3><a name="q13">1.3.4 Les notes et les exemples</a></h3>
+
+<p>
+Tous les exemples qui illustrent un usage interdit sont repérés avec l'expression "NON ADMIS".
+
+<p>
+Tous les exemples <abbr>HTML</abbr> sont conformes au <abbr lang="en" title="Document Type Definition">DTD</abbr> <abbr>HTML 4.0</abbr>
+strict (tel que défini dans <a href="refs.html#ref-HTML40" rel="biblioentry" class="noxref"><span class="normref">[HTML40]</span></a>),
+à moins qu'une autre déclaration de type de document (DOCTYPE) ne soit précisée.
+
+<p>
+Les notes sont seulement informatives.
+
+<p>
+Les exemples et les notes sont indiqués dans la source <abbr>HTML</abbr> de la spécification pour un
+rendu particulier par les agents utilisateurs <abbr>CSS1</abbr>.
+
+<h3><a name="q14">1.3.5 Les images et les descriptions longues</a></h3>
+
+<p>
+La plupart des illustrations de la version électronique sont accompagnés de "descriptions longues" de leur représentation.
+<a name="dfactice"></a>Un "<a href="about.html#dfactice" title="Un lien factice pour illustration">[D]</a>"
+à droite de l'image signale un lien vers une description longue.
+
+<p>Les images et descriptions longues sont seulement informatives.
+
+<h2><a name="q15">1.4 Remerciements</a></h2> 
+
+<p>
+Cette spécification est le produit du Groupe de Travail du <abbr>W3C</abbr> sur les feuilles de style en cascade
+et les propriétés de formatage. En plus des éditeurs du présent document,
+voici les membres de ce groupe :
+
+Brad Chase (Bitstream), Chris Wilson (Microsoft), Daniel Glazman
+(Electricité de France), Dave Raggett (<abbr>W3C</abbr>/HP), Ed Tecot
+(Microsoft), Jared Sorensen (Novell), Lauren Wood (SoftQuad), Laurie
+Anna Kaplan (Microsoft), Mike Wexler (Adobe), Murray Maloney (Grif),
+Powell Smith (IBM), Robert Stevahn (HP), Steve Byrne (JavaSoft),
+Steven Pemberton (CWI), Thom Phillabaum (Netscape), Douglas Rand
+(Silicon Graphics), Robert Pernett (Lotus), Dwayne Dicks (SoftQuad),
+et Sho Kuwamoto (Macromedia). Nous les remercions de leurs efforts assidus.
+
+<p>
+Un certains nombre d'experts invités par le Groupe de Travail ont également contribué :
+George Kersher, Glenn Rippel (Bitstream), Jeff Veen (HotWired), Markku
+T. Hakkinen (The Productivity Works), Martin Dürst
+(<abbr>W3C</abbr>, anciennement  Universität Zürich), Roy Platon (RAL), Todd
+Fahrner (Verso), Tim Boland (NIST), Eric Meyer (Case Western
+Reserve University) et Vincent Quint (<abbr>W3C</abbr>).
+
+<p>
+Le chapitre des polices sur le web a été fortement marqué par
+Brad Chase (Bitstream), David Meltzer (Microsoft Typography) et Steve Zilles (Adobe).
+Les personnes suivantes ont aussi fait des apports à ce chapitre :
+Alex Beamon (Apple), Ashok Saxena (Adobe), Ben
+Bauermeister (HP), Dave Raggett (<abbr>W3C</abbr>/HP), David Opstad (Apple), David
+Goldsmith (Apple), Ed Tecot (Microsoft), Erik van Blokland
+(LettError), François Yergeau (Alis), Gavin Nicol (Inso),
+Herbert van Zijl (Elsevier), Liam Quin, Misha Wolf (Reuters), Paul
+Haeberli (SGI) et le dernier Phil Karlton (Netscape).
+
+<p>
+Le chapitre sur les médias paginés est en grande partie dû à
+Robert Stevahn (HP) et Stephen Waters (Microsoft).
+
+<p>Robert Stevahn (HP), Scott Furman (Netscape) et Scott
+Isaacs (Microsoft) furent des interlocuteurs clés pour le positionnement en <abbr>CSS</abbr>.
+
+<p>Mike Wexler (Adobe) a écrit la version préliminaire qui décrit plusieurs des
+nouvelles fonctions de <abbr>CSS2</abbr>.
+
+<p><a href="http://cs.cornell.edu/home/raman">T.V. Raman</a> (Adobe)
+a fait des contributions essentielles pour les feuilles de styles auditives [Aural Cascading Style Sheets (ACSS)]
+et les concepts de présentation auditive à partir de ses travaux chez AsTeR (Audio System For Technical Readings).
+Il a produit le premier jet de la spécification ACSS qui régit la présente spécification.
+Les valeurs des propriétés auditives dans <a href="sample.html">l'exemple de feuille de style pour <abbr>HTML 4.0</abbr></a>
+sont de son fait ; il les utilise quotidiennement sur sa machine audio en conjonction avec Emacspeak et le navigateur
+Emacs du W3 (dont l'auteur est William Perry, celui-ci a déjà mis en &#339;uvre les extensions auditives pour 
+le compte du W3).
+
+<p>Todd Fahrner (Verso) a examiné les navigateurs anciens et modernes pour développer l'exemple de feuille de style de l'annexe.
+
+<p>Merci à Jan Kärrman, auteur de <a href="http://www.tdb.uu.se/~jan/html2ps.html">html2ps</a>
+pour l'aide apportée à la création de la version PostScript de la spécification.
+
+<p>
+Les personnes suivantes ont contribué au développement de <abbr>CSS2</abbr> via des rencontres électroniques
+ou physiques : Alan Borning, Robert
+Cailliau, Liz Castro, James Clark, Dan Connolly, Donna Converse,
+Daniel Dardailler, Al Gilman, Daniel Greene, Scott Isaacs, Geir
+Ivars&oslash;y, Vincent Mallet, Kim Marriott, Brian Michalowski, Lou
+Montulli, Henrik Frystyk Nielsen, Jacob Nielsen, Eva von Pepel,
+William Perry, David Siegel, Peter Stuckey et Jason White.
+
+<p>Les discussions sur www-style@w3.org ont influencé plusieurs questions capitales de <abbr>CSS</abbr>.
+Nous voudrions remercier spécialement Bjorn Backlund,
+Todd Fahrner, Lars Marius Garshol, Sue Jordan, Ian Hickson, Susan
+Lesch, Andrew Marshall, MegaZone, Eric Meyer, Russell O'Connor, David
+Perrell, Liam Quinn, Jon Seymour, Neil St. Laurent, Taylor, Brian Wilson et Chris
+Wilson de leur participation.
+
+<p>
+Beaucoup de remerciements au Groupe de Travail de Correction Technique de l'Initiative pour l'Accessibilité
+au Web, Protocoles et Formats [Web Accessibility Initiative Protocols and Formats Technical Review (WAI PF)]
+pour son aide à améliorer l'accessibilité dans <abbr>CSS2</abbr>.
+
+<p>
+Un grand merci à Philippe Le Hégaret, dont le validateur <abbr>CSS</abbr> a permis de fournir des exemples
+corrects et une grammaire raisonnable. 
+
+<p>
+Remerciement spécial à Arnaud Le Hors, dont l'apport technique fait que ce document fonctionne.
+
+<p>Adam Costello a amélioré cette spécification grâce à une relecture détaillée.
+
+<p>
+Enfin, merci à Tim Berners-Lee sans qui rien de tout ceci n'aurait été possible.
+
+
+<h2>1.5 <a name="copyright">Notice de copyright</a></h2>
+
+<p><strong>Copyright &copy; 1997 <a class="w3c" href="http://www.w3.org/">World Wide
+Web Consortium</a>, (<a href="http://www.lcs.mit.edu/">Massachusetts
+Institute of Technology</a>, <a href="http://www.inria.fr/">Institut
+National de Recherche en Informatique et en Automatique</a>, <a
+href="http://www.keio.ac.jp/">Keio University</a>). Tous droits réservés.</strong>
+
+<p>
+Les documents sur le site du <a class="w3c" href="http://www.w3.org/"><abbr>W3C</abbr></a> sont présentés par les
+détenteurs du copyright sous la licence suivante. Par l'obtention, l'usage et/ou la copie de
+ce document ou bien du document du <abbr>W3C</abbr> auquel cette déclaration est liée, vous reconnaissez
+avoir lu, compris et vous soumettre aux termes et conditions suivantes :
+
+<p>
+La permission d'utiliser, copier et distribuer le contenu de ce document ou du document du <abbr>W3C</abbr> auquel cette
+déclaration est liée, est présentement accordée pour tout média, dans tout but
+et sans redevance ni royalties, à condition d'inclure ce qui suit sur <em>toutes</em> les copies du
+document ou parties de celui-ci que vous utilisez :
+
+<ol>
+  <li>Un lien ou une adresse <abbr lang="en" title="Uniform Resource Identifier">URI</abbr> vers le document original du <abbr>W3C</abbr>
+
+  <li>
+  La notice de copyright préexistante de l'auteur original, et s'il n'y en a pas, une notice
+  de la forme : &quot;Copyright &copy; <a class="w3c" href="http://www.w3.org/">World Wide Web Consortium</a>,
+  (<a href="http://www.lcs.mit.edu/">Massachusetts Institute of Technology</a>,
+  <a href="http://www.inria.fr/">Institut National de Recherche en Informatique et en Automatique</a>,
+  <a href="http://www.keio.ac.jp/">Keio University</a>). Tous droits réservés.&quot;
+
+  <li><em>S'il existe</em>, le STATUT du document du <abbr>W3C</abbr>.
+</ol>
+
+<p>
+Si l'espace le permet, le texte complet de cette <b>NOTICE</b> devrait être fourni.
+Ainsi que les crédits envers les détenteurs du copyright pour tout logiciel,
+documents ou autres articles ou produits que vous créez suivant l'implémentation
+de tout ou partie de ce document.
+
+<p>
+Aucun droit de créer des modifications ou dérivés n'est autorisé
+conformément à cet accord.
+
+<p><b>CE DOCUMENT EST FOURNI "TEL QUEL", ET LES DÉTENTEURS DU COPYRIGHT NE
+FONT AUCUNE DÉCLARATION NI GARANTIE, EXPRESSE OU IMPLICITE, EN
+PARTICULIER, MAIS NON LIMITATIVEMENT, DE GARANTIE DE COMMERCIABILITÉ,
+D'ADÉQUATION À UN USAGE PARTICULIER, DE NON-INFRACTION OU
+D'AUTORISATION ; QUE LE CONTENU DE CE DOCUMENT SOIT ADAPTÉ À QUELQUE
+USAGE QUE CE SOIT ; NI QUE LES IMPLÉMENTATIONS DE CE CONTENU
+N'ENFREINDRONT LES BREVETS, COPYRIGHTS, MARQUES DÉPOSÉES OU
+AUTRES DROITS DE TIERCES PARTIES.</b></p>
+
+<p><b>LES DÉTENTEURS DU COPYRIGHT NE SERONT RESPONSABLES D'AUCUN DOMMAGE
+DIRECT OU INDIRECT, NI DES CONSÉQUENCES RÉSULTANT DE TOUTE
+UTILISATION DE CE DOCUMENT OU DE L'EXÉCUTION OU IMPLÉMENTATION
+DE SON CONTENU.</b></p>
+
+<p>
+Le nom des personnes ou des marques détentrices des droits d'auteur ne doit PAS être utilisé
+pour la publicité ou pour faire connaître ce document ou son contenu sans permission
+écrite particulière préalable. Les droits de reproduction de ce document
+restent acquis aux détenteurs des droits d'auteur.
+
+<hr class="navbar">
+
+<div class="navbar" align="center">
+<p><a href="cover.html">précédent</a>  
+<a href="intro.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+</body>
+</html>

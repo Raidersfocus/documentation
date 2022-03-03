@@ -1,0 +1,520 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="fr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Introduction à CSS2</title>
+<link rel="stylesheet" type="text/css" href="annexe/W3C-REC.css">
+<link rel="stylesheet" type="text/css" href="annexe/vf.css">
+<link rel="stylesheet" type="text/css" href="annexe/print.css" media="print" > <!-- ajouté JHI 13.2.9 -->
+<link rel="prev" href="about.html">
+<link rel="next" href="conform.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+</head>
+<body>
+<!-- Préface de la traduction -->
+<div id="lisezmoi">
+<a href="annexe/preface.html" title="IMPORTANT : Lisez d'abord la préface de la traduction !"><strong> Lisez-moi S.V.P. </strong></a>
+</div>
+<div class="navbar" align="center">
+<p><a href="about.html">précédent</a>  
+<a href="conform.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+<hr class="navbar">
+
+<h1 align="center">2 Introduction à <abbr>CSS2</abbr></h1> 
+<div class="subtoc">
+<p><strong>Contenu</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="intro.html#q1" class="tocxref">2.1 Un bref tutoriel de <abbr>CSS2</abbr> pour <abbr>HTML</abbr></a>
+    <li class="tocline2"><a href="intro.html#q2" class="tocxref">2.2 Un bref tutoriel de <abbr>CSS2</abbr> pour <abbr>XML</abbr></a>
+    <li class="tocline2"><a href="intro.html#processing-model" class="tocxref">2.3 Le modèle de traitement de <abbr>CSS2</abbr></a>
+    <ul class="toc">
+      <li class="tocline3"><a href="intro.html#q4" class="tocxref">2.3.1 Le canevas</a>
+      <li class="tocline3"><a href="intro.html#q5" class="tocxref">2.3.2 Le modèle d'adressage de <abbr>CSS2</abbr></a>
+    </ul>
+    <li class="tocline2"><a href="intro.html#q6" class="tocxref">2.4 Les principes de construction de <abbr>CSS</abbr></a>
+  </ul>
+</div>
+
+<h2><a name="q1">2.1 Un bref tutoriel de <abbr>CSS2</abbr> pour <abbr>HTML</abbr></a></h2>
+
+<p>
+Nous allons montrer dans ce tutoriel combien il est facile de réaliser des feuilles de style simples.
+Pour cela, vous devrez connaître un peu <abbr>HTML</abbr> (voir <a href="refs.html#ref-HTML40" rel="biblioentry" class="noxref"><span class="informref">[HTML40]</span></a>)
+et une terminologie de base de l'impression numérique.
+
+<p>Commençons par un petit document <abbr>HTML</abbr> :
+
+<pre class="html-example">
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;TITLE&gt;La page personnelle de Bach&lt;/TITLE&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+    &lt;H1&gt;La page personnelle de Bach&lt;/H1&gt;
+    &lt;P&gt;Jean-Sébastien Bach était un compositeur prolifique.
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+
+<p>Pour rendre la couleur du texte des éléments H1 bleu, vous pouvez écrire
+la règle de feuille de style suivante :
+
+<pre class="example">
+  H1 { color: blue }
+</pre>
+
+<p>
+Une règle <abbr>CSS</abbr> consiste en deux parties principales :
+un <a href="selector.html">sélecteur</a> ('H1') et une déclaration ('color: blue').
+Celle-ci se compose à son tour de deux parties : une propriété ('color') et
+une valeur ('blue'). Bien que cet exemple n'agisse que sur une seule des propriétés
+nécessaires au rendu d'un document <abbr>HTML</abbr>, cela suffit pour qu'elle soit qualifiée de
+feuille de style. Combinée avec d'autres feuilles de styles (la combinaison de feuilles de style
+est une fonction fondamentale des <abbr>CSS</abbr>), elle agira sur la présentation finale du document.
+
+<p>La spécification <abbr>HTML 4.0</abbr> définit la façon de relier les feuilles de style
+à un documents <abbr>HTML</abbr> : soit par incorporation dans celui-ci, soit par appel à une feuille de style externe.
+Pour l'incorporation, on utilise l'élément STYLE :
+
+<pre class="html-example">
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;TITLE&gt;La page personnelle de Bach&lt;/TITLE&gt;
+  &lt;STYLE type="text/css"&gt;
+    H1 { color: blue }
+  &lt;/STYLE&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+    &lt;H1&gt;La page personnelle de Bach&lt;/H1&gt;
+    &lt;P&gt;Jean-Sébastien Bach était un compositeur prolifique.
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+
+<p>Pour une souplesse d'utilisation maximale, on recommande aux auteurs l'usage de feuilles de style
+externes. On peut en changer sans modifier la source <abbr>HTML</abbr> du document et les partager entre plusieurs
+documents. Pour faire le lien vers une feuille de style externe, on emploie l'élément LINK :
+
+<pre class="html-example">
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;TITLE&gt;La page personnelle de Bach&lt;/TITLE&gt;
+  &lt;LINK rel="stylesheet" href="bach.css" type="text/css"&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+    &lt;H1&gt;La page personnelle de Bach&lt;/H1&gt;
+    &lt;P&gt;Jean-Sébastien Bach était un compositeur prolifique.
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+
+<p>L'élément LINK spécifie :
+
+<ul>
+<li> le type de lien : vers une "feuille de style".
+<li> la location de celle-ci au travers de l'attribut <span>"<ins title="id=x29">h</ins>ref"</span>
+<li> le type de la feuille de style liée : "text/css".
+</ul>
+
+<p>
+Pour montrer la relation étroite entre feuille de style et balisage structuré, nous utiliserons
+l'élément STYLE pour ce tutoriel. Ajoutons des couleurs :
+<pre class="html-example">
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;TITLE&gt;La page personnelle de Bach&lt;/TITLE&gt;
+  &lt;STYLE type="text/css"&gt;
+    BODY { color: red }
+    H1 { color: blue }
+  &lt;/STYLE&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+    &lt;H1&gt;La page personnelle de Bach&lt;/H1&gt;
+    &lt;P&gt;Jean-Sébastien Bach était un compositeur prolifique.
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+
+<p>
+Deux règles composent maintenant la feuille de style : la première spécifie la
+couleur rouge ('red') pour l'élément BODY et la seconde la couleur bleu ('blue') pour
+l'élément H1. Comme aucune valeur de couleur n'est spécifiée pour
+l'élément P, celui-ci hérite de la couleur de son élément parent,
+ici BODY. L'élément H1 est aussi un élément enfant de BODY, mais la
+seconde règle prévaut sur la valeur héritée. En <abbr>CSS</abbr> il y a souvent de tels
+conflits entre différentes valeurs, cette spécification décrit leur résolution.
+
+<p>
+<abbr>CSS2</abbr> comporte plus de 100 propriétés différentes, dont <a href="colors.html#propdef-color" class="noxref"><span
+class="propinst-color">'color'</span></a>. Voyons quelques-unes d'entre elles :
+
+<pre class="example">
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+  &lt;TITLE&gt;La page personnelle de Bach&lt;/TITLE&gt;
+  &lt;STYLE type="text/css"&gt;
+    BODY { 
+      font-family: "Gill Sans", sans-serif;
+      font-size: 12pt;
+      margin: 3em; 
+    }
+  &lt;/STYLE&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+    &lt;H1&gt;La page personnelle de Bach&lt;/H1&gt;
+    &lt;P&gt;Jean-Sébastien Bach était un compositeur prolifique.
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+
+<p>
+En premier lieu, on remarque plusieurs déclarations qui sont réunies à
+l'intérieur d'un bloc délimité par des accolades ({...}), qu'elles sont
+séparées par des points-virgules (;), la dernière pouvant aussi se terminer par un point-virgule.
+
+<p>
+La première déclaration sur l'élément BODY spécifie la famille de
+police "Gill Sans". Si celle-ci n'était pas disponible, l'agent utilisateur (souvent un "navigateur")
+utilisera la famille de polices 'sans-serif' qui est l'une des cinq familles de polices génériques
+reconnues pour chacun des agents utilisateurs. Les éléments enfants de BODY héritent
+de la valeur de la propriété <a href="fonts.html#propdef-font-family" class="noxref"><span
+class="propinst-font-family">'font-family'</span></a>.
+
+<p>
+La seconde déclaration fixe la taille de la police de BODY à 12 points. L'unité
+"point" est couramment employée en typographie d'impression pour mesurer le corps d'une police
+et d'autres longueurs. C'est un exemple d'unité absolue qui ne varie pas en fonction de l'environnement.
+
+<p>
+La troisième déclaration s'appuie sur une unité relative qui varie en fonction
+de son entourage. L'unité "em" se réfère à la taille de la police de
+l'élément. Le résultat, dans ce cas, sera que les marges autour de l'élément BODY
+seront trois fois plus grandes que la taille de la police.
+
+<h2><a name="q2">2.2 Un bref tutoriel de <abbr>CSS2</abbr> pour <abbr>XML</abbr></a></h2>
+
+<p>
+On peut utiliser <abbr>CSS</abbr> avec chaque format de document structuré, par exemple avec des
+applications de eXtensible Markup Language <a href="refs.html#ref-XML10" rel="biblioentry" class="noxref"><span class="informref">[XML10]</span></a>.
+En fait, <abbr>XML</abbr> est plus dépendant des feuilles de style que <abbr>HTML</abbr>, car les auteurs peuvent introduire
+des éléments propres que les agents utilisateurs ne savent pas interpréter.
+
+<p>
+Voici un fragment <abbr>XML</abbr> simple :
+
+<pre class="xml-example">
+&lt;ARTICLE&gt;
+  &lt;HEADLINE&gt;La rencontre de Frédéric le Grand et de Bach&lt;/HEADLINE&gt;
+  &lt;AUTHOR&gt;Johann Nikolaus Forkel&lt;/AUTHOR&gt;
+  &lt;PARA&gt;
+    Un soir, alors qu'il préparait sa
+    &lt;INSTRUMENT&gt;flûte&lt;/INSTRUMENT&gt; et que ses
+    musiciens étaient réunis, un officier lui apporta
+    la liste des étrangers qui venaient d'arriver.
+  &lt;/PARA&gt;
+&lt;/ARTICLE&gt;
+</pre>
+
+<p>
+Pour rendre ce fragment à la manière d'un document, nous devons d'abord
+déclarer lesquels de ces éléments sont de type en-ligne (c.-à-d. qui ne provoquent
+pas de fins de lignes) et de type bloc (c.-à-d. qui provoquent des fins de lignes).
+
+<pre class="example">
+INSTRUMENT { display: inline }
+ARTICLE, HEADLINE, AUTHOR, PARA { display: block }
+</pre>
+
+<p>
+La première règle stipule que INSTRUMENT est de type en-ligne et la seconde, avec une liste de
+sélecteurs séparés par des virgules, que tous les autres éléments
+sont de type bloc.
+
+<p>Pour lier une feuille de style à un document <abbr>XML</abbr>, l'une des propositions consiste à
+utiliser une instruction de traitement :
+
+<pre class="xml-example">
+<del title="id=s-2-2">&lt;?XML:stylesheet</del> <ins title="id=s-2-2">&lt;?xml-stylesheet</ins> type="text/css" href="bach.css"?&gt;
+&lt;ARTICLE&gt;
+  &lt;HEADLINE&gt;La rencontre de Frédéric le Grand et de Bach&lt;/HEADLINE&gt;
+  &lt;AUTHOR&gt;Johann Nikolaus Forkel&lt;/AUTHOR&gt;
+  &lt;PARA&gt;
+    Un soir, alors qu'il préparait sa
+    &lt;INSTRUMENT&gt;flûte&lt;/INSTRUMENT&gt; et que ses
+    musiciens étaient réunis, un officier lui apporta
+    la liste des étrangers qui venaient d'arriver.
+  &lt;/PARA&gt;
+&lt;/ARTICLE&gt;
+</pre>
+
+<p>Ce qu'un agent visuel pourrait rendre par :
+
+<div class="figure">
+<p><img src="images/bach1.gif" alt="Exemple de rendu." width="356" height="100"><span class="dlink">   <a name="img-bach1" href="images/longdesc/bach1-desc.html" title="Long description for the first Bach/XML formatting example">[D]</a></span>
+</div>
+
+<p>
+Remarquer que le mot "flûte" reste dans le paragraphe puisqu'il s'agit du contenu de l'élément
+de type en-ligne INSTRUMENT.
+
+<p>
+Cependant, le texte n'est pas formaté de la façon souhaitée. Par exemple, le corps
+de la police du titre devrait être plus grand que celui du reste du texte et aussi le nom de l'auteur
+pourrait être en italique :
+
+<pre class="example">
+INSTRUMENT { display: inline }
+ARTICLE, HEADLINE, AUTHOR, PARA { display: block }
+HEADLINE { font-size: 1.3em }
+AUTHOR { font-style: italic }
+ARTICLE, HEADLINE, AUTHOR, PARA { margin: 0.5em }
+</pre>
+
+<p>Ce qu'un agent visuel pourrait rendre ainsi :
+
+<div class="figure">
+<p><img src="images/bach2.gif" alt="Exemple de rendu." width="354" height="126"><span class="dlink">   <a name="img-bach2" href="images/longdesc/bach2-desc.html" title="Long description for the second Bach/XML formatting example">[D]</a></span>
+</div>
+
+<p>
+Plus on ajoute de règles à la feuille de style, plus on peut améliorer la présentation
+du document.
+
+<h2>2.3 <a name="processing-model">Le modèle de traitement de <abbr>CSS2</abbr></a></h2>
+
+<p>
+Ce chapitre présente un modèle de fonctionnement possible pour un agent supportant <abbr>CSS</abbr>.
+Ce n'est qu'un modèle conceptuel, les implémentations effectives pouvant varier.
+
+<p>Dans ce modèle l'agent utilisateur traite une source en parcourant les étapes suivantes :
+
+<ol>
+<li>Parcourir le document source en créant un <a href="conform.html#doctree">arbre de ce document</a>.
+
+<li>
+Identifier le <a href="media.html">type de média</a> cible.
+
+<li>
+Rechercher toutes les feuilles de style associées au document et spécifiées pour le
+<a href="media.html">type de média</a> cible.
+
+<li>Annoter chacun des éléments de l'arbre du document et assigner une valeur unique à chacune
+des <a href="syndata.html#properties">propriétés</a> en rapport avec le
+<a href="media.html">type de média</a> cible. On assigne des valeurs aux propriétés
+selon le mécanisme décrit dans le chapitre sur <a href="cascade.html">la cascade et l'héritage</a>.
+
+<p>Le calcul de ces valeurs dépend en partie du choix de l'algorithme de formatage approprié au
+<a href="media.html">type de média</a> cible. Par exemple, si le média cible est un écran, les
+agents utilisateurs appliquent <a href="visuren.html">le modèle de formatage visuel</a>.
+Si le média de destination est une page à imprimer, ils appliquent <a href="page.html#page-model">le modèle de la page</a>.
+S'il s'agit d'un appareil de rendu auditif (ex. synthétiseur de parole), ils appliquent alors
+<a href="aural.html">le modèle pour un rendu auditif</a>.
+
+<li>Générer une <span class="index-def" title="formatting structure">
+<a name="formatting-structure"><dfn>structure de formatage</dfn></a></span> à partir de
+l'arbre annoté du document. Souvent, la structure de formatage ressemble beaucoup
+à celle de l'arbre du document, mais elle peut aussi en différer de façon
+significative, notamment quand les auteurs font usage de pseudo-éléments et de contenu 
+généré. Premièrement, il n'est pas indispensable que la structure de formatage revête
+"l'aspect d'un arbre", la nature de la structure dépendant de l'implémentation.
+Deuxièmement, la structure de formatage peut contenir plus ou moins d'informations que l'arbre
+du document. Par exemple, si la propriété <a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>
+d'un élément de l'arbre a la valeur 'none', cet élément ne génèrera
+rien dans la structure de formatage. À l'inverse, un élément de liste peut générer
+plus d'informations : le contenu de l'élément de liste et l'information de son style 
+(ex. une puce, une image).
+
+<p>Noter que le client <abbr>CSS</abbr> ne modifie pas l'arbre du document pendant cette phase. En particulier,
+le contenu généré par les feuilles de styles ne repasse pas dans le processeur du
+langage du document (ex. pour un nouveau traitement).
+
+<li>Transférer la structure de formatage vers le média cible (ex. imprimer le résultat,
+l'afficher sur un écran, le transformer en parole, etc.).
+</ol>
+
+<p>
+L'étape 1 n'entre pas dans le cadre de cette spécification (voir, par exemple,
+<a href="refs.html#ref-DOM" rel="biblioentry" class="noxref"><span class="informref">[DOM]</span></a>).
+
+<p>
+Les étapes 2 à 5 constituent le principal objet de cette spécification.
+
+<p>L'étape 6 n'entre pas non plus dans ce cadre.
+
+<h3><a name="q4">2.3.1 Le canevas</a></h3>
+
+<p>
+Quel que soit le média, le terme <span class="index-def" title="canvas"><a name="canvas"><dfn>canevas</dfn></a></span>
+désigne "l'espace dans lequel s'inscrit la structure de formatage". Le canevas est infini pour
+chacune des dimensions de cet espace, mais le rendu a lieu généralement dans une région
+finie du canevas. Celle-ci est établie par l'agent utilisateur selon le média cible.
+Ainsi, un rendu sur écran impose en général aux agents utilisateurs une largeur
+minimum qui est initialement déterminée à partir de la <a href="visuren.html#viewport">zone de visualisation</a>.
+Un rendu sur une page leur impose des contraintes de largeur et de hauteur. Les agents
+utilisateurs auditifs peuvent imposer des limites dans un espace sonore mais pas dans le temps.
+
+<h3><a name="q5">2.3.2 Le modèle d'adressage de <abbr>CSS2</abbr></a></h3>
+
+<p>
+Grâce aux <a href="selector.html">sélecteurs</a> et propriétés de <abbr>CSS2</abbr>,
+les feuilles de style permettent une référence aux parties d'un document
+ou d'un agent utilisateur, soit :
+
+<ul>
+<li>
+aux éléments dans l'arbre du document et certaines de leurs relations
+(voir le chapitre sur les <a href="selector.html">sélecteurs</a>) ;
+
+<li>
+aux attributs des éléments dans l'arbre du document et leurs valeurs
+(voir le chapitre sur les <a href="selector.html#attribute-selectors">sélecteurs d'attributs</a>) ;
+
+<li>
+à certaines parties du contenu d'un élément (voir les pseudo-éléments
+<a href="selector.html#first-line">:first-line</a> et <a href="selector.html#first-letter">:first-letter</a>) ;
+
+<li>
+aux éléments de l'arbre du document qui sont dans un état donné
+(voir le chapitre sur les <a href="selector.html#pseudo-classes">pseudo-classes</a>) ;
+
+<li>
+à certains aspects du <a href="#canvas">canevas</a> où interviendra le rendu du document ;
+
+<li>
+à certaines informations du système (voir le chapitre sur <a href="ui.html">l'interface 
+utilisateur</a>).
+</ul>
+
+<h2><a name="q6">2.4 Les principes de construction de <abbr>CSS</abbr></a></h2>
+
+<p>
+<abbr>CSS2</abbr>, comme <abbr>CSS1</abbr> avant lui, est fondé sur un ensemble de principes de
+construction :
+
+<ul>
+
+<li>
+<p><strong>Compatibilité ascendante et descendante</strong>. Les agents utilisateurs seront
+capable d'interpréter des feuilles de style <abbr>CSS1</abbr>. Dans l'autre sens, les agents utilisateurs
+<abbr>CSS1</abbr> seront capables de lire une feuille de style <abbr>CSS2</abbr> en passant outre les instructions
+qui leur seront inconnues. Également, ceux qui n'ont aucun support des feuilles de style
+seront capables d'afficher les documents pourvus de style. Bien sûr, les améliorations
+liées au style ne seront pas rendues, mais tout le contenu sera présenté ;
+
+<li>
+<p><strong>Complémentarité avec les documents structurés</strong>.
+Les feuilles de style complètent les documents structurés (exp. <abbr>HTML</abbr> et <abbr>XML</abbr>) en
+fournissant des informations de style au texte balisé. Un changement dans la feuille de
+style ne devrait avoir que peu ou pas d'impact sur le balisage ;
+
+<li>
+<p><strong>Indépendance vis-à-vis de l'éditeur, de la plateforme ou de l'appareil</strong>.
+Les feuilles de style autorisent une indépendance des documents vis-à-vis de l'éditeur,
+la plateforme et l'appareil, cependant <abbr>CSS2</abbr> permet de produire une feuille de style pour un
+groupe d'appareils (ex. imprimantes) ;
+
+<li>
+<p><strong>Facilité de maintenance</strong>. Lier des feuilles de style en partant
+des documents peut simplifier le travail de maintenance des webmestres tout en conservant
+un aspect consistant pour l'ensemble du site. Par exemple, s'il faut changer la couleur de fond
+liée à l'identité d'une organisation, un seul fichier doit être modifié ;
+
+<li>
+<p><strong>Simplicité</strong>. Bien que <abbr>CSS2</abbr> soit plus complexe que <abbr>CSS1</abbr>, il s'agit d'un
+langage de style, simple et facile à lire et à écrire.
+Les propriétés de style sont suffisamment indépendantes les unes des autres
+en général pour qu'un effet donné ne puisse être produit que d'une seule façon ;
+
+<li> 
+<p><strong>Performance du réseau</strong>. <abbr>CSS</abbr> fournit un moyen compact pour la représentation
+d'un contenu. Comparé aux fichiers images ou audio, souvent employés par les auteurs
+pour obtenir certains effets de rendu, les feuilles de style diminuent la plupart du temps la taille
+des fichiers. Aussi, les connexions au réseau sont moins nombreuses, ce qui augmente d'autant
+les performances de celui-ci ;
+
+<li>
+<p><strong>Flexibilité</strong>. On peut donner du style à un contenu de plusieurs manières.
+La fonction clé réside dans la possibilité de modifier en cascade les informations
+de style spécifiées dans la feuille de style par défaut (de l'agent utilisateur),
+les feuilles de style de l'utilisateur, les feuilles de style liées, l'en-tête du document et
+dans les attributs des éléments formant le corps du document ;
+
+<li>
+<p><strong>Richesse</strong>. En donnant aux auteurs un jeu étendu d'effets de représentation,
+on accroît la richesse du Web en tant que moyen d'expression. Les auteurs étaient dans l'attente
+de fonctionnalités qui étaient communes dans les applications de publication numérique
+et de présentation. Quelques-uns des effets de rendu demandés ne satisfont pas au principe
+d'indépendance vis-à-vis des appareils, cependant <abbr>CSS2</abbr> répond pour une grande part aux
+espérances des auteurs ;
+
+<li>
+<p><strong>Corrélations avec d'autres langages</strong>. Les propriétés décrites
+par cette spécification forment un jeu consistant pour le modèle de formatage des
+présentations visuelles et auditives. Le langage <abbr>CSS</abbr> permet d'accéder à ce modèle
+mais les corrélations avec d'autres langages sont aussi possibles. Par exemple, un programme
+JavaScript peut changer de façon dynamique la valeur de la propriété
+<a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a>
+d'un élément donné ;
+
+<li>
+<p><strong>Accessibilité</strong>. Plusieurs fonctions de <abbr>CSS</abbr> faciliteront l'accès au
+Web des utilisateurs avec des handicaps divers :
+
+<ul>
+<li>
+Avec les propriétés jouant sur l'apparence des polices, il est permis aux auteurs de
+ne plus recourir à du texte placé dans des images bitmap, qui est alors inaccessible ;
+<li>
+Les propriétés de positionnement leur permettent de ne plus avoir à utiliser
+d'astuces de balisage (ex. les images invisibles) pour forcer la mise en page ;
+<li>
+Les utilisateurs qui ont des besoins de présentation particuliers peuvent remplacer les feuilles
+de style de l'auteur, c'est le sens des règles <tt>!important</tt> ;
+<li>
+La nouvelle valeur 'inherit' pour chacune des propriétés renforce le caractère
+général de la cascade et autorise des ajustements de style plus faciles et cohérents ;
+<li>
+Grâce à l'amélioration du support aux médias, que ce soit les groupes de médias
+ou les types de média braille, en relief ou tty, les utilisateurs et auteurs pourront avoir des pages
+adaptées à ces appareils ;
+<li>
+Les propriétés auditives permettent de contrôler les sorties voix et audio ;
+<li>
+Les sélecteurs d'attribut, la fonction 'attr()' et la propriété 'content'
+donnent un accès à d'autres versions du contenu ;
+<li>
+Les compteurs et le numérotage de chapitre/paragraphe peuvent améliorer la navigation
+dans le document et économiser sur l'espace des alinéas (important pour les appareils
+braille). Les propriétés 'word-spacing' et 'text-indent' éliminent le besoin
+de rajouter des caractères blancs dans le document.
+</ul>
+
+<div class="note"><p> <em><strong>Remarque :</strong> Pour de plus amples informations sur la façon
+de produire des documents accessibles avec <abbr>CSS</abbr> et <abbr>HTML</abbr>, consulter <a href="refs.html#ref-WAI-PAGEAUTH" rel="biblioentry" class="noxref"><span class="informref">[WAI-PAGEAUTH]</span></a>.</em>
+</div>
+</ul>
+
+
+<hr class="navbar">
+
+<div class="navbar" align="center">
+<p><a href="about.html">précédent</a>  
+<a href="conform.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+</body>
+</html>

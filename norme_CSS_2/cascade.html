@@ -1,0 +1,512 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="fr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>L'assignation des valeurs des propriétés, la cascade et l'héritage</title>
+<link rel="stylesheet" type="text/css" href="annexe/W3C-REC.css">
+<link rel="stylesheet" type="text/css" href="annexe/vf.css">
+<link rel="stylesheet" type="text/css" href="annexe/print.css" media="print" > <!-- ajouté JHI 13.2.9 -->
+<link rel="prev" href="selector.html">
+<link rel="next" href="media.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+</head>
+<body>
+<!-- Préface de la traduction -->
+<div id="lisezmoi">
+<a href="annexe/preface.html" title="IMPORTANT : Lisez d'abord la préface de la traduction !"><strong> Lisez-moi S.V.P. </strong></a>
+</div>
+<div class="navbar" align="center">
+<p><a href="selector.html">précédent</a>  
+<a href="media.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+<hr class="navbar">
+
+<h1 align="center">6 L'assignation des valeurs des propriétés, la cascade et l'héritage</h1>
+<div class="subtoc">
+<p><strong>Contenu</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="cascade.html#q1" class="tocxref">6.1 Les valeurs spécifiées, calculées et réelles</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="cascade.html#specified-value" class="tocxref">6.1.1 <span class="index-def" title="specified value"> Les valeurs spécifiées</span></a>
+      <li class="tocline3"><a href="cascade.html#computed-value" class="tocxref">6.1.2 <span class="index-def" title="computed value"> Les valeurs calculées</span></a>
+      <li class="tocline3"><a href="cascade.html#actual-value" class="tocxref">6.1.3 <span class="index-def" title="actual value"> Les valeurs réelles</span></a>
+    </ul>
+    <li class="tocline2"><a href="cascade.html#inheritance" class="tocxref">6.2 L'héritage</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="cascade.html#value-def-inherit" class="tocxref">6.2.1 La valeur <span class="index-def" title="inherit, definition of">'inherit'</span></a>
+    </ul>
+    <li class="tocline2"><a href="cascade.html#at-import" class="tocxref">6.3 La règle @import</a>
+    <li class="tocline2"><a href="cascade.html#cascade" class="tocxref">6.4 La cascade</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="cascade.html#cascading-order" class="tocxref">6.4.1 L'ordre de cascade</a>
+      <li class="tocline3"><a href="cascade.html#important-rules" class="tocxref">6.4.2 Les règles avec la valeur !important</a>
+      <li class="tocline3"><a href="cascade.html#specificity" class="tocxref">6.4.3 Le calcul de la spécificité d'un sélecteur</a>
+      <li class="tocline3"><a href="cascade.html#q12" class="tocxref">6.4.4 L'ordre de priorité des indications de présentation en dehors de <abbr>CSS</abbr></a>
+    </ul>
+  </ul>
+</div>
+
+<h2><a name="q1">6.1 Les valeurs spécifiées, calculées et réelles</a></h2>
+<p>
+Une fois qu'un agent utilisateur a parcouru un document et en a construit un <a href="conform.html#doctree">arbre</a>,
+celui-ci, pour chacun des éléments de l'arbre, doit attribuer une valeur pour chacune
+des propriétés concernées par le <a href="media.html">type de média</a> visé.
+
+<p>
+La valeur finale d'une propriété est le résultat d'un calcul en trois étapes :
+celle-ci est déterminée par la spécification (la valeur "spécifiée"),
+puis, si nécessaire, calculée en valeur absolue (la valeur "calculée") et
+finalement transformée en accord avec les contraintes de son contexte (la valeur "réelle").
+
+<h3>6.1.1 <span class="index-def" title="specified value"><a name="specified-value">Les valeurs spécifiées</a></span></h3>
+
+<p>
+Les agents utilisateurs doivent d'abord appliquer une valeur spécifiée à une
+propriété selon le mécanisme suivant (dans l'ordre de priorité) :
+
+<ol>
+<li>
+Si la <a href="#cascade">cascade</a> donne une valeur, utiliser celle-ci ;
+
+<li>
+Sinon, si la propriété est <a href="#inheritance">héritée</a>,
+utiliser la valeur de l'élément parent, qui est en général une valeur calculée ;
+
+<li>
+Sinon, utiliser la <a name="x1"><span class="index-def" title="initial value">valeur initiale</span></a>
+de la propriété. Cette <a name="initial-value">valeur initiale</a> est définie pour
+chaque propriété.
+</ol>
+
+<p>
+La racine de l'<a href="conform.html#doctree">arbre du document</a> n'ayant pas de parent, et
+ne pouvant donc pas hériter de valeurs, c'est la valeur initiale qui est utilisée si nécessaire.
+
+<h3>6.1.2 <span class="index-def" title="computed value"><a name="computed-value">Les valeurs calculées</a></span></h3>
+
+<p>
+Les valeurs spécifiées peuvent être absolues (ex. les valeurs 'red' et '2mm' ne sont pas
+relatives à une autre valeur) ou relatives (ex. les valeurs 'auto', '2em' et '12%' se rapportent
+à une autre valeur). Une valeur absolue ne requiert aucune opération supplémentaire
+pour établir sa valeur calculée.
+
+<p>
+Par contre, une valeur relative doit subir une transformation qui aboutit à sa valeur
+calculée : une valeur en pourcentage doit être multipliée par une valeur de
+référence (celle-ci est précisée pour chaque propriété),
+une valeur avec une unité relative (em, ex, px) devra devenir absolue
+par multiplication avec les tailles de police ou de pixel appropriées, les valeurs 'auto' doivent
+être calculée selon les formules données pour chaque propriété,
+certains mots-clés ('smaller', 'bolder', 'inherit') doivent être remplacés en accord
+avec leurs définitions.
+
+<p>
+Dans la plupart des cas, les éléments héritent de valeurs calculées.
+Cependant, certaines propriétés ont des valeurs spécifiées qui sont
+héritées (ex. la valeur numérique de la propriété
+<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a>).
+Dans les cas où les éléments enfants n'héritent pas de valeurs calculées,
+ceci est décrit dans les définitions des propriétés.
+
+<h3>6.1.3 <span class="index-def" title="actual value"><a name="actual-value">Les valeurs réelles</a></span></h3>
+
+<p>
+Bien qu'une valeur calculée soit en principe prête à l'emploi, un agent utilisateur
+peut ne pas pouvoir l'utiliser dans un environnement donné. Par exemple, celui-ci ne peut 
+rendre les épaisseurs des bordures qu'avec un nombre entier de pixels, en conséquence,
+il lui faudra peut-être effectuer une approximation. La valeur réelle est égale à la valeur calculée après
+approximation éventuelle.
+
+<h2>6.2 <a name="inheritance">L'héritage</a></h2>
+
+<p>
+Les éléments enfants héritent de certaines valeurs de leurs éléments parents
+dans l'<a href="conform.html#doctree">arbre du document</a>.
+Chacune des propriété <a href="about.html#property-defs">définit</a> si elle est
+héritée, ou non.
+
+<div class="html-example">
+<p>
+Supposons un élément accentué (ici EM) dans un élément H1 :
+
+<pre>
+&lt;H1&gt;Le titre &lt;EM&gt;est&lt;/EM&gt; important !&lt;/H1&gt;
+</pre>
+
+<p>
+Si aucune couleur n'est précisée pour l'élément EM, le mot accentué "est"
+héritera de la couleur de l'élément parent, ainsi, si l'élément H1 a une couleur bleu,
+EM le sera également.
+</div>
+
+<p>
+Pour appliquer une propriété de style "par défaut" à un document, un auteur
+peut l'appliquer à la racine de l'arbre du document. Par exemple en <abbr>HTML</abbr>, on peut utiliser
+les éléments <abbr>HTML</abbr> ou BODY pour cet usage. Noter que ceci fonctionnera même si on
+omet la balise BODY dans la source <abbr>HTML</abbr>, l'interpréteur <abbr>HTML</abbr> inférant la balise manquante.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Par exemple ici, tous les descendants de l'élément BODY auront la valeur de couleur 'black',
+la propriété  <a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a>
+étant héritée :
+
+<pre>
+BODY { color: black; }
+</pre>
+</div>
+
+<p>
+Les valeurs de pourcentage spécifiées ne sont pas héritées, celles
+calculées le sont.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Par exemple, cette feuille de style :
+
+<pre>
+BODY { font-size: 10pt }
+H1 { font-size: 120% }
+</pre>
+
+<p>et cet extrait d'un document :
+
+<pre class="html-example">
+&lt;BODY&gt;
+  &lt;H1&gt;Un &lt;EM&gt;grand&lt;/EM&gt; titre&lt;/H1&gt;
+&lt;/BODY&gt;
+</pre>
+
+<p>
+Ici, la propriété <span class="prop-inst-font-size">'font-size'</span> de l'élément
+H1 aura une valeur calculée de '12pt' (120% de la valeur de son parent). Et, comme la valeur de
+la propriété <a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>
+est héritée, la valeur calculée pour l'élément EM sera aussi '12pt'.
+Si l'agent utilisateur ne dispose pas d'une police de 12 pt mais, par exemple, d'une police de 11 pt, la valeur réelle de la propriété
+<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>
+de ces éléments pourrait être '11pt'.
+</div>
+
+<h3>6.2.1 La valeur <span class="index-def" title="inherit, definition of"><a name="value-def-inherit">'inherit'</a></span></h3>
+
+<p>
+On peut spécifier pour chacune des propriétés la valeur 'inherit', ce qui
+signifie, pour un élément donné, que la propriété de cet élément
+prend la même <a href="#computed-value">valeur calculée</a> que pour celle de son parent.
+La valeur héritée qui est normalement utilisée comme une valeur refuge, peut être
+renforcée par une valeur 'inherit' explicite.
+
+<p>
+<ins title="id=x57">La valeur 'inherit' provoque l'héritage des valeurs par les propriétés.
+Ceci s'applique également aux propriétés dont la valeur n'est normalement pas héritée.</ins>
+
+<div class="example"><p style="display:none">Exemple(s): 
+<p>
+Dans l'exemple ci-dessous, on applique les propriétés <a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a>
+et <a href="colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>
+à l'élément BODY. La valeur de 'color' sera héritée par tous ses
+éléments et leur fond sera transparent. Si ces règles font partie de la feuille
+de style de l'utilisateur, un texte en noir sur fond blanc sera respecté dans tout le document.
+
+<pre>
+BODY { 
+  color: black !important; 
+  background: white !important;
+}
+
+* { 
+  color: inherit !important; 
+  background: transparent;
+}
+</pre>
+
+</div>
+
+
+
+
+<h2>6.3 <a name="at-import">La règle @import</a></h2>
+
+<p>La règle <a name="x5"><span class="index-def" title="@import"><dfn>'@import'</dfn></span></a>
+permet aux utilisateurs l'importation de règles de style à partir d'une autre feuille de style.
+Les règles @import doivent précéder toutes autres règles dans la feuille de style.
+Le mot-clé '@import' doit être suivi de l'adresse <abbr>URI</abbr> de la feuille de style à intégrer.
+On admet aussi la forme avec une chaîne de caractères, celle-ci sera considérée comme étant
+enserrée dans url(...).
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Les lignes suivantes ont une signification équivalente et illustrent les deux syntaxes (celle avec
+"url()" et celle avec une simple chaîne) :
+
+<pre>
+@import "mystyle.css";
+@import url("mystyle.css");
+</pre>
+</div>
+
+<p>
+Comme les agents utilisateurs ne sont pas tenus de rassembler les ressources pour des <a href="media.html">types de média</a>
+inconnus d'eux, les auteurs peuvent spécifier des règles <a name="x6"><span class="index-inst" title="@import">@import</span></a>
+selon les médias requis. Les <a name="x7"><span class="index-def" title="conditional import|media-dependent import">imports conditionnels</span></a>
+précisent leurs types, séparés par des virgules après l'adresse <abbr>URI</abbr>. 
+
+<div class="example"><p style="display:none">Exemple(s) :
+
+<p>
+Les feuilles de styles importées et enveloppées dans une règle @media produiraient
+les mêmes effets, avec ce média, que les feuilles de style suivantes, néanmoins ces dernières
+peuvent épargner aux agents utilisateurs des téléchargements inutiles.
+
+<pre>
+@import url("fineprint.css") print;
+@import url("bluish.css") projection, tv;
+</pre>
+</div>
+
+<p>
+Si le type de média n'est pas précisé, l'import est inconditionnel.
+De même, si on spécifie le type de média 'all'.
+
+<h2>6.4 <a name="cascade">La cascade</a></h2>
+
+<p>
+Les feuilles de style ont trois origines différentes : l'auteur, l'utilisateur et l'agent utilisateur.
+
+<ul>
+<li><strong>L'auteur</strong> : produit des feuilles de style pour un document source
+selon les conventions du langage de ce document. Par exemple en <abbr>HTML</abbr>, celles-ci peuvent être
+incorporées dans le document ou reliées à celui-ci.
+
+<li><strong>L'utilisateur</strong> : peut être capable d'indiquer une information de style
+pour un document particulier. Par exemple, celui-ci peut désigner une feuille de style contenue
+dans un fichier ou un agent utilisateur peut fournir l'interface pour produire une feuille de style
+personnelle (ou faire comme s'il l'avait fait).
+
+<li><strong>L'agent utilisateur</strong>: l'<a href="conform.html#conformance">agent utilisateur conforme</a>
+doit appliquer sa <span class="index-def" title="default style sheet"><a name="default-style-sheet"><dfn>feuille de style par défaut</dfn></a></span>
+(ou faire comme s'il l'avait fait) avant toutes les autres feuilles de style d'un document.
+Cette feuille de style devrait présenter les éléments du langage du document
+de façon à satisfaire au rendu généralement admis pour ceux-ci dans ce langage.
+Par exemple, pour des navigateurs visuels, l'élément EM en <abbr>HTML</abbr> est rendu avec une police
+en italique. Voir l'<a href="sample.html">annexe A</a> pour une feuille de style par défaut recommandée pour les documents <abbr>HTML 4.0</abbr>.
+
+<p>
+Noter que cette feuille de style par défaut peut varier si l'utilisateur change les réglages
+de son système (ex. les couleurs du système). Cependant, il peut être impossible
+de modifier les valeurs de celle-ci, en raison d'une implémentation réduite de l'agent
+utilisateur.
+</ul>
+
+<p>
+Les champs d'action de ces trois feuilles de style vont se recouper, leur interaction dépendant des
+règles de la cascade.
+
+<p>
+La <a name="x10"><span class="index-def" title="cascade">cascade</span></a> de <abbr>CSS</abbr> définit un
+ordre de priorité, ou poids, pour chaque règle de style. Quand plusieurs règles sont mises en
+&#339;uvre, celle avec le plus grand poids a la préséance.
+
+<p>
+Les règles des feuilles de style de l'auteur ont, par défaut, plus de poids que celles
+de l'utilisateur. Au contraire, l'ordre de priorité est inversé pour les règles
+"!important". Les règles d'un auteur et d'un utilisateur sont prioritaires sur celles de la
+feuille de style par défaut de l'agent utilisateur.
+
+<p>
+Les feuilles de style importées suivent aussi la cascade, leur poids dépendant de leur ordre
+d'importation. Les règles définies dans une feuille de style donnée surclassent les règles <ins title="id=x58">de même poids</ins>
+importées d'autres feuilles de style. Les feuilles de style importées peuvent elles-même importer et remplacer d'autres feuilles de
+style, récursivement, et les mêmes règles de préséance leur sont appliquées.
+
+<h3>6.4.1 <a name="cascading-order">L'ordre de cascade</a></h3>
+
+<p>
+Pour trouver la valeur d'une combinaison élément/propriété, les agents
+utilisateurs doivent suivre l'ordre de tri suivant :
+
+<ol>
+    <li>Trouver toutes les déclarations qui concernent l'élément et la propriété
+    en question, pour le <a href="media.html">type de média</a> visé. Celles-ci s'appliquent
+    si le sélecteur <a href="selector.html">correspond</a> à cet élément ;
+
+    <li>Un tri primaire est effectué sur les déclarations selon leur poids et leur origine :
+    pour une déclaration normale, les feuilles de style de l'auteur surclassent celles de l'utilisateur,
+    ces dernières surclassant la feuille de style par défaut. 
+    Pour une déclaration avec <a name="x11"><span class="index-def" title="important">"!important"</span></a>,
+    celles-ci surclassent les déclarations normales.
+    Une feuille de style importée est considérée comme ayant la même origine que celle
+    qui l'a importée ;
+
+    <li>Un tri secondaire est effectué selon la <a href="#specificity">spécificité</a>
+    des sélecteurs : les plus spécifiques surclasseront ceux plus généraux.
+    Les pseudo-éléments et les pseudo-classes sont considérés respectivement
+    comme des éléments et des classes normaux ;
+
+    <li>Un tri final selon l'ordre de spécification : si deux règles ont les mêmes
+    poids, origines et spécificités, c'est la dernière survenue qui l'emporte.
+    Les règles issues de feuilles de style importées sont considérées comme
+    étant survenues avant chacune de celles de la feuille de style elle-même.
+</ol>
+
+<p>
+Mis à part le cas de la valeur "!important" attachée à certaines déclarations
+individuelles, cette stratégie donne la priorité aux feuilles de style de l'auteur sur celles de l'utilisateur.
+C'est pourquoi, il est important que l'agent utilisateur lui laisse la possibilité
+de neutraliser l'effet d'une feuille de style donnée (ex. au moyen d'un menu déroulant).
+
+<h3>6.4.2 <a name="important-rules">Les règles avec la valeur !important</a></h3>
+
+<p>
+CSS essaye de préserver un équilibre entre les prérogatives de l'auteur et celles
+de l'utilisateur. Par défaut, les règles d'une feuille de style de l'auteur surclassent
+celles de l'utilisateur (voir la règle de cascade numéro 3).
+
+<p>
+Par souci d'équilibre, les déclarations avec "!important" (les mots-clés "!" et
+"important" suivent la déclaration) établissent ainsi leur préséance sur
+les déclarations normales. Aussi bien les feuilles de style de l'auteur que celles de l'utilisateur
+peuvent contenir des déclarations avec "!important", celles de l'utilisateurs ayant priorité.
+Cette fonction de <abbr>CSS</abbr> améliore l'accessibilité des documents, offrant à ceux des
+utilisateurs qui ont des besoins particuliers (une grande taille de police, d'autres combinaisons de couleur, etc.),
+une certaine maîtrise de la présentation.
+
+<div class="note"><p>
+<em><strong>Remarque : </strong>
+Voici un changement sémantique par rapport à <abbr>CSS1</abbr>. Dans cette spécification-là,
+les règles avec "!important" d'un auteur avaient préséance sur celles de l'utilisateur.</em>
+</div>
+
+<p>
+Le fait de déclarer une <a name="x12"><span class="index-inst" title="shorthand property">propriété raccourcie</span></a>
+(ex. <a href="colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>)
+avec la valeur "!important" confère ce poids à toutes ses sous-propriétés.
+
+<div class="example"><p style="display:none">Exemple(s) :
+
+<p>
+Dans l'exemple ci-dessous, la première règle de la feuille de style de l'utilisateur
+comporte une déclaration "!important", celle-ci surclasse la déclaration correspondante
+dans la feuille de l'auteur. La deuxième va également l'emporter, étant marquée
+"!important". Cependant, en l'absence de cette marque, la troisième de l'utilisateur ne sera pas retenue, au
+profit de la deuxième de l'auteur (par ailleurs, un style appliqué avec une propriété
+raccourcie). Autrement, sur la deuxième et la troisième règle de l'auteur, c'est la
+deuxième qui sera retenue, la troisième n'étant pas marquée "!important".
+Ceci montre que ce genre de déclaration a bien une fonction, même au sein des feuilles de
+style de l'auteur.
+
+<pre>
+/* Extrait de la feuille de style de l'utilisateur */
+P { text-indent: 1em ! important }
+P { font-style: italic ! important }
+P { font-size: 18pt }
+
+/* Extrait de la feuille de style de l'auteur */
+P { text-indent: 1.5em !important }
+P { font: 12pt sans-serif !important }
+P { font-size: 24pt }
+</pre>
+</div>
+
+
+<h3>6.4.3 <a name="specificity">Le calcul de la spécificité d'un sélecteur</a></h3>
+
+<p><span class="errata"><a href="annexe/errata.html#changes" title="Errata">« errata : Voir la proposition pour le <strong>nouveau calcul de spécificité</strong> »</a></span></p>
+
+<p>La spécificité d'un sélecteur se détermine de la manière suivante :</p>
+
+<ul>
+<li>compter le nombre d'attributs ID dans le sélecteur (= a) ;
+<li>compter le nombre des autres attributs et pseudo-classes dans le sélecteur (= b) ;
+<li>compter le nombre de noms d'élément dans le sélecteur (= c) ;
+<li>ignorer les pseudo-éléments.
+</ul>
+
+<p>La concaténation des trois nombres a-b-c (dans un système de nombre avec une grande base) donne la spécificité. 
+
+<div class="example"><p style="display:none">Exemple(s) :</p>
+Quelques exemples :
+
+<pre>
+*             {}  /* a=0 b=0 c=0 -&gt; specificité =   0 */
+LI            {}  /* a=0 b=0 c=1 -&gt; specificité =   1 */
+UL LI         {}  /* a=0 b=0 c=2 -&gt; specificité =   2 */
+UL OL+LI      {}  /* a=0 b=0 c=3 -&gt; specificité =   3 */
+H1 + *[REL=up]{}  /* a=0 b=1 c=1 -&gt; specificité =  11 */
+UL OL LI.red  {}  /* a=0 b=1 c=3 -&gt; specificité =  13 */ 
+LI.red.level  {}  /* a=0 b=2 c=1 -&gt; specificité =  21 */
+#x34y         {}  /* a=1 b=0 c=0 -&gt; specificité = 100 */ 
+
+</pre>
+</div>
+
+<p>Pour <abbr>HTML</abbr>, les valeurs de l'attribut "style" sont des règles de feuille de style.
+Ces règles n'ont pas de sélecteur mais, dans l'optique du point 3 de l'algorithme de cascade,
+on considère qu'elles ont un sélecteur d'ID (spécificité : a=1, b=0, c=0).
+Et dans l'optique du point 4, on considère qu'elles adviennent après toutes les autres règles.
+
+<div class="example">
+<pre>
+&lt;HEAD&gt;
+&lt;STYLE type="text/css"&gt;
+  #x97z { color: blue }
+&lt;/STYLE&gt;
+&lt;/HEAD&gt;
+
+&lt;BODY&gt;
+&lt;P ID=x97z style="color: red"&gt;
+&lt;/BODY&gt;
+</pre>
+
+<p>Dans cet exemple, la couleur de l'élément P serait rouge. Bien que la spécificité des deux déclarations soient la même,
+la déclaration dans l'attribut "style" surclassera celle dans l'élément STYLE à cause de la règle de cascade 4.
+</div>
+
+<div class="note">
+<p><ins><strong>Remarque :</strong> La spécificité est seulement basée sur la forme du sélecteur.
+En effet, un sélecteur de la forme "[id=p33]" est compté comme un sélecteur d'attribut
+(a=0, b=1, c=0), même si l'attribut "id" est défini comme un "ID" dans la définition de type de document
+(<abbr>DTD</abbr>) du document source.</ins>
+</div>
+
+<h3><a name="q12">6.4.4 L'ordre de priorité des indications de présentation en dehors de <abbr>CSS</abbr></a></h3> 
+
+<p>
+L'agent utilisateur peut privilégier les indications de présentation provenant d'autres sources que
+les feuilles de style, par exemple l'élément FONT ou l'attribut "align" en <abbr>HTML</abbr>.
+Dans ce cas, ces indications doivent être traduites dans leurs règles équivalentes
+de <abbr>CSS</abbr> avec une spécificité égale à zéro. Ces règles sont censées
+se trouver au début de la feuille de style de l'auteur, permettant leur surclassement
+par les règles subséquentes de cette feuille de style.
+
+<div class="note">
+<p><em><strong>Remarque :</strong> Durant une période de transition, cette manière de faire facilitera
+la coexistence des attributs stylistiques et des feuilles de style.
+</em>
+</div>
+
+<div class="note">
+<p><em><strong>Remarque :</strong> Pour <abbr>CSS1</abbr>, ces indications de présentations en dehors de <abbr>CSS</abbr> avaient
+une spécificité égale à 1, et non à 0. Ce changement est du à l'introduction du sélecteur
+universel, qui a une spécificité de 0.
+</em>
+</div>
+
+
+<hr class="navbar">
+
+<div class="navbar" align="center">
+<p><a href="selector.html">précédent</a>  
+<a href="media.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+</body>
+</html>

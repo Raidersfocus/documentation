@@ -1,0 +1,2611 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="fr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Les polices</title>
+<link rel="stylesheet" type="text/css" href="annexe/W3C-REC.css">
+<link rel="stylesheet" type="text/css" href="annexe/vf.css">
+<link rel="stylesheet" type="text/css" href="annexe/print.css" media="print" > <!-- ajouté JHI 13.2.9 -->
+<link rel="prev" href="colors.html">
+<link rel="next" href="text.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+</head>
+<body>
+<!-- Préface de la traduction -->
+<div id="lisezmoi">
+<a href="annexe/preface.php?id=css2" title="IMPORTANT : Lisez d'abord la préface de la traduction !"><strong> Lisez-moi S.V.P. </strong></a>
+</div>
+<div class="navbar" align="center">
+<p><a href="colors.html">précédent</a>  
+<a href="text.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+<hr class="navbar">
+
+<h1 align="center">15 Les polices</h1>
+<div class="subtoc">
+<p><strong>Contenu</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="fonts.html#q1" class="tocxref">15.1 Introduction</a>
+    <li class="tocline2"><a href="fonts.html#font-specification" class="tocxref">15.2 La spécification des polices</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="fonts.html#font-properties" class="tocxref">15.2.1 Les propriétés de spécification de police</a>
+      <li class="tocline3"><a href="fonts.html#font-family-prop" class="tocxref">15.2.2 La famille de polices : la propriété <span class="propinst-font-family">'font-family'</span></a>
+      <li class="tocline3"><a href="fonts.html#font-styling" class="tocxref">15.2.3 Le style de police : les propriétés <span class="propinst-font-style">'font-style'</span>, <span class="propinst-font-variant">'font-variant'</span>, <span class="propinst-font-weight">'font-weight'</span> et <span class="propinst-font-stretch">'font-stretch'</span></a>
+      <li class="tocline3"><a href="fonts.html#font-size-props" class="tocxref">15.2.4 La taille de police : les propriétés <span class="propinst-font-size">'font-size'</span> et <span class="propinst-font-size-adjust">'font-size-adjust'</span></a>
+      <li class="tocline3"><a href="fonts.html#font-shorthand" class="tocxref">15.2.5 La propriété raccourcie de police : la propriété <span class="propinst-font">'font'</span></a>
+      <li class="tocline3"><a href="fonts.html#generic-font-families" class="tocxref">15.2.6 Les familles de polices génériques</a>
+      <ul class="toc">
+        <li class="tocline4"><a href="fonts.html#serif-def" class="tocxref"> <span class="index-def" title="serif, definition of"><dfn>serif</dfn></span></a>
+        <li class="tocline4"><a href="fonts.html#sans-serif-def" class="tocxref"> <span class="index-def" title="sans-serif, definition of"> <dfn>sans-serif</dfn></span></a>
+        <li class="tocline4"><a href="fonts.html#cursive-def" class="tocxref"> <span class="index-def" title="cursive, definition of"> <dfn>cursive</dfn></span></a>
+        <li class="tocline4"><a href="fonts.html#fantasy-def" class="tocxref"> <span class="index-def" title="fantasy, definition of"> <dfn>fantasy</dfn></span></a>
+        <li class="tocline4"><a href="fonts.html#monospace-def" class="tocxref"> <span class="index-def" title="monospace, definition of"> <dfn>monospace</dfn></span></a>
+      </ul>
+    </ul>
+    <li class="tocline2"><a href="fonts.html#font-selection" class="tocxref">15.3 La sélection des polices</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="fonts.html#font-descriptions" class="tocxref">15.3.1 <span class="index-inst" title="font description"> Les descriptions de police</span> et @font-face</a>
+      <li class="tocline3"><a href="fonts.html#select" class="tocxref">15.3.2 Les descripteurs de sélection de police : <span class="descinst-font-family">'font-family'</span>, <span class="descinst-font-style">'font-style'</span>, <span class="descinst-font-variant">'font-variant'</span>, <span class="descinst-font-weight">'font-weight'</span>, <span class="descinst-font-stretch">'font-stretch'</span> et <span class="descinst-font-size">'font-size'</span></a>
+      <li class="tocline3"><a href="fonts.html#dataqual" class="tocxref">15.3.3 Le descripteur de qualification des données de police : <span class="descinst-unicode-range">'unicode-range'</span></a>
+      <li class="tocline3"><a href="fonts.html#unitsperem" class="tocxref">15.3.4 Le descripteur des valeurs numériques : <span class="descinst-units-per-em">'units-per-em'</span></a>
+      <li class="tocline3"><a href="fonts.html#referencing" class="tocxref">15.3.5 Le descripteur de référencement : <span class="descinst-src">'src'</span></a>
+      <li class="tocline3"><a href="fonts.html#matching" class="tocxref">15.3.6 Les descripteurs de correspondance : <span class="descinst-panose-1">'panose-1'</span>, <span class="descinst-stemv">'stemv'</span>, <span class="descinst-stemh">'stemh'</span>, <span class="descinst-slope">'slope'</span>, <span class="descinst-cap-height">'cap-height'</span>, <span class="descinst-x-height">'x-height'</span>, <span class="descinst-ascent">'ascent'</span> et <span class="descinst-descent">'descent'</span></a>
+      <li class="tocline3"><a href="fonts.html#synthesizing" class="tocxref">15.3.7 Les descripteurs de synthèse : <span class="descinst-widths">'widths'</span>, <span class="descinst-bbox">'bbox'</span> et <span class="descinst-definition-src">'definition-src'</span></a>
+      <li class="tocline3"><a href="fonts.html#alignment" class="tocxref">15.3.8 Les descripteurs d'alignement : <span class="descinst-baseline">'baseline'</span>, <span class="descinst-centerline">'centerline'</span>, <span class="descinst-mathline">'mathline'</span> et <span class="descinst-topline">'topline'</span></a>
+      <li class="tocline3"><a href="fonts.html#q23" class="tocxref">15.3.9 Exemples</a>
+    </ul>
+    <li class="tocline2"><a href="fonts.html#font-descriptors" class="tocxref">15.4 Les caractéristiques des polices</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="fonts.html#universal" class="tocxref">15.4.1 Introduction aux caractéristiques des polices</a>
+      <li class="tocline3"><a href="fonts.html#aname" class="tocxref">15.4.2 Le nom entier d'une police</a>
+      <li class="tocline3"><a href="fonts.html#emsq" class="tocxref">15.4.3 Les unités de coordonnée dans le carré em</a>
+      <li class="tocline3"><a href="fonts.html#cline" class="tocxref">15.4.4 La ligne de base centrale</a>
+      <li class="tocline3"><a href="fonts.html#encoding" class="tocxref">15.4.5 Le codage des polices</a>
+      <li class="tocline3"><a href="fonts.html#family" class="tocxref">15.4.6 Le nom de famille de polices</a>
+      <li class="tocline3"><a href="fonts.html#lrwidth" class="tocxref">15.4.7 Les largeurs des glyphes</a>
+      <li class="tocline3"><a href="fonts.html#stemh" class="tocxref">15.4.8 La largeur de tige horizontale</a>
+      <li class="tocline3"><a href="fonts.html#cap" class="tocxref">15.4.9 La hauteur des glyphes majuscules</a>
+      <li class="tocline3"><a href="fonts.html#xht" class="tocxref">15.4.10 La hauteur des glyphes minuscules</a>
+      <li class="tocline3"><a href="fonts.html#bline" class="tocxref">15.4.11 La ligne de base inférieure</a>
+      <li class="tocline3"><a href="fonts.html#mline" class="tocxref">15.4.12 La ligne de base mathématique</a>
+      <li class="tocline3"><a href="fonts.html#bbox" class="tocxref">15.4.13 La boîte de circonscription maximale</a>
+      <li class="tocline3"><a href="fonts.html#ascent" class="tocxref">15.4.14 La hauteur maximale sans accent</a>
+      <li class="tocline3"><a href="fonts.html#descent" class="tocxref">15.4.15 La profondeur maximale sans accent</a>
+      <li class="tocline3"><a href="fonts.html#pan1" class="tocxref">15.4.16 Le nombre Panose-1</a>
+      <li class="tocline3"><a href="fonts.html#ucode" class="tocxref">15.4.17 L'étendue des caractères ISO 10646</a>
+      <li class="tocline3"><a href="fonts.html#tline" class="tocxref">15.4.18 La ligne de base supérieure</a>
+      <li class="tocline3"><a href="fonts.html#stemv" class="tocxref">15.4.19 L'épaisseur de tige verticale</a>
+      <li class="tocline3"><a href="fonts.html#slope" class="tocxref">15.4.20 L'angle d'inclinaison vertical</a>
+    </ul>
+    <li class="tocline2"><a href="fonts.html#algorithm" class="tocxref">15.5 L'algorithme de correspondance de police</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="fonts.html#q46" class="tocxref">15.5.1 Les correspondances entre valeurs de graisse et les noms de police</a>
+      <li class="tocline3"><a href="fonts.html#q47" class="tocxref">15.5.2 Exemples de correspondances de police</a>
+    </ul>
+  </ul>
+</div>
+
+
+
+<h2><a name="q1">15.1 Introduction</a></h2>
+
+<p>
+Pour le rendu visuel du texte d'un document, les <a name="x0"><span class="index-inst" title="character">caractères</span></a>
+(éléments comportant une information abstraite) doivent correspondre avec des
+<a name="x1"><span class="index-def" title="abstract glyph"><dfn>glyphes abstraits</dfn></span></a>.
+Un ou plusieurs caractères peuvent être représentés par un ou plusieurs glyphes abstraits,
+parfois en fonction du contexte. Un <a name="x2"><span class="index-def" title="glyph"><dfn>glyphe</dfn></span></a>
+correspond à la représentation artistique d'un caractère abstrait, dans un certain style
+typographique, sous forme de contours vectoriels ou d'images bitmaps pouvant être dessinés à l'écran
+ou sur du papier. Une <a name="x3"><span class="index-def" title="font"><dfn>police</dfn></span></a> se compose
+d'un jeu de glyphes, ceux-ci étant fondés sur un même squelette pour leur dessin,
+leur taille, leur aspect et d'autres attributs associés au jeu entier, et d'un système de correspondance
+entre les caractères et ces glyphes abstraits.
+
+<p>
+Un agent utilisateur visuel doit répondre aux questions suivantes avant le rendu effectif d'un caractère :
+
+<ul>
+<li>
+Existe-t-il, directement ou de façon dérivée, une police spécifiée pour
+ce caractère ?
+<li>
+Est-ce que l'agent utilisateur dispose de cette police ?
+<li>
+Si c'est le cas, à quel(s) glyphe(s) correspond ce caractère ou cette combinaison de caractères ?
+<li>
+Si ce n'est pas le cas, que faudrait-il faire ? Faudrait-il effectuer une substitution de police ?
+Peut-on synthétiser cette police ? Peut-on la télécharger sur le Web ?
+
+</ul>
+
+<p>
+En <abbr>CSS1</abbr> comme en <abbr>CSS2</abbr>, les auteurs peuvent spécifier les caractéristiques des polices à
+l'aide d'une batterie de propriétés de police.
+
+<p>
+Des changements sont intervenus entre <abbr>CSS1</abbr> et <abbr>CSS2</abbr> sur la façon dont un agent utilisateur
+doit interpréter ces propriétés, dans le cas où la police demandée n'est pas disponible.
+En <abbr>CSS1</abbr>, toutes les polices étaient supposées présentes dans le système de
+l'utilisateur et uniquement identifiées  par leur nom.
+On pouvait spécifier des polices de rechange à l'aide de propriétés, mais
+les agents utilisateurs ne pouvaient offrir d'autres choix à l'utilisateur
+(par exemple, des polices de style apparenté dont aurait pu disposer l'agent utilisateur) que celui
+des polices génériques par défaut.
+
+<p>
+En <abbr>CSS2</abbr>, les évolutions survenues accordent une plus grande liberté aux :
+
+<ul>
+<li>auteurs de feuilles de style, pour décrire les polices que ceux-ci souhaitent voir utiliser ;
+<li>agents utilisateurs, pour sélectionner une police quand celle demandée n'est pas immédiatement disponible.
+
+</ul>
+
+<p>
+<abbr>CSS2</abbr> améliore la détection d'une police correspondante dans le système de l'utilisateur,
+introduit la synthèse des polices et leur rendu progressif ainsi que leur
+téléchargement à partir du Web. Ces capacités accrues sont regroupées sous le vocable 'PoliceWeb'.
+
+<p>
+Dans le modèle de police de <abbr>CSS2</abbr>, comme dans celui de <abbr>CSS1</abbr>, chaque agent utilisateur dispose d'une
+"base de données de polices". <abbr>CSS1</abbr> se référait à celle-ci sans en fournir le détail
+interne. Par contre, <abbr>CSS2</abbr> définit les informations qui y sont contenues et permet aux auteurs d'y contribuer.
+Ainsi, quand un caractère est sollicité dans une police donnée, l'agent utilisateur, dans un premier temps,
+identifie celle dans la base de données qui correspond "au mieux" (en fonction
+de l'<a href="#algorithm">algorithme de correspondance de police</a>). Une fois qu'une correspondance a été trouvée,
+celui-ci charge les informations la concernant localement ou à partir du Web, et peut ainsi afficher
+le caractère avec les glyphes appropriés.
+
+<p>
+En fonction de ce modèle, nous avons organisé la spécification en deux parties.
+La première concerne le <a href="#font-specification">mécanisme de spécification de police</a>,
+avec lequel l'auteur précise les polices dont celui-ci souhaite l'utilisation.
+La seconde concerne le <a href="#font-selection">mécanisme de sélection de police</a>,
+à l'aide duquel l'agent utilisateur identifie et charge la police qui correspond au mieux aux souhaits de l'auteur.
+
+<p>
+La manière dont les agents utilisateurs construisent cette base de données n'est pas traitée
+dans cette spécification, l'implémentation de celle-ci dépendant entre autres du système
+d'exploitation, du système d'affichage des fenêtres et des agents utilisateurs eux-mêmes.
+
+<h2>15.2 <a name="font-specification">La spécification de police</a></h2>
+
+<p>
+La première phase du mécanisme de police de <abbr>CSS</abbr> traite de la façon dont les auteurs
+spécifient les polices devant être employées par l'agent utilisateur. Au premier abord,
+une façon évidente consisterait à utiliser le nom de la police, une seule chaîne formée
+de parties distinctes, par exemple <span class="example">"BT Swiss 721 Heavy Italic"</span>.
+
+<p>
+Malheureusement, il n'existe pas de taxonomie bien définie ni faisant l'objet d'un consensus général
+pour classer les polices selon leur nom, les termes qui s'appliquent au nom d'une famille de polices donnée
+pouvant être inadéquats pour d'autres. Par exemple, le terme 'italic' couramment employé
+pour désigner un texte incliné, un tel texte pouvant être également qualifié par les termes
+<em>Oblique, Penché, Incliné, Cursive</em> ou <em>Kursiv</em>. Dans le même ordre d'idée,
+les noms de police contiennent typiquement des indications sur leur "graisse". L'intérêt
+premier de ces dénominations consiste dans la distinction des différents aspects pris
+par une police selon qu'elle soit plus ou moins grasse. Il n'existe pas non plus de signification acceptée
+et universelle pour les noms des graisses, l'usage en est très variable. Par exemple, une police
+considérée comme grasse pourrait être qualifiée de <em>Regular, Roman,
+Book, Medium, Semi-</em> ou <em>Demi-Bold, Bold,</em>, ou encore <em>Black</em>, en fonction de l'apparence
+plus ou moins grasse de la police "normale" dans la mise en page.
+
+<p>
+Cette absence de dénomination systématique rend, en général, impossible 
+la génération du dessin d'une police avec un aspect distinct, comme par exemple la rendre
+plus grasse.
+
+<p>
+À cause de cela, <abbr>CSS</abbr> suit un <a href="#font-properties">modèle différent</a>.
+Les requêtes de polices ne sont pas basées sur un seul nom de police, mais sur une succession
+de valeurs de propriétés de police. Celles-ci sont le fondement du mécanisme de
+<a href="#font-selection">sélection de police</a> de l'agent utilisateur. On peut agir individuellement
+sur les propriétés de police, par exemple pour augmenter la graisse, le nouveau jeu de valeurs
+qui en résulte étant utilisé à son tour pour effectuer une nouvelle sélection
+dans la base de données de police. Ceci produit des résultats plus réguliers pour les auteurs
+de feuilles de style et les personnes chargées de l'implémentation, de meilleure efficacité.
+
+<h3>15.2.1 <a name="font-properties">Les propriétés de spécification de police</a></h3>
+<p>En <abbr>CSS2</abbr>, la spécification de police se fait selon ces caractéristiques :
+
+<dl>
+<dt><strong><a name="font-family">La famille de polices</a></strong>
+<dd>
+La <a name="x4"><span class="index-def" title="font family">famille de polices</span></a> indique laquelle des familles de polices
+employer pour rendre un texte. C'est un ensemble de polices prévues pour être combinées,
+leur dessin présentant des similarités. Un membre de la famille peut avoir un dessin en italique,
+un autre en gras, un autre condensé ou encore en petites capitales. Quelques noms de famille, "Helvetica",
+"New Century Schoolbook", "Kyokasho ICA L". Ces noms ne se limitent pas aux caractères latins. On peut regrouper
+les familles de polices en catégories : celles de type serif ou sans serif, celles dont l'espacement n'est pas proportionnel,
+celles qui ressemblent à une écriture manuscrite, celles avec un dessin fantaisie, etc.
+
+<dt><strong><a name="font-style">Le style de police</a></strong>
+<dd>
+Le style de police précise l'aspect dans lequel doit être rendu le texte, normal, italique ou oblique.
+La désignation <a name="x5"><span class="index-def" title="Italic, definition of"><dfn>italic</dfn></span></a>
+indique un aspect plus incliné que celui du texte normal, mais pas aussi incliné qu'une écriture
+manuscrite. La dénomination oblique, une forme penchée de l'aspect normal, est plus couramment employée dans les familles
+de police sans serif. Ces définitions évitant de qualifier une police normale légèrement
+penchée d'oblique ou une police normale en caractères grecs d'italique ;
+
+<dt><strong><a name="font-variant">La variante de police</a></strong>
+<dd>
+La variante de police indique si le texte doit être rendu avec des glyphes normaux ou avec des glyphes en
+petites capitales, pour les caractères en minuscule. Une police donnée peut ne comporter que des glyphes
+normaux, que des glyphes en petites capitales ou ces deux types en même temps ; cette propriété
+est utilisée pour requérir une police appropriée et, si celle-ci contient les deux variantes, en
+obtenir les glyphes correspondants ;
+
+<dt><strong><a name="font-weight">Le poids de police</a></strong>
+<dd>
+Le poids de police se réfère à la graisse, plus ou moins grasse, des glyphes utilisés
+pour rendre le texte, en fonction des autres membres de la même famille de polices ;
+
+<dt><strong><a name="font-stretch">L'étirement de police</a></strong>
+<dd>
+C'est la quantité de contraction ou d'extension souhaitée pour les glyphes
+utilisés dans le rendu du texte, en fonction des autres membres de la même famille de polices ;
+
+<dt><strong><a name="font-size">La taille de police (ou corps)</a></strong>
+<dd>
+Celle-ci correspond à la dimension entre deux lignes de base consécutives, ces dernières spécifiées
+globalement (en termes de <abbr>CSS</abbr>, quand les propriétés <a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>
+et <a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a> ont
+les mêmes valeurs).
+</dl>
+
+
+<p>Pour toutes ces propriétés, les valeurs exprimées en 'em' et 'ex' se réfèrent
+à la taille de la police de l'élément en question, à l'exception de la propriété
+<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>, pour laquelle
+les valeurs dans ces unités se rapportent à la taille de la police de l'élément parent. Voir le passage sur les
+<a href="./syndata.html#length-units">unités de longueur</a> pour plus d'informations.
+
+<p>
+Les propriétés de police de <abbr>CSS</abbr> décrivent l'apparence souhaitée pour le texte dans le document.
+À l'inverse, les descripteurs de police décrivent les caractéristiques des polices, de manière
+à retenir une police convenable pour obtenir l'apparence souhaitée. Pour des informations sur
+la classification des polices, consulter le passage traitant des <a href="#font-descriptors">descripteurs de police</a>.
+
+<h3>15.2.2 <a name="font-family-prop">La famille de polices</a> : la propriété <a href="fonts.html#propdef-font-family" class="noxref"><span class="propinst-font-family">'font-family'</span></a></h3>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'font-family'"><a name="propdef-font-family" class="propdef-title"><strong>'font-family'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>[[ <a href="fonts.html#value-def-family-name" class="noxref"><span class="value-inst-family-name">&lt;famille-nom&gt;</span></a>  | <a href="fonts.html#value-def-generic-family" class="noxref"><span class="value-inst-generic-family">&lt;famille-générique&gt;</span></a> ],]* [<a href="fonts.html#value-def-family-name" class="noxref"><span class="value-inst-family-name">&lt;famille-nom&gt;</span></a>  | <a href="fonts.html#value-def-generic-family" class="noxref"><span class="value-inst-generic-family">&lt;famille-générique&gt;</span></a>] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>selon l'agent utilisateur
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+Cette propriété donne une liste, par ordre de priorité, de noms de familles de polices et/ou de noms de
+familles génériques. Pour contourner certaines difficultés, une police seule ne contenant pas nécessairement
+tous les glyphes pour le rendu de chacun des caractères d'un document, ou des polices étant absentes de
+certains systèmes, ainsi la propriété permet aux auteurs de spécifier une liste de
+polices, celles-ci de même style et taille, qui sont essayées successivement pour
+vérifier la correspondance d'un glyphe avec un caractère donné. On appelle
+cette liste un <a name="x7"><span class="index-def" title="font set"><dfn>jeu de polices</dfn></span></a>.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Par exemple, un texte en français avec des symboles mathématiques peut nécessiter
+un jeu de polices de deux polices, l'une d'entre elles contenant les caractères latins et les chiffres,
+l'autre contenant les symboles mathématiques. Voici un jeu de polices qui conviendrait pour le rendu d'un texte
+qu'on sait contenir des caractères latins, japonais et des symboles mathématiques :
+
+<pre>
+BODY { font-family: Baskerville, "Heisi Mincho W3", Symbol, serif }
+</pre>
+
+<p>
+La police "Baskerville" va fournir les glyphes pour les caractères latins, la police "Heisi Mincho W3", ceux
+pour les caractères japonais, la police "Symbol", ceux pour les symboles mathématiques, et
+la famille de polices générique 'serif', ceux éventuels d'autres caractères.
+</div>
+
+<p>
+La famille de polices générique sera utilisée si une, ou plusieurs, des polices d'un jeu de polices
+n'étaient pas disponibles. Bien que certaines polices fournissent un glyphe de substitution pour indiquer un
+"caractère manquant", celui-ci prenant typiquement l'aspect d'un carré, on ne devrait pas considérer
+ce glyphe comme une correspondance valide<del title="2000-10-31 id=x73"> sauf pour la dernière police d'un jeu de polices</del>.
+
+<p>Il existe deux types de noms de famille de polices :
+<dl>
+<dt><span class="index-def" title="&lt;family-name&gt;::definition of"><a name="value-def-family-name" class="value-def"><strong>&lt;famille-nom&gt;</strong></a></span>
+<dd>Le nom d'une famille de polices choisi. Dans l'exemple précédent, "Baskerville", "Heisi Mincho W3" et "Symbol"
+sont des noms de famille de polices. Celles dont l'intitulé contient des <a href="syndata.html#whitespace">caractères blancs</a>
+devraient être écrites entre guillemets. Si on omet les guillemets, chacun des <a href="syndata.html#whitespace">caractères blancs</a>
+avant et après le nom de la police sont <span class="index-inst" title="ignore"><a name="x9" href="syndata.html#ignore">ignorés</a></span>
+et chaque séquence de caractères blancs, dans celui-ci, est convertie en un seul espace ;
+
+<dt><span class="index-def" title="&lt;generic-family&gt;::definition of"><a name="value-def-generic-family" class="value-def"><strong>&lt;famille-générique&gt;</strong></a></span>
+<dd>On définit les familles génériques suivantes : 'serif', 'sans-serif', 'cursive', 'fantasy' et 'monospace'.
+Voir le passage traitant des <a href="#generic-font-families">familles de polices génériques</a> pour leur description.
+Les noms de famille de polices génériques sont des mots-clés, on ne doit pas les mettre entre guillemets.
+
+<p>On recommande aux auteurs de citer une famille de polices générique en ultime option,
+pour une meilleure efficacité.
+</dl>
+
+<div class="html-example">
+<p>
+Par exemple :
+
+<pre>
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+    &lt;TITLE&gt;Essai de police&lt;/TITLE&gt;
+    &lt;STYLE type="text/css"&gt;
+      BODY { font-family: "new century schoolbook", serif }
+    &lt;/STYLE&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+   &lt;H1 style="font-family: 'Ma propre police', fantasy"&gt;Essai&lt;/H1&gt;
+    &lt;P&gt;Quoi de neuf ?
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+</div>
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+On peut utiliser la plus grande richesse de syntaxe des sélecteurs de <abbr>CSS2</abbr> pour créer une typographie
+en fonction de la langue. Par exemple, certains caractères chinois et japonais partagent le même code Unicode,
+bien que les glyphes obtenus ne soient pas les mêmes dans ces deux langues :
+
+<pre>
+*:lang(ja-jp) { font: 900 14pt/16pt "Heisei Mincho W9", serif }
+*:lang(zh-tw) { font: 800 14pt/16.5pt "Li Sung", serif }
+</pre>
+
+<p>
+Ces règles s'appliquent aux éléments dans une langue donnée, japonais ou chinois traditionnel,
+et appellent la police appropriée.
+</div>
+
+
+<h3>15.2.3 <a name="font-styling">Le style de police</a> : les propriétés
+<a href="fonts.html#propdef-font-style" class="noxref"><span class="propinst-font-style">'font-style'</span></a>,
+<a href="fonts.html#propdef-font-variant" class="noxref"><span class="propinst-font-variant">'font-variant'</span></a>,
+<a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a> et
+<a href="fonts.html#propdef-font-stretch" class="noxref"><span class="propinst-font-stretch">'font-stretch'</span></a></h3>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'font-style'"><a name="propdef-font-style" class="propdef-title"><strong>'font-style'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>normal | italic | oblique | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>normal
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>La propriété <a href="fonts.html#propdef-font-style" class="noxref"><span class="propinst-font-style">'font-style'</span></a>
+sélectionne, parmi les polices d'une famille de polices, celles avec un dessin normal 
+(aussi appelé "roman" ou "upright"), italique et oblique. Les significations des valeurs sont :
+
+<dl>
+<dt><strong>normal</strong>
+<dd>Spécifie une police dite normale dans la base de données de police de l'agent utilisateur ;
+<dt><strong>oblique</strong>
+<dd>Spécifie une police dite oblique dans la base de données de police de l'agent utilisateur.
+Les polices dont le nom contient les mots Oblique, Slanted ou Incline sont typiquement étiquetées
+'oblique' dans la base de données de police de l'agent utilisateur. Celles avec ce label ayant pu avoir été
+obtenues électroniquement en inclinant une police normale ;
+<dt><strong>italic</strong>
+<dd>Spécifie une police dite italique dans la base de données de police de l'agent utilisateur, ou, s'il n'y en a pas,
+une avec un label 'oblique'. Les polices dont le nom contient les mots <em>Italic, Cursive</em> ou <em>Kursiv</em> seront
+typiquement étiquetées 'italic'.
+</dl>
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Dans cet exemple, le texte des éléments H1, H2 et H3 sera affiché avec une police italique et le
+texte accentué (EM) éventuel dans les éléments H1 avec un dessin normal :
+
+<pre>
+H1, H2, H3 { font-style: italic }
+H1 EM { font-style: normal }
+</pre>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'font-variant'"><a name="propdef-font-variant" class="propdef-title"><strong>'font-variant'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>normal | small-caps | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>normal
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+Dans une police en petites capitales, les glyphes des lettres minuscules ont un aspect similaire aux lettres majuscules,
+cependant avec une taille réduite et des proportions légèrement différentes. La propriété
+<a href="fonts.html#propdef-font-variant" class="noxref"><span class="propinst-font-variant">'font-variant'</span></a> appelle
+ce genre de police <a name="x13"><span class="index-def" title="bicameral::definition of">bicamérale</span></a>
+(qui ont deux casses, comme les écritures latines). Celle-ci ne produit aucun effet visible pour les écritures
+<a name="x14"><span class="index-def" title="unicameral::definition of"><dfn>monocamérales</dfn></span></a>
+(qui n'ont qu'une seule casse, comme la plupart des systèmes d'écriture mondiaux).
+Les significations des valeurs sont :
+
+<dl>
+<dt><strong>normal</strong>
+<dd>Spécifie une police qui n'est pas étiquetée comme étant en petites capitales ;
+<dt><strong>small-caps</strong>
+<dd>Spécifie une police étiquetée comme étant en petites capitales. S'il n'y a pas une telle police,
+les agents utilisateurs devraient en effectuer la simulation, par exemple en sélectionnant une police normale et y
+remplaçant les lettres minuscules par des majuscules mises à l'échelle. En dernier ressort,
+les lettres majuscules inchangées d'une police normale peuvent se substituer aux glyphes en petites capitales,
+ainsi le texte apparaîtrait entièrement en majuscule.
+</dl>
+
+<div class="example"><p style="display:none">Exemple(s) :
+
+<p>Dans cet exemple, le texte contenu dans un élément H3 apparaît en petites capitales, les parties
+accentuées (EM) en petites capitales italiques :
+
+<pre>
+H3 { font-variant: small-caps }
+EM { font-style: oblique }
+</pre>
+</div>
+
+<p>
+Comme cette propriété provoque la transformation du texte en majuscule, les mêmes considérations
+que pour la propriété <a href="text.html#propdef-text-transform" class="noxref"><span class="propinst-text-transform">'text-transform'</span></a>
+s'appliquent.
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'font-weight'"><a name="propdef-font-weight" class="propdef-title"><strong>'font-weight'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>normal
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>La propriété <a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>
+spécifie la <span>graisse</span> de la police. Les significations des valeurs sont :
+
+<dl>
+<dt><strong>100 à 900</strong>
+<dd>Ces valeurs forment une séquence ordonnée, où chacun des nombres indique, pour la police, une graisse au moins
+aussi grasse que celle du nombre précédent ;
+<dt><strong>normal</strong>
+<dd>Équivaut à '400' ;
+<dt><strong>bold</strong>
+<dd>Équivaut à '700' ;
+<dt><strong>bolder</strong>
+<dd>Spécifie la graisse supérieure à celle assignée à une police,
+cette graisse étant plus grasse que celle héritée par la police. S'il n'y en a pas, la valeur de graisse
+de la propriété prend simplement la valeur numérique supérieure (l'aspect de la police ne changeant pas),
+à moins que la valeur héritée ne soit déjà égale à '900', auquel cas la valeur résultante
+devient également '900' ;
+<dt><strong>lighter</strong>
+<dd>Spécifie la graisse inférieure à celle assignée à une police,
+cette graisse étant moins grasse que celle héritée par la police. S'il n'y en a pas, la valeur de graisse
+de la propriété prend simplement la valeur numérique inférieure (l'aspect de la police ne changeant pas),
+à moins que la valeur héritée ne soit déjà égale à '100', auquel cas la valeur résultante
+devient également '100'.
+</dl>
+
+<div class="example"><p style="display:none">Example(s) :
+
+<pre>
+P { font-weight: normal }   /* 400 */
+H1 { font-weight: 700 }     /* bold */
+BODY { font-weight: 400 }
+STRONG { font-weight: bolder } /* 500 si disponible */
+</pre>
+</div>
+
+<p>
+Les éléments enfants héritent de la <a href="cascade.html#computed-value">valeur calculée</a> pour la graisse.
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'font-stretch'"><a name="propdef-font-stretch" class="propdef-title"><strong>'font-stretch'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>normal | wider | narrower | ultra-condensed | extra-condensed | condensed | semi-condensed  | semi-expanded | expanded | extra-expanded | ultra-expanded | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>normal
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>La propriété <a href="fonts.html#propdef-font-stretch" class="noxref"><span class="propinst-font-stretch">'font-stretch'</span></a>
+sélectionne les dessins normal, comprimé ou élargi dans une famille de polices. Les valeurs des
+mots-clés absolus, du plus étroit au plus espacé, sont :
+
+<ol>
+	<li>ultra-condensed
+	<li>extra-condensed
+	<li>condensed
+	<li>semi-condensed
+	<li>normal
+	<li>semi-expanded
+	<li>expanded
+	<li>extra-expanded
+	<li>ultra-expanded
+</ol>
+
+<p>
+Le mot-clé relatif 'wider' spécifie la valeur d'expansion supérieure à celle héritée
+(sans effet si la valeur héritée est déjà 'ultra-expanded'), à l'inverse du mot-clé relatif 'narrower'
+celui-ci spécifiant la valeur de contraction inférieure à celle héritée (sans effet si la valeur
+héritée est déjà 'ultra-condensed').
+
+<h3>15.2.4 <a name="font-size-props">La taille de police</a> : les propriétés <a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a> et <a href="fonts.html#propdef-font-size-adjust" class="noxref"><span class="propinst-font-size-adjust">'font-size-adjust'</span></a></h3>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'font-size'"><a name="propdef-font-size" class="propdef-title"><strong>'font-size'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="fonts.html#value-def-absolute-size" class="noxref"><span class="value-inst-absolute-size">&lt;taille-absolue&gt;</span></a> | <a href="fonts.html#value-def-relative-size" class="noxref"><span class="value-inst-relative-size">&lt;taille-relative&gt;</span></a> | <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> | <a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;pourcentage&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>medium
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui, la valeur calculée également
+<tr valign=baseline><td><em>Percentages:</em>  <td>se rapporte à la taille de la police du parent de l'élément
+<tr valign=baseline><td><em>Media:</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+Cette propriété décrit la taille d'une police spécifiée explicitement. <ins title="id=x74">Celle-ci correspond
+au carré em, un concept issu de la typographie. Noter que certains glyphes peuvent déborder de
+leur carré em.</ins> Les significations des valeurs sont :
+
+<dl>
+<dt><a name="x18"><span class="index-def" title="&lt;absolute-size&gt;::definition of"><strong>&lt;taille-absolue&gt;</strong></span></a>
+<dd>Un mot-clé <a name="value-def-absolute-size" class="value-def">&lt;taille-absolue&gt;</a> se réfère
+à une entrée de la table des tailles de police, celle-ci étant dressée et mise en &#339;uvre
+par l'agent utilisateur. Les valeurs possibles :
+
+<p> [ xx-small | x-small | small | medium | large | x-large | xx-large ]
+
+<p>
+Pour un écran de moniteur, on suggère un facteur d'échelle de 1.2 entre les valeurs consécutives
+de la table ; si la valeur 'medium' correspond à 12pt, la valeur 'large' devrait correspondre à 14.4pt.
+Les facteurs d'échelle peuvent différer selon les médias considérés. Par ailleurs,
+l'agent utilisateur devrait prendre en compte la qualité et la disponibilité des polices au moment du
+calcul de cette table. Celle-ci peut aussi différer d'une famille de polices à une autre.
+
+<p class="note"><em><strong>Remarque :</strong> En <abbr>CSS1</abbr>, on suggérait un facteur d'échelle de 1.5, qui s'est
+avéré trop grand à l'usage.</em>
+
+<dt><a name="x19"><span class="index-def" title="&lt;relative-size&gt;::definition of"><strong>&lt;taille-relative&gt;</strong></span></a>
+<dd>Un mot-clé <a name="value-def-relative-size" class="value-def">&lt;taille-relative&gt;</a> s'entend
+par rapport à la table des tailles de police et par rapport à la taille de la police de l'élément
+parent. Les valeurs possibles :
+
+<p> [ larger | smaller ]
+
+<p>Par exemple, quand l'élément parent a une taille de police de valeur 'medium', l'élément
+en question ayant une valeur 'larger', la taille de police résultante de celui-ci correspondra à 'large'.
+Si la taille de police de l'élément parent a une valeur trop éloignée d'une des valeurs de la
+table, l'agent utilisateur est libre d'effectuer une interpolation entre les deux valeurs qui la circonscrivent ou un arrondi à
+la valeur la plus proche. 
+L'agent utilisateur peut devoir procéder à une extrapolation des valeurs de la table
+quand une valeur numérique sort du champ des mots-clés.
+
+<dt><span class="index-inst" title="&lt;length&gt;"><a name="x20" href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length"><strong>&lt;longueur&gt;</strong></span></a></span>
+<dd>Une valeur de longueur spécifie une taille de police absolue (indépendante de la table des tailles de police de
+l'agent utilisateur). Les valeurs négatives ne sont pas admises ;
+<dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x21" href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage"><strong>&lt;pourcentage&gt;</strong>
+</span></a></span>
+<dd>Une valeur en pourcentage spécifie une taille de police absolue par rapport à celle de l'élément
+parent. Leur emploi, de même pour les valeurs exprimées en 'em', conduit à des feuilles de style plus
+fiables, en plein accord avec le principe de la cascade.
+</dl>
+
+<p>La <a href="cascade.html#actual-value">valeur réelle</a>, pour cette propriété, peut différer
+de la <a href="cascade.html#computed-value">valeur calculée</a>, la propriété 'font-size-adjust' ayant
+une valeur numérique et certaines tailles de police étant indisponibles.
+
+<p>
+Les éléments enfants héritent de la valeur calculée de <a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>
+(autrement l'effet de la propriété <a href="fonts.html#propdef-font-size-adjust" class="noxref"><span class="propinst-font-size-adjust">'font-size-adjust'</span></a>
+serait combiné).
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+
+<pre>
+P { font-size: 12pt; }
+BLOCKQUOTE { font-size: larger }
+EM { font-size: 150% }
+EM { font-size: 1.5em }
+</pre>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'font-size-adjust'"><a name="propdef-font-size-adjust" class="propdef-title"><strong>'font-size-adjust'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a> | none | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>none
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>Pour les écritures <a name="x23"><span class="index-inst" title="bicameral">bicamérales</span></a>,
+la taille apparente et la lisibilité subjective d'une police dépendent moins de la valeur de la propriété
+<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a> que de celle
+de <a href="fonts.html#descdef-x-height" class="noxref"><span class="descinst-x-height">'x-height'</span></a>, ou plus utilement,
+du ratio de ces deux valeurs <del title="id=x21">(font-size/x-height)</del> <ins title="id=x21">(x-height/font-size)</ins>,
+appelé <a name="x24"><span class="index-def" title="aspect value"><dfn>valeur d'aspect</dfn></span></a>.
+Plus grande la valeur d'aspect, plus la police restera lisible dans les petites tailles. Et inversement, les polices, qui ont une
+valeur d'aspect plus faible, verront leur lisibilité se dégrader plus rapidement, à partir d'un certain seuil,
+que celles de plus grande valeur d'aspect. Les simples substitutions de polices, basées sur le seul critère de la taille de police,
+peuvent conduire à du texte illisible.
+
+<p>
+Par exemple, la police Verdana, très répandue, a une valeur d'aspect de 0.58, c.à.d. quand la taille de celle-ci est
+de 100 unités, sa valeur de hauteur-x (x-height) est de 58 unités. En comparaison, la police Times New Roman a une valeur
+d'aspect de 0.46. La police Verdana restera donc lisible plus longtemps que Times New Roman, la taille de police diminuant.
+Inversement, pour une taille donnée, Verdana semblera souvent "trop grande" quand substituée par Times New Roman.
+
+<p>
+Cette propriété permet de spécifier une valeur d'aspect pour un élément, ce qui préserve
+la valeur hauteur-x de la première police à choisir dans la liste des polices de substitution.
+Les significations des valeurs sont :
+
+<dl>
+<dt><strong>none</strong>
+<dd>Ne préserve pas la valeur hauteur-x de la police ;
+
+<dt><span class="index-inst" title="&lt;number&gt;"><a name="x25" href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number"><strong>&lt;nombre&gt;</strong></span></a></span>
+<dd>Spécifie la valeur d'aspect. Ce nombre concerne la valeur d'aspect de la première police à choisir.
+Le facteur d'échelle pour les polices disponibles se détermine selon cette formule :
+
+<pre>
+  y(a/a') = c
+</pre>
+
+<p>ce qui correspond à :
+
+<pre>
+y  = la valeur de 'font-size' de la première police du choix
+<ins title="id=x21">a  = la valeur d'aspect de la première police du choix</ins>
+a' = la valeur d'aspect de la police disponible
+c  = la valeur de 'font-size' appliquée à la police disponible
+</pre>
+</dl>
+
+<div class="example"><p style="display:none">Exemple(s) :
+
+<p>
+Par exemple, la police Verdana (valeur d'aspect de 0.58) avec une taille de police 14 px spécifiée
+n'étant pas disponible, une police de substitution avec une valeur d'aspect de 0.46 étant disponible,
+la taille de cette police serait : <samp>14 * (0.58/0.46) = 17.65px</samp>.
+</div>
+
+<p>
+L'ajustement de la taille de police intervient lors du calcul de la <a href="cascade.html#actual-value">valeur réelle</a>
+de la propriété <a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>.
+L'héritage étant basé sur la <a href="cascade.html#computed-value">valeur calculée</a>,
+les éléments enfants héritent de valeurs sans ajustement.
+
+<p><ins title="2001-06-25">La propriété 'font-size-adjust' devraient s'appliquer également
+à la première police du choix. Ceci ne devrait avoir aucun effet, la valeur de 'font-size-adjust' étant
+par définition égale au ratio ex/em de cette première police du choix. Ceci corrige une omission en
+relation avec les cas où la propriété est héritée par les éléments enfants de type en-ligne.</ins>
+
+<p>
+La première image ci-dessous montre plusieurs polices rendues dans le même corps (11 pt à 72 ppp), avec
+leur valeur d'aspect correspondante. Noter que les polices avec une grande valeur d'aspect apparaissent plus grande que
+celles avec une valeur d'aspect plus petite. Celles avec une valeur d'aspect très faible sont illisibles pour cette
+taille donnée.
+
+<p><img src="images/font-adjust-a.gif" alt="Comparaison de polices en corps 12 pt." width="450" height="720"></p>
+
+<p>
+L'image suivante montre la correction apportée par le facteur d'échelle de
+<a href="fonts.html#propdef-font-size-adjust" class="noxref"><span class="propinst-font-size-adjust">'font-size-adjust'</span></a>,
+la police Verdana étant la "première du choix". Une fois l'ajustement effectué, les tailles apparentes
+semblent identiques entre les polices, bien que la taille réelle (en em) puisse varier de plus de 100 %.
+Noter que la propriété <a href="fonts.html#propdef-font-size-adjust" class="noxref"><span class="propinst-font-size-adjust">'font-size-adjust'</span></a>
+tend également à stabiliser les dimensions horizontales des lignes.
+
+<p><img src="images/font-adjust-b.gif" alt="Comparaison entre des polices ajustées." width="450" height="720"></p>
+
+<h3>15.2.5 <a name="font-shorthand">La propriété raccourcie de police</a> : la propriété <a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a></h3>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'font'"><a name="propdef-font" class="propdef-title"><strong>'font'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>[ [ <a href="fonts.html#propdef-font-style" class="noxref"><span class="propinst-font-style">&lt;'font-style'&gt;</span></a> || <a href="fonts.html#propdef-font-variant" class="noxref"><span class="propinst-font-variant">&lt;'font-variant'&gt;</span></a> || <a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">&lt;'font-weight'&gt;</span></a> ]? <a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">&lt;'font-size'&gt;</span></a> [ / <a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">&lt;'line-height'&gt;</span></a> ]? <a href="fonts.html#propdef-font-family" class="noxref"><span class="propinst-font-family">&lt;'font-family'&gt;</span></a> ] | caption | icon | menu | message-box | small-caption | status-bar | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>voir les propriétés individuelles
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Percentages:</em>  <td>allowed on 'font-size' and 'line-height'
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p> La propriété raccourcie <a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a>,
+sauf comme indiqué <a href="#almost">plus loin</a>, sert à regrouper les propriétés
+<a href="fonts.html#propdef-font-style" class="noxref"><span class="propinst-font-style">'font-style'</span></a>,
+<a href="fonts.html#propdef-font-variant" class="noxref"><span class="propinst-font-variant">'font-variant'</span></a>,
+<a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>,
+<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a>,
+<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a> et
+<a href="fonts.html#propdef-font-family" class="noxref"><span class="propinst-font-family">'font-family'</span></a>
+dans la feuille de style. La syntaxe de celle-ci est issue d'une notation typographique traditionnelle pour fixer plusieurs
+propriétés liées aux polices. 
+
+<p>
+Tout d'abord, les valeurs des propriétés de police sont toutes réinitialisées à leur
+valeur initiale, les propriétés décrites précédemment ainsi que <a href="fonts.html#propdef-font-stretch" class="noxref"><span class="propinst-font-stretch">'font-stretch'</span></a>
+et <a href="fonts.html#propdef-font-size-adjust" class="noxref"><span class="propinst-font-size-adjust">'font-size-adjust'</span></a>.
+Ensuite, les valeurs spécifiées explicitement dans la propriété <a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a>
+sont données aux propriétés concernées. Voir les définitions des propriétés
+pour les valeurs admises et initiales de celles-ci. Pour des raisons de compatibilité, il n'est pas possible,
+au moyen de cette propriété <a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a>,
+de spécifier des valeurs autres que leur valeur initiale aux propriétés
+<a href="fonts.html#propdef-font-stretch" class="noxref"><span class="propinst-font-stretch">'font-stretch'</span></a> et
+<a href="fonts.html#propdef-font-size-adjust" class="noxref"><span class="propinst-font-size-adjust">'font-size-adjust'</span></a> ;
+pour ce faire, utiliser directement celles-ci.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+
+<pre>
+P { font: 12pt/14pt sans-serif }
+P { font: 80% sans-serif }
+P { font: x-large/110% "new century schoolbook", serif }
+P { font: bold italic large Palatino, serif }
+P { font: normal small-caps 120%/120% fantasy }
+P { font: oblique 12pt "Helvetica Nue", serif; font-stretch: condensed }
+</pre>
+
+<p>
+Dans la deuxième règle, la taille de police en pourcentage ('80%') se rapporte à celle de l'élément
+parent. Dans la troisième, le pourcentage de hauteur de ligne ('110%') se rapporte à la taille de police
+de l'élément lui-même.
+
+<p>
+Les trois premières règles ne spécifiant pas explicitement les valeurs des propriétés
+<a href="fonts.html#propdef-font-variant" class="noxref"><span class="propinst-font-variant">'font-variant'</span></a> et
+<a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>,
+celles-ci ont donc leur valeur initiale 'normal'. Noter que le nom de la famille de polices "new century schoolbook" contenant
+des caractères blancs, celui-ci est mis entre guillemets. La quatrième r&eagrave;gle spécifie la valeur 'bold' pour la
+propriété <a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>,
+la valeur 'italic' pour <a href="fonts.html#propdef-font-style" class="noxref"><span class="propinst-font-style">'font-style'</span></a> et,
+implicitement, la valeur 'normal' pour <a href="fonts.html#propdef-font-variant" class="noxref"><span class="propinst-font-variant">'font-variant'</span></a>.
+
+<p>
+La cinquième règle spécifie les valeurs des propriétés individuelles
+<a href="fonts.html#propdef-font-variant" class="noxref"><span class="propinst-font-variant">'font-variant'</span></a> ('small-caps'),
+<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a> (120 % de la taille de police du parent),
+<a href="visudet.html#propdef-line-height" class="noxref"><span class="propinst-line-height">'line-height'</span></a> (120 % de la taille de police) et
+<a href="fonts.html#propdef-font-family" class="noxref"><span class="propinst-font-family">'font-family'</span></a> ('fantasy').
+On en déduit que le mot-clé 'normal' s'applique aux deux propriétés restantes,
+<a href="fonts.html#propdef-font-style" class="noxref"><span class="propinst-font-style">'font-style'</span></a> et
+<a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>.
+
+<p>
+La sixième règle spécifie les valeurs des propriétés
+<a href="fonts.html#propdef-font-style" class="noxref"><span class="propinst-font-style">'font-style'</span></a>,
+<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a> et
+<a href="fonts.html#propdef-font-family" class="noxref"><span class="propinst-font-family">'font-family'</span></a>,
+les autres propriétés gardant leur valeur initiale. Puis celle-ci spécifie la valeur
+'condensed' pour la propriété <a href="fonts.html#propdef-font-stretch" class="noxref"><span class="propinst-font-stretch">'font-stretch'</span></a>,
+ceci ne pouvant être réalisé au moyen de la propriété raccourcie
+<a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a>.
+</div>
+
+
+<p>
+Les valeurs suivantes se rapporte aux <a name="x27"><span class="index-def" title="system fonts">polices du système</span></a> :
+
+<dl>
+<dt><strong>caption</strong>
+<dd>La police employée pour légender les contrôles (ex. les boutons, les menus déroulants, etc.) ;
+<dt><strong>icon</strong>
+<dd>La police employée pour légender les icones ;
+<dt><strong>menu</strong>
+<dd>La police employée dans les menus (ex. les menus déroulants et les listes de menus) ;
+<dt><strong>message-box</strong>
+<dd>La police employée dans les boîtes de dialogue ;
+<dt><strong>small-caption</strong>
+<dd>La police employée pour étiqueter les contrôles de petite taille;
+<dt><strong>status-bar</strong>
+<dd>La police employée dans les barres de statut de la fenêtre.
+</dl>
+
+<p>
+On ne peut spécifier les polices de système que globalement, c.à.d. une spécification en une seule fois
+de la famille d'une police, de sa taille, de son poids, de son style, etc. Ces valeurs peuvent être
+ensuite modifiées individuellement. S'il n'y a pas de police avec les caractéristiques requises sur une
+plate-forme donnée, l'agent utilisateur devrait exercer une interprétation adéquate (par exemple utiliser une
+forme réduite de la police désignée par la valeur 'caption' pour la valeur 'small-caption') ou bien
+lui substituer une police par défaut. Comme pour les polices normales, si, pour une police de système, une
+quelconque des propriétés individuelles n'était pas disponible au travers des préférences
+de l'utilisateur du système d'exploitation, ces propriétés devraient prendre leur valeur initiale.
+
+<p><a name="almost">C'est pourquoi</a> cette propriété est "presque" une propriété raccourcie :
+on ne peut spécifier les polices de système qu'avec celle-ci, et non avec la propriété
+<a href="fonts.html#propdef-font-family" class="noxref"><span class="propinst-font-family">'font-family'</span></a>.
+Ainsi, la propriété <a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a>
+permet un plus grand champ d'action que la somme de ses sous-propriétés. Cependant, les propriétés
+individuelles, telle que <a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>,
+peuvent toujours prendre les valeurs données par ce moyen, qu'on peut faire varier indépendamment.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+
+<pre>
+BUTTON { font: 300 italic 1.3em/1.7em "FB Armada", sans-serif }
+BUTTON P { font: menu }
+BUTTON P EM { font-weight: bolder }
+</pre>
+
+<p>
+Si, selon exemple, la police employée pour les menus déroulants sur un système donné
+était Charcoal en 9pt, avec un poids de 600, alors les éléments P descendants
+de l'élément BUTTON serait affichés comme si la règle était :
+
+<pre>
+BUTTON P { font: 600 9pt Charcoal }
+</pre>
+
+<p>
+La propriété raccourcie <a href="fonts.html#propdef-font" class="noxref"><span class="propinst-font">'font'</span></a>
+remettant à leur valeur initiale chacune des propriétés non spécifiées,
+ces déclarations auraient produit le même effet :
+
+<pre>
+BUTTON P {
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 600;
+  font-size: 9pt;
+  line-height: normal;
+  font-family: Charcoal
+} 
+</pre>
+
+</div>
+
+<h3>15.2.6 <a name="generic-font-families">Les familles de polices génériques</a></h3>
+
+<p>
+Les familles de polices génériques sont un mécanisme de repli, un moyen de préserver l'essentiel
+des intentions de l'auteur dans le pire des cas, quand aucune des polices demandées ne peut être sélectionnée.
+Pour le meilleur contrôle typographique possible, on ne devrait employer que certains noms de police dans les feuilles de style.
+
+<p><a name="defined-to-exist">Les cinq familles de polices génériques</a> sont censées exister dans toutes
+les implémentations <abbr>CSS</abbr> (celles-ci ne correspondent pas forcément à cinq polices déterminées).
+Les agents utilisateurs devraient offrir par défaut des choix raisonnables de familles génériques,
+exprimant autant que possible les genres de chacune d'elles dans les limites de la technique.
+
+<p>
+On recommande que les agents utilisateurs permettent aux utilisateurs de sélectionner la police de leur choix pour
+faire office de police générique.
+
+<h4> <span class="index-def" title="serif, definition of"><a name="serif-def"><dfn>serif</dfn></a></span></h4>
+
+<p>
+Les glyphes des polices serifs, tel que le mot est employé en <abbr>CSS</abbr>, ont des terminaisons au bout de leurs traits, des bouts évasées
+ou en pointes, ou plus simplement des terminaisons avec des empattements (y compris des empattements en pavé).
+Les polices serifs ont typiquement un espacement des lettres proportionnel. Elles présentent souvent une plus grande variation entre les
+pleins et les déliés que les polices appartenant au type générique 'sans-serif. En <abbr>CSS</abbr>, le terme
+'serif' s'applique à une police, quelle que soit son écriture, bien que d'autres dénominations soient
+plus courantes pour d'autres écritures, telles que Mincho (japonais), Sung ou Song (chinois)<del title="id=x22">, Totum ou Kodig (coréen)</del>
+<ins title="id=x22">ou Pathang (coréen)</ins>.
+Toute police ainsi décrite peut représenter la famille générique 'serif'.
+
+<p>Quelques exemples de polices dans cette description :
+
+<table>
+<tr><td>Polices latines
+  <td>Times New Roman, Bodoni, Garamond, Minion Web, ITC Stone Serif, MS Georgia, Bitstream Cyberbit
+<tr><td>Polices grecques
+  <td>Bitstream Cyberbit
+<tr><td>Polices cyrilliques
+  <td>Adobe Minion Cyrillic, Excelcior Cyrillic Upright, Monotype Albion 70, Bitstream Cyberbit, ER Bukinst
+<tr><td>Polices hébraïques
+  <td>New Peninim, Raanana, Bitstream Cyberbit
+<tr><td>Polices japonaises
+  <td>Ryumin Light-KL, Kyokasho ICA, Futo Min A101
+<tr><td>Polices arabes
+  <td>Bitstream Cyberbit
+<tr><td>Polices cherokees
+  <td>Lo Cicero Cherokee
+</table>
+
+<h4> <span class="index-def" title="sans-serif, definition of"><a name="sans-serif-def"><dfn>sans-serif</dfn></a></span></h4>
+
+<p>
+Les glyphes sans serifs, tel que le mot est employé en <abbr>CSS</abbr>, ont les fins des traits pleins, sans évasement, ni
+recoupements ou autres ornements. Les polices sans serifs ont typiquement un espacement des lettres proportionnel.
+Elles présentent en général peu de variation entre les pleins et les déliés, comparées
+aux polices appartenant au type générique 'serif'. En <abbr>CSS</abbr>, le terme 'sans-serif' s'applique à une
+police, quelle que soit son écriture, bien que d'autres dénominations soient plus
+courantes pour d'autres écritures, telles que Gothic (japonais), Kai (chinois)<del title="id=x22"> ou Pathang (coréen)</del><ins title="id=x22">, Totum ou Kodig (coréen)</ins>.
+Toute police ainsi décrite peut représenter la famille générique 'sans-serif'.
+
+<p>Quelques exemples de polices dans cette description :
+
+<table>
+<tr><td>Polices latines
+  <td>MS Trebuchet, ITC Avant Garde Gothic, MS Arial, MS Verdana, Univers, Futura, ITC Stone Sans, Gill Sans, Akzidenz Grotesk, Helvetica
+<tr><td>Polices grecques
+  <td>Attika, Typiko New Era, MS Tahoma, Monotype Gill Sans 571, Helvetica Greek
+<tr><td>Polices cyrilliques
+  <td>Helvetica Cyrillic, ER Univers, Lucida Sans Unicode, Bastion
+<tr><td>Polices hébraïques
+  <td>Arial Hebrew, MS Tahoma
+<tr><td>Polices japonaises
+  <td>Shin Go, Heisei Kaku Gothic W5
+<tr><td>Polices arabes
+  <td>MS Tahoma
+</table>
+
+<h4> <span class="index-def" title="cursive, definition of"><a name="cursive-def"><dfn>cursive</dfn></a></span></h4>
+
+<p>
+Les glyphes des polices cursives, tel que le terme est employé en <abbr>CSS</abbr>, ont généralement des traits qui
+se recoupent ou bien un aspect manuscrit plus affirmé que le dessin des polices italiques.
+Les glyphes se touchent en partie ou complètement, ce qui donne un résultat plus proche d'une écriture
+manuscrite que celui d'un travail imprimé. Les polices de certaines écritures, comme l'arabe, sont presque toujours
+cursives. En <abbr>CSS</abbr>, le terme 'cursive' s'applique à une police, quelle que soit son écriture, bien que d'autres
+dénominations sont également utilisées, telles que Chancery, Brush, Swing et Script.
+
+<p>Quelques exemples de polices dans cette description :
+
+<table>
+<tr><td>Polices latines
+  <td>Caflisch Script, Adobe Poetica, Sanvito, Ex Ponto, Snell Roundhand, Zapf-Chancery
+<tr><td>Polices cyrilliques
+  <td>ER Architekt
+<tr><td>Polices hébraïques
+  <td>Corsiva
+<tr><td>Polices arabes
+  <td>DecoType Naskh, Monotype Urdu 507
+</table>
+
+<h4> <span class="index-def" title="fantasy, definition of"><a name="fantasy-def"><dfn>fantasy</dfn></a></span></h4>
+
+<p>
+Les polices fantaisie, tel que le terme est employé en <abbr>CSS</abbr>, sont principalement décoratives, contenant toujours
+les représentations des caractères (à l'inverse des polices Pi ou Picture, qui n'en ont pas).
+Quelques exemples :
+
+<table>
+<tr><td>Polices latines
+  <td>Alpha Geometrique, Critter, Cottonwood, FB Reactor, Studz
+</table>
+
+
+<h4> <span class="index-def" title="monospace, definition of"><a name="monospace-def"><dfn>monospace</dfn></a></span></h4>
+
+
+<p>
+Le critère de détermination unique d'une police monospace : tous les glyphes ont les mêmes dimensions
+(ce qui peut donner un résultat surprenant avec certaines écritures, telle l'arabe). L'aspect étant semblable
+à celui obtenu avec une machine à écrire manuelle, on les emploie souvent pour transmettre des échantillons
+de code informatique.
+
+<p>Quelques exemples de polices dans cette description :
+
+<table>
+<tr><td>Polices latines
+  <td>Courier, MS Courier New, Prestige, Everson Mono
+<tr><td>Polices grecques
+  <td>MS Courier New, Everson Mono
+<tr><td>Polices cyrilliques
+  <td>ER Kurier, Everson Mono
+<tr><td>Polices japonaises
+  <td>Osaka Monospaced
+<tr><td>Polices cherokees
+  <td>Everson Mono
+</table>
+
+<h2>15.3 <a name="font-selection">La sélection des polices</a></h2>
+
+<p>
+La seconde phase du mécanisme de police de <abbr>CSS2</abbr> concerne la sélection par l'agent utilisateur d'une police
+basée sur les propriétés de police spécifiées par l'auteur, sur la disponibilité
+des polices, etc. Le détail de l'<a href="#algorithm">algorithme de correspondance de police</a> est présenté ci-dessous.
+
+<p>
+Quatre façons de sélectionner une police, la correspondance par le nom, la correspondance intelligente, la synthèse de police et le téléchargement de police :
+
+<dl>
+<dt><a name="x33"><span class="index-def" title="name matching"><dfn><strong>la correspondance par le nom</strong></dfn></span></a>
+<dd>
+Dans ce cas, l'agent utilisateur utilise une police existante et accessible qui a le même nom de famille que la
+police demandée (noter que l'aspect et les dimensions ne correspondent pas forcément quand la police
+employée par l'auteur du document et celle du système de l'utilisateur proviennent de différentes
+fonderies). L'information de correspondance est restreinte aux propriétés de police <abbr>CSS</abbr>, 
+dont le nom de famille. C'est la seule méthode définie par <abbr>CSS1</abbr> ;
+
+<dt><a name="x34"><span class="index-def" title="intelligent font matching"><dfn><strong>la correspondance de police intelligente</strong></dfn></span></a>
+<dd>
+Dans ce cas, l'agent utilisateur utilise une police existante et accessible dont l'apparence représente
+la correspondance la plus proche avec celle de la police demandée (noter que les dimensions ne correspondent pas
+forcément). L'information de correspondance comprend des informations sur le genre de la police (texte ou symbole),
+la nature des empattements, le poids, la hauteur des capitales, la hauteur du x, les hampes, les jambages, l'inclinaison, etc.
+
+<dt><a name="x35"><span class="index-def" title="font synthesis"><dfn><strong>la synthèse de police</strong></dfn></span></a>
+<dd>
+Dans ce cas, l'agent utilisateur crée une police, non seulement d'un aspect très semblable, mais aussi dont
+les dimensions correspondent avec celles de la police demandée. L'information de synthèse comprend l'information
+de correspondance et demande typiquement des valeurs de paramètre plus précises que celles employées
+dans certains schémas de correspondance. En particulier, la synthèse requiert des dimensions précises,
+une substitution du caractère par un glyphe et, si toutes les caractéristiques
+du dessin de la police doivent être préservées, des informations de position ;
+
+<dt><a name="x36"><span class="index-def" title="font download"><dfn><strong>le téléchargement de police</strong></dfn></span></a>
+<dd>Et finalement, l'agent utilisateur peut récupérer une police sur le Web. Le processus est similaire à un chargement d'image,
+de son ou d'applet à partir du Web pour une présentation dans un document donné, et de la même
+façon, cela peut retarder l'affichage de la page.
+</dl>
+
+<p>Le <a name="x37"><span class="index-def" title="progressive rendering"><dfn>rendu progressif</dfn></span></a> est une
+combinaison entre le téléchargement et une des autres méthodes ; cela revient à fournir une
+police de substitution temporaire (par correspondance nominale, intelligente ou par synthèse), ce qui permet une
+lecture du contenu, le temps que la police demandée soit téléchargée. Quand cette opération
+est couronnée de succès, la police temporaire est remplacée par cette police externe, heureusement
+sans avoir à redessiner la page.
+
+<div class="note"><p>
+<em><strong>Remarque :</strong> Un rendu progressif requiert les mesures de cette police au préalable, pour éviter le
+redéploiement du contenu au moment où, une fois chargée, celle-ci est rendue.
+Cette information étant conséquente, on ne devrait la spécifier, dans un document, au plus qu'une seule fois par police.
+</em>
+</div>
+
+
+<h3>15.3.1 <span class="index-inst" title="font description"> <a name="font-descriptions">Les descriptions des polices</a></span> et @font-face</h3>
+
+<p>
+La description de police fait le lien entre la spécification de police d'un auteur et les
+<a name="x39"><span class="index-def" title="font data"><dfn>données de police</dfn></span></a>, ce sont les informations
+nécessaires au formatage du texte et au rendu des glyphes abstraits auxquels correspondent les caractères,
+en fait, leurs contours proportionnels ou leurs dessins bitmaps. Les polices sont <em>référencées</em> par
+les propriétés des feuilles de style.
+
+<p>
+La description de police s'ajoute à la base de données des polices, puis est utilisée pour la
+sélection des données de la police concernée. Cette description contient des descripteurs, tels que
+l'emplacement des données d'une police sur le Web et les caractérisations de celles-ci. Les descripteurs
+de police sont également nécessaires pour faire correspondre les propriétés de police de
+la feuille de style avec les données d'une police particulière. La quantité de renseignements d'une
+description de police peut varier du simple nom d'une police jusqu'à la liste des dimensions des glyphes.
+
+<p>Les descripteurs de police sont de trois types :
+
+<ol>
+<li>ceux qui font le lien entre l'utilisation des polices par <abbr>CSS</abbr> et la description de police (ceux-ci ont le même nom
+que la propriété de police correspondante) ;
+
+<li>ceux qui ont une adresse <abbr>URI</abbr> pointant vers les données d'une police ;
+
+<li>ceux qui, étendant la caractérisation d'une police, font le lien entre la description d'une police et
+les données de celle-ci.
+</ol>
+
+
+<p>Toutes les descriptions de police se font avec une <a name="x41"><span class="index-inst" title="at-rules">règle-at</span></a>
+<a name="x40"><span class="index-def" title="@font-face"><em>@font-face</em></span></a>. En voici la forme générale :
+
+<p><tt>@font-face { <a href="fonts.html#value-def-font-description" class="noxref"><span class="value-inst-font-description">&lt;police-description&gt;</span></a> }</tt>
+
+<p>L'expression <span class="index-def" title="&lt;font-description&gt;::definition of"><a name="value-def-font-description">&lt;police-description&gt;</a></span>
+ayant la forme :
+
+<pre>
+descripteur: valeur;
+descripteur: valeur;
+[...]
+descripteur: valeur;
+</pre>
+
+<p>Chacune des règles de <a name="x43"><span class="index-inst" title="@font-face">@font-face</span></a> spécifie
+la valeur pour chacun des descripteurs de police, soit implicitement soit explicitement. Ceux dont les valeurs ne sont
+pas explicites prenant la valeur initiale définie pour chacun des descripteurs dans cette spécification.
+Ces descripteurs ne s'appliquent que dans le contexte de la règle @font-face dans laquelle ceux-ci sont définis,
+et non aux éléments dans le langage du document. Ainsi, aucune notion de descripteur s'appliquant à
+des éléments, ou de valeur héritée par des éléments enfants, n'intervient.
+
+<p>Les descripteurs de police disponibles sont traités plus loin dans cette spécification.
+
+<div class="html-example">
+<p>
+Par exemple ici, la police 'Robson Celtic' est définie et référencée dans une feuille
+de style incorporée à un document HTML :
+
+<pre>
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+    &lt;TITLE&gt;Essai de police&lt;/TITLE&gt;
+    &lt;STYLE TYPE="text/css" MEDIA="screen, print"&gt;
+      @font-face {
+        font-family: "Robson Celtic";
+        src: url("http://site/fonts/rob-celt")
+      }
+      H1 { font-family: "Robson Celtic", serif }
+    &lt;/STYLE&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+    &lt;H1&gt; Ce titre s'affiche dans la police Robson Celtic&lt;/H1&gt;
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+
+<p>
+La feuille de style (dans un élément STYLE) contient une règle <abbr>CSS</abbr> qui enjoint l'utilisation
+de la famille de polices 'Robson Celtic' à tous les éléments H1.
+
+<p>
+Une implémentation <abbr>CSS1</abbr> consulterait le système pour y trouver une police dont le nom de la famille et d'autres
+propriétés correspondent à 'Robson Celtic' et, en cas d'échec, utiliserait la police serif 
+de repli (celle-ci ayant une <a href="#defined-to-exist">existence définie</a>) de l'agent utilisateur .
+
+<p>
+Une implémentation <abbr>CSS2</abbr> examinerait d'abord les règles contenues dans <a name="x44"><span class="index-inst" title="@font-face"> @font-face</span></a>
+en quête d'une description de police définissant 'Robson Celtic'. Dans l'exemple ci-dessus, une règle
+correspond. Bien que cette règle ne recèle que peu de données sur la police, celle-ci donne une adresse <abbr>URI</abbr>
+qui pointe sur une police téléchargeable pour le rendu du document. Les polices téléchargeables
+ne devraient pas être disponibles pour d'autres applications. Si aucune correspondance n'est obtenue via
+@font-face, l'agent utilisateur essaiera d'en trouver une comme l'aurait fait une implémentation <abbr>CSS1</abbr>.
+
+
+<p>Noter que, si la police 'Robson Celtic' <em>avait été</em> installée dans le système,
+l'agent utilisateur aurait ajouté une entrée dans la base de données de police, tel que décrit
+dans l'<a href="#algorithm">algorithme de correspondance de police</a>. Dans l'exemple précédent, cette
+correspondance aurait été retenue en premier, coupant court au téléchargement de la police.
+</div>
+
+<p>
+Les implémentations <abbr>CSS1</abbr> qui ne reconnaissent pas la règle @font-face, rencontrant l'accolade ouvrante,
+vont en <span class="index-inst" title="ignore"><a name="x45" href="syndata.html#ignore">ignorer</a></span> le contenu
+jusqu'à l'accolade fermante. Cette règle-at se conformant aux obligations de 
+<a href="syndata.html#syntax">compatibilité ascendante</a> de <abbr>CSS</abbr>. Les interpréteurs peuvent
+<span class="index-inst" title="ignore"><a name="x46" href="syndata.html#ignore">ignorer</a></span> ces règles
+sans provoquer d'erreurs.
+
+<p>
+Cette séparation entre les descripteurs de police et leurs données présente un intérêt,
+au-delà de pouvoir effectuer une sélection et/ou une substitution de police. La protection des données
+et les restrictions exercées sur leur copie, pour les descripteurs de police, peuvent être beaucoup moins strictes
+que pour les données d'une police entière. Ainsi, on peut installer la définition de police
+localement, ou au moins dans un cache local si la police est appelée à partir d'une feuille de style commune ;
+ceci évitant d'avoir à télécharger la définition de police complète, c.à.d.
+plus d'une fois par police nommée.
+
+<p>
+Quand un descripteur de police apparaît à plusieurs reprises, le dernier survenu l'emporte, les autres devant
+être ignorés.
+
+<p>
+Également, tout descripteur non reconnu ou inutile pour un agent utilisateur doit être
+<span class="index-inst" title="ignore"><a name="x47" href="syndata.html#ignore">ignoré</a></span>.
+Des versions ultérieures de <abbr>CSS</abbr> pourraient introduire des descripteurs supplémentaires pour l'amélioration
+de la substitution de police, de leur correspondance ou de leur synthèse.
+
+<h3>15.3.2 <a name="select">Les descripteurs de sélection de police</a> : <a href="fonts.html#descdef-font-family" class="noxref"><span class="descinst-font-family">'font-family'</span></a>,
+<a href="fonts.html#descdef-font-style" class="noxref"><span class="descinst-font-style">'font-style'</span></a>,
+<a href="fonts.html#descdef-font-variant" class="noxref"><span class="descinst-font-variant">'font-variant'</span></a>,
+<a href="fonts.html#descdef-font-weight" class="noxref"><span class="descinst-font-weight">'font-weight'</span></a>,
+<a href="fonts.html#descdef-font-stretch" class="noxref"><span class="descinst-font-stretch">'font-stretch'</span></a> et
+<a href="fonts.html#descdef-font-size" class="noxref"><span class="descinst-font-size">'font-size'</span></a></h3>
+
+<p>Les descripteurs suivants ont les mêmes noms que ceux des propriétés de police correspondantes de <abbr>CSS2</abbr>,
+celles-ci admettant une valeur seule ou une liste de valeurs séparées par des virgules.
+
+<p>
+Les valeurs contenues dans cette liste sont les mêmes que celles de la propriété correspondante <abbr>CSS2</abbr>,
+sauf mention explicite. Quand il n'y a qu'une seule valeur, celle-ci doit correspondre. Quand c'est une liste,
+chacun des items de celle-ci peut correspondre. Quand on omet le descripteur dans une règle <a name="x48"><span class="index-inst" title="@font-face">@font-face</span></a>,
+c'est la valeur initiale de celui-ci qui est considérée.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'font-family' (descriptor)"><a name="descdef-font-family" class="descdef-title"><strong>'font-family'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>[ <a href="fonts.html#value-def-family-name" class="noxref"><span class="value-inst-family-name">&lt;famille-nom&gt;</span></a>  | <a href="fonts.html#value-def-generic-family" class="noxref"><span class="value-inst-generic-family">&lt;famille-générique&gt;</span></a>  ] [, [<a href="fonts.html#value-def-family-name" class="noxref"><span class="value-inst-family-name">&lt;famille-nom&gt;</span></a>  | <a href="fonts.html#value-def-generic-family" class="noxref"><span class="value-inst-generic-family">&lt;famille-générique&gt;</span></a>  ]]*
+<tr valign=baseline><td><em>Initiale :</em>  <td>selon l'agent utilisateur
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+C'est le descripteur du <a href="#font-family">nom de famille</a> d'une police prenant les mêmes valeurs que pour
+la propriété <a href="fonts.html#propdef-font-family" class="noxref"><span class="propinst-font-family">'font-family'</span></a>.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'font-style' (descriptor)"><a name="descdef-font-style" class="descdef-title"><strong>'font-style'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>all | [ normal | italic | oblique ] [, [normal | italic | oblique] ]*
+<tr valign=baseline><td><em>Initiale :</em>  <td>all
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+C'est le descripteur du style d'une police prenant les mêmes valeurs que pour la propriété
+<a href="fonts.html#propdef-font-style" class="noxref"><span class="propinst-font-style">'font-style'</span></a>,
+étant admise de plus, une liste de valeurs séparées par des virgules.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'font-variant' (descriptor)"><a name="descdef-font-variant" class="descdef-title"><strong>'font-variant'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>[normal | small-caps] [,[normal | small-caps]]*
+<tr valign=baseline><td><em>Initiale :</em>  <td>normal
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>C'est une indication <abbr>CSS</abbr> pour une variante avec petites capitales d'une police. Ce descripteur prenant les mêmes
+valeurs que pour la propriété <a href="fonts.html#propdef-font-variant" class="noxref"><span class="propinst-font-variant">'font-variant'</span></a>,
+étant admise de plus, une liste de valeurs séparées par des virgules.
+
+
+<div class="note"><p>
+<em><strong>Remarque :</strong> Les polices cyrilliques <i>pryamo&#301;</i> peuvent être libellées petites capitales
+pour la propriété <a href="fonts.html#descdef-font-variant" class="noxref"><span class="descinst-font-variant">'font-variant'</span></a>,
+ceci donnant un résultat plus consistent avec les polices latines (et de même, pour celle <i>kursiv</i> l'accompagnant,
+libellée italique pour la propriété<a href="fonts.html#descdef-font-style" class="noxref"><span class="descinst-font-style">'font-style'</span></a>,
+pour des raisons identiques).</em>
+</div>
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'font-weight' (descriptor)"><a name="descdef-font-weight" class="descdef-title"><strong>'font-weight'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>all | [normal | bold | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900] [, [normal | bold | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900]]*
+<tr valign=baseline><td><em>Initiale :</em>  <td>all
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>C'est le descripteur du poids d'une police par rapport aux autres polices de la même famille. Celui-ci prenant
+les mêmes valeurs que pour la propriété <a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>.
+Avec trois exceptions :
+
+<ol>
+<li>les mots-clés relatifs (bolder et lighter) ne sont pas admis ;
+<li>on admet une liste de valeurs séparées par des virgules, quand les polices contiennent plusieurs graisses ;
+<li>on admet le mot-clé supplémentaire 'all', signifiant une correspondance de la police pour toutes
+les graisses possibles, soit parce que celle-ci contient plusieurs graisses, soit parce qu'elle n'en contient qu'une seule.
+</ol>
+
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'font-stretch' (descriptor)"><a name="descdef-font-stretch" class="descdef-title"><strong>'font-stretch'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>all | [ normal | ultra-condensed | extra-condensed |
+condensed | semi-condensed  | semi-expanded | expanded | extra-expanded | 
+   ultra-expanded ] [, [ normal | ultra-condensed | extra-condensed |
+condensed | semi-condensed  | semi-expanded | expanded | extra-expanded | 
+   ultra-expanded] ]*
+<tr valign=baseline><td><em>Initiale :</em>  <td>normal
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>C'est une indication <abbr>CSS</abbr> de la quantité de contraction ou d'expansion d'une police, par rapport aux autres polices
+de la même famille. Ce descripteur prenant les mêmes valeurs que pour la propriété
+<a href="fonts.html#propdef-font-stretch" class="noxref"><span class="propinst-font-stretch">'font-stretch'</span></a>,
+avec ces exceptions :
+
+<ul>
+<li>les mots-clés relatifs (wider et narrower) ne sont pas admis ;
+<li>on admet une liste de valeurs séparées par des virgules ;
+<li>le mot-clé 'all' est admis.
+</ul>
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'font-size' (descriptor)"><a name="descdef-font-size" class="descdef-title"><strong>'font-size'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>all | <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> [, <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a>]*
+<tr valign=baseline><td><em>Initiale :</em>  <td>all
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+C'est le descripteur des tailles fournies par cette police. Seules les valeurs exprimées avec des unités
+de <a href="syndata.html#absrel-units">longueur absolues</a> sont admises, en contraste de la propriété
+<a href="fonts.html#propdef-font-size" class="noxref"><span class="propinst-font-size">'font-size'</span></a> qui admet à
+la fois des longueurs et des tailles relatives et absolues. Une liste de valeurs séparées par des virgules
+est admise.
+
+<p>
+La valeur initiale 'all' convient pour la plupart des polices proportionnelles, c'est pourquoi ce descripteur s'utilise principalement
+dans une règle @font-face avec des polices bitmaps ou avec des polices proportionnelles devant être rendues et dessinées
+dans une fourchette de tailles de police restreinte.
+
+<h3>15.3.3 <a name="dataqual">Le descripteur de qualification des données de police</a> : <a href="fonts.html#descdef-unicode-range" class="noxref"><span class="descinst-unicode-range">'unicode-range'</span></a></h3>
+
+<p>
+Ce descripteur, optionnel dans une définition de police, est employé pour éviter la vérification
+ou le téléchargement d'une police n'ayant pas suffisamment de glyphes pour le rendu d'un
+caractère donné.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'unicode-range' (descriptor)"><a name="descdef-unicode-range" class="descdef-title"><strong>'unicode-range'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="fonts.html#value-def-urange" class="noxref"><span class="value-inst-urange">&lt;étendue-unicode&gt;</span></a> [, <a href="fonts.html#value-def-urange" class="noxref"><span class="value-inst-urange">&lt;étendue-unicode&gt;</span></a>]*
+<tr valign=baseline><td><em>Initiale :</em>  <td>U+0-7FFFFFFF
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p>C'est le descripteur de l'<a href="#ucode">étendue des caractères ISO 10646</a> couverte par la police.
+
+<p>Les valeurs de <span class="index-def" title="&lt;urange&gt;::definition of"><a name="value-def-urange">&lt;étendue-unicode&gt;</a></span>
+sont exprimées avec des nombres hexadécimaux préfixés de "U+", ceux-ci correspondant aux
+positions du code du caractère dans ISO 10646 (<a href="refs.html#ref-ISO10646" rel="biblioentry" class="noxref"><span class="normref">[ISO10646]</span></a>).
+
+<p>Par exemple, <tt>U+05D1</tt> représente le caractère ISO 10646 'Lettre bet en hébreu'. Pour les
+valeurs hors du Plan Plurilingue de Base <em class="ndt">(N.D.T. Basic Multilingual Plane (BMP))</em>, on préfixe avec des digits
+supplémentaires, également hexadécimaux, ceux-ci correspondant au numéro du plan, ainsi :
+l'expression <tt>U+A1234</tt> correspond au caractère situé dans le Plan 10 à la position de code
+hexadécimal 1234. Au moment de la rédaction de ce texte, aucun caractère n'a encore été
+assigné en dehors du Plan Plurilingue de Base. Les zéros en-tête (ex. 0000004D) sont admis, mais non obligatoires.
+
+<p>La <a href="cascade.html#initial-value">valeur initiale</a> de ce descripteur couvre non seulement le Plan Plurilingue
+de Base, qu'on pourrait exprimer par U+0-FFFF, mais aussi le répertoire entier de ISO 10646. Ainsi, cette valeur
+initiale signifie que la police peut avoir des glyphes pour des caractères partout dans l'espace ISO 10646.
+Quand on spécifie une valeur pour le descripteur <a href="fonts.html#descdef-unicode-range" class="noxref"><span class="descinst-unicode-range">'unicode-range'</span></a>,
+on optimise une indication de recherche, en restreignant l'étendue dans laquelle une police
+donnée peut avoir des glyphes pour les caractères concernés. La police n'a pas besoin d'être
+entièrement parcourue pour rechercher des caractères situés hors de cette étendue.
+
+<p>
+On peut écrire les valeurs avec un nombre quelconque de chiffres. Pour des nombres seuls, le caractère joker '?'
+est censé signifier 'toute valeur', ce qui crée une <em>étendue</em> entre les positions des caractères.
+Ainsi, avec <em>un seul nombre</em> :
+
+<dl><dt>unicode-range: U+20A7 <dd>pas de joker ('?'), ceci indique la position d'un seul caractère (le symbole
+monétaire de la peseta espagnole) ;
+
+<dt>unicode-range: U+215? <dd>un joker, couvre l'étendue allant de la position 2150 à 215F (les fractions) ;
+
+<dt>unicode-range: U+00?? <dd>deux jokers, couvre l'étendue allant de la position 0000 à 00FF (Latin-1) ;
+
+<dt>unicode-range: U+E?? <dd>deux jokers, couvre l'étendue allant de la position 0E00 à 0EFF (écriture laotienne).
+</dl>
+
+<p>
+Dans ce format, on peut combiner une <em>paire de nombres</em> avec le caractère tiret pour signifier une étendue
+plus large. Par exemple :
+
+<dl>
+<dt>unicode-range:  U+AC00-D7FF
+<dd>l'étendue va de la position AC00 à D7FF (la zone pour les syllabes Hangul).
+</dl>
+
+<p>
+On peut spécifier plusieurs étendues discontinues, séparées par des virgules.
+Comme pour les autres listes de ce genre en <abbr>CSS</abbr>, les <a href="syndata.html#whitespace">caractères blancs</a>
+survenant avant ou après la virgule sont <span class="index-inst" title="ignore"><a name="x57" href="syndata.html#ignore">ignorés</a></span>.
+Par exemple :
+
+<dl><dt>unicode-range:  U+370-3FF,  U+1F??
+<dd>Ceci recouvre l'étendue allant des positions 0370 à 03FF (Grec moderne) plus 1F00 à 1FFF (Grec ancien polytonique) ;
+
+<dt>unicode-range: U+3000-303F, U+3100-312F, U+32??, U+33??, U+4E00-9FFF, U+F9000-FAFF, U+FE30-FE4F
+<dd>L'un des pire cas en terme de prolixité, indiquant que cette police (extrêmement grande) ne contient que
+des caractères chinois ISO 10646, excluant tous les caractères seulement japonais ou coréens.
+L'étendue de celle-ci va des positions 3000 à 303F (symboles et ponctuations chinois-japonais-coréen),
+plus 3100 à 312F (Bopomofo), plus 3200 à 32FF (lettres et mois enclos c.j.c.), plus 3300 à 33FF
+(zones de compatibilité c.j.c.), plus 4E00 à 9FFF (idéogrammes unifiés c.j.c.), plus F900
+à FAFF (idéogrammes de compatibilité c.j.c.) et enfin FE30 à FE4F (formes de compatibilité
+c.j.c.).
+
+<p>Une représentation plus courante pour une police chinoise typique serait :
+<p>unicode-range: U+3000-33FF, U+4E00-9FFF
+
+<dt>unicode-range: U+11E00-121FF
+<dd>Cette police couvre les pictogrammes aztèques, en cours d'enregistrement, allant des positions 1E00 à
+21FF dans le Plan 1 ;
+
+<dt>unicode-range: U+1A00-1A1F
+<dd>Cette police couvre l'Ogham irlandais, en cours d'enregistrement, allant des positions 1A00 à 1A1F.
+</dl>
+
+<h3>15.3.4 <a name="unitsperem">Le descripteur des valeurs numériques</a> : <a href="fonts.html#descdef-units-per-em" class="noxref"><span class="descinst-units-per-em">'units-per-em'</span></a></h3>
+
+<p>Ce descripteur spécifie le nombre d'unités par em ; ces unités peuvent être utilisées par
+plusieurs autres descripteurs pour exprimer diverses longueurs, ainsi le descripteur <a href="fonts.html#descdef-units-per-em" class="noxref"><span class="descinst-units-per-em">'units-per-em'</span></a>
+est obligatoire quand d'autres dépendent de lui.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'units-per-em' (descriptor)"><a name="descdef-units-per-em" class="descdef-title"><strong>'units-per-em'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>indéfinie
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>C'est le descripteur du nombre des <a href="#emsq">unités de coordonnées du carré em</a>, la taille
+de la grille de dessin sur laquelle les glyphes sont placés.
+
+<h3>15.3.5 <a name="referencing">Le descripteur de référencement</a> : <a href="fonts.html#descdef-src" class="noxref"><span class="descinst-src">'src'</span></a></h3>
+
+<p>Ce descripteur est obligatoire pour référencer les données de police réelles, que celles-ci soient
+téléchargeables ou installées localement.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'src' (descriptor)"><a name="descdef-src" class="descdef-title"><strong>'src'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>[ <a href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a> [format(<a href="syndata.html#value-def-string" class="noxref"><span class="value-inst-string">&lt;chaîne&gt;</span></a> [, <a href="syndata.html#value-def-string" class="noxref"><span class="value-inst-string">&lt;chaîne&gt;</span></a>]*)] | <a href="fonts.html#value-def-font-face-name" class="noxref"><span class="value-inst-font-face-name">&lt;police-nom&gt;</span></a>  ] [, <a href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a> [format(<a href="syndata.html#value-def-string" class="noxref"><span class="value-inst-string">&lt;chaîne&gt;</span></a> [, <a href="syndata.html#value-def-string" class="noxref"><span class="value-inst-string">&lt;string&gt;</span></a>]*)] | <a href="fonts.html#value-def-font-face-name" class="noxref"><span class="value-inst-font-face-name">&lt;police-nom&gt;</span></a> ]*
+<tr valign=baseline><td><em>Initiale :</em>  <td>indéfinie
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+C'est une liste de polices, par ordre de priorité, leurs noms séparés par une virgule, ces polices
+étant externes et/ou installées localement. Les références externes pointent sur les données
+des polices, et elles sont obligatoires si la PoliceWeb doit être téléchargée. La ressource de police peut-être
+un sous-ensemble de la police désignée, cette ressource, par exemple, pouvant ne contenir que les glyphes nécessaires
+pour une page donnée, ou un jeu de pages.
+
+<p>Une référence externe se compose d'une adresse <abbr>URI</abbr>, suivi par un indice optionnel concernant le format de la ressource
+de police désignée par l'adresse <abbr>URI</abbr>, cette indication devrait être utilisée par les agents utilisateurs
+pour leur éviter de requérir des formats de police inutilisables par eux. Comme pour toute référence hypertexte,
+d'autres formats pouvant être disponibles, lorsque l'agent utilisateur sait par avance ce qu'il trouvera à
+cette adresse, lire cette indication sera sans doute plus fiable que d'interpréter le suffixe de fichier d'une adresse <abbr>URI</abbr>.
+
+<p>
+L'indice de format est constitué d'une liste de chaînes, séparées par une virgule, représentant des formats
+de polices répandus. L'agent utilisateur honorera le nom des formats de police qu'il reconnaît et évitera
+de télécharger les polices dont les noms de format lui sont inconnus.
+
+<p>
+Voici une première liste de noms de formats, définis dans cette spécification, et qui est représentative
+des formats utilisés par les implémentations sur diverses plates-formes :
+
+<table>
+<tr><th>Chaîne<th>Format de police<th>Exemples d'extensions courantes
+<tr><td>"truedoc-pfr"<td>TrueDoc&trade; Portable Font Resource <td>.pfr
+<tr><td>"embedded-opentype"<td>Embedded OpenType <td>.eot
+<tr><td>"type-1"<td>PostScript&trade; Type 1 <td>.pfb, .pfa
+<tr><td>"truetype"<td>TrueType <td>.ttf
+<tr><td>"opentype"<td>OpenType, y compris TrueType Open <td>.ttf
+<tr><td>"truetype-gx"<td>TrueType avec des extensions GX<td> 
+<tr><td>"speedo"<td>Speedo<td> 
+<tr><td>"intellifont"<td>Intellifont<td> 
+</table>
+
+<p>Comme pour les <a href="syndata.html#uri">autres adresses <abbr>URI</abbr> en <abbr>CSS</abbr></a>,
+celles-ci pouvant être partielles et dans ce cas l'adresse <abbr>URI</abbr> se résout par rapport à l'adresse
+de la feuille de style qui contient la règle <a name="x60"><span class="index-inst" title="@font-face"> @font-face</span></a>.
+
+<p> L'expression <span class="index-def" title="&lt;font-face-name&gt;::definition of"><a name="value-def-font-face-name">&lt;police-nom&gt;</a></span>
+représente le nom entier d'une police installée localement. Le <a name="x62"><span class="index-def" title="full font name"><dfn>nom entier de la police</dfn></span></a>
+correspond à celui reporté par le système d'exploitation, c'est certainement le nom le plus utilisé
+dans les feuilles de style de l'utilisateur, dans celle par défaut de l'agent utilisateur ou probablement dans celles
+de l'auteur dans un réseau interne. Des indications, telles que bold, italic ou underline, sont souvent rajoutées
+pour différencier les polices d'une famille. Pour <a href="#aname">plus d'informations sur les noms entiers des polices</a>,
+voir les notes plus bas.
+
+<p>La notation pour &lt;police-nom&gt; consiste en le nom entier de la police, celui-ci doit être mis entre guillemets,
+car le nom peut contenir n'importe quel caractère, y inclus des espaces et des signes de ponctuation, et doit aussi
+être placé à l'intérieur des chaînes "local(" et ")".
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+
+<dl>
+
+<dt><tt>src: url("http://foo/bar")</tt>
+<dd>une adresse <abbr>URI</abbr> complète et aucun indice sur le(s) format(s) de police disponible(s) à cet endroit ;
+
+<dt><tt>src: local("BT Century 751 No. 2 Semi Bold Italic")</tt>
+<dd>une référence à une police donnée, installée localement ;
+
+<dt><tt>src: url("../fonts/bar") format("truedoc-pfr")</tt>
+<dd>une adresse <abbr>URI</abbr> partielle vers une police disponible au format TrueDoc ;
+
+<dt><tt>src: url("http://cgi-bin/bar?stuff") format("opentype", "intellifont")</tt>
+<dd>une adresse <abbr>URI</abbr> complète, dans ce cas vers un script qui peut générer deux formats différents - OpenType et Intellifont ;
+
+<dt><tt>src: local("T-26 Typeka Mix"), url("http://site/magda-extra") format("type-1")</tt>
+<dd>deux possibilités : d'abord une police locale et ensuite une police téléchargeable au format Type 1.
+
+</dl>
+</div>
+
+<p>
+L'accès aux polices locales se fait via <a href="fonts.html#value-def-font-face-name" class="noxref"><span class="value-inst-font-face-name">&lt;police-nom&gt;</span></a>.
+Le nom de la police n'est réellement ni unique, ni indépendant de la plate-forme ou du format de police, mais
+c'est pour le moment la meilleure façon d'identifier les données des polices locales. On peut affiner cette
+méthode, avec le nom de la police, en fournissant une indication sur les glyphes complémentaires requis. Ceci
+en indiquant des étendues pour les positions de caractères ISO 10646 dans lesquelles la police fournit certains glyphes
+(voir <a href="fonts.html#descdef-unicode-range" class="noxref"><span class="descinst-unicode-range">'unicode-range'</span></a>).
+
+<h3>15.3.6 <a name="matching">Les descripteurs de correspondance</a> :
+<a href="fonts.html#descdef-panose-1" class="noxref"><span class="descinst-panose-1">'panose-1'</span></a>,
+<a href="fonts.html#descdef-stemv" class="noxref"><span class="descinst-stemv">'stemv'</span></a>,
+<a href="fonts.html#descdef-stemh" class="noxref"><span class="descinst-stemh">'stemh'</span></a>,
+<a href="fonts.html#descdef-slope" class="noxref"><span class="descinst-slope">'slope'</span></a>,
+<a href="fonts.html#descdef-cap-height" class="noxref"><span class="descinst-cap-height">'cap-height'</span></a>,
+<a href="fonts.html#descdef-x-height" class="noxref"><span class="descinst-x-height">'x-height'</span></a>,
+<a href="fonts.html#descdef-ascent" class="noxref"><span class="descinst-ascent">'ascent'</span></a> et
+<a href="fonts.html#descdef-descent" class="noxref"><span class="descinst-descent">'descent'</span></a>
+</h3>
+
+<p>Ces descripteurs, optionnels dans une définition <abbr>CSS2</abbr>, peuvent être utilisés pour une correspondance
+de police intelligente ou pour l'ajustement de la taille d'une police.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'panose-1' (descriptor)"><a name="descdef-panose-1" class="descdef-title"><strong>'panose-1'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>[<a href="syndata.html#value-def-integer" class="noxref"><span class="value-inst-integer">&lt;entier&gt;</span></a>]{10}
+<tr valign=baseline><td><em>Initiale :</em>  <td>0 0 0 0 0 0 0 0 0 0
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p>C'est le descripteur du <a href="#pan1">nombre Panose-1</a>, consistant en dix entiers décimaux, séparés
+par un <a href="syndata.html#whitespace">caractère blanc</a>. Ce descripteur n'admet pas de liste avec une séparation
+par virgule, car le système <a name="x64"><span class="index-inst" title="panose-1">Panose-1</span></a>
+indique une correspondance sur un ensemble de valeurs. La valeur initiale est zéro, signifiant "tous", pour chaque
+chiffre PANOSE ; pour cette valeur, toutes les polices vont correspondre au nombre Panose. On recommande fortement l'utilisation
+du descripteur Panose-1 pour les polices latines. Voir le détail à l'<a href="notes.html#panose">Annexe C</a>.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'stemv' (descriptor)"><a name="descdef-stemv" class="descdef-title"><strong>'stemv'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>indéfinie
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>C'est le descripteur de l'<a href="#stemv">épaisseur de tige verticale</a> d'une police.
+Pour une valeur indéfinie, le descripteur n'intervient pas dans la détermination d'une correspondance.
+Quand on l'utilise, il faut aussi employer le descripteur <a href="#unitsperem">'units-per-em'</a>.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'stemh' (descriptor)"><a name="descdef-stemh" class="descdef-title"><strong>'stemh'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>indéfinie
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>C'est le descripteur de l'<a href="#stemh">épaisseur de tige horizontale</a> d'une police.
+Pour une valeur indéfinie, le descripteur n'intervient pas dans la détermination d'une correspondance.
+Quand on l'utilise, il faut aussi employer le descripteur <a href="#unitsperem">'units-per-em'</a>.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'slope' (descriptor)"><a name="descdef-slope" class="descdef-title"><strong>'slope'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur:</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>0
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p>C'est le descripteur de l'<a href="#slope">angle du trait vertical</a> d'une police.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'cap-height' (descriptor)"><a name="descdef-cap-height" class="descdef-title"><strong>'cap-height'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>indéfinie
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>C'est le descripteur de la <a href="#cap">hauteur des glyphes majuscules</a> d'une police.
+Pour une valeur indéfinie, le descripteur n'intervient pas dans la détermination d'une correspondance.
+Quand on l'utilise, il faut aussi employer le descripteur <a href="#unitsperem">'units-per-em'</a>.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'x-height' (descriptor)"><a name="descdef-x-height" class="descdef-title"><strong>'x-height'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>indéfinie
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p>C'est le descripteur de la <a href="#xht">hauteur des glyphes minuscules</a> d'une police.
+Pour une valeur indéfinie, le descripteur n'intervient pas dans la détermination d'une correspondance.
+Quand on l'utilise, il faut aussi employer le descripteur <a href="#unitsperem">'units-per-em'</a>.
+Ce descripteur peut être très utile conjointement avec la propriété
+<a href="fonts.html#propdef-font-size-adjust" class="noxref"><span class="propinst-font-size-adjust">'font-size-adjust'</span></a>,
+car le calcul de la valeur d'aspect de la police candidate requiert à la fois la taille et valeur hauteur-x de celle-ci,
+de ce fait, on recommande l'emploi de ce descripteur.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'ascent' (descriptor)"><a name="descdef-ascent" class="descdef-title"><strong>'ascent'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>indéfinie
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>C'est le descripteur de la <a href="#ascent">hauteur maximale sans accent</a> d'une police.
+Pour une valeur indéfinie, le descripteur n'intervient pas dans la détermination d'une correspondance.
+Quand on l'utilise, il faut aussi employer le descripteur <a href="#unitsperem">'units-per-em'</a>.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'descent' (descriptor)"><a name="descdef-descent" class="descdef-title"><strong>'descent'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>indéfinie
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>C'est le descripteur de la <a href="#descent">profondeur maximale sans accent</a> d'une police.
+Pour une valeur indéfinie, le descripteur n'intervient pas dans la détermination d'une correspondance.
+Quand on l'utilise, il faut aussi employer le descripteur <a href="#unitsperem">'units-per-em'</a>.
+
+<h3>15.3.7 <a name="synthesizing">Les descripteurs de synthèse</a> :
+<a href="fonts.html#descdef-widths" class="noxref"><span class="descinst-widths">'widths'</span></a>,
+<a href="fonts.html#descdef-bbox" class="noxref"><span class="descinst-bbox">'bbox'</span></a> et
+<a href="fonts.html#descdef-definition-src" class="noxref"><span class="descinst-definition-src">'definition-src'</span></a></h3>
+
+<p>
+La synthèse d'une police demande au moins une correspondance avec les dimensions de la police spécifiée.
+Pour une synthèse, ces mesures doivent donc être disponibles. De la même façon que pour le rendu
+progressif, qui requiert une communication préalable de ces mesures, pour éviter que la page soit redessinée quand
+le téléchargement de la police demandée est terminé. Bien que les descripteurs suivants soient
+optionnels dans une définition <abbr>CSS2</abbr>, certains sont obligatoires pour une synthèse (ou un rendu progressif réussi)
+souhaitée par l'auteur. Dès que la police demandée est disponible, celle-ci devrait se substituer à
+la police temporaire. Chacun des descripteurs mis en &#339;uvre seront utilisés pour une meilleure, ou plus rapide,
+approximation de la police attendue.
+
+<p>Les plus importants de ces descripteurs sont <a href="fonts.html#descdef-widths" class="noxref"><span class="descinst-widths">'widths'</span></a> et
+<a href="fonts.html#descdef-bbox" class="noxref"><span class="descinst-bbox">'bbox'</span></a>, leur utilisation prévenant
+le phénomène de déplacement de texte au moment de la disponibilité de la police.
+De plus, on peut utiliser le <a href="#matching">jeu des descripteurs de correspondance</a> et parfaire la synthèse
+de la police en question.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'widths' (descriptor)"><a name="descdef-widths" class="descdef-title"><strong>'widths'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>[<a href="fonts.html#value-def-urange" class="noxref"><span class="value-inst-urange">&lt;étendue-unicode&gt;</span></a> ]? [<a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a> ]+ [,[<a href="fonts.html#value-def-urange" class="noxref"><span class="value-inst-urange">&lt;étendue-unicode&gt;</span></a> ]? <a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a> ]+]
+<tr valign=baseline><td><em>Initiale :</em>  <td>indéfinie
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p> C'est le descripteur des <a href="#lrwidth">dimensions de glyphe</a>. La valeur consiste en une liste de valeurs
+<a href="fonts.html#value-def-urange" class="noxref"><span class="value-inst-urange">&lt;étendue-unicode&gt;</span></a>,
+séparées par des virgules, chacune de ces valeurs suivies par une ou plusieurs dimensions de glyphes.
+Quand on l'utilise, il faut aussi employer le descripteur <a href="#unitsperem">'units-per-em'</a>.
+
+<p>
+Quand on omet de spécifier une valeur <a href="fonts.html#value-def-urange" class="noxref"><span class="value-inst-urange">&lt;étendue-unicode&gt;</span></a>,
+Une étendue de U+0-7FFFFFFF est inférée, celle-ci couvre l'ensemble des caractères et leurs glyphes.
+S'il n'y a pas assez de dimensions de glyphes, on réplique la dernière de la liste afin de couvrir l'étendue concernée.
+S'il y en a trop, celles en trop sont <span class="index-inst" title="ignore"><a name="x73" href="syndata.html#ignore">ignorées</a></span>.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Par exemple :
+
+<pre>
+widths: U+4E00-4E1F 1736 1874 1692
+widths: U+1A?? 1490, U+215? 1473 1838 1927 1684 1356 1792 
+    1815 1848 1870 1492 1715 1745 1584 1992 1978 1770
+</pre>
+
+<p>
+Dans le premier exemple, on a une étendue de 32 caractères, de 4E00 à 4E1F. Le glyphe correspondant au
+premier caractère (4E00) a une dimension de 1736, le deuxième une dimension de 1874 et le troisième
+une dimension de 1692. Comme des dimensions manquent, la dernière est répliquée pour couvrir le reste
+de l'étendue spécifiée. Dans le second exemple, on a une seule dimension pour toute une étendue
+de 256 glyphes, puis des dimensions explicites pour une étendue de 16 glyphes.
+</div>
+
+<p>
+Ce descripteur ne peut pas décrire plusieurs glyphes correspondant tous à un seul caractère ou à
+des ligatures de plusieurs caractères. Ainsi, celui-ci peut <em>seulement</em> être employé avec des
+écritures qui n'ont pas de formes contextuelles ni de ligatures obligatoires. Néanmoins utilement dans ces cas.
+Les écritures qui requièrent une correspondance d'un-à-plusieurs ou de plusieurs-à-plusieurs des
+caractères vers les glyphes, ne peuvent pas pour le moment employer ce descripteur pour la synthèse de police,
+mais on peut toujours utiliser le téléchargement de police ou la correspondance intelligente avec celles-ci.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'bbox' (descriptor)"><a name="descdef-bbox" class="descdef-title"><strong>'bbox'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>, <a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>, <a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>, <a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>indéfinie
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p>C'est le descripteur de la <a href="#bbox">boîte de circonscription maximale</a> d'une police.
+La valeur consiste en une liste d'exactement quatre nombres, sépar&eacut;es par des virgules, qui indique 
+les coordonnées de cette boîte pour la police entière, dans l'ordre, horizontale x gauche basse, verticale y gauche basse,
+horizontale x droite haute et verticale y droite haute.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'definition-src' (descriptor)"><a name="descdef-definition-src" class="descdef-title"><strong>'definition-src'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>indéfinie
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>Les descripteurs de police peuvent se trouver dans la définition de police d'une feuille de style ou bien
+dans une <a name="x76"><span class="index-def" title="font definition resource"><em>ressource de définition de police</em></span></a>
+distincte, identifiée par une adresse <abbr>URI</abbr>. Cette dernière possibilité peut réduire le trafic sur le
+réseau quand plusieurs feuilles de style se réfèrent aux mêmes polices.
+
+<h3>15.3.8 <a name="alignment">Les descripteurs d'alignement</a> :
+<a href="fonts.html#descdef-baseline" class="noxref"><span class="descinst-baseline">'baseline'</span></a>,
+<a href="fonts.html#descdef-centerline" class="noxref"><span class="descinst-centerline">'centerline'</span></a>,
+<a href="fonts.html#descdef-mathline" class="noxref"><span class="descinst-mathline">'mathline'</span></a>
+et <a href="fonts.html#descdef-topline" class="noxref"><span class="descinst-topline">'topline'</span></a>
+</h3>
+
+<p>Ces descripteurs optionnels règlent l'alignement de différentes lignes d'écritures les unes avec
+les autres.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'baseline' (descriptor)"><a name="descdef-baseline" class="descdef-title"><strong>'baseline'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>0
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+C'est le descripteur de la <a href="#bline">ligne de base inférieure</a> d'une police.
+Quand on l'utilise avec une autre valeur que celle par défaut (0), il faut aussi employer le descripteur <a href="#unitsperem">'units-per-em'</a>.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'centerline' (descriptor)"><a name="descdef-centerline" class="descdef-title"><strong>'centerline'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>
+<tr valign=baseline><td><em>Initial:</em>  <td>indéfinie
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+C'est le descripteur de la <a href="#cline">ligne de base centrale</a> d'une police.
+Si la valeur est indéfinie, l'agent utilisateur peut en produire une, suivant diverses manières, par exemple
+le point intermédiaire entre les valeurs de 'ascent' et 'descent'.
+Quand on l'utilise, il faut aussi employer le descripteur <a href="#unitsperem">'units-per-em'</a>.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'mathline' (descriptor)"><a name="descdef-mathline" class="descdef-title"><strong>'mathline'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>indéfinie
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+C'est le descripteur de la <a href="#mline">ligne de base mathématique</a> d'une police.
+Si la valeur est indéfinie, l'agent utilisateur peut emprunter celle de la ligne de base centrale.
+Quand on l'utilise, il faut aussi employer le descripteur <a href="#unitsperem">'units-per-em'</a>.
+
+<div class="descdef">
+<dl><dt>
+<span class="index-def" title="'topline' (descriptor)"><a name="descdef-topline" class="descdef-title"><strong>'topline'</strong> (Descripteur)</a></span>
+<dd>
+<table class="descinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-number" class="noxref"><span class="value-inst-number">&lt;nombre&gt;</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>indéfinie
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>C'est le descripteur de la <a href="#tline">ligne de base supérieure</a> d'une police.
+Si la valeur est indéfinie, l'agent utilisateur peut utiliser une valeur approchante, telle que celle de 'ascent'.
+Quand on l'utilise, il faut aussi employer le descripteur <a href="#unitsperem">'units-per-em'</a>.
+
+<h3><a name="q23">15.3.9 Exemples</a></h3>
+
+<div class="example"><p style="display:none">Example(s):</p>
+<p>Soit cette liste de polices :
+
+<table>
+  <tr><td>Swiss 721 light      <td>light &amp; light italic
+  <tr><td>Swiss 721            <td>roman, bold, italic, bold italic
+  <tr><td>Swiss 721 medium     <td>medium &amp; medium italic
+  <tr><td>Swiss 721 heavy      <td>heavy &amp; heavy italic
+  <tr><td>Swiss 721 black      <td>black, black italic, &amp; black #2 
+  <tr><td>Swiss 721 Condensed  <td>roman, bold, italic, bold italic
+  <tr><td>Swiss 721 Expanded   <td>roman, bold, italic, bold italic
+</table>
+
+<p>On pourrait utiliser les descriptions de police suivantes pour leur téléchargement :
+
+<pre>
+@font-face {
+    font-family: "Swiss 721";
+    src: url("swiss721lt.pfr"); /* Swiss 721 light */
+    font-style: normal, italic;
+    font-weight: 200;
+}
+@font-face {
+    font-family: "Swiss 721";
+    src: url("swiss721.pfr");   /* Swiss 721 */
+}
+@font-face {
+    font-family: "Swiss 721";
+    src: url("swiss721md.pfr"); /* Swiss 721 medium */
+    font-style: normal, italic;
+    font-weight: 500;
+}
+@font-face {
+    font-family: "Swiss 721";
+    src: url("swiss721hvy.pfr"); /* Swiss 721 heavy */
+    font-style: normal, italic;
+    font-weight: 700;
+}
+@font-face {
+    font-family: "Swiss 721";
+    src: url("swiss721blk.pfr"); /* Swiss 721 black */
+    font-style: normal, italic;
+    font-weight: 800,900;        /* un point intéressant, remarquer que la graisse
+                                    900 italique n'existe pas */
+}
+@font-face {
+    font-family: "Swiss 721";
+    src: url(swiss721.pfr);      /* Swiss 721 Condensed */
+    font-stretch: condensed;
+}
+@font-face {
+    font-family: "Swiss 721";
+    src: url(swiss721.pfr);      /* Swiss 721 Expanded */
+    font-stretch: expanded;
+}
+</pre>
+</div>
+
+<h2>15.4 <a name="font-descriptors">Les caractéristiques des polices</a></h2>
+
+<h3>15.4.1 <a name=universal>Introduction aux caractéristiques des polices</a></h3>
+
+<p>
+Dans cette partie, on énumère les caractéristiques de police qui présentent un
+intérêt pour, du côté client, la correspondance et la synthèse de police
+et pour le téléchargement de police, en rapport avec les plates-formes hétérogènes
+ayant un accès au Web. Ces informations peuvent concerner tout média utilisant des polices sur
+le Web, les données de police n'étant pas incorporées dans le média en question.
+
+<p>
+Ces caractéristiques de police ne sont pas propres aux feuilles de style, chacune d'entre elles, en <abbr>CSS</abbr>,
+étant décrite par un descripteur de police. Ces caractéristiques pourraient tout autant être
+reliées aux n&#339;uds <abbr lang="en" title="Virtual Reality Modelling Language">VRML</abbr>,
+ou aux structures d'application <abbr lang="en" title="Computer Graphic Metafile">CGM</abbr>,
+ou à une <abbr lang="en" title="Application Programming Interface">API</abbr> Java ou encore à
+d'autres langages de feuille de style. Ramenées par un média et stockées dans un <span title="proxy cache">serveur cache</span>,
+les polices pourraient être réutilisées par un autre média, ce qui permet une
+économie sur les temps de téléchargement et sur la bande passante, pourvu que le système de
+caractérisation des polices soit cohérent.
+
+<p>Voici une liste non exhaustive pour de tels médias :
+
+<ul>
+<li>Formats vectoriels en 2D
+<ul>
+  <li>Computer Graphics Metafile
+  <li>Simple Vector Format
+</ul>
+<li>Formats graphiques en 3D
+<ul>
+  <li><abbr>VRML</abbr>
+  <li><abbr>3DMF</abbr>
+</ul>
+<li>Technologies d'incorporation d'objets
+<ul>
+  <li>Java
+  <li>Active-X
+  <li>Obliq
+</ul>
+</ul>
+
+
+<h3>15.4.2 <a name="aname">Le nom entier d'une police</a></h3>
+
+<p>
+C'est le nom entier d'une police donnée, dans une famille de polices. Celui-ci comprend typiquement des qualificatifs
+textuels non-standards ou des <em>ornements</em> rajoutés au nom de la famille de polices. Il peut également
+inclure le nom de la fonderie, ou une abréviation de celle-ci, souvent placés au début du nom de la
+famille. On utilise ce nom seulement pour se référer aux polices installées localement, car, du fait de ces rajouts,
+celui-ci peut varier d'une plate-forme à l'autre. On doit le mettre entre guillemets.
+
+<p>
+Par exemple, le nom de famille, pour une police TrueType et PostScript, peut différer selon l'utilisation
+des caractères espace, de la ponctuation et des abréviations de certains mots (par exemple pour satisfaire aux
+contraintes de longueur des noms de certains systèmes ou interpréteurs d'imprimantes). Par exemple, les espaces
+ne sont pas admis dans les noms pour PostScript, tout en étant courants dans les noms entiers de police. La table
+des noms de police TrueType peut également contenir les noms PostScript, ceux-ci ne comportant pas d'espaces.
+
+<p>
+Le nom de la définition de police revêt une certaine importance, dans la mesure où celui-ci fait le
+lien vers chacune des polices installées localement. Il est important que le nom soit fiable pour respecter,
+à la fois l'indépendance de la plate-forme et celle de l'application. C'est pour cette raison que le nom
+ne devrait pas être propre à une application ou à un langage.
+
+<p>
+Une solution idéale serait de disposer d'un nom unique pour identifier chaque collection de données de police.
+Ceci n'existe pas dans les faits. Les polices de même nom pouvant varier selon un certain nombre de descripteurs.
+Certains d'entre eux, concernant les différences entre glyphes complémentaires d'une police, sont insignifiants quand
+les glyphes nécessaires sont compris dans celle-ci. D'autres, concernant les différences de dimensions, rendent
+incompatibles ces polices de même nom. Il semble impossible de déterminer une règle qui identifierait
+les incompatibilités à coup sûr, et en même temps, qui n'empêcherait pas d'utiliser une copie
+locale des données d'une police donné, celle-ci convenant parfaitement. C'est pourquoi, seule l'étendue
+des caractères ISO 10646 sera utilisée pour la validation des correspondances sur un nom de police.
+
+<p>
+Un des buts premiers, pour le nom d'une police dans une définition de police, étant de permettre à l'agent
+utilisateur de déterminer s'il existe une copie locale des donnés de cette police, ce nom doit apparaître
+dans toutes les copies légitimes des données de celle-ci. Autrement, ceci génèrerait
+un trafic superflu sur le Web, induit par une correspondance ratée avec une copie locale.
+
+<h3>15.4.3 <a name=emsq>Les unités de coordonnée dans le carré em</a></h3>
+
+<p>
+Certaines valeurs, comme les dimensions, sont exprimées dans des unités qui se rapportent à un carré
+hypothétique, la hauteur de celui-ci représentant la distance souhaitée entre deux lignes de texte dans
+la même taille. Ce carré, appelé <span class="index-def" title="em square"><a name="em-square"><dfn>carré em</dfn></a></span>,
+correspond à la grille dans laquelle s'inscrivent les contours d'un glyphe. La valeur de ce descripteur donne le nombre
+d'unités qui composent le carré em. En exemple, des valeurs courantes : 250 (Intellifont), 1000 (Type 1) et
+2048 (TrueType, TrueType GX et OpenType).
+
+<p>
+Sans spécification de cette valeur, il devient impossible de connaître la signification des dimensions d'une
+police. Par exemple, une police a des glyphes minuscules d'une hauteur 450, une autre des glyphes encore plus petits, leur
+hauteur étant de 890. Les nombres représentent en fait des fractions, ainsi pour la première police
+ce serait 450/1000, et pour la seconde 890/2048, celle-ci étant effectivement plus petite.
+
+<h3>15.4.4 <a name=cline>La ligne de base centrale</a></h3>
+
+<p>
+Ce descripteur donne la position de la ligne de base centrale dans le <span class="index-inst" title="em square"><a name="x82" href="#em-square">carré em</a></span>.
+On emploie une ligne de base centrale pour l'alignement des écritures idéographiques, tout comme la ligne
+de base inférieure pour les écritures latines, grecques et cyrilliques.
+
+<h3>15.4.5 <a name=encoding>Le codage des polices</a></h3>
+
+<p>
+Chaque police est associée, explicitement ou implicitement, a une table, la <a name="x83"><span class="index-def" title="font encoding
+table"><em>table de codage de la police</em></span></a>, celle-ci indiquant le caractère représenté par un glyphe.
+On l'appelle aussi le <a name="x84"><span class="index-def" title="encoding vector"><em>vecteur de codage</em></span></a>.
+
+<p>
+En réalité, de nombreuses polices proposent plusieurs glyphes pour le même caractère. L'utilisation de
+tel ou tel glyphe dépend des règles de la langue considérée, ou encore des préférences du fondeur.
+
+<p>
+En arabe, par exemple, toutes les lettres ont quatre (ou deux) dessins différents, selon que la lettre apparaisse
+au début d'un mot, au milieu, à la fin ou toute seule. Dans tous les cas, il s'agit du même
+caractère, le document source ne mentionne que celui-ci, mais il apparaîtra dans les différents formes
+à l'impression.
+
+<p>
+Il existe aussi des polices qui offrent un choix parmi diverses formes au graphiste. Malheureusement, <abbr>CSS2</abbr> ne propose
+pas encore les moyens de les choisir. Pour l'instant, seule la forme par défaut est retenue pour de telles polices.
+
+<h3>15.4.6 <a name=family>Le nom de famille de polices</a></h3>
+
+<p>C'est la partie du nom de la police qui spécifie le nom de la famille de celle-ci.
+Par exemple, le nom de famille de Helvetica-Bold est Helvetica et celui de ITC Stone Serif Semibold Italic est
+ITC Stone Serif. Certains systèmes traitent les rajouts concernant les polices condensées ou élargies
+comme faisant partie de leur nom de famille.
+
+<h3>15.4.7 <a name=lrwidth>Les dimensions des glyphes</a></h3>
+
+<p>
+C'est une liste des dimensions, sur le dessin de quadrillage, du glyphe correspondant à chacun des caractères.
+Celle-ci est ordonnée selon le système de code ISO 10646. On ne peut pas utilement spécifier leurs dimensions
+quand plusieurs glyphes correspondent au même caractère ou quand des ligatures sont obligatoires.
+
+<h3>15.4.8 <a name=stemh>L'épaisseur de tige horizontale</a></h3>
+
+<p>
+Cette valeur se réfère à la tige <em>dominante</em> d'une police. Il peut y avoir deux, ou plus,
+tiges dessinées. Par exemple, les tiges verticales principales des caractères romans sont différentes des
+tiges minces dans un "M" et un "N" serifs, sans compter les différences d'épaisseur entre les caractères
+majuscules et minuscules d'une même police. Également, chaque tige peut, volontairement ou à
+la suite d'une erreur, avoir des épaisseurs qui varient légèrement.
+
+<h3>15.4.9 <a name=cap>La hauteur des glyphes majuscules</a></h3>
+
+<p>
+Cette dimension correspond à la mesure, suivant un axe de coordonné y, partant de la ligne de base
+jusqu'au sommet plat d'une lettre majuscule des écritures latines, grecques et cyrilliques. Ce descripteur
+présente un intérêt limité pour les polices ne contenant pas de glyphes dans ces écritures.
+
+<h3>15.4.10 <a name=xht>La hauteur des glyphes minuscules</a></h3>
+
+<p>
+Cette dimension correspond à la mesure, suivant un axe de coordonnée y, partant de la ligne de base
+jusqu'au sommet d'une lettre minuscule sans accent ni hampe, des écritures latines, grecques et cyrilliques.
+On effectue cette mesure sur des lettres dont le sommet est plat, sans tenir compte des zones de correction optique.
+Cette mesure est habituellement employée dans un ratio hauteur de minuscule sur hauteur de majuscule pour comparer
+les familles de polices.
+
+<p><img src="images/x-height.gif" alt="Illustration de la hauteur-x." width="609" height="238"></p>
+
+<p>
+Ce descripteur ne présente pas d'intérêt pour les polices qui ne contiennent pas les glyphes dans ces
+écritures. Les hauteurs des minuscules et des majuscules apparaissant souvent sous la forme d'un ratio pour comparer
+des polices, il peut être utile de leur donner une même valeur de hauteur pour les écritures
+<a name="x85"><span class="index-inst" title="unicameral">monocamérales</span></a> telle l'hébreu, quand
+celui-ci apparaît dans un texte mixte latin hébreu, les caractères hébreux ayant typiquement
+une hauteur à mi-chemin entre celles des minuscules et des majuscules des polices latines.
+
+<p><img src="images/heb-height.gif" alt="Hauteurs des caractères hébreux." width="525" height="209"></p>
+
+<h3>15.4.11 <a name=bline>La ligne de base inférieure</a></h3>
+
+<p>
+Ce descripteur donne la position de la ligne de base inférieure dans le carré em. Cette ligne
+sert pour l'alignement des écritures latines, grecques et cyrilliques, comme la
+ligne de base supérieure pour celui des écritures dérivées du sanscrit.
+
+<h3>15.4.12 <a name=mline>La ligne de base mathématique</a></h3>
+
+<p>
+Ce descripteur donne la position de la ligne de base mathématique dans le carré em. Cette ligne sert
+pour l'alignement des symboles mathématiques, comme la ligne de base inférieure pour celui des écritures
+latines, grecques et cyrilliques.
+
+<h3>15.4.13 <a name=bbox>La boîte de circonscription maximale</a></h3>
+
+<p>
+La boîte de circonscription maximale correspond au plus petit rectangle qui contiendrait les contours de l'ensemble des
+glyphes d'une police, si on les avait empilés, en faisant coïncider leurs origines, puis peints.
+
+<p>
+Si une police dynamique téléchargeable a été générée à partir d'une
+police parent, cette boîte devrait correspondre à celle du parent.
+
+<h3>15.4.14 <a name="ascent">La hauteur maximale sans accent</a></h3>
+
+<p>
+Cette dimension correspond à la mesure, dans le carré m, partant de la ligne de base jusqu'au point le plus
+haut atteint par les glyphes, les accents ou marques diacritiques exclus.
+
+<p><img src="images/ascender.gif" alt="Diagramme montrant plusieurs glyphes et la hauteur maximale sans accent." width="318" height="160"></p>
+
+<h3>15.4.15 <a name=descent>La profondeur maximale sans accent</a></h3>
+
+<p>
+Cette dimension correspond à la mesure, dans le carré m, partant de la ligne de base jusqu'au point le plus
+bas atteint par les glyphes, les accents ou marques diacritiques exclus.
+
+<p><img src="images/descender.gif" alt="Diagramme montrant plusieurs glyphes et la profondeur maximale sans accent." width="265" height="197"></p>
+
+<h3>15.4.16 <a name="pan1">Le nombre Panose-1</a></h3>
+
+<p>La technologie <a name="x86"><span class="index-def" title="Panose-1"><em>Panose-1</em></span></a> 
+est un standard industriel de classification des polices TrueType et de correspondance. Le système PANOSE
+se compose d'un jeu de dix nombres qui catégorise les attributs clés d'une police latine, d'une procédure
+de classification pour la création de ces nombres et du logiciel Mapper qui détermine la correspondance de
+police la plus proche possible à partir d'un jeu de polices donné. Ce système <em>pourrait</em>
+être employé, avec quelques modifications, avec les polices grecques et cyrilliques, mais ne convient cependant
+pas pour les écritures <a name="x87"><span class="index-inst" title="unicameral">monocamérales</span></a> et
+idéographiques (hébreu, arménien, arabe, chinois-japonais-coréen).
+
+<h3>15.4.17 <a name="ucode">L'étendue des caractères ISO 10646</a></h3>
+
+<p>Ce descripteur indique le répertoire de glyphes d'une police, par rapport à ISO 10646 (Unicode).
+Ce répertoire est épars (la plupart des polices ne couvrant pas la totalité de ISO 10646),
+le descripteur dresse la liste des blocs ou étendues qui reçoivent une <em>certaine</em> couverture (sans
+garantie de couverture complète) et on l'emploie pour écarter les polices qui ne conviennent pas (celles
+qui n'auront pas les glyphes requis). Ceci n'est pas une affirmation que la police en question possède
+les glyphes nécessaires, seulement que celle-ci mérite d'être téléchargée et examinée.
+Voir <a href="refs.html#ref-ISO10646" rel="biblioentry" class="noxref"><span class="normref">[ISO10646]</span></a> pour des
+références utiles.
+
+<p>
+Cette méthode peut s'accroître avec des allocations ultérieures de caractères dans Unicode,
+sans changement de syntaxe et sans invalider le contenu existant.
+
+<p>
+Les formats de police, n'incluant pas cette information, explicitement ou indirectement, peuvent quand même utiliser
+cette caractéristique, mais la valeur doit être fournie par le document ou la feuille de style de l'auteur.
+
+<p>
+Il existe d'autres classifications d'écritures, tels que le système Monotype (voir <a href="refs.html#ref-MONOTYPE" rel="biblioentry" class="noxref"><span class="informref">[MONOTYPE]</span></a>)
+et un système d'écriture ISO en proposition. Ceux-ci ne sont pas encore applicables.
+
+<p>
+C'est pourquoi la classification des répertoires de glyphes par l'étendue des caractères ISO 10646,
+ceux-ci pouvant être représentés avec une police donnée, est employée dans cette
+spécification. Ce système peut être élargi pour couvrir toute allocation ultérieure.
+
+<h3>15.4.18 <a name=tline>La ligne de base supérieure</a></h3>
+
+<p>
+Ce descripteur donne la position, dans le carré em, de la ligne de base supérieure. Celle-ci sert pour l'alignement
+des écritures dérivées du sanscrit, comme la ligne de base inférieure pour celui des
+écritures latines, grecques et cyrilliques.
+
+<h3>15.4.19 <a name=stemv>L'épaisseur de tige verticale</a></h3>
+
+<p>
+C'est l'épaisseur de la tige verticale (ou presque) des glyphes. Cette information, souvent attachée
+au « hinting », peut ne pas être accessible dans certains formats de police. La mesure devrait être effectuée
+sur la tige verticale <em>dominante</em> de la police, différents regroupements de tiges verticales pouvant
+exister (ex. une tige principale et une de trait plus faible, comme dans les "M" ou les "N" majuscules).
+
+<h3>15.4.20 <a name=slope>L'angle d'inclinaison vertical</a></h3>
+
+<p>
+C'est l'angle, exprimé en degré dans le sens inverse des aiguilles d'une montre, des traits verticaux
+dominants d'une police. La valeur est négative pour les polices qui penchent vers la droite, comme presque toutes
+les polices italiques. On peut aussi employer ce descripteur avec les polices obliques, penchés, scripts et, de
+manière générale, avec toutes celles dont les traits verticaux ne le sont pas vraiment. Une valeur
+non nulle n'indiquant pas forcément une police italique.
+
+<h2>15.5 <a name="algorithm">L'algorithme de correspondance de police</a></h2>
+
+<p>
+Cette spécification renforce l'algorithme spécifié dans <abbr>CSS1</abbr>. Cet algorithme se ramenant à
+celui de <abbr>CSS1</abbr>, quand les feuilles de style de l'auteur ou de l'utilisateur ne font pas mention de règles
+<a name="x88"><span class="index-inst" title="@font-face">@font-face</span></a>. 
+
+<p>
+La correspondance des descripteurs avec les polices doit se faire avec soin. Les descripteurs trouvent une
+correspondance dans un ordre bien déterminé qui garantit, selon ce processus de correspondance,
+des résultats aussi cohérents que possible entre agents utilisateurs (en supposant qu'une même librairie
+de polices et de descriptions de polices leur soit présentée). On peut optimiser cet algorithme,
+pourvu que l'implémentation qui en est faite suive un comportement exactement similaire
+à celui décrit ici.
+
+<ol>
+<li>L'agent utilisateur construit (ou accède à) une base de données des descripteurs
+de police concernés pour toutes les polices connues par celui-ci. Quand deux polices ont exactement
+le même descripteur, l'une d'elle sera <span class="index-inst" title="ignore"><a name="x89" href="syndata.html#ignore">ignorée</a></span>.
+L'agent utilisateur peut avoir connaissance d'une police quand celle-ci est :
+
+<ul>
+<li>installée localement ;
+<li>déclarée au travers d'une règle <a name="x90"><span class="index-inst" title="@font-face">@font-face</span></a>
+contenue dans une feuille de style, reliée ou incorporée au document en question ;
+<li>utilisée dans la feuille de style par défaut, qui existe par construction dans chacun des agents utilisateurs et
+qui est censée comporter la totalité des règles @font-face pour chacune des polices
+que l'agent utilisateur emploiera dans une présentation par défaut, ainsi que les règles
+@font-face des cinq familles de polices génériques particulières définies pour <abbr>CSS2</abbr> (voir
+<a href="fonts.html#propdef-font-family" class="noxref"><span class="propinst-font-family">'font-family'</span></a>).
+</ul>
+
+
+<li>Pour un élément donné et pour chaque caractère dans celui-ci,
+l'agent utilisateur réunit les propriétés qui le concernent. Avec l'aide du jeu
+complet de ces propriétés, l'agent utilisateur utilise <span><del title="id=x23">le descripteur</del> <ins title="id=x23">la propriété</ins></span>
+<a href="fonts.html#descdef-font-family" class="noxref"><span class="descinst-font-family">'font-family'</span></a>
+pour sélectionner une famille de polices provisoire. De cette façon, la correspondance par le nom de famille sera
+couronnée de succès avant une correspondance par certains autres descripteurs. Les propriétés
+restantes sont exercées sur cette famille selon les critères de correspondance de chacun des
+descripteurs. Si une correspondance est atteinte pour chacune des propriétés, alors retenir cette police
+pour l'élément en question ;
+
+<li>Si, à la suite de l'étape 2, aucune police ne correspond avec celle indiquée par la
+propriété <a href="fonts.html#descdef-font-family" class="noxref"><span class="descinst-font-family">'font-family'</span></a>,
+<em>les agents utilisateurs qui disposent d'un mécanisme de correspondance intelligent</em>
+peuvent poursuivre dans l'examen des autres descripteurs, tels que celui de
+hauteur-x, ceux des dimensions des glyphes et celui de panose-1, pour l'identification d'une famille de polices
+provisoire différente. Si une correspondance est atteinte pour chacun des descripteurs restants, alors
+retenir cette police pour l'élément en question. Le descripteur
+<a href="fonts.html#descdef-font-family" class="noxref"><span class="descinst-font-family">'font-family'</span></a>
+qui est réfléchi dans les propriétés <abbr>CSS2</abbr>, correspond à la famille de polices
+demandée, et non pas au nom qu'aurait la police trouvée selon un processus de correspondance intelligent.
+On considère que les agents utilisateurs échouent dans cette étape quand ceux-ci
+n'implémentent pas un tel processus ;
+
+<li>Si, à la suite de l'étape 3, aucune police ne correspond avec celle indiquée par la
+propriété <a href="fonts.html#descdef-font-family" class="noxref"><span class="descinst-font-family">'font-family'</span></a>,
+<em>les agents utilisateurs qui disposent d'un mécanisme de téléchargement de police</em>
+peuvent poursuivre dans l'examen du descripteur <a href="fonts.html#descdef-src" class="noxref"><span class="descinst-src">'src'</span></a>
+de la police temporaire, désignée comme dans les étapes 2 ou 3, pour vérifier la
+disponibilité d'une ressource de réseau dont le format est reconnu. L'agent utilisateur peut choisir
+de s'interrompre, en attendant la fin du téléchargement, ou de passer à l'étape suivante,
+pendant celui-ci. On considère que les agents utilisateurs échouent dans cette étape,
+quand ceux-ci n'implémentent pas le téléchargement de police, ou quand ils ne sont pas
+connectés à un réseau, ou quand l'utilisateur a désactivé le téléchargement
+de police, ou quand la ressource demandée est indisponible quelle qu'en soit la raison, ou encore quand
+la police une fois téléchargée ne peut pas être utilisé quelle qu'en soit la raison ;
+
+<li>Si, à la suite de l'étape 4, aucune police ne correspond avec celle indiquée par la
+propriété <a href="fonts.html#descdef-font-family" class="noxref"><span class="descinst-font-family">'font-family'</span></a>,
+<em>les agents utilisateurs qui disposent d'un mécanisme de synthèse de police</em>
+peuvent poursuivre dans l'examen d'autres descripteurs, tels que celui de <a href="fonts.html#descdef-x-height" class="noxref"><span class="descinst-x-height">'x-height'</span></a>,
+ceux des dimensions de glyphes et celui de <a href="fonts.html#descdef-panose-1" class="noxref"><span class="descinst-panose-1">'panose-1'</span></a>,
+pour identifier une autre famille de polices temporaire en vue de la synthèse. Si une correspondance est atteinte
+pour chacun des autres descripteurs restants, alors cette police est retenue pour l'élément en
+question et la synthèse proprement dite peut commencer. On considère que les agents utilisateurs
+échouent dans cette étape quand ceux-ci n'implémentent pas la synthèse de police ;
+
+<li>
+Si jusqu'ici, <span>les étapes<ins title="id=x23"> 2,</ins> 3, 4 et 5</span> du processus de correspondance ont échoué et si une
+alternative existe dans la suite du jeu de polices indiqué par la propriété
+<a href="fonts.html#descdef-font-family" class="noxref"><span class="descinst-font-family">'font-family'</span></a>,
+alors reprendre le processus de correspondance  à partir de l'étape 2 avec cette autre police ;
+
+<li>
+Si une correspondance est atteinte pour une police, celle-ci manquant du (ou des) glyphe(s) pour le (ou les)
+caractère(s) donné(s), et si une police alternative existe dans la suite du jeu de polices
+indiqué par la propriété <a href="fonts.html#descdef-font-family" class="noxref"><span class="descinst-font-family">'font-family'</span></a>,
+alors reprendre le processus de correspondance à partir de l'étape 2 avec cette autre police.
+Le descripteur <a href="fonts.html#descdef-unicode-range" class="noxref"><span class="descinst-unicode-range">'unicode-range'</span></a>
+peut être employé pour écarter rapidement celle des polices qui ne dispose pas des glyphes
+appropriés. Quand ce descripteur confirme la police comme contenant certains glyphes dans l'étendue correcte,
+l'agent utilisateur peut examiner celle-ci pour y vérifier la présence d'un glyphe donné ;
+
+<li>S'il n'y a plus de polices à examiner dans la famille considérée dans l'étape 2,
+alors utiliser la valeur héritée, ou celle dépendante de l'agent utilisateur, de la
+propriété <a href="fonts.html#descdef-font-family" class="noxref"><span class="descinst-font-family">'font-family'</span></a>
+et reprendre le processus à partir de l'étape 2, en utilisant les meilleures correspondances possibles avec
+cette police. Si un caractère donné ne peut être rendu avec elle, <span><del title="id=x75">alors l'agent utilisateur
+devrait signaler qu'un caractère n'est pas affiché (par exemple, en se servant du glyphe 'caractère manquant')</del>
+<ins title="id=x75">alors l'agent utilisateur ne disposera pas d'une police convenable pour ce caractère.
+L'agent utilisateur devrait faire correspondre chacun des caractères, pour lesquels il ne dispose pas d'une police appropriée,
+avec un symbole visible qu'il aura choisi, de préférence un glyphe "caractère manquant" issu de l'une des polices disponibles</ins></span> ;
+
+<li>
+Les agents utilisateurs qui disposent d'un mécanisme de rendu progressif, dans l'attente de la fin du
+téléchargement d'une police, peuvent, en cas de réussite, utiliser cette police comme
+une nouvelle famille de polices. Si certains glyphes manquaient dans celle-ci,
+ces glyphes étant déjà présents dans la police temporaire, alors la police téléchargée
+n'est pas utilisée pour le caractère correspondant et la police temporaire continue d'être utilisée.
+
+</ol>
+
+<div class="note"><p>
+<em><strong>Remarque :</strong> On peut optimiser cet algorithme en évitant le réexamen par les
+propriétés <abbr>CSS2</abbr> de chacun des caractères.
+</em>
+</div>
+
+<p>
+Voici les tests de correspondance effectués dans l'étape 2, selon le descripteur :
+
+<ol>
+<li>Le test sur <a href="fonts.html#descdef-font-style" class="noxref"><span class="descinst-font-style">'font-style'</span></a> est effectué en premier. La valeur 'italic' est
+retenue si la base de données des polices de l'agent utilisateur contient une police
+marquée avec les mots-clés 'italic' (préférable) ou bien 'oblique'.
+Autrement les valeurs doivent correspondre exactement sinon le test sur 'font-style' échoue ;
+
+<li>Puis vient le test sur <a href="fonts.html#descdef-font-variant" class="noxref"><span class="descinst-font-variant">'font-variant'</span></a>.
+La valeur 'normal' retient une police qui n'est pas étiquetée 'small-caps'. La valeur 'small-caps' retient (1) une police marquée
+'small-caps' ou (2) une police dans laquelle les petites capitales sont synthétisées
+ou (3) une police dont toutes les minuscules sont remplacées par des capitales.
+On peut synthétiser électroniquement les petites capitales en jouant sur l'échelle des capitales d'une police normale ;
+
+<li>Le test sur <a href="fonts.html#descdef-font-weight" class="noxref"><span class="descinst-font-weight">'font-weight'</span></a> n'échoue jamais.
+(Voir <a href="fonts.html#descdef-font-weight" class="noxref"><span class="descinst-font-weight">'font-weight'</span></a> plus loin) ;
+
+<li>Le résultat du test sur <a href="fonts.html#descdef-font-size" class="noxref"><span class="descinst-font-size">'font-size'</span></a> doit s'inscrire dans une marge de valeurs
+qui dépend de l'agent utilisateur (typiquement, la taille des polices proportionnelles est arrondie
+au pixel entier le plus proche alors que la tolérance sur la taille des polices fixes
+peut aller jusqu'à 20 %). Les calculs supplémentaires (par exemple sur les valeurs exprimées en 'em'
+pour les autres propriétés) se basent alors sur la valeur établie pour
+<a href="fonts.html#descdef-font-size" class="noxref"><span class="descinst-font-size">'font-size'</span></a> et non sur la valeur qui y est spécifiée.
+</ol>
+
+<h3><a name="q46">15.5.1 Les correspondances entre valeurs de graisse et les noms de police</a></h3>
+
+<p>
+Les valeurs de la propriété <a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>
+sont données selon une échelle graduée numérique dans laquelle la valeur '400' (ou 'normal')
+correspond à un texte dans la police "normale" de la famille.
+On associe couramment à celle-ci le nom de graisse <em>Book, Regular, Roman, Normal</em>
+ou parfois <em>Medium</em>.
+
+<p>
+Les autres valeurs de graisse disponibles dans l'échelle numérique ne
+sont présentes que pour conserver une certaine graduation de la graisse dans une famille de polices.  
+Les agents utilisateurs doivent faire correspondre leurs noms aux valeurs numériques de graisse
+pour préserver la variation visuelle ; une police correspondant à une valeur de graisse donnée
+ne doit pas apparaître moins grasse que celles qui correspondent à des valeurs plus faibles.
+Il n'existe aucune garantie de la façon dont un agent utilisateur va associer les polices d'une famille
+avec ces valeurs numériques. Voici quelques pistes qui montrent comment traiter certains cas typiques :
+<ul>
+
+<li>Si la famille de polices utilise déjà une échelle numérique de neuf valeurs
+(comme <em>OpenType</em>), les graisses devraient avoir une correspondance directe avec ces valeurs ;
+
+<li>S'il existe à la fois une police marquée <em>Medium</em> et une marquée
+<em>Book, Regular, Roman</em> ou <em>Normal,</em> alors on fait correspondre la <em>Medium</em> à '500' ;
+
+<li>La police étiquetée "Bold" correspond souvent à la valeur de graisse '700' ;
+
+<li>S'il y a moins de 9 graisses dans la famille, un algorithme par défaut peut combler
+les "manques" comme ceci : si '500' n'a pas de police correspondante, on fait alors correspondre cette graisse
+à la même police qui correspond déjà à '400'. Si une parmi les valeurs
+'600', '700', '800' ou '900' n'a pas de police correspondante, alors cette valeur partage la même
+police correspondante, si elle existe, que celle du mot-clé 'bolder', ou sinon, que celle qui correspond à 'lighter'.
+Si une parmi les valeurs '300', '200' ou '100' n'a pas de correspondance, alors cette valeur partage
+la même correspondance, si elle existe, que celle du mot-clé 'lighter', ou sinon, que
+celle qui correspond à 'bolder'.
+</ul>
+
+<p>
+L'existence d'une graisse plus épaisse pour toutes les valeurs de <a href="fonts.html#propdef-font-weight" class="noxref"><span class="propinst-font-weight">'font-weight'</span></a>
+n'est pas garantie. Par exemple, certaines familles de polices n'ont que les déclinaisons normale et grasse,
+d'autres peuvent en avoir huit.
+
+<p>
+Les deux exemples suivants montrent des correspondances typiques :
+
+<div class="html-example">
+<p>
+Supposons que la famille de polices "Rattlesnake" contienne quatre déclinaisons, leur graisse allant croissant :
+<em>Regular, Medium, Bold, Heavy</em>.
+
+<table border=1 summary="Example of font-weight mapping">
+<caption>Premier exemple de correspondance avec 'font-weight'</caption>
+
+<thead>
+<tr><th>Polices disponibles<th>Correspondance<th>En comblant les manques
+</thead>
+<tr><td>"Rattlesnake Regular"    <td> 400          <td> 100, 200, 300
+<tr><td>"Rattlesnake Medium"     <td> 500          <td> 
+<tr><td>"Rattlesnake Bold"       <td> 700          <td> 600
+<tr><td>"Rattlesnake Heavy"      <td> 800          <td> 900
+</table>
+</div>
+
+<div class="html-example">
+<p>
+Supposons que la famille de polices "Ice Prawn" contienne six déclinaisons, leur graisse allant croissant :
+<em>Book, Medium, Bold, Heavy, Black, ExtraBlack</em>. Noter que l'agent utilisateur <em>n'a pas</em> établi
+de correspondance pour "Ice Prawn ExtraBlack".
+
+<table border=1 summary="Example of font-weight mapping. Note that ExtraBlack is not mapped to a value.">
+<caption>Second exemple de correspondance avec 'font-weight'</caption>
+<thead>
+<tr><th>Polices disponibles<th>Correspondance<th>En comblant les manques
+</thead>
+<tr><td>"Ice Prawn Book"       <td> 400          <td> 100, 200, 300
+<tr><td>"Ice Prawn Medium"     <td> 500          <td> 
+<tr><td>"Ice Prawn Bold"       <td> 700          <td> 600
+<tr><td>"Ice Prawn Heavy"      <td> 800          <td> 
+<tr><td>"Ice Prawn Black"      <td> 900          <td> 
+<tr><td>"Ice Prawn ExtraBlack" <td> (aucun)       <td> 
+</table>
+</div>
+
+<h3><a name="q47">15.5.2 Exemples de correspondances de police</a></h3>
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Cet exemple définit une police particulière, Alabam Italic. On y trouve une description de police Panose
+et l'adresse <abbr>URI</abbr> d'une ressource TrueType. Des descripteurs 'font-weight' et 'font-style' venant en complément.
+La déclaration précise ainsi qu'une correspondance sera atteinte pour les valeurs de graisse comprises
+entre 300 et 500. La famille de polices est Alabama et le nom entier de la police Alabama Italic :
+
+<pre>
+@font-face {
+  src: local("Alabama Italic"),
+       url(http://www.fonts.org/A/alabama-italic) format("truetype");
+  panose-1: 2 4 5 2 5 4 5 9 3 3;
+  font-family: Alabama, serif;
+  font-weight:   300, 400, 500;
+  font-style:  italic, oblique;
+}
+</pre>
+</div>
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+L'exemple suivant définit une famille de polices. Une seule adresse <abbr>URI</abbr> est donnée pour récupérer les données de police.
+Ce fichier de données va contenir plusieurs styles et graisses pour la police demandée.
+Une fois qu'une de ces définitions @font-face aura été exécutée, ces données
+vont se retrouver dans le cache de l'agent utilisateur au service des autres polices partageant la même adresse <abbr>URI</abbr> :
+
+<pre>
+@font-face {
+  src: local("Helvetica Medium"),
+       url(http://www.fonts.org/sans/Helvetica_family) format("truedoc");
+  font-family: "Helvetica";
+  font-style: normal
+}
+@font-face {
+  src: local("Helvetica Oblique"),
+       url("http://www.fonts.org/sans/Helvetica_family") format("truedoc");
+  font-family: "Helvetica";
+  font-style: oblique;
+  slope: -18
+}
+</pre>
+</div>
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+L'exemple suivant regroupe trois polices existantes en une seule police virtuelle, celle-ci gagnant une couverture élargie.
+Dans chacune de ces trois déclarations, on donne le nom entier de la police au moyen du descripteur 'src',
+ce qui en provoquerait l'utilisation préférentielle au cas où celle-ci était disponible localement.
+Une quatrième règle pointe vers une police ayant la même couverture en une seule ressource :
+
+<pre>
+@font-face {
+  font-family: Excelsior;
+  src: local("Excelsior Roman"), url("http://site/er") format("intellifont");
+  unicode-range: U+??; /* Latin-1 */
+}
+@font-face {
+  font-family: Excelsior;
+  src: local("Excelsior EastA Roman"), url("http://site/ear") format("intellifont");
+  unicode-range: U+100-220; /* Latin Extended A et B */
+}
+@font-face {
+  font-family: Excelsior;
+  src: local("Excelsior Cyrillic Upright"), url("http://site/ecr") format("intellifont");
+  unicode-range: U+4??; /* Cyrillique */
+}
+@font-face {
+  font-family: Excelsior;
+  src: url("http://site/excels") format("truedoc");
+  unicode-range: U+??,U+100-220,U+4??;
+}
+</pre>
+</div>
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+L'exemple suivant pourrait faire partie de la feuille de style par défaut d'un agent utilisateur.
+C'est une implémentation de la famille de polices générique de <abbr>CSS2</abbr> <tt>serif</tt>,
+réalisant une correspondance sur une grande variété de polices serifs qui existent
+sur diverses plates-formes. Aucune dimension n'est indiquée, car les dimensions varient chacune des
+options :
+
+<pre>
+@font-face {
+  src: local("Palatino"),
+	  local("Times New Roman"),
+	  local("New York"),
+	  local("Utopia"),
+	  url("http://somewhere/free/font");
+  font-family: serif;
+  font-weight: 100, 200, 300, 400, 500;
+  font-style: normal;
+  font-variant: normal;
+  font-size: all
+}
+</pre>
+</div>
+
+<hr class="navbar">
+
+<div class="navbar" align="center">
+<p><a href="colors.html">précédent</a>  
+<a href="text.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+</body>
+</html>

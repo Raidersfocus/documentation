@@ -1,0 +1,339 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="fr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Conformité : obligations et recommandations</title>
+<link rel="stylesheet" type="text/css" href="annexe/W3C-REC.css">
+<link rel="stylesheet" type="text/css" href="annexe/vf.css">
+<link rel="stylesheet" type="text/css" href="annexe/print.css" media="print" > <!-- ajouté JHI 13.2.9 -->
+<link rel="prev" href="intro.html">
+<link rel="next" href="syndata.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+</head>
+<body>
+<!-- Préface de la traduction -->
+<div id="lisezmoi">
+<a href="annexe/preface.html" title="IMPORTANT : Lisez d'abord la préface de la traduction !"><strong> Lisez-moi S.V.P. </strong></a>
+</div>
+<div class="navbar" align="center">
+<p><a href="intro.html">précédent</a>  
+<a href="syndata.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+<hr class="navbar">
+
+<h1 align="center">3 La conformité : obligations et recommandations</h1>
+<div class="subtoc">
+<p><strong>Contenu</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="conform.html#q1" class="tocxref">3.1 Définitions</a>
+    <li class="tocline2"><a href="conform.html#conformance" class="tocxref">3.2 La conformité</a>
+    <li class="tocline2"><a href="conform.html#q3" class="tocxref">3.3 Les conditions d'erreur</a>
+    <li class="tocline2"><a href="conform.html#text-css" class="tocxref">3.4 <span class="index-def" title="text/css">Le type de contenu "text/css"</span></a>
+  </ul>
+</div>
+
+<h2><a name="q1">3.1 Définitions</a></h2>
+
+<p>
+Nous voyons dans ce chapitre la spécification formelle de <abbr>CSS2</abbr>, en commençant
+par le contrat qui lie les auteurs, les utilisateurs et ceux qui la mettent en &#339;uvre.
+
+<p>Dans ce document, les mots-clés <a name="x0"><span class="index-def" title="MUST">"DOIT"</span></a>,
+<a name="x1"><span class="index-def" title="MUST NOT">"NE DOIT PAS"</span></a>,
+<a name="x2"><span class="index-def" title="REQUIRED">"OBLIGATOIRE"</span></a>,
+<a name="x3"><span class="index-def" title="SHALL">"DEVRA"</span></a>,
+<a name="x4"><span class="index-def" title="SHALL NOT">"NE DEVRA PAS"</span></a>,
+<a name="x5"><span class="index-def" title="SHOULD">"DEVRAIT"</span></a>,
+<a name="x6"><span class="index-def" title="SHOULD NOT">"NE DEVRAIT PAS"</span></a>,
+<a name="x7"><span class="index-def" title="RECOMMENDED">"RECOMMANDÉ"</span></a>,
+<a name="x8"><span class="index-def" title="MAY">"PEUT"</span></a> et
+<a name="x9"><span class="index-def" title="OPTIONAL">"OPTIONNEL"</span></a> doivent être interprétés
+tels que décrits dans le document RFC 2119 (voir <a href="refs.html#ref-RFC2119" rel="biblioentry" class="noxref"><span class="normref">[RFC2119]</span></a>).
+Cependant, par souci de lisibilité, ces mots n'apparaîtront pas ici en majuscules.
+
+<p>
+Par moment, il est fait une recommandation de bon usage aux auteurs et
+pour les agents utilisateurs. Ces recommandations ne sont pas normatives et la conformité
+avec la spécification ne dépend pas de leur application. On les reconnaîtra à des
+tournures de phrases similaires à "Nous recommandons que... ", "Cette spécification recommande... ", etc.
+
+<dl>
+<dt><strong><a name="user-agent">Agent utilisateur</a></strong>
+<dd>
+On donne le nom d'<a name="x35"><span class="index-def" title="user agent|UA">agent utilisateur</span></a> à tout
+logiciel capable d'interpréter un document dans un langage donné et de mettre en &#339;uvre
+les feuilles de style qui lui sont associées selon cette spécification. Celui-ci peut
+afficher un document, le lire en synthèse vocale, l'imprimer, le convertir vers un autre format, etc.
+
+<dt><strong><a name="x28"><span class="index-def" title="ancestor">Ancêtre</span></a></strong>
+<dd>
+On appelle un élément A l'ancêtre d'un élément B, si et seulement si
+B est un descendant de A ;
+
+<dt><strong><span class="index-def" title="document tree"><a name="doctree">Arbre du document</a></span></strong>
+<dd>
+C'est l'arbre des éléments qui résulte du formatage du document source.
+Chacun de ces éléments a exactement un seul parent, l'exception étant l'élément
+<strong><span class="index-def" title="root"><a name="root">racine</a></span></strong> qui n'en a pas ;
+
+<dt><strong><span class="index-def" title="attribute"><a name="attribute">Attribut</a></span></strong>
+<dd>
+Une valeur complémentaire attachée à un élément, elle se compose d'un nom et d'une valeur
+associé (textuelle) ;
+
+<dt><strong><a name="author">Auteur</a></strong>
+<dd>
+C'est une personne qui écrit des documents et les feuilles de style qui lui sont associées.
+Pour ce faire, elle emploie un <a name="x34"><span class="index-def" title="authoring tool"><strong>outil d'édition</strong></span> <em class="ndt">(N.D.T. authoring tool)</em></a> ;
+
+<dt><strong><span class="index-def" title="content"><a name="content">Contenu</a></span></strong>
+<dd>
+C'est le contenu associé à un élément dans le document source. Les
+éléments ne possèdent pas tous un contenu, on dit alors qu'ils sont
+<strong><a name="x20"><span class="index-def" title="empty">vides</span></a></strong>.
+Ce contenu peut consister en du texte et peut inclure à son tour des sous-éléments ;
+on appelle alors l'élément les englobant le <strong><a name="x21"><span class="index-def" title="parent">parent</span></a></strong>
+de ces sous-éléments ;
+
+<dt><strong><a name="x27"><span class="index-def" title="descendant">Descendant</span></a></strong>
+<dd>
+On appelle un élément A un descendant d'un élément B si A est soit (1) un
+enfant de B, soit (2) un enfant d'un autre élément C qui est lui-même un descendant
+de B ;
+
+<dt><strong><span class="index-def" title="intrinsic dimensions"><a name="intrinsic">Dimensions intrinsèques</a></span></strong>
+<dd>
+La largeur et la hauteur de l'élément lui-même, ce ne sont pas celles données
+par l'entourage. En <abbr>CSS2</abbr>, on part du principe que tous les éléments remplacés, et
+seulement ceux-ci, ont des dimensions intrinsèques ;
+
+<dt><strong><a name="x13"><span class="index-def" title="source document">Document source</span></a></strong>
+<dd>
+Le document auquel se réfèrent une ou plusieurs feuilles de style. Ce document est
+formaté dans un langage donné qui permet de le représenter comme un arbre de
+ses <a href="#element">éléments</a>. Chacun de ces éléments a un nom qui
+identifie son type avec en option le nombre de ses <a href="#attribute">attributs</a> et un
+<a href="#content">contenu</a> (qui peut être vide) ;
+
+
+
+<dt><strong><span class="index-def" title="element"><a name="element">Élément</a></span></strong>
+<dd>
+Un terme issu de SGML (voir <a href="refs.html#ref-ISO8879" rel="biblioentry" class="noxref"><span class="normref">[ISO8879]</span></a>).
+Les constructions syntaxiques de base du langage du document. La plupart des règles des feuilles de style
+empruntent les noms de ces constructions (comme "P", "TABLE" et "OL" pour <abbr>HTML</abbr>) pour en spécifier
+les directives de rendu ;
+
+<dt><strong><span class="index-def" title="preceding element|element::preceding"><a name="preceding">Élément précédent</a></span></strong>
+<dd>
+On dit que l'élément A est l'élément précédent de B, si (1)
+A est un ancêtre de B ou si (2) A est un frère précédent de B ;
+
+<dt><strong><span class="index-def" title="replaced element"><a name="replaced-element">Élément remplacé</a></span></strong>
+<dd>
+Un élément dont l'interpréteur <abbr>CSS</abbr> ne connaît que les dimensions intrinsèques.
+Pour le langage <abbr>HTML</abbr>, ce sont principalement les éléments IMG, INPUT, TEXTAREA, SELECT et OBJECT.
+Par exemple, le contenu de l'élément IMG est habituellement remplacé par
+l'image qu'indique l'attribut "src". <abbr>CSS</abbr> ne définit pas la façon de déterminer ces
+dimensions intrinsèques ;
+
+<dt><strong><a name="x32"><span class="index-def" title="following element|element::following">Élément suivant</span></a></strong>
+<dd>
+On dit que l'élément A est l'élément suivant de B, si et seulement si
+B est un élément précédent de A ;
+
+<dt><strong><a name="x26"><span class="index-def" title="child">Enfant</span></a></strong>
+<dd>
+On appelle un élément A l'enfant de l'élément B, si et seulement si B est le
+parent de A ;
+
+<dt><strong><a name="x10"><span class="index-def" title="style sheet">Feuille de style</span></a></strong>
+<dd>Un jeu de déclarations qui spécifient la présentation d'un document ;
+<p>
+Les feuilles de style peuvent provenir de trois sources :
+de <a href="#author">l'auteur</a>, de <a href="#user">l'utilisateur</a> et de <a href="#user-agent">l'agent utilisateur</a>.
+Leur interaction est décrite dans le chapitre sur <a href="cascade.html">la cascade et l'héritage</a> ;
+
+<dt><strong><a name="valid-style-sheet">Feuille de style valide</a></strong>
+<dd>
+La <a name="x11"><span class="index-def" title="valid style sheet">validité</span></a> d'une feuille de style
+est fondée sur le niveau de <abbr>CSS</abbr> utilisé. Toute feuille de style valide en <abbr>CSS1</abbr> l'est aussi en <abbr>CSS2</abbr>.
+Cependant, quelques <a href="changes.html#changes-from-css1">changements intervenus depuis <abbr>CSS1</abbr></a> verront
+certaines feuilles de style <abbr>CSS1</abbr> prendre un sens différent en <abbr>CSS2</abbr> ;
+<p>
+Une feuille de style valide en <abbr>CSS2</abbr> doit suivre la <a href="grammar.html">grammaire de <abbr>CSS2</abbr></a>.
+En outre, elle ne doit contenir que les règles-at, les noms de propriétés et les valeurs de celles-ci
+qui sont définis pour cette spécification. Une construction <a name="x12"><span class="index-def" title="illegal"><strong>illégale</strong></span></a>
+(invalide) de l'un parmi ceux-ci entraîne son invalidité ;
+
+<dt><strong><a name="x29"><span class="index-def" title="sibling">Frère</span></a></strong> <em class="ndt">(N.D.T. sibling)</em>
+<dd>
+On appelle un élément A un frère d'un élément B, si et seulement si
+A et B ont un même parent. Si l'élément <span><del title="id=x30">B</del> <ins title="id=x30">A</ins></span>
+apparaît avant B dans l'arbre du document, on dit que A est le frère précédent et B le frère suivant ;
+
+<dt><strong><span class="index-def" title="document language"><a name="doclanguage">Langage du document</a></span></strong>
+<dd>
+Le langage utilisé pour formater le document source (ex. <abbr>HTML</abbr> ou une application en XML) ;
+
+<dt><strong><span class="index-def" title="rendered content|content::rendered"><a name="rendered-content">Rendu du contenu</a></span></strong>
+<dd>
+C'est le contenu d'un élément tel qu'il apparaît après que les instructions
+des feuilles de style concernées aient été appliquées. Ce rendu pour un
+<a href="#replaced-element">élément remplacé</a> provient de l'extérieur du
+document source. Il peut aussi prendre la forme alternative d'un texte à la place d'un élément
+(ex. la valeur de l'attribut "alt" en <abbr>HTML</abbr>) et il peut inclure des objets insérés de façon
+explicite ou implicite par la feuille de style, tels que des puces, un numérotage, etc. ;
+
+<dt><strong><span class="index-def" title="user"><a name="user">Utilisateur</a></span></strong> 
+<dd>
+C'est la personne qui interagit avec un agent utilisateur pour voir, entendre ou utiliser autrement
+un document en association avec ses feuilles de style. L'utilisateur peut employer sa
+propre feuille de style qui tient compte de préférences personnelles ;
+</dd>
+
+</dl>
+
+<div class="html-example">
+<p>
+Voici un exemple de document source dans le langage <abbr>HTML</abbr> :
+
+<pre>
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"&gt;
+&lt;HTML&gt;   
+  &lt;TITLE&gt;Ma page personnelle&lt;/TITLE&gt;
+  &lt;BODY&gt;
+    &lt;H1&gt;Ma page personnelle&lt;/H1&gt;
+    &lt;P&gt;Bienvenue sur ma page personnelle ! Voici mes compositeurs préférés :
+    &lt;UL&gt;
+      &lt;LI&gt; Elvis Costello
+      &lt;LI&gt; Johannes Brahms
+      &lt;LI&gt; Georges Brassens
+    &lt;/UL&gt;
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+
+<p>et maintenant son arbre :</p>
+
+<div class="figure">
+<p><img src="images/doctree.gif" alt="Exemple d'arbre d'un document." width="222" height="114"><span class="dlink">   <a name="img-doctree" href="images/longdesc/doctree-desc.html" title="Long description for sample document tree diagram">[D]</a></span></p>
+</div>
+
+<p>
+En accord avec la définition de <abbr>HTML</abbr>, l'élément HEAD sera inféré lors
+de l'interprétation et fera partie de l'arbre du document même si les balises HEAD
+n'apparaissent pas dans la source. De la même manière pour les fins des éléments P et
+LI, bien que les balises &lt;/P&gt; et &lt;/LI&gt; ne soient pas visibles.
+</div>
+
+
+<h2>3.2 <a name="conformance">La conformité</a></h2>
+
+<p>
+Ce chapitre traite seulement de la <a name="x37"><span class="index-def" title="conformance">conformité</span></a>
+en regard de la spécification <abbr>CSS2</abbr>.
+De futurs niveaux de <abbr>CSS</abbr> pourront requérir l'implémentation d'un jeu de fonctions différents
+pour que l'agent utilisateur prétende à une conformité.
+
+<p>
+Globalement, pour être conformes à cette spécification, les agents
+utilisateurs doivent respecter les points suivants :
+
+<ol>
+<li>
+Il doit mettre en &#339;uvre un ou plusieurs des <a href="media.html">types de média</a> de <abbr>CSS2</abbr>.
+<li>
+Pour une source donnée, il doit en rechercher toutes les feuilles de style associées qui
+sont appropriées pour les types de média supportés.
+S'il ne peut toutes les rassembler (par exemple, suite à des disfonctionnements du réseau),
+il doit rendre le document à partir de celles qui ont pu être trouvées.
+<li>
+Il doit interpréter les feuilles de style en fonction de cette spécification. Il doit
+en particulier reconnaître toutes les règles-at, les déclarations et leurs ensembles,
+et les sélecteurs (voir la <a href="grammar.html">grammaire de <abbr>CSS2</abbr></a>).
+Si l'agent utilisateur rencontre une propriété qui s'applique à un type de média
+supporté, il doit en interpréter sa valeur conformément à la définition de cette propriété.
+Il doit ainsi retenir toutes les valeurs valides et <a name="x38"><span class="index-inst" title="ignore">ignorer</span></a>
+les déclarations dont les valeurs ne le sont pas. Un agent utilisateur doit 
+<a name="x39"><span class="index-inst" title="ignore">ignorer</span></a> les règles ayant
+trait à ceux des <a href="media.html">types de média</a> qu'il ne supporte pas.
+<li>
+Pour chacun des éléments de l'<a href="#doctree">arbre du document</a>, l'agent utilisateur doit
+assigner une valeur à chacune de leurs propriétés spécifiées,
+conformément à leurs définitions et leurs règles de <a href="cascade.html">cascade et d'héritage</a>.
+<li>
+Si la source fait mention de feuilles de style alternatives (comme pour le mot-clé "alternate" de <abbr>HTML 4.0</abbr>
+<a href="refs.html#ref-HTML40" rel="biblioentry" class="noxref"><span class="informref">[HTML40]</span></a>),
+l'agent utilisateur doit permettre à l'utilisateur d'en choisir une parmi celles-ci pour ensuite l'appliquer.
+</ol>
+
+<p>
+Il n'est pas obligatoire d'observer l'ensemble de ces points, cependant :
+
+<ul>
+<li>
+Un agent utilisateur qui <em>lit</em> les feuilles de styles doit respecter les points 1 à 3.
+<li>
+Un outil d'édition doit produire des <a href="#valid-style-sheet">feuilles de style valides</a>.
+
+<li>
+Un agent utilisateur qui <em>veut rendre</em> un document avec ses feuilles de style associées doit
+respecter les points 1 à 5 et rendre le document en accord avec les contraintes propres des médias,
+ceux-ci sont examinés plus loin dans la spécification. Quand nécessaire, il peut
+utiliser des <a href="cascade.html#actual-value">valeurs</a> approchantes.
+</ul>
+
+<p>
+Un agent utilisateur qui ne peut satisfaire correctement à cette spécification à
+cause des limitations d'un appareil particulier n'est pas forcément non conforme (ex. un agent utilisateur
+ne peut produire des couleurs sur un moniteur monochrome, pareil dans le cas d'une impression).
+
+<p>
+Cette spécification recommande que l'utilisateur puisse choisir sa propre feuille de style.
+
+
+
+<h2><a name="q3">3.3 Les conditions d'erreur</a></h2>
+
+<p>
+En général, ce document ne précise pas comment les agents utilisateurs sont
+supposés gérer les erreurs (ex. comment faire quand une ressource désignée
+par un URI est indisponible).
+
+<p>
+Néanmoins, ils doivent observer les <a href="syndata.html#parsing-errors">règles de gestion des erreurs d'interprétation</a>.
+
+<p>
+Les auteurs et les utilisateurs ne doivent pas s'appuyer sur une gestion
+spécifique des erreurs, car le comportement des agents utilisateurs vis-à-vis de celles-ci
+peut varier.
+
+<h2>3.4 <span class="index-def" title="text/css"><a name="text-css">Le type de contenu "text/css"</a></span></h2>
+
+<p>
+Les feuilles de style externes traversent l'Internet sous la forme de séquences d'octets accompagnées
+d'information de codage (voir <a href="refs.html#ref-HTML40" rel="biblioentry" class="noxref"><span class="normref">[HTML40]</span></a>, chapitre 5).
+La structure de la transmission, nommée l'<span class="index-def" title="message entity"><a name="message-entity"><strong>entité message</strong></a></span>,
+est définie par RFC 2045 et RFC 2068 (voir <a href="refs.html#ref-RFC2045" rel="biblioentry" class="noxref"><span class="normref">[RFC2045]</span></a> et <a href="refs.html#ref-RFC2068" rel="biblioentry" class="noxref"><span class="normref">[RFC2068]</span></a>).
+Une entité message avec un type de contenu "text/css" représente un document <abbr>CSS</abbr> indépendant.
+Ce type est défini dans <del title="id=x31">RFC 2138</del> <ins title="id=x31">RFC 2318</ins>
+(<a href="refs.html#ref-2318" rel="biblioentry" class="noxref"><span class="normref">[RFC2318]</span></a>).
+
+<hr class="navbar">
+
+<div class="navbar" align="center">
+<p><a href="intro.html">précédent</a>  
+<a href="syndata.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="fr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Les couleurs et les arrière-plans</title>
+<link rel="stylesheet" type="text/css" href="annexe/W3C-REC.css">
+<link rel="stylesheet" type="text/css" href="annexe/vf.css">
+<link rel="stylesheet" type="text/css" href="annexe/print.css" media="print" > <!-- ajouté JHI 13.2.9 -->
+<link rel="prev" href="page.html">
+<link rel="next" href="fonts.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+</head>
+<body>
+<!-- Préface de la traduction -->
+<div id="lisezmoi">
+<a href="annexe/preface.html" title="IMPORTANT : Lisez d'abord la préface de la traduction !"><strong> Lisez-moi S.V.P. </strong></a>
+</div>
+<div class="navbar" align="center">
+<p><a href="page.html">précédent</a>  
+<a href="fonts.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+<hr class="navbar">
+
+<h1 align="center">14 Les couleurs et les arrière-plans</h1>
+<div class="subtoc">
+<p><strong>Contenu</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="colors.html#colors" class="tocxref">14.1 La couleur d'avant-plan : la propriété <span class="propinst-color">'color'</span></a>
+    <li class="tocline2"><a href="colors.html#q2" class="tocxref">14.2 L'arrière-plan</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="colors.html#background-properties" class="tocxref">14.2.1 Les propriétés d'arrière-plan : <span class="propinst-background-color">'background-color'</span>, <span class="propinst-background-image">'background-image'</span>, <span class="propinst-background-repeat">'background-repeat'</span>, <span class="propinst-background-attachment">'background-attachment'</span>, <span class="propinst-background-position">'background-position'</span> et <span class="propinst-background">'background'</span></a>
+    </ul>
+    <li class="tocline2"><a href="colors.html#gamma-correction" class="tocxref">14.3 La correction du gamma</a>
+  </ul>
+</div>
+
+<p>
+Les propriétés <abbr>CSS</abbr> permettent aux auteurs la spécification d'une couleur d'avant-plan
+et d'arrière-plan pour un élément. Pour l'arrière-plan, cela peut être
+une couleur ou une image. Les propriétés d'arrière-plan autorisent le positionnement
+et la répétition d'une image de fond, si celle-ci doit rester fixe, par rapport
+à la <a href="visuren.html#viewport">zone de visualisation</a>, ou bien, si elle doit défiler
+en même temps que le document.
+
+<p> Voir le passage sur les <a href="./syndata.html#color-units">unités de couleur</a> pour une syntaxe correcte
+des valeurs de couleur.
+
+<h2>14.1 <a name="colors">La couleur d'avant-plan</a> : la propriété <a href="colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a></h2>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'color'"><a name="propdef-color" class="propdef-title"><strong>'color'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-color" class="noxref"><span class="value-inst-color">&lt;couleur&gt;</span></a> | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>selon l'agent utilisateur
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+Cette propriété décrit la couleur d'avant-plan du contenu de texte d'un élément.
+Voici plusieurs façons d'indiquer la couleur rouge :
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+<pre>
+EM { color: red }              /* nom de couleur prédéfini */
+EM { color: rgb(255,0,0) }     /* couleurs en RGB allant de 0 à 255 */
+</pre>
+</div>
+
+<h2><a name="q2">14.2 L'arrière-plan</a></h2>
+
+<p>
+Les auteurs peuvent spécifier l'arrière-plan d'un élément (c.à.d. la surface où celui est rendu)
+comme étant une couleur ou bien une image. Selon le <a href="box.html#box-model">modèle de la boîte</a>,
+l'arrière-plan correspond aux aires de <a href="box.html#box-content-area">contenu</a><del title="id=x71"> et</del><ins title="id=x71">,</ins>
+d'<a href="box.html#box-padding-area">espacement</a><ins title="id=x71"> et de <a href="box.html#box-border-area">bordure</a></ins>.
+Les couleurs et styles de bordure sont spécifiées par les <a href="box.html#border-properties">propriétés de bordure</a>.
+Les marges étant transparentes, l'arrière-plan du parent est toujours visible au travers de celles-ci.
+
+<p>
+Bien que les propriétés d'arrière-plan ne s'héritent pas, l'arrière-plan
+de la boîte du parent transparaîtra par défaut, du fait de la valeur initiale 'transparent'
+de la propriété <a href="colors.html#propdef-background-color" class="noxref"><span class="propinst-background-color">'background-color'</span></a>.
+
+<p>
+L'arrière-plan de la boîte générée par l'élément racine
+recouvre la totalité du <a href="intro.html#canvas">canevas</a>.
+
+<p>
+Dans le cas de documents <abbr>HTML</abbr>, on recommande aux auteurs de spécifier un arrière-plan à
+l'élément BODY, plutôt qu'à l'élément <abbr>HTML</abbr>. Les agents utilisateurs
+devraient suivre les règles de préséance suivantes pour remplir le fond <ins title="id=x71">du canevas</ins> :
+quand la valeur de la propriété <a href="colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>
+pour l'élément <abbr>HTML</abbr> diffère de 'transparent', alors utiliser la valeur spécifiée,
+autrement utiliser celle spécifiée par la propriété <a href="colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>
+de l'élément BODY. Le rendu n'est pas défini si la valeur finale reste 'transparent'.
+
+<div class="html-example">
+<p>
+Selon ces règles, le canevas en dessous du document <abbr>HTML</abbr> suivant aura un arrière-plan "marbré" :
+
+<pre>
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+    &lt;TITLE&gt;Donner un arrière-plan au canevas&lt;/TITLE&gt;
+    &lt;STYLE type="text/css"&gt;
+       BODY { background: url("http://style.com/marbre.png") }
+    &lt;/STYLE&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+    &lt;P&gt;Mon arrière-plan est marbré.
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+</div>
+
+
+<h3>14.2.1 <a name="background-properties">Les propriétés d'arrière-plan</a> : 
+<a href="colors.html#propdef-background-color" class="noxref"><span class="propinst-background-color">'background-color'</span></a>,
+<a href="colors.html#propdef-background-image" class="noxref"><span class="propinst-background-image">'background-image'</span></a>,
+<a href="colors.html#propdef-background-repeat" class="noxref"><span class="propinst-background-repeat">'background-repeat'</span></a>,
+<a href="colors.html#propdef-background-attachment" class="noxref"><span class="propinst-background-attachment">'background-attachment'</span></a>,
+<a href="colors.html#propdef-background-position" class="noxref"><span class="propinst-background-position">'background-position'</span></a> et
+<a href="colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>
+</h3>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'background-color'"><a name="propdef-background-color" class="propdef-title"><strong>'background-color'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-color" class="noxref"><span class="value-inst-color">&lt;couleur&gt;</span></a> | transparent | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale:</em>  <td>transparent
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p>
+Cette propriété donne la couleur d'arrière-plan d'un élément, avec une valeur de
+<span class="index-inst" title="&lt;color&gt;"><a name="x2" href="syndata.html#value-def-color" class="noxref"><span class="value-inst-color">&lt;couleur&gt;</span></a></span>,
+ou bien avec le mot-clé 'transparent', celui-ci laissant éventuellement voir les couleurs situées plus en-dessous.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+<pre>
+H1 { background-color: #F00 }
+</pre>
+</div>
+
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'background-image'"><a name="propdef-background-image" class="propdef-title"><strong>'background-image'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a> | none | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>none
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+Cette propriété spécifie l'image d'arrière-plan d'un élément.
+En même temps qu'une image, les auteurs devraient aussi spécifier une couleur d'arrière-plan,
+cette couleur étant employée en remplacement d'une image indisponible. Celle-ci, une fois disponible,
+vient se superposer sur le fond coloré. La couleur du fond étant ainsi visible au travers
+des zones transparentes de l'image.
+
+<p>
+La propriété admet les valeurs d'<span class="index-inst" title="&lt;uri&gt;"><a name="x4" href="syndata.html#value-def-uri" class="noxref"><span class="value-inst-uri">&lt;uri&gt;</span></a></span>,
+pointant vers une image, ou 'none', prohibant l'emploi d'image.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+<pre>
+BODY { background-image: url("marble.gif") }
+P { background-image: none }
+</pre>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'background-repeat'"><a name="propdef-background-repeat" class="propdef-title"><strong>'background-repeat'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>repeat | repeat-x | repeat-y | no-repeat | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>repeat
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+Quand on spécifie une image d'arrière-plan, cette propriété indique si
+l'image est répétée (apposée) et la manière de la répétition.
+La mosaïque de fond résultante correspond aux aires de <a href="box.html#box-content-area">contenu</a><del title="2001-08-27 id=x71"> et</del><ins title="2001-08-27 id=x71">,</ins>
+d'<a href="box.html#box-padding-area">espacement</a> <ins title="2001-08-27 id=x71">et de bordure</ins> de la boîte de l'élément
+en question. Les significations des valeurs sont :
+
+<dl>
+<dt><strong>repeat</strong>
+<dd>L'image se répète à la fois horizontalement et verticalement ;
+<dt><strong>repeat-x</strong>
+<dd>L'image ne se répète qu'horizontalement ;
+<dt><strong>repeat-y</strong>
+<dd>L'image ne se répète que verticalement ;
+<dt><strong>no-repeat</strong>
+<dd>L'image ne se répète pas : un seul exemplaire de celle-ci est dessiné.
+
+</dl>
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+<pre>
+BODY { 
+  background: white url("pendant.gif");
+  background-repeat: repeat-y;
+  background-position: center;
+}
+</pre>
+<div class="figure">
+<p>
+<img src="images/bg-repeat.gif" alt="Une image de fond centrée, des copies de celle-ci se répétant en haut et en bas des aires d'espacement et de contenu." width="243" height="334"><span class="dlink">   <a name="img-bg-repeat" href="images/longdesc/bg-repeat-desc.html" title="Long description for background pattern">[D]</a></span>
+
+<p class="caption">Un exemplaire de l'image d'arrière-plan est placé au centre,
+puis d'autres exemplaires de celles-ci se placent les unes au-dessus, les autres en-dessous,
+produisant une bande verticale derrière l'élément.
+
+</div>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'background-attachment'"><a name="propdef-background-attachment" class="propdef-title"><strong>'background-attachment'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>scroll | fixed | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>scroll
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+Quand on spécifie une image d'arrière-plan, cette propriété indique si
+l'image est fixe par rapport à la <a href="visuren.html#viewport">zone de visualisation</a> (pour
+la valeur 'fixed'), ou si celle-ci défile en même temps que le document (pour la valeur 'scroll').
+<ins title="id=x72">Noter qu'il n'existe qu'<em>une seule</em> zone de visualisation par document ; c.à.d., même
+si l'élément est doté d'un mécanisme de défilement (voir la propriété 'overflow'),
+un arrière-plan avec la valeur 'fixed' ne se déplace pas avec cet élément.</ins>
+
+<p>
+Même si l'image est fixe, celle-ci n'est visible que quand elle se trouve dans les aires d'arrière-plan<del title="2001-08-27 id=x71"> ou</del><ins title="2001-08-27 id=x71">,</ins>
+d'espacement<ins title="2001-08-27 id=x71"> ou de bordure</ins> de l'élément. À moins que l'image ne se répète en mosaïque
+('background-repeat: repeat'), celle-ci peut ainsi ne pas apparaître.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Dans cet exemple, une bande verticale infinie reste "collée" dans la zone de visualisation
+quand l'élément défile :
+
+<pre>
+BODY { 
+  background: red url("pendant.gif");
+  background-repeat: repeat-y;
+  background-attachment: fixed;
+}
+</pre>
+</div>
+
+<p>
+Les agents utilisateurs peuvent considérer une valeur 'fixed' comme étant 'scroll'. Cependant,
+on recommande une interprétation correcte de la valeur 'fixed', au moins pour les éléments
+HTML et BODY, autrement il serait impossible pour un auteur de fournir une image destinée seulement aux
+navigateurs reconnaissant la valeur 'fixed'. Voir le passage sur la <a href="conform.html#conformance">conformité</a>
+pour des explications.
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'background-position'"><a name="propdef-background-position" class="propdef-title"><strong>'background-position'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>[ [<a href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage">&lt;pourcentage &gt;</span></a> | <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> ]{1,2} | 
+[ [top | center | bottom] || [left | center | right] ] ] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>0% 0%
+<tr valign=baseline><td><em>S'applique à :</em>  <td>ceux des éléments de type bloc et ceux remplacés
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>se rapporte à la taille de la boîte elle-même
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+Quand on spécifie une image d'arrière-plan, cette propriété indique la position
+initiale de celle-ci. Les significations des valeurs sont :
+
+<dl>
+<dt><span class="index-inst" title="&lt;percentage&gt;"><a name="x8" href="syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage"><strong>&lt;pourcentage&gt;</strong></span></a></span>
+<span class="index-inst" title="&lt;percentage&gt;"><span class="value-inst-percentage"><strong>&lt;pourcentage&gt;</strong></span></span>
+<dd>Pour la paire de valeurs '0% 0%', le coin en haut et à gauche de l'image est aligné sur celui du
+<a href="box.html#padding-edge">bord de l'espacement</a> de la boîte. Pour la paire de valeurs '100% 100%',
+c'est le coin en bas et à droite de l'image sur celui du bord de l'espacement de la boîte.
+Pour la paire de valeurs '14% 84%', le point dans l'image, situé 14 % vers la droite et 84 % vers le bas,
+se place sur celui contenu dans l'aire d'espacement de la boîte, dans les mêmes proportions ;
+
+<dt><span class="index-inst" title="&lt;length&gt;"><a name="x10" href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length"><strong>&lt;longueur&gt;</strong></span></a></span>
+<span class="index-inst" title="&lt;length&gt;"><a name="x11" href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length"><strong>&lt;longueur&gt;</strong></span></a></span>
+<dd> Pour la paire de valeur '2cm 2cm', le coin en haut et à gauche de l'image se place sur
+le point, situé à 2 cm vers la droite et 2 cm vers le bas
+en partant du coin en haut et à gauche de l'aire d'espacement de la boîte ;
+<dt>
+<dt><strong>top left</strong> et <strong>left top</strong>
+<dd>Identique à '0% 0%' ;
+<dt><strong>top</strong>, <strong>top center</strong> et <strong>center top</strong>
+<dd>Identique à '50% 0%';
+<dt><strong>right top</strong> et <strong>top right</strong>
+<dd>Identique à '100% 0%' ;
+<dt><strong>left</strong>, <strong>left center</strong> et <strong>center left</strong>
+<dd>Identique à '0% 50%' ;
+<dt><strong>center</strong> et <strong>center center</strong>
+<dd>Identique à '50% 50%' ;
+<dt><strong>right</strong>, <strong>right center</strong> et <strong>center right</strong>
+<dd>Identique à '100% 50%' ;
+<dt><strong>bottom left</strong> et <strong>left bottom</strong>
+<dd>Identique à '0% 100%' ;
+<dt><strong>bottom</strong>, <strong>bottom center</strong> et <strong>center bottom</strong>
+<dd>Identique à '50% 100%' ;
+<dt><strong>bottom right</strong> et <strong>right bottom</strong>
+<dd>Identique à '100% 100%'.
+</dl>
+
+<p>
+Quand on ne donne qu'une seule valeur, en pourcentage ou en longueur, celle-ci ne concerne que la position
+horizontale, la position verticale sera 50%. Quand on donne deux valeurs, la première concerne
+la position horizontale. Les combinaisons de valeurs de pourcentage et de longueur sont admises (ex. '50% 2cm').
+Les positions négatives le sont également. On ne peut pas combiner des mots-clés avec
+des valeurs de pourcentage ou de longueur (ce qui est possible est indiqué plus haut).
+
+<div class="example"><p style="display:none">Exemple(s) :
+
+<pre>
+BODY { background: url("banner.jpeg") right top }    /* 100%   0% */
+BODY { background: url("banner.jpeg") top center }   /*  50%   0% */
+BODY { background: url("banner.jpeg") center }       /*  50%  50% */
+BODY { background: url("banner.jpeg") bottom }       /*  50% 100% */
+</pre>
+</div>
+
+<p>
+Quand l'image d'arrière-plan est fixe par rapport à la zone de visualisation (voir la propriété
+<a href="colors.html#propdef-background-attachment" class="noxref"><span class="propinst-background-attachment">'background-attachment'</span></a>),
+cette image se place relativement à celui-ci, et non par rapport à l'aire d'espacement de l'élément.
+Par exemple :
+
+<div class="example"><p style="display:none">Exemple(s) :
+<pre>
+BODY { 
+  background-image: url("logo.png");
+  background-attachment: fixed;
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+} 
+</pre>
+
+<p>
+Ici, l'image (solitaire) est placée dans le coin en bas à droite de la zone de visualisation.
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'background'"><a name="propdef-background" class="propdef-title"><strong>'background'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>[<a href="colors.html#propdef-background-color" class="noxref"><span class="propinst-background-color">&lt;'background-color'&gt;</span></a> || <a href="colors.html#propdef-background-image" class="noxref"><span class="propinst-background-image">&lt;'background-image'&gt;</span></a> || <a href="colors.html#propdef-background-repeat" class="noxref"><span class="propinst-background-repeat">&lt;'background-repeat'&gt;</span></a>
+|| <a href="colors.html#propdef-background-attachment" class="noxref"><span class="propinst-background-attachment">&lt;'background-attachment'&gt;</span></a> || <a href="colors.html#propdef-background-position" class="noxref"><span class="propinst-background-position">&lt;'background-position'&gt;</span></a>] | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>non définie pour les propriétés raccourcies
+<tr valign=baseline><td><em>S'applique à :</em>  <td>tous les éléments
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>admis pour la propriété 'background-position'
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>La propriété <a href="colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>
+est une propriété raccourcie qui sert à regrouper les propriétés individuelles
+<a href="colors.html#propdef-background-color" class="noxref"><span class="propinst-background-color">'background-color'</span></a>,
+<a href="colors.html#propdef-background-image" class="noxref"><span class="propinst-background-image">'background-image'</span></a>,
+<a href="colors.html#propdef-background-repeat" class="noxref"><span class="propinst-background-repeat">'background-repeat'</span></a>,
+<a href="colors.html#propdef-background-attachment" class="noxref"><span class="propinst-background-attachment">'background-attachment'</span></a> et
+<a href="colors.html#propdef-background-position" class="noxref"><span class="propinst-background-position">'background-position'</span></a>
+dans la feuille de style.
+
+<p>La propriété <a href="colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>
+distribue d'abord à toutes les propriétés individuelles d'arrière-plan à leur valeur initiale,
+puis leur applique les valeurs explicites de la déclaration.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Dans la première règle de l'exemple suivant, la valeur de la propriété
+<a href="colors.html#propdef-background-color" class="noxref"><span class="propinst-background-color">'background-color'</span></a>
+est seule spécifiée, les autres propriétés individuelles recevant leur valeur
+initiale. Dans la seconde règle, toutes les valeurs des propriétés individuelles sont spécifiées :
+
+<pre>
+BODY { background: red }
+P { background: url("chess.png") gray 50% repeat fixed }
+</pre>
+</div>
+
+<h2>14.3 <a name="gamma-correction">La correction du gamma</a></h2>
+
+<p><em>Pour des explications concernant les questions soulevées par le gamma, consulter le tutoriel
+contenu dans la spécification PNG (<a href="refs.html#ref-PNG10" rel="biblioentry" class="noxref"><span class="normref">[PNG10]</span></a>).</em>
+
+<p>
+Lors du calcul pour la correction du gamma, les agents utilisateurs, ceux affichant sur un écran cathodique,
+peuvent considérer un écran cathodique idéal et ignorer les effets du gamma apparent dus
+au dithering. Ceci implique, de leur part et selon les plates-formes actuelles, les corrections minimales suivantes :
+<dl>
+<dt> PC sous MS-Windows
+<dd> aucune ;
+<dt> Unix sous X11
+<dd> aucune ;
+<dt> Macintosh sous QuickDraw
+<dd> appliquer un gamma de 1.45 <a href="refs.html#ref-ICC32" rel="biblioentry" class="noxref"><span class="normref">[ICC32]</span></a>
+(celles des applications compatibles peuvent simplement passer le profil ICC sRGB à ColorSync
+pour effectuer la correction de couleur appropriée) ;
+<dt> SGI sous X
+<dd> appliquer la valeur de gamma trouvée à <tt>/etc/config/system.glGammaVal</tt>
+(la valeur par défaut étant 1.70 ; les applications tournant sur Irix 6.2, ou une version supérieure,
+peuvent simplement passer le profil ICC sRGB au système de gestion de couleur) ;
+<dt> NeXT sous NeXTStep
+<dd> appliquer un gamma de 2.22.
+</dl>
+
+<p>
+L'expression "appliquer un gamma" signifie que chacune des valeurs R, G et B doit être convertie
+en R'=R<sup>gamma</sup>, G'=G<sup>gamma</sup> et B'=B<sup>gamma</sup>, avant leur transmission au système
+d'exploitation.
+
+<p>
+Ceci peut se faire très rapidement en construisant une table de référence de
+256 valeurs, une seule fois au lancement du navigateur, ainsi :
+
+<pre>
+for i := 0 to 255 do
+  raw := i / 255.0;
+  corr := pow (raw, gamma);
+  table[i] := trunc (0.5 + corr * 255.0)
+end
+</pre>
+
+<p>ce qui évite des calculs compliqués pour chaque attribut de couleur et autrement
+faramineux au niveau de chaque pixel.
+
+<hr class="navbar">
+
+<div class="navbar" align="center">
+<p><a href="page.html">précédent</a>  
+<a href="fonts.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+</body>
+</html>

@@ -1,0 +1,1679 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="fr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+<title>Les tables</title>
+<link rel="stylesheet" type="text/css" href="annexe/W3C-REC.css">
+<link rel="stylesheet" type="text/css" href="annexe/vf.css">
+<link rel="stylesheet" type="text/css" href="annexe/print.css" media="print" > <!-- ajouté JHI 13.2.9 -->
+<link rel="prev" href="text.html">
+<link rel="next" href="ui.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+</head>
+<body>
+<!-- Préface de la traduction -->
+<div id="lisezmoi">
+<a href="annexe/preface.html" title="IMPORTANT : Lisez d'abord la préface de la traduction !"><strong> Lisez-moi S.V.P. </strong></a>
+</div>
+<div class="navbar" align="center">
+<p><a href="text.html">précédent</a>  
+<a href="ui.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+<hr class="navbar">
+
+<h1 align="center">17 <a name="visual-tables">Les tables</a></h1>
+<div class="subtoc">
+<p><strong>Contenu</strong>
+  <ul class="toc">
+    <li class="tocline2"><a href="tables.html#q1" class="tocxref">17.1 Introduction aux tables</a>
+    <li class="tocline2"><a href="tables.html#q2" class="tocxref">17.2 Le modèle de table de <abbr>CSS</abbr></a>
+    <ul class="toc">
+      <li class="tocline3"><a href="tables.html#anonymous-boxes" class="tocxref">17.2.1 Les objets de table anonymes</a>
+    </ul>
+    <li class="tocline2"><a href="tables.html#q4" class="tocxref">17.3 Les sélecteurs de colonne</a>
+    <li class="tocline2"><a href="tables.html#q5" class="tocxref">17.4 Les tables dans le modèle de mise en forme visuel</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="tables.html#q6" class="tocxref">17.4.1 La position et l'alignement de la légende</a>
+    </ul>
+    <li class="tocline2"><a href="tables.html#q7" class="tocxref">17.5 La disposition visuelle des contenus de la table</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="tables.html#table-layers" class="tocxref">17.5.1 Les couches de la table et la transparence</a>
+      <li class="tocline3"><a href="tables.html#width-layout" class="tocxref">17.5.2 Les algorithmes de largeur de table : la propriété <span class="propinst-table-layout">'table-layout'</span></a>
+      <ul class="toc">
+        <li class="tocline4"><a href="tables.html#fixed-table-layout" class="tocxref"> La disposition de table fixe</a>
+        <li class="tocline4"><a href="tables.html#auto-table-layout" class="tocxref"> La disposition de table automatique</a>
+      </ul>
+      <li class="tocline3"><a href="tables.html#height-layout" class="tocxref">17.5.3 Les algorithmes de la hauteur de table</a>
+      <li class="tocline3"><a href="tables.html#column-alignment" class="tocxref">17.5.4 L'alignement horizontal dans une colonne</a>
+      <li class="tocline3"><a href="tables.html#dynamic-effects" class="tocxref">17.5.5 Les effets dynamiques des rangées et colonnes</a>
+    </ul>
+    <li class="tocline2"><a href="tables.html#borders" class="tocxref">17.6 Les bordures</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="tables.html#separated-borders" class="tocxref">17.6.1 Le modèle des bordures séparées</a>
+      <ul class="toc">
+        <li class="tocline4"><a href="tables.html#empty-cells" class="tocxref"> Les bordures autour des cellules vides : la propriété <span class="propinst-empty-cells">'empty-cells'</span></a>
+      </ul>
+      <li class="tocline3"><a href="tables.html#collapsing-borders" class="tocxref">17.6.2 Le modèle des bordures fusionnées</a>
+      <ul class="toc">
+        <li class="tocline4"><a href="tables.html#border-conflict-resolution" class="tocxref"> La résolution des conflits de bordure</a>
+      </ul>
+      <li class="tocline3"><a href="tables.html#q20" class="tocxref">17.6.3 Les styles de bordure</a>
+    </ul>
+    <li class="tocline2"><a href="tables.html#q21" class="tocxref">17.7 Le rendu auditif des tables</a>
+    <ul class="toc">
+      <li class="tocline3"><a href="tables.html#speak-headers" class="tocxref">17.7.1 Les en-têtes parlées: la propriété <span class="propinst-speak-header">'speak-header'</span></a>
+    </ul>
+  </ul>
+</div>
+<h2><a name="q1">17.1 Introduction aux tables</a></h2>
+
+<p>Les <a name="x0"><span class="index-def" title="tables">tables</span></a> sont une représentation des
+relations entre des données. Les auteurs précisent ces relations dans le <a href="conform.html#doclanguage">langage du document</a>
+et précisent la <em>représentation</em> de celles-ci de deux manières, l'une visuelle et l'autre
+auditive.
+
+<p>
+Les auteurs peuvent spécifier la mise en forme d'une table sous la forme d'un quadrillage de cellules. Les
+rangées et les colonnes de cellules peuvent s'organiser en groupes de rangées et en groupes de colonnes.
+Ces rangées, colonnes, groupes de rangées, <del title="2003-01-22 id=s-17-11">colonnes de rangées</del>
+<ins title="2003-01-22 id=s-17-11">groupes de colonnes</ins> et cellules peuvent recevoir des bordures dessinées autour d'eux
+(en <abbr>CSS2</abbr>, selon deux modèles de bordures). Les auteurs peuvent aligner les données, verticalement ou horizontalement,
+dans la cellule ou dans toutes les cellules d'une rangée ou d'une colonne.
+
+<p>
+Les auteurs peuvent aussi spécifier le rendu auditif d'une table, comment les en-têtes et les donnés
+seront dites. Dans le langage du document, ceux-ci peuvent étiqueter des cellules ou des groupes
+de cellules, quand il s'agit d'un rendu auditif, pour que les cellules d'en-tête soit dites avant celles des
+données. Dans les faits, ceci "sérialise" la table : les utilisateurs consultant de façon
+auditive la table entendent la séquence d'en-têtes suivie par celle des données.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Voici, décrit en <abbr>HTML 4.0</abbr>, une table simple de trois rangées par trois colonnes :
+
+<pre class="html-example">
+&lt;TABLE&gt;
+&lt;CAPTION&gt;Voici une table simple en 3x3&lt;/CAPTION&gt;
+&lt;TR id="rangee1"&gt;
+   &lt;TH&gt;En-tête 1      &lt;TD&gt;Cellule 1        &lt;TD&gt;Cellule 2
+&lt;TR id="rangee2"&gt;
+   &lt;TH&gt;En-tête 2      &lt;TD&gt;Cellule 3        &lt;TD&gt;Cellule 4
+&lt;TR id="rangee3"&gt;
+   &lt;TH&gt;En-tête 3      &lt;TD&gt;Cellule 5        &lt;TD&gt;Cellule 6
+&lt;/TABLE&gt;
+</pre>
+
+<p>
+Ce code crée une table (l'élément TABLE), trois rangées (les éléments TR),
+trois cellules d'en-tête (les élément TH) et six cellules de données (les éléments TD).
+Noter que, dans l'exemple, les trois colonnes sont implicites : il y en a autant dans la table que l'en-tête
+et les cellules de donnés le demandent.
+
+<p>
+Cette règle <abbr>CSS</abbr> centre le texte horizontalement dans les cellules d'en-tête et applique un style
+gras à celles de données :
+
+<pre>
+TH { text-align: center; font-weight: bold }
+</pre>
+
+<p>
+La règle suivante aligne le texte des cellules d'en-tête sur leur ligne de base et centre verticalement
+le texte de chacune des cellules de données :
+
+<pre>
+TH { vertical-align: baseline }
+TD { vertical-align: middle }
+</pre>
+
+<p>
+Cette règle-ci spécifie une bordure en trait plein bleu épais de 3px autour de la première
+rangée et un trait plein noir épais de 1px autour des rangées suivantes :
+
+<pre>
+TABLE      { border-collapse: collapse }
+TR#rangee1 { border-top: 3px solid blue }
+TR#rangee2 { border-top: 1px solid black }
+TR#rangee3 { border-top: 1px solid black }
+</pre>
+
+<p>
+Noter, cependant, que les bordures autour des rangées se recouvrent quand celles-ci se rencontrent. De quelle
+couleur (noir ou bleu) et de quelle épaisseur (1px ou 3px) seront les bordures entre rangee1 et rangee2 ?
+Ce point est abordé dans le passage traitant de la <a href="#border-conflict-resolution">résolution des conflits de bordure</a>.
+
+<p>Dans cette règle, la légende est placée au-dessus de la table :
+
+<pre>
+CAPTION { caption-side: top }
+</pre>
+
+<p>Et enfin, cette règle-ci indique, en cas de rendu auditif, que chaque rangée de données soit
+lue selon le schéma "En-tête, Données, Données" :
+
+<pre>
+TH { speak-header: once }
+</pre>
+
+<p>Par exemple, la première rangée serait dite "En-tête, Cellule1, Cellule2". Par contre,
+avec cette règle :
+
+<pre>
+TH { speak-header: always }
+</pre>
+
+<p>la première rangée serait dite "En-tête1 Cellule1 En-tête1 Cellule2".
+</div>
+
+<p>
+L'exemple précédent montre l'action de <abbr>CSS</abbr> avec des éléments de <abbr>HTML 4.0</abbr> ; dans cette
+spécification, la sémantique des divers éléments des tables (TABLE, CAPTION, THEAD,
+TBODY, TFOOT, COL, COLGROUP, TH et TD) est bien définie. Pour d'autres langages de document (tel que les
+applications <abbr>XML</abbr>), ces éléments ne sont pas forcément prédéfinis. C'est
+pourquoi, <abbr>CSS2</abbr> permet aux auteurs de <a name="x1"><span class="index-inst" title="mapping elements to table parts">"faire correspondre"</span></a>
+les éléments du langage d'un document avec ceux des tables via la propriété
+<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>.
+Par exemple, dans la règle suivante, l'élément FOO se comporte comme un élément
+TABLE de <abbr>HTML</abbr> et l'élément BAR comme un élément CAPTION :
+
+<pre class="example">
+FOO { display : table }
+BAR { display : table-caption }
+</pre>
+
+<p>Les divers éléments des tables sont abordés dans le chapitre qui suit.
+Dans cette spécification, le terme <a name="x2"><span class="index-def" title="table element"><dfn>élément de table</dfn></span></a>
+se réfère à tout élément impliqué dans la création d'une table.
+Un <a name="x3"><span class="index-def" title="internal table element|table element::internal">élément de table "interne"</span></a>
+est un de ceux qui produisent une rangée, un groupe de rangées, une colonne, un groupe de colonnes ou
+une cellule.
+
+<h2><a name="q2">17.2 Le modèle de table de <abbr>CSS</abbr></a></h2>
+
+<p>
+Le modèle de table de <abbr>CSS</abbr> se fonde sur celui de <abbr>HTML 4.0</abbr>, dans lequel la structure d'une table participe
+étroitement et parallèlement avec la disposition visuelle de cette table. Dans ce modèle, une
+table consiste en une légende facultative et un nombre quelconque de rangées de cellules. On dit que
+celui-ci est "prioritaire aux rangées", les auteurs spécifiant des rangées explicitement
+dans le langage du document, et non des colonnes. Les colonnes se déduisent une fois que les rangées
+ont été spécifiées (la première cellule de chacune des rangées font
+partie de la première colonne, la deuxième cellule de la deuxième colonne, etc.). On peut
+regrouper structurellement les rangées et les colonnes, la présentation reflétant ce regroupement
+(ex. une bordure peut être dessinée autour d'un groupe de rangées).
+
+<p>
+C'est ainsi que les tables, les légendes, les rangées, les groupes de rangées, les colonnes,
+les groupes de colonnes et les cellules composent le modèle de table.
+
+<p>
+Le modèle de table <abbr>CSS</abbr> ne requiert pas du <a href="conform.html#doclanguage">langage du document</a> que
+celui-ci comporte des éléments correspondants à chacun de ces composants.
+Pour les langages de document (tels que les applications <abbr>XML</abbr>) qui n'ont pas d'éléments de table
+prédéfinis, les auteurs doivent faire correspondre les éléments de ces langages avec
+ces éléments des tables, et ceci avec l'aide de la propriété
+<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>.
+Les valeurs suivantes de <a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>
+adjoignent une sémantique de table à un élément arbitraire :
+
+<dl>
+<dt><strong><span class="index-def" title="table"><a class="value-def" name="value-def-table">table</a></span></strong> (TABLE en <abbr>HTML</abbr>)
+<dd>Spécifie un comportement de table de <a href="visuren.html#block-level">type bloc</a> pour un élément :
+c'est un bloc rectangulaire qui participe à un <a href="visuren.html#block-formatting">contexte de mise en forme de bloc</a> ;
+
+<dt><strong><span class="index-def" title="inline-table"><a class="value-def" name="value-def-inline-table">inline-table</a></span></strong> (TABLE en <abbr>HTML</abbr>)
+<dd>Spécifie un comportement de table de <a href="visuren.html#inline-level">type en-ligne</a> pour un élément :
+c'est un bloc rectangulaire qui participe à un <a href="visuren.html#inline-formatting">contexte de mise en forme en-ligne</a> ;
+
+<dt><strong><span class="index-def" title="table-row"><a class="value-def" name="value-def-table-row">table-row</a></span></strong> (TR en <abbr>HTML</abbr>)
+<dd>Spécifie que l'élément est une rangée de cellules ;
+
+<dt><strong><span class="index-def" title="table-row-group"><a class="value-def" name="value-def-table-row-group">table-row-group</a></span></strong> (TBODY en <abbr>HTML</abbr>)
+<dd>Spécifie qu'un élément regroupe une ou plusieurs rangées ;
+
+<dt><strong><span class="index-def" title="table-header-group"><a class="value-def" name="value-def-table-header-group">table-header-group</a></span></strong> (THEAD en <abbr>HTML</abbr>)
+<dd>Comme pour 'table-row-group', cependant, pour une mise en forme visuelle, ce groupe de rangées est
+toujours affiché avant toutes les autres rangées et groupes de rangées et après une
+éventuelle légende en position supérieure. Les agents utilisateurs d'impression peuvent répéter
+les rangées <span><del title="id=x24">de pied de page</del> <ins title="id=x24">d'en-tête</ins></span>
+sur chacune des pages sur lesquelles s'étendrait une table ;
+
+<dt><strong><span class="index-def" title="table-footer-group"><a class="value-def" name="value-def-table-footer-group">table-footer-group</a></span></strong> (TFOOT en <abbr>HTML</abbr>)
+<dd>Comme pour 'table-row-group', cependant, pour une mise en forme visuelle, ce groupe de rangées est
+toujours affiché après toutes les autres rangées et groupes de rangées, et avant une
+éventuelle légende en position inférieure. Les agents utilisateurs d'impression peuvent répéter
+les rangées de pied de page sur chacune des pages sur lesquelles s'étendrait une table ;
+
+<dt><strong><span class="index-def" title="table-column"><a class="value-def" name="value-def-table-column">table-column</a></span></strong> (COL en <abbr>HTML</abbr>)
+<dd>Spécifie qu'un élément représente une colonne de cellules ;
+
+<dt><strong><span class="index-def" title="table-column-group"><a class="value-def" name="value-def-table-column-group">table-column-group</a></span></strong> (COLGROUP en <abbr>HTML</abbr>)
+<dd>Spécifie qu'un élément regroupe une ou plusieurs colonnes ;
+
+<dt><strong><span class="index-def" title="table-cell"><a class="value-def" name="value-def-table-cell">table-cell</a></span></strong> (TD ou TH en <abbr>HTML</abbr>)
+<dd>Spécifie qu'un élément représente une cellule de table ;
+
+<dt><strong><span class="index-def" title="table-caption"><a class="value-def" name="value-def-table-caption">table-caption</a></span></strong> (CAPTION en <abbr>HTML</abbr>)
+<dd>Spécifie la légende d'une table.
+</dl>
+
+<p>
+Les éléments dont la valeur de la propriété <a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>
+est 'table-column' ou 'table-column-group' ne sont pas rendus (exactement comme si celle-ci avait été
+'none'), mais ceux-ci ont une certaine utilité, leurs attributs pouvant donner éventuellement
+un certain style aux colonnes que ceux-ci définissent.
+
+
+<p>La <a href="sample.html">feuille de style par défaut pour <abbr>HTML 4.0</abbr></a> en annexe montre l'utilisation
+de ces valeurs :
+
+<pre class="example">
+TABLE    { display: table }
+TR       { display: table-row }
+THEAD    { display: table-header-group }
+TBODY    { display: table-row-group }
+TFOOT    { display: table-footer-group }
+COL      { display: table-column }
+COLGROUP { display: table-column-group }
+TD, TH   { display: table-cell }
+CAPTION  { display: table-caption }
+</pre>
+
+<p>
+Les agents utilisateurs peuvent <a href="syndata.html#ignore">ignorer</a> ces valeurs de la propriété
+<a href="visuren.html#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>
+<del title="id=s-17-2">pour des documents <abbr>HTML</abbr>, car les auteurs ne devraient pas modifier
+le comportement attendu pour un élément</del> <ins title="id=s-17-2">pour les éléments de table <abbr>HTML</abbr>,
+car les tables <abbr>HTML</abbr> peuvent être rendues par d'autres algorithmes prévus pour être rétrocompatibles</ins>.
+
+<h3>17.2.1 <a name="anonymous-boxes">Les objets de table anonymes</a></h3> 
+
+<p>
+<ins title="id=x25">Chaque élément table va automatiquement générer des objets de table anonymes autour
+de lui-même, ceux-ci consistent d'au moins trois objets imbriqués qui correspondent aux
+éléments avec la valeur 'table' ou 'inline-table, avec la valeur 'table-row' et avec la valeur 'table-cell'.</ins>
+Des langages de document autres que <abbr>HTML</abbr> peuvent ne pas contenir tous les éléments du modèle
+de table de <abbr>CSS2</abbr>. Pour ceux-ci, on doit supposer l'existence des éléments "absents" pour que le
+modèle puisse fonctionner. Ces éléments absents génèrent des objets
+<a href="visuren.html#anonymous">anonymes</a> (par exemple des boîtes anonymes dans la mise en forme de la table)
+selon les règles suivantes :
+<ol>
+<li>
+Quand le parent, noté P, d'un élément 'table-cell', noté T, n'est pas un élément
+'table-row', un objet correspondant à ce dernier sera généré entre P et T. Cette objet
+recouvrira l'ensemble des éléments 'table-cell' consécutifs de T de même ascendance
+(dans l'arbre du document) ;
+
+<li>
+Quand le parent P d'un élément 'table-row' T n'est pas un élément 'table',
+'inline-table' ou 'table-row-group', un objet correspondant à un élément 'table' sera
+généré entre P et T. Cette objet recouvrira l'ensemble des éléments
+'table-row' consécutifs de T de même ascendance (dans l'arbre du document), ceux-ci requérant un
+parent 'table', à savoir 'table-row', 'table-row-group', 'table-header-group', 'table-footer-group',
+'table-column', 'table-column-group' et 'table-caption' ;
+
+<li>
+<span><ins title="id=x25">Quand le parent P d'un élément 'table-column' n'est pas un élément 'table' T,
+'inline-table' ou 'table-column-group', un objet correspondant à un élément 'table' sera
+généré entre P et T. Cet objet recouvrira l'ensemble des éléments
+'table-column' consécutifs de T de même ascendance (dans l'arbre du document), ceux-ci requérant
+un parent 'table', à savoir 'table-row', 'table-row-group', 'table-header-group',
+'table-footer-group', 'table-column', 'table-column-group' et 'table-caption' ;</ins></span>
+
+<li>
+Quand le parent P d'un élément 'table-row-group' (ou 'table-header-group' ou 'table-footer-group') T
+n'est pas un élément 'table' ou 'inline-table', un objet correspondant à un élément
+'table' est généré entre P et T. Cet objet recouvrira l'ensemble des éléments
+consécutifs de T de même ascendance (dans l'arbre du document), ceux-ci requérant un parent 'table',
+à savoir 'table-row', 'table-row-group', 'table-header-group', 'table-footer-group',
+'table-column', 'table-column-group' et 'table-caption' ;
+
+<li>
+<span><ins title="id=x25">Quand un enfant T d'un élément 'table (ou 'inline-table') P n'est pas un élément
+'table-row-group', 'table-header-group', 'table-footer-group' ou 'table-row', un objet correspondant à un
+élément 'table-row' sera généré entre P et T. Cet objet recouvrira l'ensemble
+des éléments consécutifs de T de même ascendance, ceux-ci n'étant pas des
+éléments 'table-row-group', 'table-header-group', 'table-footer-group' ou 'table-row' ;</ins></span>
+
+<li>
+<span><ins title="id=x25">Quand un enfant T d'un élément 'table-row-group' (ou 'table-header-group' ou 'table-footer-group') P
+n'est pas un élément 'table-row', un objet correspondant à un élément 'table-row'
+sera généré entre P et T. Cet objet recouvrira l'ensemble des éléments
+consécutifs de T de même ascendance, ceux-ci n'étant pas des éléments 'table-row' ;</ins></span>
+
+<li>
+Quand un enfant T d'un élément 'table-row' P n'est pas un élément 'table-cell', un
+objet correspondant à un élément 'table-cell' sera généré entre P et T.
+Cet objet recouvrira l'ensemble des éléments consécutifs de T de même ascendance,
+ceux-ci n'étant pas des éléments 'table-cell'.
+</ol>
+
+<div class="example"><p style="display:none">Exemple(s) :
+
+<p>
+Dans cet exemple en <abbr>XML</abbr>, on suppose qu'un élément 'table' contient l'élément HBOX :
+
+<pre class="xml-example">
+&lt;HBOX&gt;
+  &lt;VBOX&gt;George&lt;/VBOX&gt;
+  &lt;VBOX&gt;4287&lt;/VBOX&gt;
+  &lt;VBOX&gt;1998&lt;/VBOX&gt;
+&lt;/HBOX&gt;
+</pre>
+
+<p>la feuille de style qui lui est associée étant :
+
+<pre class="example">
+HBOX { display: table-row }
+VBOX { display: table-cell }
+</pre>
+</div>
+
+<div class="example"><p style="display:none">Example(s) :
+
+<p>
+Dans cet exemple-ci, on suppose que trois éléments 'table-cell' contiennent les textes des éléments
+ROW. Noter que le texte est à son tour encapsulé dans des boîtes de ligne anonymes, ainsi
+que c'est expliqué dans le <a href="visuren.html#anonymous">modèle de mise en forme visuel</a> :
+
+<pre class="xml-example">
+&lt;STACK&gt;
+  &lt;ROW&gt;Voici la rangée du &lt;D&gt;haut&lt;/D&gt;.&lt;/ROW&gt;
+  &lt;ROW&gt;Voici la rangée du &lt;D&gt;milieu&lt;/D&gt;.&lt;/ROW&gt;
+  &lt;ROW&gt;Voici la rangée du &lt;D&gt;bas&lt;/D&gt;.&lt;/ROW&gt;
+&lt;/STACK&gt;
+</pre>
+
+<p>la feuille de style associée étant :
+
+<pre class="example">
+STACK { display: inline-table }
+ROW   { display: table-row }
+D     { display: inline; font-weight: bolder }
+</pre>
+
+</div>
+
+<p>
+Les agents utilisateurs <abbr>HTML</abbr> ne sont pas tenus de créer des objets anonymes selon les règles
+précitées.
+
+<h2><a name="q4">17.3 Les sélecteurs de colonne</a></h2>
+
+<p>
+Les cellules des tables peuvent appartenir à l'un ou l'autre de ces contextes, celui de rangée et
+celui de colonne. Cependant, dans le document source, les cellules sont des descendants de rangées, et
+jamais de colonnes. Néanmoins, certains aspects des cellules peuvent être influencés par
+des propriétés appliquées aux colonnes.
+
+<p>
+Ces propriétés s'appliquent aux éléments des colonnes et de groupes de colonnes :
+
+<dl>
+<dt><a href="box.html#propdef-border" class="noxref"><span class="propinst-border">'border'</span></a>
+<dd>
+Les diverses propriétés de bordure ne s'appliquent aux colonnes que si la valeur de la propriété
+<a href="tables.html#propdef-border-collapse" class="noxref"><span class="propinst-border-collapse">'border-collapse'</span></a>
+de l'élément table est 'collapse'. Dans ce cas, les bordures appliquées aux colonnes et
+groupes de colonnes sont soumises à l'<a href="#border-conflict-resolution">algorithme de résolution de conflit</a>
+qui va déterminer le style de ces bordures à chacun des bords des cellules ;
+
+<dt><a href="colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>
+<dd>
+Les propriétés d'arrière-plan s'applique aux fonds des cellules de la colonne, mais seulement
+si les cellules et rangées concernées ont des fonds transparents. Voir le passage intitulé
+<a href="#table-layers">"Les couches de la table et la transparence"</a> ;
+
+<dt><a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+<dd>La propriété <a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+donne la largeur minimale de la colonne ;
+
+<dt><a href="visufx.html#propdef-visibility" class="noxref"><span class="propinst-visibility">'visibility'</span></a>
+<dd>
+Quand la propriété 'visibility' d'une colonne a la valeur 'collapse', aucune des cellules de la colonne
+n'est rendue et celles des cellules qui déborderaient dans d'autres colonnes sont rognées. De plus,
+la largeur de la table est diminuée de celle de la colonne qui aurait autrement été affichée.
+Voir le passage traitant des <a href="#dynamic-effects">effets dynamiques</a> plus loin.
+Les autres valeurs admises pour la propriété 'visibility' n'ont pas d'effet.
+</dl>
+
+<div class="example"><p style="display:none">Example(s) :
+
+<p>Voici quelques exemples de règles de style appliquant des propriétés aux colonnes.
+Les deux premières prises ensemble reproduisent l'attribut "rules" de <abbr>HTML</abbr> avec la valeur "cols".
+La troisième règle rend la colonne avec la classe "total" en bleu, les deux dernières
+montrent la façon de construire une colonne de taille fixe à l'aide de 
+l'<a href="#fixed-table-layout">algorithme de disposition fixe</a>.
+
+<pre>
+COL   { border-style: none solid }
+TABLE { border-style: hidden }
+COL.total { background: blue }
+TABLE { table-layout: fixed }
+COL.totals { width: 5em }
+</pre>
+</div>
+
+<h2><a name="q5">17.4 Les tables dans le modèle de mise en forme visuel</a></h2>
+
+<p>
+Selon le <a href="visuren.html">modèle de mise en forme visuel</a>, une table peut se comporter comme un
+élément de <a href="visuren.html#block-level">type bloc</a> ou comme un élément
+remplacé de <a href="visuren.html#inline-level">type en-ligne</a>. Les tables ont un contenu, un espacement,
+des bordures et des marges.
+
+<p>
+Dans ces deux cas, l'élément table génère une boîte <a href="visuren.html#anonymous">anonyme</a>,
+celle-ci contient la boîte de la table elle-même et celle de la légende (si elle existe).
+Les boîtes de la table et de la légende conservent leurs propres aires de contenu, d'espacement, de
+marge et de bordure, les dimensions de la boîte anonyme rectangulaire étant juste suffisantes
+pour contenir celles-ci. Les marges verticales en contact entre la boîte de la table et celle de la légende
+fusionnent. Tout repositionnement de la table doit concerner la boîte anonyme entière, et pas seulement
+la boîte de la table, la légende suivant ainsi la table.
+
+<div class="figure">
+<p>
+<img src="images/top-caption.gif" alt="Une table et sa légende au-dessus, les deux ont des marges, celles en contact ont fusionné comme pour les marges verticales normales." width="347" height="261"><span class="dlink">   <a name="img-top-caption" href="images/longdesc/top-caption-desc.html" title="Long description for example showing caption above a table">[D]</a></span>
+<p class="caption">Schéma d'une table avec une légende supérieure, la marge du bas de la
+légende fusionne avec celle du haut de la table.
+</div>
+
+<h3><a name="q6">17.4.1 La position et l'alignement de la légende</a></h3>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'caption-side'"><a name="propdef-caption-side" class="propdef-title"><strong>'caption-side'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>top | bottom | left | right | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>top
+<tr valign=baseline><td><em>S'applique à :</em>  <td>ceux des éléments 'table-caption'
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+Cette propriété indique la position de la boîte de la légende en fonction de celle
+de la table. Les significations des valeurs sont :
+
+<dl>
+<dt><strong>top</strong>
+<dd>Place la boîte de la légende au-dessus de celle de la table ;
+<dt><strong>bottom</strong>
+<dd>Place la boîte de la légende au-dessous de celle de la table ;
+<dt><strong>left</strong>
+<dd>Place la boîte de la légende à gauche de celle de la table ;
+<dt><strong>right</strong>
+<dd>Place la boîte de la légende à droite de celle de la table.
+</dl>
+
+<p>
+Les légendes au-dessus d'un élément avec une valeur 'table', ou au-dessous celui-ci, sont mises en forme un peu de la même
+manière que pour un élément de type bloc avant la table, ou après celle-ci, à la
+différence que les légendes (1) héritent des propriétés de la table et (2) ne 
+sont pas considérées comme étant des boîtes de bloc pour les éléments
+précédant la table, quand les propriétés 'display' de ceux-ci ont les valeurs 'compact' ou 'run-in'.
+
+<p>
+Pour une légende située au-dessus ou en-dessous de la boîte de la table, celle-ci se comporte
+aussi comme une boîte de bloc pour les calculs de largeur, ces calculs étant effectués par
+rapport à la largeur du bloc conteneur de la boîte de la table.
+
+<p>
+Pour une légende située à gauche ou à droite de la boîte de la table, d'autre part,
+c'est la valeur spécifiée pour la propriété <a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+quand la valeur est autre que 'auto', qui donne la largeur, une valeur 'auto' indiquant à l'agent utilisateur
+de prendre une "largeur raisonnable". Ceci variant de "la boîte la plus étroite possible" jusqu'à
+"une ligne seule", c'est pourquoi on recommande aux utilisateurs d'éviter de choisir une valeur 'auto'
+pour les largeurs des légendes latérales.
+
+<p>
+Pour aligner horizontalement le contenu dans la boîte de la légende, utiliser la propriété
+<a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>.
+Pour aligner verticalement les boîtes des légendes latérales par rapport à celle de la
+table, utiliser la propriété <a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>.
+Dans ce cas, les seules valeurs reconnues sont 'top', 'middle' et 'bottom'.
+Les autres valeurs admises par cette propriété sont considérées comme étant 'top'.
+
+<div class="example"><p style="display:none">Example(s) :
+
+<p>
+Dans cet exemple, la propriété <a href="tables.html#propdef-caption-side" class="noxref"><span class="propinst-caption-side">'caption-side'</span></a>
+place la légende sous la table. Cette légende sera aussi large que le parent de la table et le
+contenu de celle-ci sera justifié à gauche :
+
+<pre>
+CAPTION { caption-side: bottom; 
+          width: auto;
+          text-align: left }
+</pre>
+</div>
+
+<div class="example"><p style="display:none">Exemple(s) :
+
+<p>
+L'exemple suivant montre comment placer une légende dans la marge de gauche. La table elle-même est
+centrée, ses marges gauche et droite ayant la valeur 'auto', et l'ensemble de la boîte contenant la table
+et la légende est déplacé dans la marge de gauche de la même quantité que la
+largeur de la légende :
+
+<pre>
+BODY {
+    margin-left: 8em
+}
+TABLE {
+    margin-left: auto;
+    margin-right: auto
+}
+CAPTION {
+    caption-side: left;
+    margin-left: -8em;
+    width: 8em;
+    text-align: right;
+    vertical-align: bottom
+}
+</pre>
+
+<p>
+En supposant que la largeur de la table est inférieure à la largeur totale disponible, la mise en forme
+serait similaire à celle-ci :
+
+<div class="figure">
+<p>
+<img src="images/left-caption.gif" alt="Une table au centre avec une légend dans la marge gauche de la page." width="439" height="276"><span class="dlink">   <a name="img-left-caption" href="images/longdesc/left-caption-desc.html" title="Long description for example showing caption to the left of a table">[D]</a></span><p class="caption">
+Schéma montrant une table centrée dont la légende se répand dans la marge de gauche,
+en réponse à la valeur négative d'une propriété 'margin-left'.
+
+</div>
+</div>
+
+<h2><a name="q7">17.5 La disposition visuelle des contenus de la table</a></h2>
+
+<p>
+Comme pour les autres éléments du <a href="conform.html#doclanguage">langage du document</a>,
+les éléments internes de la table génèrent des <a href="box.html#box-dimensions">boîtes</a>
+rectangulaires avec un contenu<del title="id=x27">, de l'espacement</del> et des bordures.
+<del title="id=x27">Toutefois ils n'ont pas de marges.</del>
+<ins title="id=x27">Les cellules ont également un espacement. Les éléments internes de la table n'ont pas de marges.</ins>
+
+<p>
+La disposition visuelle de ces boîtes est régie par un quadrillage rectangulaire irrégulier
+de rangées et de colonnes. Chacune des boîtes occupe la totalité des cellules du quadrillage,
+selon les règles ci-après. Ces règles ne s'appliquent pas à <abbr>HTML 4.0</abbr> ni aux versions
+précédentes de <abbr>HTML</abbr>, les étendues des rangées et colonnes obéissant ayant des
+limites propres à <abbr>HTML</abbr>.
+</p>
+
+<ol>
+<li>
+Chacune des boîtes des rangées occupe une rangée de cellules du quadrillage. Les boîtes des
+rangées remplissent ensemble la table, allant du haut vers le bas, dans l'ordre où celles-ci surviennent
+dans le document source (ex. la table occupe exactement autant de rangées du quadrillage qu'il y a d'éléments
+de rangées) ;
+
+<li>
+Un groupe de rangées occupe les mêmes cellules du quadrillage que les rangées contenues par celui-ci.
+
+<li>
+Une boîte de colonne occupe une ou plusieurs colonnes de cellules du quadrillage. Les boîtes des colonnes
+se placent l'une à côté de l'autre, dans l'ordre où celles-ci surviennent. La première
+d'entre elles peut se trouver à gauche ou à droite, en fonction de la valeur de la propriété
+<a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>
+de la table.
+
+<li>
+Un groupe de colonnes occupe les mêmes cellules du quadrillage que les colonnes contenues par celui-ci.
+
+<li>
+Les cellules peuvent s'étendre sur plusieurs rangées ou colonnes. Bien que <abbr>CSS2</abbr> ne définisse
+pas comment est déterminé le nombre de rangées ou colonnes qui s'étendent, un agent
+utilisateur peut avoir une connaissance particulière du document source ; une version ultérieure
+de <abbr>CSS</abbr> pourrait en exprimer la manière dans une syntaxe propre à <abbr>CSS</abbr>. Ainsi chaque cellule a la forme
+d'une boîte rectangulaire, dont la largeur et la hauteur englobe une ou plusieurs cellules du quadrillage.
+La rangée du haut de ce rectangle commence dans celle spécifiée par le parent de la cellule.
+Le rectangle doit se trouver le plus possible à gauche, sans recouvrir une quelconque autre boîte de
+cellule, et doit se trouver le plus possible à la droite des cellules de la même rangée
+qui apparaissent plus tôt dans le document source. Ceci quand la valeur de la
+propriété <a href="visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a>
+de la table est 'ltr', et a contrario, quand la valeur de cette propriété est 'rtl', inverser les
+mots "gauche" et "droite" dans la phrase précédente.
+
+<li>
+Une boîte de cellule ne peut pas s'étendre au-delà de la dernière boîte de rangée
+d'une table ou d'un groupe de rangées, les agents utilisateurs doivent en réduire les dimensions jusqu'à
+ce que celle-ci puisse y tenir.
+</ol>
+
+<p><strong>Remarque :</strong> On peut positionner les cellules d'une table, mais ce n'est pas recommandé, car
+les positionnements absolu et fixe, comme le flottement, soustraient la boîte en question du flux normal, affectant
+ainsi <del title="id=x26">l'alignement</del> <ins title="id=x26">la dimension</ins> de la table.
+
+<div class="html-example">
+<p>
+Voici deux exemples, le premier intervenant dans un document <abbr>HTML</abbr> : 
+
+<pre>
+&lt;TABLE&gt;
+&lt;TR&gt;&lt;TD&gt;1 &lt;TD rowspan="2"&gt;2 &lt;TD&gt;3 &lt;TD&gt;4
+&lt;TR&gt;&lt;TD colspan="2"&gt;5
+&lt;/TABLE&gt;
+</pre>
+
+<pre>
+&lt;TABLE&gt;
+&lt;ROW&gt;&lt;CELL&gt;1 &lt;CELL rowspan="2"&gt;2 &lt;CELL&gt;3 &lt;CELL&gt;4
+&lt;ROW&gt;&lt;CELL colspan="2"&gt;5
+&lt;/TABLE&gt;
+</pre>
+
+<p>
+La seconde table est mise en forme selon l'illustration de droite. En <abbr>HTML</abbr>, le rendu de la table du premier exemple
+n'est pas défini explicitement, et en <abbr>CSS</abbr> pas du tout. Cette appréciation est laissée à l'agent
+utilisateur (ex. comme dans l'illustration de gauche).
+
+<div class="figure">
+<p>
+<img src="images/table-overlap.gif" alt="Une table avec des cellules qui se chevauchent, sauf une." width="376" height="60"><span class="dlink">   <a name="img-table-overlap" href="images/longdesc/table-overlap-desc.html" title="Long description for example showing how structurally overlapping cells are rendered">[D]</a></span>
+<p class="caption">À gauche, une interprétation possible d'une table <abbr>HTML 4.0</abbr> erronée ;
+à droite, la seule mise en forme possible d'une table non-<abbr>HTML</abbr> similaire.
+</div>
+</div>
+
+<h3>17.5.1 <a name="table-layers">Les couches de la table et la transparence</a></h3>
+
+<p>
+Dans le but de déterminer l'arrière-plan de chacune des cellules de la table, on peut se représenter
+les divers éléments de celle-ci comme étant disposés sur six couches superposées.
+L'arrière-plan d'un élément d'une couche donnée ne sera visible que si la couche qui vient
+par-dessus celle-ci a un arrière-plan transparent.
+
+<div class="figure">
+<p>
+<img src="images/tbl-layers.gif" alt="Schéma des couches de la table." width="518" height="403"><span class="dlink">   <a name="img-tbl-layers" href="images/longdesc/tbl-layers-desc.html" title="Long description of example of cell background calculation">[D]</a></span>
+<p class="caption">Schéma des couches d'une table.
+</div>
+
+<ol>
+<li>
+<p>
+La couche la plus basse, qui forme un seul plan, représente la boîte de la table elle-même.
+Comme pour toutes les boîtes, celle-ci peut être transparente ;
+</li>
+<li>
+<p>
+La couche suivante contient les groupes de colonnes. Ceux-ci sont aussi haut que la table, mais ne recouvrent pas
+nécessairement la table entière horizontalement ;
+</li>
+<li>
+<p>
+Par-dessus les groupes de colonnes viennent les aires représentant les boîtes des colonnes. Comme pour
+les groupes de colonnes, les colonnes sont aussi haute que la table mais ne recouvrent pas nécessairement
+la table entière horizontalement ;
+</li>
+<li>
+<p>
+Ensuite vient la couche contenant les groupes de rangées. Chaque groupe de rangées est aussi large que
+la table. L'ensemble des groupes de rangées recouvre complètement la table de haut en bas ;
+</li>
+<li>
+<p>
+La couche suivante contient les rangées. Celles-ci recouvrent également la table en entier ;
+</li>
+<li>
+<p>
+La couche supérieure contient les cellules elles-mêmes. Ainsi que le montre l'illustration, et bien
+que les rangées contiennent le même nombre de cellules, certaines cellules peuvent n'avoir aucun
+contenu. <ins title="2000-12-12 id=x78">Ces cellules "vides" sont transparentes quand la valeur de
+leur propriété 'empty-cells' est 'hide'.</ins>
+</li>
+</ol>
+
+<div class="html-example">
+<p>
+Dans l'exemple suivant, la première rangée contient quatre cellules, mais la seconde ne contient
+aucune cellule, ainsi l'arrière-plan de la table est visible au travers de celles-ci, sauf là où
+une des cellules de la première rangée s'étend dans la seconde rangée. Soit le code
+<abbr>HTML</abbr> et les règles de style :
+
+<pre>
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+    &lt;STYLE type="text/css"&gt;
+      TABLE { background: #ff0; border-collapse: collapse }
+      TD    { background: red; border: double black }
+    &lt;/STYLE&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+    &lt;P&gt;
+    &lt;TABLE&gt;
+      &lt;TR&gt;
+        &lt;TD&gt; 1 
+        &lt;TD rowspan="2"&gt; 2
+        &lt;TD&gt; 3 
+        &lt;TD&gt; 4 
+      &lt;/TR&gt;
+      &lt;TR&gt;&lt;TD&gt;&lt;/TD&gt;&lt;/TR&gt;
+    &lt;/TABLE&gt; 
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+
+<p>ceci pourrait être mis en forme ainsi :
+
+<div class="figure">
+<p>
+<img src="images/tbl-empty.gif" alt="Table avec trois cellules vides dans la rangée du bas." width="73" height="77"><span class="dlink">   <a name="img-tbl-empty" href="images/longdesc/tbl-empty-desc.html" title="Long description of example illustrating background calculation">[D]</a></span>
+<p class="caption">Une table avec trois cellules vides dans la rangée du bas.
+</div>
+</div>
+
+<p><ins title="2001-08-27 id=x78">
+Noter que pour 'border-collapse: separate', l'arrière-plan de l'aire donnée par la propriété
+'border-spacing' est toujours celui de l'élément table. Voir la <a href="tables.html#separated-borders">section 17.6.1</a>.</ins>
+
+
+<h3>17.5.2 <a name="width-layout">Les algorithmes de largeur de table</a> : la propriété <a href="tables.html#propdef-table-layout" class="noxref"><span class="propinst-table-layout">'table-layout'</span></a></h3>
+
+<p>
+CSS ne définit pas de disposition "optimale" pour les tables dans la mesure où, pour de nombreux cas,
+ce qui est optimal est une question de goût. Par contre, <abbr>CSS</abbr> définit certaines contraintes que les
+agents utilisateurs doivent respecter pour la disposition d'une table. Ceux-ci peuvent employer l'algorithme de leur
+choix et sont libres de favoriser la rapidité du rendu sur la précision, sauf quand on sélectionne
+celui dit "algorithme de disposition fixe".
+
+<p><ins title="id=table-width">
+Noter que les règles décrites dans cette section surclassent celles pour le calcul des largeurs de la
+<a href="visudet.html#Computing_widths_and_margins">section 10.3</a>. En particulier, si pour la table
+les valeurs des marges sont '0' et celle de la largeur 'auto', la table ne prendra pas automatiquement
+la dimension nécessaire pour remplir son bloc conteneur. Cependant, une fois la valeur calculée pour 'width' trouvée
+(à l'aide des algorithmes décrits ensuite ou, si besoin, par un algorithme propre de l'agent utilisateur),
+les autres parties de la section 10.3 s'appliquent toujours. Ainsi, par exemple, on peut centrer une table
+en spécifiant une valeur 'auto' pour ses marges gauche et droite.</ins>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'table-layout'"><a name="propdef-table-layout" class="propdef-title"><strong>'table-layout'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>auto | fixed | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>auto
+<tr valign=baseline><td><em>S'applique à :</em>  <td>ceux des éléments dont la valeur de la propriété 'display' est 'table' ou 'inline-table'
+<tr valign=baseline><td><em>Héritée :</em>  <td>non
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p>
+La propriété <a href="tables.html#propdef-table-layout" class="noxref"><span class="propinst-table-layout">'table-layout'</span></a>
+contrôle l'algorithme employé pour la disposition des cellules, des rangées et des colonnes de la table.
+Les significations des valeurs sont :
+
+<dl>
+<dt><strong>fixed</strong>
+<dd>Utilisation de l'algorithme de disposition de table fixe ;
+<dt><strong>auto</strong>
+<dd>Utilisation d'un quelconque algorithme automatique pour la disposition de la table.
+</dl>
+
+<p>Les deux algorithmes sont décrits ci-dessous.
+
+<h4> <a name="fixed-table-layout">La disposition de table fixe</a></h4>
+
+<p>
+Avec cet algorithme (rapide), la disposition horizontale de la table ne dépend pas du contenu des cellules,
+mais seulement de la largeur de la table, de la largeur des colonnes, des bordures et de l'espacement entre les cellules.
+
+<p>
+On peut spécifier explicitement la largeur de la table avec la propriété
+<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>.
+Une valeur 'auto' (dans le cas de 'display: table' et 'display: inline-table') conduit à l'emploi de l'algorithme de
+<a href="#auto-table-layout">disposition de table automatique</a>.
+
+<p>
+Dans l'algorithme de disposition de table fixe, la largeur de chacune des colonnes est déterminée ainsi :
+
+<ol>
+<li>Quand un élément de colonne a une valeur pour la propriété
+<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a> autre que 'auto',
+alors cette valeur est retenue pour la largeur de cette colonne ;
+
+<li>Autrement, quand une cellule de la première rangée a une valeur pour la propriété
+<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a> autre que 'auto',
+cette valeur est retenue pour la largeur de cette colonne. Si cette cellule s'étend sur plus d'une colonne,
+la largeur est divisées entre les colonnes concernées ;
+
+<li>Les éventuelles colonnes restantes se partagent équitablement l'espace horizontal restant de la table
+(moins les bordures et l'espacement entre les cellules).
+</ol>
+
+<p>
+Ainsi la largeur de la table est la plus grande des valeurs entre celle de la propriété
+<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a> de
+l'élément table et la somme des largeurs des colonnes (plus l'espacement entre les cellules et les
+bordures).
+
+<p>
+De cette façon, l'agent utilisateur peut commencer à afficher la table dès la réception
+de la première rangée effectuée. Les cellules des rangées suivantes n'affectent pas
+les largeurs des colonnes. Toute cellule dont le contenu déborderait s'appuie sur la propriété
+<a href="visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a>
+pour déterminer le rognage, ou non, du contenu qui a débordé.
+
+<h4> <a name="auto-table-layout">La disposition de table automatique</a></h4>
+
+<p>
+Avec cet algorithme (qui ne demande généralement pas plus de deux itérations), la largeur de
+la table est donnée par celles de ses colonnes et des <a href="#borders">bordures</a> intermédiaires.
+Cet algorithme reflète le comportement de plusieurs agents utilisateurs courants au moment de la rédaction
+de cette spécification. Les agents utilisateurs ne sont pas tenus de l'implémenter pour la détermination
+de la disposition de la table, dans le cas où la valeur de la propriété
+<a href="tables.html#propdef-table-layout" class="noxref"><span class="propinst-table-layout">'table-layout'</span></a>
+est 'auto', et peuvent alors employer un algorithme quelconque.
+
+<p>
+Cet algorithme peut être inefficace, l'agent utilisateur devant avoir connaissance du contenu entier de la
+table avant de déterminer la disposition finale, et demander plus d'une itération.
+
+<p>On détermine les largeurs des colonnes comme ceci :
+
+<ol>
+<li>
+Calculer la largeur minimale du contenu, notée LMC, de chaque cellule : le contenu mis en forme peut s'étendre sur
+un nombre indifférent de lignes mais ne doit pas déborder de la boîte de la cellule. Si la
+valeur, notée L, spécifiée pour la propriété <a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+de la cellule est plus grande que LMC, alors cette valeur L devient la largeur minimale de la cellule. Pour une valeur L
+de la propriété 'width' égale à 'auto', c'est LMC qui correspond à la largeur minimale de la cellule ;
+
+<p>
+Calculer également la largeur "maximale" de la cellule pour chaque cellule : la mise en forme du contenu se
+fait alors sans retours à la ligne sinon aux endroits explicitement indiqués ;
+
+<li>
+Pour chacune des colonnes, déterminer une largeur minimale et maximale à partir des cellules qui s'étendent
+dans celle-ci. La largeur minimale correspond à celle de la cellule qui demande la plus grande largeur minimale
+de cellule (ou à la valeur de la propriété <a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+de la colonne, la plus grande entre ces deux valeurs l'emporte). La largeur maximale correspond à celle de la cellule qui demande
+la plus grande largeur maximale de cellule (ou à la valeur de la propriété
+<a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a> de la colonne,
+la plus grande entre ces deux valeurs l'emporte) ;
+
+<li>
+Pour chacune des cellules qui s'étendent sur plus d'une colonne, augmenter les largeurs minimales des colonnes
+concernées de manière à ce que leur réunion soit aussi large que la cellule en question.
+Même chose pour leurs largeurs maximales. Si possible, élargir approximativement ces colonnes d'une même quantité.
+
+</ol>
+
+<p>
+Ceci fournit une largeur minimale et maximale pour chaque colonne. Les largeurs des colonnes agissent sur la largeur
+finale de la table ainsi : 
+
+<ol>
+<li>
+Quand la valeur L spécifiée pour la propriété <a href="visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+d'un élément 'table', ou 'inline-table', est autre que 'auto', alors la valeur calculée pour cette propriété
+correspond à celle la plus grande entre L et la largeur minimale requise par l'ensemble des colonnes plus
+l'espacement entre les cellules et les bordures, cette valeur étant notée MIN. Si L est plus grand
+que MIN, la différence de largeur devrait être répartie entre les colonnes ;
+
+<li>
+Quand, pour un élément 'table' ou 'inline-table', la valeur spécifiée pour 'width' est 'auto',
+la largeur calculée pour la table correspond à la largeur la plus grande entre celle du bloc conteneur
+de la table et MIN. Cependant, si la largeur maximale requise par les colonnes plus l'espacement entre les cellules
+et les bordures, cette valeur étant notée MAX, est inférieure à celle du bloc conteneur,
+alors utiliser MAX ;
+</ol>
+
+<p>
+Une valeur en pourcentage pour la largeur d'une colonne s'entend relativement à la largeur de la table.
+Quand la valeur de la propriété 'width' de la table est 'auto', un pourcentage exerce une contrainte
+sur la largeur de la colonne, ce qu'un agent utilisateur devrait essayer de résoudre (ceci n'est évidemment
+pas toujours possible, par exemple, si la largeur de la colonne était 110%, la contrainte ne pourrait pas
+être respectée).
+
+<div class="note">
+<p> <em><strong>Remarque :</strong> Avec cet algorithme, les rangées (et groupes de rangées) et les
+colonnes (et groupes de colonnes) à la fois contraignent et sont tributaires des dimensions des cellules
+qui y sont contenues. La spécification de la largeur d'une colonne peut avoir une influence indirecte
+sur la hauteur d'une rangée, et inversement.</em>
+</div>
+
+<h3>17.5.3 <a name="height-layout">Les algorithmes de la hauteur de table</a></h3>
+
+<p>
+La hauteur d'une table est donnée par la propriété <a href="visudet.html#propdef-height" class="noxref"><span
+class="propinst-height">'height'</span></a> de l'élément 'table' ou 'inline-table'. Pour une valeur
+'auto' de celle-ci, la hauteur correspond à la somme des hauteurs des rangées plus les éventuels
+espacements entre les cellules et les bordures. Toute autre valeur indique une hauteur explicite, la table peut ainsi
+plus haute, ou moins haute, que la hauteur totale des rangées. <abbr>CSS2</abbr> ne précise pas les modalités
+de rendu quand la hauteur spécifiée pour la table diffère de celle de son contenu, en particulier
+si la hauteur du contenu devait prendre le pas sur celle spécifiée, et sinon, comment l'espace
+supplémentaire devrait être réparti entre les rangées dont le total des hauteurs est
+inférieur à la hauteur de la table, ou encore, quand la hauteur du contenu dépasse celle spécifiée
+pour la table, si l'agent utilisateur devait proposer un mécanisme de défilement.
+<strong>Remarque :</strong> Des versions ultérieures de <abbr>CSS</abbr> pourraient approfondir cette question.
+
+<p>
+La hauteur de la boîte d'un élément 'table-row' est calculée une fois que l'agent utilisateur
+dispose de toutes les cellules d'une rangée donnée, c'est la valeur maximale spécifiée pour
+la propriété <a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>
+et la hauteur minimale, notée MIN, requise par les cellules. Quand, pour un élément 'table-row', la propriété
+<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>
+a la valeur 'auto', la hauteur calculée de la rangée correspond à MIN. Cette valeur MIN dépend
+des hauteurs des boîtes des cellules et de l'alignement de celles-ci (tout comme pour le calcul de la hauteur
+d'une <a href="visudet.html#line-height">boîte de ligne</a>). <abbr>CSS2</abbr> ne définit pas à quoi se
+rapportent les valeurs en pourcentage de la propriété <a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>
+des rangées et groupes de rangées des tables.
+
+<p>
+En <abbr>CSS2</abbr>, la hauteur de la boîte d'une cellule correspond à la valeur maximale de la propriété
+<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a> de la cellule
+en question et à la hauteur minimale requise par son contenu (MIN). Pour la propriété
+<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>,
+une valeur spécifiée 'auto' induit une valeur calculée égale à MIN.
+<abbr>CSS2</abbr> ne définit pas à quoi se réfèrent les valeurs en pourcentage de la propriété
+<a href="visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>
+des cellules des tables.
+
+<p>
+<abbr>CSS2</abbr> ne spécifie pas comment les cellules qui s'étendent sur plus d'une rangée influencent les
+calculs de la hauteur d'une rangée, sauf sur ce qui tient à la somme des hauteurs des rangées concernées,
+celle-ci devant être suffisamment grande pour contenir la cellule qui s'étend sur ces rangées.
+
+<p>
+La propriété <a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a>
+de chacune des cellules de la table en détermine l'alignement dans la rangée. Le contenu de chaque cellule
+comprend une ligne de base, un haut et un bas, comme la rangée elle-même. Dans le contexte des tables,
+les significations des valeurs admises par la propriété
+<a href="visudet.html#propdef-vertical-align" class="noxref"><span class="propinst-vertical-align">'vertical-align'</span></a> sont :
+
+<dl>
+<dt><strong>baseline</strong></dt>
+<dd>La ligne de base de la cellule se place à la même hauteur que celle de la première rangée
+dans laquelle celle-ci s'étend (voir plus loin les définitions des lignes de base des cellules et des rangées) ;
+<dt><strong>top</strong></dt>
+<dd>Le haut de la boîte de la cellule s'aligne sur le haut de la première rangée
+dans laquelle celle-ci s'étend ;
+<dt><strong>bottom</strong></dt>
+<dd>Le bas de la boîte de la cellule s'aligne sur celui de la dernière rangée dans laquelle celle-ci
+s'étend ;
+<dt><strong>middle</strong></dt>
+<dd>Le milieu de la cellule s'aligne sur celui des rangées dans lesquelles celle-ci s'étend ;
+<dt><strong>sub, super, text-top, text-bottom</strong></dt>
+<dd>Ces valeurs ne s'appliquent pas aux cellules ; pour une de ces valeurs, la cellule s'aligne sur la ligne de base
+à la place.
+</dl>
+
+<p>
+La ligne de base d'une cellule correspond à celle de la première <a href="visuren.html#line-box">boîte de ligne</a>
+de la cellule. Quand celle-ci ne contient pas de texte, cette ligne de base correspond à celle de l'objet
+qui s'y tient, ou s'il n'y en a pas, au bas de la boîte de la cellule. C'est la distance maximale entre le
+haut de la boîte de la cellule et la ligne de base entre toutes les cellules, dont la valeur de la
+propriété 'vertical-align' est 'baseline', qui détermine la ligne de base de la rangée.
+Voici un exemple :
+
+<div class="figure">
+<p>
+<img src="images/cell-align.gif" alt="Exemple d'alignement vertical des cellules." width="375" height="241"><span class="dlink">   <a name="img-cell-align" href="images/longdesc/cell-align-desc.html" title="Long description of example illustrating table row height calculations and vertical cell alignment">[D]</a></span>
+<p class="caption">Schéma montrant les effets de diverses valeurs de la propriété
+'vertical-align' sur les cellules d'une table.
+</div>
+
+<p>
+Les boîtes des cellules 1 et 2 s'alignent sur leur ligne de base. La boîte de cellule 2 ayant la plus
+grande hauteur au-dessus de sa ligne de base, c'est elle qui détermine la ligne de base de la rangée.
+Noter que, si aucune cellule ne s'alignait sur sa ligne de base, la rangée n'aurait pas (ou n'aurait pas besoin)
+de ligne de base.
+
+<p>
+Pour éviter des situations ambiguës, l'alignement des cellules se détermine dans cet ordre :
+
+<ol>
+
+<li>On positionne en premier les cellules alignées sur leur ligne de base. Ceci établit la ligne de base
+de la rangée. Ensuite, on positionne les cellules dont la valeur de la propriété
+'vertical-align' est 'top' ;
+
+<li>La rangée a maintenant un haut, éventuellement une ligne de base et une hauteur provisoire qui
+correspond à la distance entre le haut et le point le plus bas des cellules positionnées jusqu'ici
+(voir les conditions d'espacement de la cellule plus loin) ;
+
+<li>Si une des cellules restantes, celles qui sont alignées en bas ou au milieu, a une hauteur plus grande que
+la hauteur provisoire, alors la hauteur de la rangée est augmentée jusqu'au maximum de celles-ci,
+en déplaçant le bas ;
+
+<li>Et finalement, on positionne les autres cellules.
+</ol>
+
+<p>
+Les boîtes de cellule moins grandes que la hauteur de la rangée reçoivent un espacement supplémentaire
+en haut ou en bas.
+
+<h3>17.5.4 <a name="column-alignment">L'alignement horizontal dans une colonne</a></h3>
+
+<p>
+On spécifie l'alignement horizontal du contenu d'une cellule dans sa boîte avec la propriété
+<a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>.
+
+<p>
+Pour plus d'une cellule dans une colonne, quand on spécifie une valeur de
+<span class="index-inst" title="&lt;string&gt;"><a name="x17" href="syndata.html#value-def-string" class="noxref"><span class="value-inst-string">&lt;chaîne&gt;</span></a></span>
+à la propriété <a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>,
+le contenu de ces cellules s'aligne sur un axe vertical. Le début de la chaîne touche cet axe. C'est le
+sens de lecture qui détermine de quel côté se situe la chaîne par rapport à l'axe.
+
+<p>
+Un alignement du texte de cette manière ne présente un intérêt que si le texte tient sur
+une seule ligne. Le résultat n'est pas défini quand le contenu de la cellule s'étend sur plusieurs lignes.
+
+<p>
+Quand la valeur de la propriété <a href="text.html#propdef-text-align" class="noxref"><span class="propinst-text-align">'text-align'</span></a>
+est une chaîne et que celle-ci n'apparaît pas dans le contenu de la cellule, c'est la fin de celui-ci qui touche
+l'axe d'alignement vertical.
+
+<p>
+Noter que les chaînes ne doivent pas forcément être les mêmes pour chacune des cellules,
+bien que ce soit généralement le cas.
+
+<p>
+CSS n'offre aucun moyen de spécifier le décalage entre l'axe d'alignement vertical et le bord d'une
+boîte de colonne.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Soit la feuille de style :
+
+<pre>
+   TD { text-align: "." }
+   TD:before { content: "$" }
+</pre>
+
+<p>cette feuille de style associée avec cette table <abbr>HTML</abbr> :
+
+<pre class="html-example">
+  &lt;TABLE&gt;
+  &lt;COL width="40"&gt;
+  &lt;TR&gt; &lt;TH&gt;Appels hors circonscription
+  &lt;TR&gt; &lt;TD&gt; 1.30
+  &lt;TR&gt; &lt;TD&gt; 2.50
+  &lt;TR&gt; &lt;TD&gt; 10.80
+  &lt;TR&gt; &lt;TD&gt; 111.01
+  &lt;TR&gt; &lt;TD&gt; 85.
+  &lt;TR&gt; &lt;TD&gt; 90
+  &lt;TR&gt; &lt;TD&gt; .05
+  &lt;TR&gt; &lt;TD&gt; .06
+  &lt;/TABLE&gt;
+</pre>
+
+<p>Ceci fera que le signe monétaire dollar va s'aligner sur le point décimal.
+En complément, on a utilisé le pseudo-élément
+<a name="x18"><span class="index-inst" title=":before">:before</span></a> pour insérer le signe dollar devant
+chacun des chiffres. La table pourrait être rendue ainsi :
+
+<pre>
+Appels hors circonscription :
+              $1.30      
+              $2.50
+             $10.80
+            $111.01
+             $85.
+             $90
+               $.05
+               $.06
+</pre>
+</div>
+
+<h3>17.5.5 <a name="dynamic-effects">Les effets dynamiques des rangées et colonnes</a></h3>
+
+<p>
+La propriété <a href="visufx.html#propdef-visibility" class="noxref"><span class="propinst-visibility">'visibility'</span></a>
+accepte la valeur 'collapse' pour les éléments des rangées, groupes de rangées, colonnes
+et groupes de colonnes. Avec cette valeur, la rangée ou la colonne entières ne sont pas affichées
+et l'espace normalement occupé par celles-ci devient disponible pour d'autres contenus. Cependant, leur suppression
+n'affecte pas pour autant la disposition de la table. Ceci permet des effets dynamiques qui ne provoquent pas une
+re-disposition de la table pour tenir compte des changements potentiels des contraintes des colonnes.
+
+<h2>17.6 <a name="borders">Les bordures</a></h2>
+
+<p>
+CSS propose deux modèles distincts pour la spécification des bordures des cellules des tables.
+L'un, appelé <a name="x19"><span class="index-inst" title="separated borders">modèle des bordures séparées</span></a>,
+convient pour spécifier des bordures autour de cellules individuelles, l'autre convient pour des bordures
+continues d'un côté de la table à l'autre. On peut obtenir plusieurs styles de bordure selon le
+modèle employé, le choix de l'un ou de l'autre étant affaire de goût.
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'border-collapse'"><a name="propdef-border-collapse" class="propdef-title"><strong>'border-collapse'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>collapse | separate | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>collapse
+<tr valign=baseline><td><em>S'applique à :</em>  <td>à ceux des éléments dont la valeur de la propriété 'display' est 'table' ou 'inline-table'
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Percentages:</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p><span class="errata"><a href="annexe/errata.html#changes-borders" title="Errata">« errata : Voir la proposition pour <strong>changer la valeur initiale de 'border-collapse'</strong> »</a></span>
+<p>
+Cette propriété permet la sélection du modèle de bordure d'une table. Pour une valeur
+'separate', on sélectionne le modèle des bordures séparées, pour la valeur 'collapse',
+celui des bordures fusionnées. Voici leur description ci-dessous.
+
+<h3>17.6.1 <a name="separated-borders">Le modèle des bordures séparées</a></h3>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'border-spacing'"><a name="propdef-border-spacing" class="propdef-title"><strong>'border-spacing'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td><a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a> <a href="syndata.html#value-def-length" class="noxref"><span class="value-inst-length">&lt;longueur&gt;</span></a>? | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>0
+<tr valign=baseline><td><em>S'applique à :</em>  <td>ceux des éléments dont la propriété 'display' a la valeur 'table' ou 'inline-table'
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Percentages:</em>  <td>N/A
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+<p>
+Les longueurs spécifient la distance qui séparent les bordures de cellules adjacentes. Quand on ne
+spécifie qu'une longueur, ceci donne l'espacement horizontal et vertical. Quand on spécifie deux
+longueurs, la première donne l'espacement horizontal et la deuxième celui vertical. Ces longueurs ne
+peuvent pas être négatives.
+
+<p>
+Dans ce modèle, chaque cellule a une bordure individuelle. La propriété
+<a href="tables.html#propdef-border-spacing" class="noxref"><span class="propinst-border-spacing">'border-spacing'</span></a>
+indique la distance entre les bordures de cellules adjacentes. Cet espace est comblé par l'arrière-plan
+de l'élément table. Les rangées, colonnes, groupes de rangées et de colonnes ne peuvent
+pas avoir de bordures (c.à.d. les agents utilisateurs doivent <span class="index-inst" title="ignore"><a name="x22" href="syndata.html#ignore">ignorer</a></span>
+les propriétés de bordure de ces éléments).
+
+<div class="example"><p style="display:none">Exemple(s) :
+
+<p>
+La table dont l'illustration suit pourrait être le résultat d'une feuille de style comme celle-ci :
+
+<pre>
+  TABLE      { border: outset 10pt; 
+               border-collapse: separate;
+               border-spacing: 15pt }
+  TD         { border: inset 5pt }
+  TD.special { border: inset 10pt }  /* La cellule en haut à gauche */
+</pre>
+
+<div class=figure>
+<p>
+<img src="images/tbl-spacing.gif" alt="Une table avec des bordures espacées." width="427" height="298"><span class="dlink">   <a name="img-tbl-spacing" href="images/longdesc/tbl-spacing-desc.html" title="Long description of example illustrating the separated borders model">[D]</a></span>
+<p class="caption">Une table dont la propriété <a href="tables.html#propdef-border-spacing" class="noxref"><span class="propinst-border-spacing">'border-spacing'</span></a>
+n'a qu'une valeur de longueur. Noter que chacune des cellules a sa propre bordure tout comme la table a une bordure séparée.
+</div>
+</div>
+
+<h4> <a name="empty-cells">Les bordures autour des cellules vides :</a> la propriété <a href="tables.html#propdef-empty-cells" class="noxref"><span class="propinst-empty-cells">'empty-cells'</span></a></h4>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'empty-cells'"><a name="propdef-empty-cells" class="propdef-title"><strong>'empty-cells'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>show | hide | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>show
+<tr valign=baseline><td><em>S'applique à :</em>  <td>ceux des éléments dont la valeur de la propriété 'display' est 'table-cell'
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#visual-media-group" class="noxref">visuel</a>
+</table>
+</dl>
+</div>
+
+
+<p>
+Dans le modèle des bordures séparées, cette propriété contrôle le rendu des bordures autour des cellules sans contenu
+<ins title="2000-12-12 id=x79">ainsi que leur arrière-plan</ins>. Les cellules vides et celles dont la propriété
+<a href="visufx.html#propdef-visibility" class="noxref"><span class="propinst-visibility">'visibility'</span></a>
+a la valeur 'hide' se comportent comme si elles n'avaient pas de contenu visible. Par contenu visible, on entend
+"&amp;nbsp;" et les autres caractères blancs, sauf les caractères <abbr>ASCII</abbr> retour chariot ("\0D"), nouvelle ligne ("\0A"),
+tabulation ("\09") et espace ("\20").
+
+<p>
+Quand cette propriété a la valeur 'show', les bordures sont dessinées autour des cellules vides
+(comme pour les cellules normales).
+
+<p>
+Pour la valeur 'hide', aucune bordure n'est dessinée autour des cellules vides. De plus, si toutes les cellules
+d'une rangée ont la valeur 'hide' et n'ont pas de contenu visible, la rangée entière se comporte
+comme si la valeur de la propriété 'display' de celle-ci avait été 'none'.
+
+<div class="example"><p style="display:none">Exemple(s) :
+<p>
+Cette règle autorise le dessin des bordures autour de chacune des cellules :
+
+<pre>
+TABLE { empty-cells: show }
+</pre>
+</div>
+
+
+<h3>17.6.2 <a name="collapsing-borders">Le modèle des bordures fusionnées</a></h3>
+
+<p>
+Dans le modèle des bordures fusionnées, on peut spécifier des bordures, entièrement ou
+en partie, autour d'une cellule, d'une rangée, d'un groupe de rangée, d'une colonne ou d'un groupe de
+colonnes. Les bordures pour l'attribut <abbr>HTML</abbr> "rule" peuvent être spécifiées de cette manière.
+
+<p>
+Les bordures se centrent sur les lignes du quadrillage entre les cellules. Les agents utilisateurs doivent trouver
+une règle d'arrondi cohérente dans le cas d'un nombre impair d'unités discrètes (les pixels
+à l'écran, les points d'une imprimante).
+
+<p>
+Le schéma plus loin montre l'interaction de la largeur de la table, des épaisseurs des bordures, de
+l'espacement et de la largeur de la cellule. Leur relation est donnée par l'équation suivante, celle-ci
+est valable pour chacune des rangées de la table :
+
+<blockquote>
+<p><var>largeur-rangée</var> = (0.5 * <var>épaisseur-bordure</var><sub>0</sub>) +
+<var>espacement-gauche</var><sub>1</sub> + <var>largeur</var><sub>1</sub> +
+<var>espacement-droit</var><sub>1</sub> +
+<var>épaisseur-bordure</var><sub>1</sub> +
+<var>espacement-gauche</var><sub>2</sub> +...+
+<var>espacement-droit</var><sub><var>n</var></sub> +
+(0.5 * <var>épaisseur-bordure</var><sub><var>n</var></sub>)</p>
+</blockquote>
+
+<p>Ici, <var>n</var> représente le nombre de cellules de la rangée<del title="id=x80"> et</del><ins title="id=x80">,</ins> 
+<var>épaisseur-bordure</var><sub><var>i</var></sub> désigne la bordure entre les cellules <var>i</var> et <var>i + 1</var>
+<ins title="id=x80">et <var>espacement-gauche<sub>i</sub></var> et <var>espacement-droit<sub>i</sub></var> désignent respectivement
+l'espacement à gauche et celui à droite de la cellule <var>i</var></ins>. Noter que seule la moitié des deux bordures extérieures est comptée
+dans la largeur de la table, l'autre moitié se trouvant dans l'aire de la marge.
+
+<div class="figure">
+<p>
+<img src="images/tbl-width.gif" alt="Schéma montrant les largeurs des cellules et bordures, et leurs espacements." width="501" height="348"><span class="dlink">   <a name="img-tbl-width" href="images/longdesc/tbl-width-desc.html" title="Long description of example illustrating the collapsing borders model">[D]</a></span>
+<p class="caption">Schéma montrant les dimensions des cellules et de leurs bordures ainsi que l'espacement des cellules.
+</div>
+
+<p>
+Noter que dans ce modèle, la largeur de la table inclut la moitié de la bordure de celle-ci. Également,
+une table n'a pas d'espacement (mais elle a des marges).
+
+<h4> <a name="border-conflict-resolution">La résolution des conflits de bordure</a></h4>
+
+<p>
+Dans le modèle des bordures fusionnées, on peut spécifier les bordures de chacun des bords
+de chacune des cellules avec les propriétés de bordure pour les divers éléments
+qui ont des bords communs (ceux des cellules, rangées, groupes de rangées, colonnes, groupes de colonnes et
+de la table elle-même), ces bordures peuvent varier en style, taille et couleur. En règle générale,
+pour un bord donné, c'est le style de bordure "attirant le plus l'attention" qui est retenu, sauf quand survient
+éventuellement la propriété 'border-style' avec une valeur 'hidden', ce qui a pour effet inconditionnel
+de supprimer l'affichage de la bordure.
+
+<p>En cas de conflit, les règles suivantes déterminent lequel des styles de bordure l'emporte :
+
+<ol>
+<li>
+Les bordures contrôlées par la propriété
+<a href="box.html#propdef-border-style" class="noxref"><span class="propinst-border-style">'border-style'</span></a>
+avec la valeur 'hidden' sont considérées avant toutes celles intervenant dans le conflit. Cette valeur
+cause la suppression de toutes les bordures à cet endroit ;
+
+<li>
+Les bordures dont la valeur de la propriété 'border-style' est 'none' ont la plus faible priorité.
+Une bordure ne sera omise que quand toutes les propriétés de bordure des éléments convergents
+sur ce bord auront une valeur 'none' (noter en passant que c'est la valeur par défaut pour la propriété
+'border-style') ;
+
+<li>
+Si aucun des styles de bordure de ces éléments n'est 'hidden' et au moins l'un d'entre eux n'est pas
+'none', alors les bordures les plus larges sont retenues, les plus étroites rejetées. Si plusieurs
+d'entre eux ont la même valeur pour leur propriété <a href="box.html#propdef-border-width" class="noxref"><span class="propinst-border-width">'border-width'</span></a>,
+alors on retiendra le style de bordure dans cet ordre de priorité 'double', 'solid', 'dashed', 'dotted',
+'ridge', 'outset', 'groove' et enfin, celui de moindre poids, 'inset' ;
+
+<li>
+Si les styles de bordure ne diffèrent que par leur couleur, alors le style de bordure d'une cellule l'emporte
+sur celui d'une rangée, ce dernier l'emporte à son tour sur celui d'un groupe de rangées, puis
+en succession, sur celui d'une colonne, sur celui d'un groupe de colonnes et finalement, sur celui de la table.
+</ol>
+
+<div class="example"><p style="display:none">Exemple(s) :
+
+<p>
+L'exemple suivant illustre l'application de ces règles de préséance. Soit la feuille de style :
+
+<pre>
+  TABLE          { border-collapse: collapse;
+                   border: 5px solid yellow; }
+  *#col1         { border: 3px solid black; }
+  TD             { border: 1px solid red; padding: 1em; }
+  TD.solid-blue  { border: 5px dashed blue; }
+  TD.solid-green { border: 5px solid green; }
+</pre>
+
+<p>celle-ci associée avec cette source <abbr>HTML</abbr> :
+
+<pre class="html-example">
+&lt;P&gt;
+&lt;TABLE&gt;
+&lt;COL id=&quot;col1&quot;&gt;&lt;COL id=&quot;col2&quot;&gt;&lt;COL id=&quot;col3&quot;&gt;
+&lt;TR id=&quot;row1&quot;&gt;
+    &lt;TD&gt; 1
+    &lt;TD&gt; 2
+    &lt;TD&gt; 3
+&lt;/TR&gt;
+&lt;TR id=&quot;row2&quot;&gt;
+    &lt;TD&gt; 4 
+    &lt;TD class="solid-blue"&gt; 5
+    &lt;TD class="solid-green"&gt; 6
+&lt;/TR&gt;
+&lt;TR id=&quot;row3&quot;&gt;
+    &lt;TD&gt; 7
+    &lt;TD&gt; 8
+    &lt;TD&gt; 9
+&lt;/TR&gt;
+&lt;TR id=&quot;row4&quot;&gt;
+    &lt;TD&gt; 10
+    &lt;TD&gt; 11
+    &lt;TD&gt; 12
+&lt;/TR&gt;
+&lt;TR id=&quot;row5&quot;&gt;
+    &lt;TD&gt; 13
+    &lt;TD&gt; 14
+    &lt;TD&gt; 15
+&lt;/TR&gt;
+&lt;/TABLE&gt;
+</pre>
+
+<p>ceci produirait quelque chose comme :
+
+<div class="figure">
+<p>
+<img src="images/tbl-border-conflict.gif" alt="Un exemple de table avec des bordures fusionnées." width="125" height="189"><span class="dlink">   <a name="img-tbl-border-conflict" href="images/longdesc/tbl-border-conflict-desc.html" title="Long description of example illustrating precedence in the collapsing borders model">[D]</a></span></p>
+<p class="caption">Un exemple de table avec des bordures fusionnées.</p>
+</div>
+</div>
+
+<div class="example"><p style="display:none">Exemple(s) :
+
+<p>
+Cet exemple-ci montre une table avec des traits horizontaux entre les rangées. La bordure du haut de la table
+a une valeur 'hidden', ce qui a pour effet de supprimer la bordure du haut de la première rangée.
+C'est une implémentation de l'attribut "rules" en <abbr>HTML 4.0</abbr> (rules="rows") :
+
+<pre>
+TABLE[rules=rows] TR { border-top: solid }
+TABLE[rules=rows]    { border-collapse: collapse; 
+                       border-top: hidden }
+</pre>
+
+<div class="figure">
+<p>
+<img src="images/tbl-rules.gif" alt="Table avec des règles horizontales." width="132" height="77"><span class="dlink">   <a name="img-tbl-rules" href="images/longdesc/tbl-rules-desc.html" title="Long description of example illustrating rows separated by a border">[D]</a></span>
+<p class="caption">Une table avec des traits horizontaux entre les rangées.
+</div>
+
+<p>
+On aurait pu obtenir le même effet, sans utiliser la valeur 'hidden' pour la bordure de la table,
+en donnant un style distinct à la première rangée, le choix de l'une ou l'autre méthode
+étant une affaire de goût :
+
+<pre>
+TR:first-child { border-top: none }
+TR { border-top: solid }
+</pre>
+</div>
+
+<div class="example"><p style="display:none">Exemple(s) :
+
+<p>
+Voici un autre exemple de bordures fusionnées cachées :
+
+<div class="figure">
+<p>
+<img src="images/CSStbl3.gif" width="57" height="48" alt="Table avec deux bordures manquantes."><span class="dlink">   <a name="img-CSStbl3" href="images/longdesc/CSStbl3-desc.html" title="Long description of example illustrating hidden internal borders">[D]</a></span>
+<p class="caption">Une table avec deux bordures internes absentes.
+</div>
+
+<p>La source <abbr>HTML</abbr> :
+
+<pre class="html-example">
+&lt;TABLE style="border-collapse: collapse; border: solid;"&gt;
+&lt;TR&gt;&lt;TD style="border-right: hidden; border-bottom: hidden"&gt;foo&lt;/TD&gt;
+    &lt;TD style="border: solid"&gt;bar&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;&lt;TD style="border: none"&gt;foo&lt;/TD&gt;
+    &lt;TD style="border: solid"&gt;bar&lt;/TD&gt;&lt;/TR&gt;
+&lt;/TABLE&gt;
+</pre>
+</div>
+
+<h3><a name="q20">17.6.3 Les styles de bordure</a></h3>
+
+<p>
+Certaines valeurs de la propriété <span class="index-inst" title="&lt;border-style&gt;"><a name="x24" href="box.html#propdef-border-style" class="noxref"><span class="propinst-border-style">'border-style'</span></a></span>
+ont une signification différente dans le contexte des tables que dans celui des autres éléments.
+Celles-ci sont repérées par un astérisque dans la liste qui suit :
+
+<dl>
+<dt><a href="box.html#value-def-bo-none" class="noxref"><span class="value-inst-bo-none"><strong>none</strong></span></a>
+<dd><a name="x25"><span class="index-inst" title="'none'::as border style">Aucune bordure</span></a> ;
+
+<dt><strong>*<span class="index-inst" title="'hidden"><a name="x26" href="box.html#value-def-hidden" class="noxref"><span class="value-inst-hidden">hidden</span></a></span></strong>
+<dd>Même chose que pour 'none', cependant, dans le <a href="#collapsing-borders">modèle des bordures fusionnées</a>,
+cette valeur a une action inhibitrice sur les autres bordures (voir les <a href="#border-conflict-resolution">conflits de bordures</a>) ;
+
+<dt><strong><span class="index-inst" title="'dotted'"><a name="x27" href="box.html#value-def-dotted" class="noxref"><span class="value-inst-dotted">dotted</span></a></span></strong>
+<dd>La bordure est constituée d'une succession de points ;
+
+<dt><strong><span class="index-inst" title="'dashed'"><a name="x28" href="box.html#value-def-dashed" class="noxref"><span class="value-inst-dashed">dashed</span></a></span></strong>
+<dd>La bordure est constituée d'une succession de petits traits ;
+
+<dt><strong><span class="index-inst" title="'solid'"><a name="x29" href="box.html#value-def-solid" class="noxref"><span class="value-inst-solid">solid</span></a></span></strong>
+<dd>La bordure est constituée d'un trait plein ;
+
+<dt><strong><span class="index-inst" title="'double'"><a name="x30" href="box.html#value-def-double" class="noxref"><span class="value-inst-double">double</span></a></span></strong>
+<dd>La bordure est constituée de deux traits pleins. La somme de leur épaisseur et de l'espace entre eux est égale
+à la valeur de la propriété <a href="box.html#propdef-border-width" class="noxref"><span class="propinst-border-width">'border-width'</span></a> ;
+
+<dt><strong><span class="index-inst" title="'groove'"><a name="x31" href="box.html#value-def-groove" class="noxref"><span class="value-inst-groove">groove</span></a></span></strong>
+<dd>La bordure semble avoir été gravée dans le canevas ;
+
+<dt><strong><span class="index-inst" title="'ridge'"><a name="x32" href="box.html#value-def-ridge" class="noxref"><span class="value-inst-ridge">ridge</span></a></span></strong>
+<dd>L'opposé de 'groove', la bordure semble être en relief sur le canevas ;
+
+<dt><strong>*<span class="index-inst" title="'inset'"><a name="x33" href="box.html#value-def-inset" class="noxref"><span class="value-inst-inset">inset</span></a></span></strong>
+<dd>Dans le <a href="#separated-borders">modèle des bordures séparées</a>, la bordure donne
+l'impression que la boîte entière est incrustée dans le canevas. Dans le <a href="#collapsing-borders">modèle des bordures fusionnées</a>,
+même effet que 'groove' ;
+
+<dt><strong>*<span class="index-inst" title="'outset'"><a name="x34" href="box.html#value-def-outset" class="noxref"><span class="value-inst-outset">outset</span></a></span></strong>
+<dd>Dans le <a href="#separated-borders">modèle des bordures séparées</a>, la bordure donne
+l'impression que la boîte entière est extrudée du canevas. Dans le <a href="#collapsing-borders">modèle des bordures fusionnées</a>,
+même effet que 'ridge'.
+</dl>
+
+<h2><a name="q21">17.7 Le rendu auditif des tables</a></h2>
+
+<p>
+Lors de la diction d'une table par un synthétiseur de parole, les relations entre les cellules de données
+et celles des en-têtes doivent être exprimées différemment, selon que ces cellules sont
+alignées horizontalement ou verticalement. Certains navigateurs avec synthèse de parole permettent
+à l'utilisateur de se mouvoir dans un espace en deux dimensions, leur donnant ainsi la possibilité
+d'une représentation spatiale de ces relations. Quand cela n'est pas possible, la feuille de style doit
+spécifier les endroits où les en-têtes sont annoncées.
+
+<h3>17.7.1 <a name="speak-headers">Les en-têtes parlées :</a> la propriété <a href="tables.html#propdef-speak-header" class="noxref"><span class="propinst-speak-header">'speak-header'</span></a></h3>
+
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="'speak-header'"><a name="propdef-speak-header" class="propdef-title"><strong>'speak-header'</strong></a></span>
+<dd>
+<table class="propinfo" cellspacing=0 cellpadding=0>
+<tr valign=baseline><td><em>Valeur :</em>  <td>once | always | <a href="cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+<tr valign=baseline><td><em>Initiale :</em>  <td>once
+<tr valign=baseline><td><em>S'applique à :</em>  <td>ceux des éléments avec une information d'en-tête de table
+<tr valign=baseline><td><em>Héritée :</em>  <td>oui
+<tr valign=baseline><td><em>Pourcentage :</em>  <td>sans objet
+<tr valign=baseline><td><em>Médias :</em>  <td><a href="media.html#aural-media-group" class="noxref">auditif</a>
+</table>
+</dl>
+</div>
+
+<p>
+Cette propriété indique si les en-têtes de table sont parlées avant chacune des cellules
+ou seulement avant une cellule quand celle-ci est associée à une en-tête différente
+de la cellule précédente. Les significations des valeurs sont :
+
+<dl>
+<dt><strong>once</strong>
+<dd>L'en-tête est annoncée une fois, avant une succession de cellules ;
+<dt><strong>always</strong>
+<dd>L'en-tête est annoncée à chaque fois, avant chacune des cellules pertinentes.
+</dl>
+
+<p>
+Chaque langage de document peut avoir un mécanisme différent permettant aux auteurs la spécification
+des en-têtes. Par exemple en <abbr>HTML 4.0</abbr> (<a href="refs.html#ref-HTML40" rel="biblioentry" class="noxref"><span class="normref">[HTML40]</span></a>),
+on peut spécifier une information d'en-tête à l'aide de trois attributs différents
+("headers", "scope" et "axis"), cette spécification précisant un algorithme pour déterminer
+cette information d'en-tête en l'absence de ces attributs.
+
+<div class="html-example">
+<div class="figure">
+<p>
+<img src="images/table1.gif" alt="Image d'une table." width="399" height="207"><span class="dlink">   <a name="img-table1" href="images/longdesc/table1-desc.html" title="Long description of example illustrating a table of travel expenses">[D]</a></span>
+<p class="caption">Illustration d'une table dont les cellules d'en-tête ("San Jose" et "Seattle") ne se trouvent
+pas dans la même rangée, ou colonne, que les données auxquelles elles s'appliquent.
+</div>
+
+<p>
+Cet exemple en <abbr>HTML</abbr> présente les notes de frais, repas, hôtels et transport, pour un séjour de
+plusieurs jours dans deux déplacements. Conceptuellement, on peut considérer cette table comme un
+espace en plusieurs dimensions. Les en-têtes de cet espace sont : le lieu du déplacement, la date,
+la catégorie de frais et les sous-totaux. Certaines cellules définissent des repères le long
+d'un axe alors que d'autres représentent l'argent dépensé, à des points de cet espace.
+Voici le balisage pour cette table :
+
+<pre>
+&lt;TABLE&gt;
+&lt;CAPTION&gt;Rapport de frais de déplacement&lt;/CAPTION&gt;
+&lt;TR&gt;
+  &lt;TH&gt;&lt;/TH&gt;
+  &lt;TH&gt;Repas&lt;/TH&gt;
+  &lt;TH&gt;Hôtels&lt;/TH&gt;
+  &lt;TH&gt;Transports&lt;/TH&gt;
+  &lt;TH&gt;Sous-totaux&lt;/TH&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH id="san-jose" axis="san-jose"&gt;San Jose&lt;/TH&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH headers="san-jose"&gt;25-Aug-97&lt;/TH&gt;
+  &lt;TD&gt;37.74&lt;/TD&gt;
+  &lt;TD&gt;112.00&lt;/TD&gt;
+  &lt;TD&gt;45.00&lt;/TD&gt;
+  &lt;TD&gt;&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH headers="san-jose"&gt;26-Aug-97&lt;/TH&gt;
+  &lt;TD&gt;27.28&lt;/TD&gt;
+  &lt;TD&gt;112.00&lt;/TD&gt;
+  &lt;TD&gt;45.00&lt;/TD&gt;
+  &lt;TD&gt;&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH headers="san-jose"&gt;subtotal&lt;/TH&gt;
+  &lt;TD&gt;65.02&lt;/TD&gt;
+  &lt;TD&gt;224.00&lt;/TD&gt;
+  &lt;TD&gt;90.00&lt;/TD&gt;
+  &lt;TD&gt;379.02&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH id="seattle" axis="seattle"&gt;Seattle&lt;/TH&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH headers="seattle"&gt;27-Aug-97&lt;/TH&gt;
+  &lt;TD&gt;96.25&lt;/TD&gt;
+  &lt;TD&gt;109.00&lt;/TD&gt;
+  &lt;TD&gt;36.00&lt;/TD&gt;
+  &lt;TD&gt;&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH headers="seattle"&gt;28-Aug-97&lt;/TH&gt;
+  &lt;TD&gt;35.00&lt;/TD&gt;
+  &lt;TD&gt;109.00&lt;/TD&gt;
+  &lt;TD&gt;36.00&lt;/TD&gt;
+  &lt;TD&gt;&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH headers="seattle"&gt;subtotal&lt;/TH&gt;
+  &lt;TD&gt;131.25&lt;/TD&gt;
+  &lt;TD&gt;218.00&lt;/TD&gt;
+  &lt;TD&gt;72.00&lt;/TD&gt;
+  &lt;TD&gt;421.25&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;TR&gt;
+  &lt;TH&gt;Totals&lt;/TH&gt;
+  &lt;TD&gt;196.27&lt;/TD&gt;
+  &lt;TD&gt;442.00&lt;/TD&gt;
+  &lt;TD&gt;162.00&lt;/TD&gt;
+  &lt;TD&gt;800.27&lt;/TD&gt;
+&lt;/TR&gt;
+&lt;/TABLE&gt;
+</pre>
+
+<p>
+En produisant le modèle des données de cette manière, les auteurs autorisent une exploration
+plus riche de la table par les navigateurs synthétiseurs de parole, par exemple, chaque cellule pourrait
+être énumérée dans une liste, l'en-tête concernée étant répétée
+avant chacune des cellules de données :
+
+<pre>
+  San Jose, 25-Aug-97, Repas :  37.74
+  San Jose, 25-Aug-97, Hôtels :  112.00
+  San Jose, 25-Aug-97, Transports :  45.00
+ ...
+</pre>
+
+<p>
+Le navigateur pourrait aussi dire les en-têtes quand celles-ci changent :
+
+<pre>
+San Jose, 25-Aug-97, Repas : 37.74
+    Hôtels : 112.00
+    Transports : 45.00
+  26-Aug-97, Repas : 27.28
+    Hôtels : 112.00
+...
+</pre>
+</div>
+
+<hr class="navbar">
+
+<div class="navbar" align="center">
+<p><a href="text.html">précédent</a>  
+<a href="ui.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+</body>
+</html>

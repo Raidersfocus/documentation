@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="fr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Annexe A : Un exemple de feuille de style pour HTML 4.0</title>
+<link rel="stylesheet" type="text/css" href="annexe/W3C-REC.css">
+<link rel="stylesheet" type="text/css" href="annexe/vf.css">
+<link rel="prev" href="aural.html">
+<link rel="next" href="changes.html">
+<link rel="contents" href="cover.html#minitoc">
+<link rel="CSS-properties" href="propidx.html" title="properties">
+<link rel="index" href="indexlist.html" title="index">
+</head>
+<body>
+<!-- Préface de la traduction -->
+<div id="lisezmoi">
+<a href="annexe/preface.html" title="IMPORTANT : Lisez d'abord la préface de la traduction !"><strong> Lisez-moi S.V.P. </strong></a>
+</div>
+<div class="navbar" align="center">
+<p><a href="aural.html">précédent</a>  
+<a href="changes.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriétés</a>  
+<a href="indexlist.html">index</a>  
+</div>
+<hr class="navbar">
+
+<h1 align="center">Annexe A : Un exemple de feuille de style pour <abbr>HTML 4.0</abbr></h1>
+<p><em>Cet annexe est informatif, et non normatif.</em></p>
+
+<p>
+Cette feuille de style décrit la mise en forme typique de tous les éléments <abbr>HTML 4.0</abbr>
+(<a href="refs.html#ref-HTML40" rel="biblioentry" class="noxref"><span class="informref">[HTML40]</span></a>)
+à partir d'un examen approfondi des pratiques des agents utilisateurs actuels. On encourage les
+développeurs à l'utiliser comme feuille de style par défaut pour leurs implémentations.
+
+<p>
+La présentation complète de certains éléments <abbr>HTML</abbr> n'est pas exprimable en <abbr>CSS2</abbr>, ainsi
+les éléments <a href="conform.html#replaced-element">remplacés</a> (IMG, OBJECT), des scripts (SCRIPT, APPLET),
+des contrôles des formulaires et des cadres.
+
+<pre class="example">
+ADDRESS,
+BLOCKQUOTE, 
+BODY, DD, DIV, 
+DL, DT, 
+FIELDSET, FORM,
+FRAME, FRAMESET,
+H1, H2, H3, H4, 
+H5, H6, IFRAME, 
+NOFRAMES, 
+OL, P, UL,
+CENTER, DIR, 
+HR, MENU, PRE   { display: block }
+<ins title="id=x50">OBJECT, APPLET  { display: inline }</ins>
+LI              { display: list-item }
+HEAD            { display: none }
+TABLE           { display: table }
+TR              { display: table-row }
+THEAD           { display: table-header-group }
+TBODY           { display: table-row-group }
+TFOOT           { display: table-footer-group }
+COL             { display: table-column }
+COLGROUP        { display: table-column-group }
+TD, TH          { display: table-cell }
+CAPTION         { display: table-caption }
+TH              { font-weight: bolder; text-align: center }
+CAPTION         { text-align: center }
+BODY            { padding: 8px; line-height: <del title="id=x50">1.33</del> <ins title="id=x50">1.12em</ins> }
+H1              { font-size: 2em; margin: .67em 0 }
+H2              { font-size: 1.5em; margin: .83em 0 }
+H3              { font-size: 1.17em; margin: 1em 0 }
+H4, P,
+BLOCKQUOTE, UL,
+FIELDSET, FORM,
+OL, DL, DIR,
+MENU            { margin: 1.33em 0 }
+H5              { font-size: .83em; line-height: 1.17em; margin: 1.67em 0 }
+H6              { font-size: .67em; margin: 2.33em 0 }
+H1, H2, H3, H4,
+H5, H6, B,
+STRONG          { font-weight: bolder }
+BLOCKQUOTE      { margin-left: 40px; margin-right: 40px }
+I, CITE, EM,
+VAR, ADDRESS    { font-style: italic }
+PRE, TT, CODE,
+KBD, SAMP       { font-family: monospace }
+PRE             { white-space: pre }
+BIG             { font-size: 1.17em }
+SMALL, SUB, SUP { font-size: .83em }
+SUB             { vertical-align: sub }
+SUP             { vertical-align: super }
+S, STRIKE, DEL  { text-decoration: line-through }
+HR              { border: 1px inset }
+OL, UL, DIR,
+MENU, DD        { margin-left: 40px }
+OL              { list-style-type: decimal }
+OL UL, UL OL,
+UL UL, OL OL    { margin-top: 0; margin-bottom: 0 }
+U, INS          { text-decoration: underline }
+CENTER          { text-align: center }
+BR:before       { content: "\A" }
+
+/* Un exemple de style pour les éléments HTML 4.0 ABBR et ACRONYM */
+
+ABBR, ACRONYM   { font-variant: small-caps; letter-spacing: 0.1em }
+A[href]         { text-decoration: underline }
+:focus          { outline: thin dotted invert }
+
+<a name="bidi">
+/* Début des réglages bidi (ne pas changer) */
+BDO[DIR="ltr"]  { direction: ltr; unicode-bidi: bidi-override }
+BDO[DIR="rtl"]  { direction: rtl; unicode-bidi: bidi-override }
+
+*[DIR="ltr"]    { direction: ltr; unicode-bidi: embed }
+*[DIR="rtl"]    { direction: rtl; unicode-bidi: embed }
+
+/* Éléments de type bloc en HTML 4.0 */
+ADDRESS, BLOCKQUOTE, BODY, DD, DIV, DL, DT, FIELDSET, 
+FORM, FRAME, FRAMESET, H1, H2, H3, H4, H5, H6, IFRAME,
+NOSCRIPT, NOFRAMES, OBJECT, OL, P, UL, APPLET, CENTER, 
+DIR, HR, MENU, PRE, LI, TABLE, TR, THEAD, TBODY, TFOOT, 
+COL, COLGROUP, TD, TH, CAPTION 
+                { unicode-bidi: embed }
+/* Fin des réglages bidi */
+</a>
+<ins title="id=x83">@page           { margin: 10% }</ins>
+
+@media print {
+<del title="id=x83">@page           { margin: 10% }</del>
+  H1, H2, H3,
+  H4, H5, H6    { page-break-after: avoid; page-break-inside: avoid }
+  BLOCKQUOTE, 
+  PRE           { page-break-inside: avoid }
+  UL, OL, DL    { page-break-before: avoid }
+}
+
+@media <del title="id=s-A">speech</del> <ins title="id=s-A">aural</ins> {
+  H1, H2, H3, 
+  H4, H5, H6    { voice-family: paul, male; stress: 20; richness: 90 }
+  H1            { pitch: x-low; pitch-range: 90 }
+  H2            { pitch: x-low; pitch-range: 80 }
+  H3            { pitch: low; pitch-range: 70 }
+  H4            { pitch: medium; pitch-range: 60 }
+  H5            { pitch: medium; pitch-range: 50 }
+  H6            { pitch: medium; pitch-range: 40 }
+  LI, DT, DD    { pitch: medium; richness: 60 }
+  DT            { stress: 80 }
+  PRE, CODE, TT { pitch: medium; pitch-range: 0; stress: 0; richness: 80 }
+  EM            { pitch: medium; pitch-range: 60; stress: 60; richness: 50 }
+  STRONG        { pitch: medium; pitch-range: 60; stress: 90; richness: 90 }
+  DFN           { pitch: high; pitch-range: 60; stress: 60 }
+  S, STRIKE     { richness: 0 }
+  I             { pitch: medium; pitch-range: 60; stress: 60; richness: 50 }
+  B             { pitch: medium; pitch-range: 60; stress: 90; richness: 90 }
+  U             { richness: 0 }
+  A:link        { voice-family: harry, male }
+  A:visited     { voice-family: betty, female }
+  A:active      { voice-family: betty, female; pitch-range: 80; pitch: x-high }
+}
+</pre>
+<hr class="navbar">
+
+<div class="navbar" align="center">
+<p><a href="aural.html">précédent</a>  
+<a href="changes.html">suivant</a>  
+<a href="cover.html#minitoc">sommaire</a>  
+<a href="propidx.html">propriété</a>  
+<a href="indexlist.html">index</a>  
+</div>
+</body>
+</html>

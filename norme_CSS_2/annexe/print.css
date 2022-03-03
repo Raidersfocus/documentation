@@ -1,0 +1,140 @@
+@charset "iso-8859-1";
+
+/* Feuille de style modifiee (suppression de l'image de font 'W3C RECOMMENDATION') - date : 2004-01-16 */
+/* Style for a "Recommendation" */
+
+/*
+   Copyright 1997-2003 W3C (MIT, ERCIM, Keio). All Rights Reserved.
+   The following software licensing rules apply:
+   http://www.w3.org/Consortium/Legal/copyright-software */
+
+/* $Id: base.css,v 1.24 2003/04/17 13:56:40 bbos Exp $ */
+
+a{
+	text-decoration:none;
+	color:#000;
+}
+a.visited{
+	text-decoration:none;
+	color:#000;
+}
+a.link{
+	text-decoration:none;
+	color:#000;
+}
+a.hover{
+	text-decoration:none;
+	color:#000;
+}
+
+:link { color: #000; background: transparent }
+:visited { color: #000; background: transparent }
+a:active { color: #000; background: transparent }
+
+
+
+.navbar, #lisezmoi{
+	display:none;
+	visibility:collapse;
+
+}
+
+.tocxref{
+	text-decoration:none;
+	color:#000;
+}
+h1, h2, h3, h4{
+	color:black;
+	margin:0px;
+}
+body {
+  padding: 2em 1em 2em 50px;
+  margin: 0;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  font-size:12px;
+  color: black;
+  background: white;
+}
+td, th, table{
+	border:0px solid black;
+	border-collapse:collapse;
+	padding:2px;
+	margin:0px;
+} 
+
+table{
+	margin:5px;
+}
+td, th{
+	border:1px solid black;
+	border-collapse:collapse;
+}
+del{
+	display:none;
+}
+/*
+:link { color: #00C; background: transparent }
+:visited { color: #609; background: transparent }
+a:active { color: #C00; background: transparent }
+
+a:link img, a:visited img { border-style: none } 
+
+a img { color: white; }    
+@media all {               
+  a img { color: inherit; } 
+}
+
+th, td { 
+  font-family: sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 { text-align: left }
+
+h1, h2, h3 { color: #005A9C; background: white }
+h1 { font: 170% sans-serif }
+h2 { font: 140% sans-serif }
+h3 { font: 120% sans-serif }
+h4 { font: bold 100% sans-serif }
+h5 { font: italic 100% sans-serif }
+h6 { font: small-caps 100% sans-serif }
+
+.hide { display: none }
+
+div.head { margin-bottom: 1em }
+div.head h1 { margin-top: 2em; clear: both }
+div.head table { margin-left: 2em; margin-top: 2em }
+
+p.copyright { font-size: small }
+p.copyright small { font-size: small }
+
+@media screen {  
+a[href]:hover { background: #ffa }
+}
+
+pre { margin-left: 2em }
+
+p {
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+}
+
+dt, dd { margin-top: 0; margin-bottom: 0 } 
+dt { font-weight: bold }
+
+pre, code { font-family: monospace }
+
+ul.toc {
+  list-style: disc;		
+  list-style: none;
+}
+
+@media aural {  
+  h1, h2, h3 { stress: 20; richness: 90 }
+  .hide { speak: none }
+  p.copyright { volume: x-soft; speech-rate: x-fast }
+  dt { pause-before: 20% }
+  pre { speak-punctuation: code } 
+}
+
+
+*/

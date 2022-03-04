@@ -29,7 +29,7 @@ body {
 
 #contenu {
 	padding-left: 20%;
-	overflow:none;
+	overflow: hidden;
 }
 
 #ceffLogo {
